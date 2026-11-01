@@ -205,6 +205,14 @@ test("Serbian alerts write the cartridge color in lower case, in the script of t
   assert.match(html("sr-Latn"), /Nizak nivo mastila: crna/);
 });
 
+test("Italian, Dutch, Portuguese and Polish alerts write the cartridge color in lower case", () => {
+  const html = (language) => render({ ...levels(mockHass(), { black: 10 }), language }).shadowRoot.innerHTML;
+  assert.match(html("it"), /Inchiostro scarso: nero/);
+  assert.match(html("nl"), /Inktniveau laag: zwart/);
+  assert.match(html("pt"), /Pouca tinta: preto/);
+  assert.match(html("pl-PL"), /Niski poziom tuszu: czarny/);
+});
+
 test("without any host to compare, the same-model IPP sensor is still attached", () => {
   assert.equal(hpFindIppSensor(withIpp(mockHass(), IPP_READY), "p"), "sensor.ipp_printer");
 });

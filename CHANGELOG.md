@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.7 - 2026-11-01
+
+### Added
+- Added Italian, Dutch, European Portuguese and Polish translations (`it`, `nl`, `pt`, `pl`), also in the editor's language list. A regional code (`it-IT`, `nl-BE`, `pl-PL`) falls back to its language, and Brazilian Portuguese (`pt-BR`) to European Portuguese.
+
 ## 2.4.6 - 2026-11-01
 
 ### Added
