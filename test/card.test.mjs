@@ -480,3 +480,52 @@ test("the mini card editor offers zoom and keeps it out of the YAML at its defau
   assert.equal(ed._config.zoom, false);
   assert.ok(!new PrinterCardEditor()._schema.call({ _lang: () => "en" }).some((s) => s.name === "zoom"));
 });
+
+// ── Review pass 8 ──────────────────────────────────────────────────────────
+const styleOf = (card) => card.shadowRoot.innerHTML.match(/<style>([\s\S]*)<\/style>/)[1];
+const reducedMotion = (css) => css.match(/@media \(prefers-reduced-motion: reduce\) \{([\s\S]*?\})\s*\}/)?.[1] || "";
+
+test("with reduced motion, the busy screen no longer pulses and nothing slides or fades", () => {
+  for (const card of [render(mockHass({ status: "processing" })), mini(mockHass({ status: "processing" }))]) {
+    const css = styleOf(card);
+    // The screen still pulses for everyone else.
+    assert.match(css, /\.pic\.busy \.screen \{ animation: hp-glow/);
+    const rm = reducedMotion(css);
+    assert.match(rm, /\.pic\.busy \.screen \{ animation: none; \}/);
+    for (const sel of [".logo", ".pic", ".level"]) assert.ok(rm.includes(sel), `${sel} transition kept with reduced motion`);
+    assert.match(rm, /transition: none/);
+  }
+});
+
+test("every status color goes through a theme variable", () => {
+  for (const status of ["ready", "inpowersave", "processing", "scanprocessing", "copying", "canceljob", "stopped"]) {
+    const css = styleOf(render(mockHass({ status })));
+    const color = css.match(/--hp-color: ([^;]*);/)[1];
+    assert.match(color, /^var\(--[\w-]+, #[0-9a-f]{6}\)$/, `${status}: ${color}`);
+  }
+  assert.match(styleOf(render(mockHass({ status: "inpowersave" }))), /--hp-color: var\(--printer-card-sleep-color, #5c8fd6\)/);
+  assert.match(styleOf(render(mockHass({ status: "scanprocessing" }))), /--hp-color: var\(--printer-card-scan-color, #8e24aa\)/);
+});
+
+test("a low cartridge is outlined outside its tank, so a low yellow level stays visible", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const css = styleOf(card);
+    assert.doesNotMatch(css, /\.ink\.low \.tank[^{]*\{ box-shadow: inset 0 0 0 2px/);
+    assert.doesNotMatch(css, /\.r\.warn \.mt[^{]*\{ box-shadow: inset 0 0 0 1\.5px/);
+    assert.match(css, /\.ink\.low \.tank, \.ink\.bad \.tank \{ outline: 2px solid var\(--warning-color, #ffa600\); outline-offset: 1px; \}/);
+    assert.match(css, /\.ink\.bad \.tank, \.ink\.crit \.tank \{ outline-color: var\(--error-color, #db4437\); \}/);
+  }
+  assert.match(styleOf(mini(mockHass())), /\.r\.warn \.mt, \.r\.error \.mt \{ outline: 1\.5px solid var\(--t\); outline-offset: 0\.5px; \}/);
+});
+
+test("a nearly empty cartridge keeps a visible level, an empty or unknown one shows none", () => {
+  const hass = levels(mockHass(), { yellow: 1, cyan: 0, magenta: "unknown" });
+  const full = render(hass).shadowRoot.innerHTML;
+  assert.match(full, /<div class="level" style="height:1%;min-height:3px;background:#f5c400"/);
+  assert.match(full, /<div class="level" style="height:0%;background:/);
+  assert.equal((full.match(/min-height/g) || []).length, 2, "yellow 1 % and black 50 % only");
+  const small = mini(hass).shadowRoot.innerHTML;
+  assert.match(small, /<span class="mt"><span style="height:1%;min-height:2px;background:#f5c400"><\/span><\/span>1 %/);
+  assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>0 %/);
+  assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>—/);
+});
