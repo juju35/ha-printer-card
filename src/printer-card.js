@@ -1853,8 +1853,8 @@ class PrinterCard extends HTMLElement {
     }
 
     // Like the Home Connect cards: logo, name and status pill on top, then the picture with the chips.
-    var head = '<div class="header">' + v.logoHtml +
-      '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div>' +
+    var head = '<div class="hd"><div class="header">' + v.logoHtml +
+      '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div></div>' +
       '<div class="head">' + v.imageHtml +
       '<div class="meta">' +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') +
@@ -1892,13 +1892,21 @@ class PrinterCard extends HTMLElement {
   _styles(color) {
     return '<style>' +
       ':host { display: block; height: 100%; --hp-color: ' + (color || 'var(--disabled-text-color, #9e9e9e)') + '; }' +
-      // The card is the size container of its header: at the narrowest widths the status pill keeps only its icon or dot.
-      'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 10px; container: printer-card / inline-size; }' +
+      'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 10px; }' +
+      // The header's wrapper is its size container (at the narrowest widths the status pill keeps only its icon or dot).
+      // Not ha-card: an inline-size container has no intrinsic width, so in a max-content parent (layout-card, an
+      // inline-block) the whole card collapsed to its padding; this wrapper only drops the header's own share...
+      '.hd { container: printer-card / inline-size; margin-bottom: -2px; }' +
+      // ...so the card would shrink to its body. This invisible line gives it back a natural width of ~300px (as wide
+      // as a usual header) in such parents, while it can still shrink: it breaks anywhere, so it asks for no minimum.
+      'ha-card::after { content: "\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0"; font: 10px monospace; overflow-wrap: anywhere; height: 0; overflow: hidden; visibility: hidden; margin-top: -10px; }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
-      // The body starts 8px under the header (the card gap is 10px between body blocks).
-      '.header { display: flex; align-items: center; gap: 10px; margin-bottom: -2px; }' +
-      // The name gives way first, with an ellipsis, but always keeps a few characters; the pill shrinks too, the buttons never.
-      '.titles { flex: 1 1 auto; min-width: 5ch; }' +
+      // The body starts 8px under the header (the card gap is 10px between body blocks: see .hd).
+      '.header { display: flex; align-items: center; gap: 10px; }' +
+      // The name gives way first, with an ellipsis, but always keeps a few characters; the buttons never shrink.
+      // Basis 0: the name only gets what the pill leaves, so the pill is cut only when even 5ch of name do not fit
+      // beside it (with a basis of auto both shrank in proportion, and "Ready" became "Re…" at 320px).
+      '.titles { flex: 1 1 0; min-width: 5ch; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; transition: transform 0.2s; }' +
       '.logo svg { width: 100%; height: 100%; }' +
       'a.logo:hover { transform: scale(1.08); }' +
@@ -2063,10 +2071,10 @@ class PrinterMiniCard extends PrinterCard {
       var v = this._view(r);
       var seen = v.offline ? this._lastSeen(r) : '';
       var label = hpEsc(this._t(`st_${v.state}`));
-      this._paint(v, '<div class="header">' + v.logoHtml +
+      this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
           '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' +
           `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span>` + this._corner() +
-        '</div>' +
+        '</div></div>' +
         '<div class="content">' + v.imageHtml + '<div class="info">' +
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +
           '<div class="rs">' + this._chips(r, v) + '</div>' +
@@ -2082,7 +2090,7 @@ class PrinterMiniCard extends PrinterCard {
     this._sig = null;
     this._update();
     // Keyboard use (Enter / Space: no click count) keeps the focus on the button that replaced this one.
-    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus();
+    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus({ preventScroll: true });
   }
 
   // One chip per cartridge (dot in its color and level), then one per alert the cartridges do not already show.

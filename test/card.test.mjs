@@ -387,7 +387,7 @@ function clickZoom(card, detail = 1) {
   let onClick;
   const focused = [];
   card.shadowRoot.querySelector = (sel) =>
-    sel === ".zoom" ? { addEventListener: (_t, fn) => { onClick = fn; }, focus: () => focused.push(sel) } : null;
+    sel === ".zoom" ? { addEventListener: (_t, fn) => { onClick = fn; }, focus: (o) => focused.push(o ? `${sel} ${JSON.stringify(o)}` : sel) } : null;
   card._sig = null;
   card._update();
   const ev = { detail, stopped: false, stopPropagation() { this.stopped = true; } };
@@ -462,7 +462,8 @@ test("the full view is the same markup as the full card, plus the button", () =>
 
 test("a keyboard press on the detail button keeps the focus on it", () => {
   const card = mini(mockHass());
-  assert.deepEqual(clickZoom(card, 0).focused, [".zoom"]);
+  // preventScroll: the zoomed card grows or shrinks around the button, the page must not jump to it.
+  assert.deepEqual(clickZoom(card, 0).focused, ['.zoom {"preventScroll":true}']);
   assert.deepEqual(clickZoom(card, 1).focused, []);
 });
 
@@ -625,7 +626,9 @@ const rule = (css, sel) => css.match(new RegExp(`(?:^|\\})\\s*${sel.replace(/[.*
 test("narrow header: the title shrinks with an ellipsis but keeps a few characters", () => {
   for (const card of [render(mockHass()), mini(mockHass())]) {
     const css = styleOf(card);
-    assert.match(rule(css, ".titles"), /flex: 1 1 auto;/);
+    // Basis 0, not auto: with auto the name and the pill shrink in proportion to their natural widths, so a
+    // short "Ready" pill was cut ("Re…") at 320px next to a long name. The name takes what the pill leaves.
+    assert.match(rule(css, ".titles"), /flex: 1 1 0;/);
     assert.match(rule(css, ".titles"), /min-width: \d+ch;/);
     assert.match(rule(css, ".name"), /text-overflow: ellipsis/);
   }
@@ -643,7 +646,11 @@ test("narrow header: the status pill shrinks and truncates, then shows only its 
     assert.match(rule(css, text), /overflow: hidden;.*text-overflow: ellipsis;/, `${text} ellipsis`);
     assert.match(css, new RegExp(`@container printer-card \\(max-width: \\d+px\\) \\{[^@]*${text.replace(/\./g, "\\.")} \\{ display: none; \\}`), `${text} hidden when narrow`);
   }
-  assert.match(rule(full, "ha-card"), /container: printer-card \/ inline-size;/);
+  // The size container is a wrapper of the header, not ha-card: an inline-size container has no intrinsic
+  // width, so ha-card itself as container collapsed to its padding in a max-content parent (layout-card).
+  assert.doesNotMatch(rule(full, "ha-card"), /container/);
+  for (const css of [full, small]) assert.match(rule(css, ".hd"), /container: printer-card \/ inline-size;/);
+  for (const card of [render(mockHass()), mini(mockHass())]) assert.match(card.shadowRoot.innerHTML, /<ha-card[^>]*><div class="hd"><div class="header">/);
   assert.match(rule(full, ".status ha-icon"), /flex: none;/);
   assert.match(rule(small, ".st .dot"), /flex: none;/);
   assert.match(rule(small, ".zoom"), /flex: none;/);
@@ -651,6 +658,23 @@ test("narrow header: the status pill shrinks and truncates, then shows only its 
   assert.match(full, /@container printer-card \(max-width: 200px\) \{[^@]*\.status \{ min-width: 22px; padding: 2px 4px; \}/);
   assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 6px; \} \.logo \{ width: 32px; height: 32px; \}/);
   assert.match(small, /@container printer-card \(max-width: 200px\) \{ \.st \{ min-width: 14px; padding: 4px; \}/);
+});
+
+test("intrinsic width: the card keeps a natural width but asks for no minimum", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const css = styleOf(card);
+    // In an inline-block or an `auto` grid column the card is as wide as its widest line: the hidden line gives it
+    // ~300px instead of collapsing to its padding (24px)...
+    const after = rule(css, "ha-card::after");
+    assert.match(after, /content: "(\\a0){30,}";/);
+    assert.match(after, /overflow-wrap: anywhere;/);
+    assert.match(after, /height: 0;.*visibility: hidden;/);
+    // ...but a `1fr 1fr` grid or a horizontal stack must still shrink it: no px minimum and no intrinsic size,
+    // which would make the card overflow its column.
+    for (const sel of [":host", "ha-card"]) {
+      assert.doesNotMatch(rule(css, sel), /min-width: \d+px|contain-intrinsic/, sel);
+    }
+  }
 });
 
 test("narrow header: the status text stays available as the pill's title and label", () => {
