@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.4.7 - 2026-11-01
+
+### Added
+- Added Italian, Dutch, European Portuguese and Polish translations (`it`, `nl`, `pt`, `pl`), also in the editor's language list. A regional code (`it-IT`, `nl-BE`, `pl-PL`) falls back to its language, and Brazilian Portuguese (`pt-BR`) to European Portuguese.
+
+### Fixes
+- Mini card: an alert chip wider than the card ends with an ellipsis (full text in its tooltip) instead of running out of the card.
+- Numbers and dates use Home Assistant's full locale when it matches the card's language; plain `pt` is formatted as European Portuguese (`12 345`, not `12.345`).
+
 ## 2.4.6 - 2026-11-01
 
 ### Added

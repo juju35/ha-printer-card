@@ -205,6 +205,25 @@ test("Serbian alerts write the cartridge color in lower case, in the script of t
   assert.match(html("sr-Latn"), /Nizak nivo mastila: crna/);
 });
 
+test("Italian, Dutch, Portuguese and Polish alerts write the cartridge color in lower case", () => {
+  const html = (language) => render({ ...levels(mockHass(), { black: 10 }), language }).shadowRoot.innerHTML;
+  assert.match(html("it"), /Inchiostro scarso: nero/);
+  assert.match(html("nl"), /Inktniveau laag: zwart/);
+  assert.match(html("pt"), /Pouca tinta: preto/);
+  assert.match(html("pl-PL"), /Niski poziom tuszu: czarny/);
+});
+
+test("total pages: HA's full locale when it matches the card's language, pt read as European Portuguese", () => {
+  const html = (hass, config) => render({ ...mockHass(), ...hass }, { device_id: "p", ...config }).shadowRoot.innerHTML;
+  // Grouping with a (narrow no-break) space in pt-PT, a dot in pt-BR.
+  assert.match(html({ language: "pt" }), /12\s345 páginas/u);
+  assert.match(html({ language: "pt", locale: { language: "pt-BR" } }), /12\.345 páginas/);
+  assert.match(html({ language: "pt-BR" }), /12\.345 páginas/);
+  // The language option wins over a locale in another language.
+  assert.match(html({ language: "en", locale: { language: "en-US" } }, { language: "pt" }), /12\s345 páginas/u);
+  assert.match(html({ language: "de-CH" }), /12(&#39;|’)345 Seiten/);
+});
+
 test("without any host to compare, the same-model IPP sensor is still attached", () => {
   assert.equal(hpFindIppSensor(withIpp(mockHass(), IPP_READY), "p"), "sensor.ipp_printer");
 });
@@ -394,7 +413,7 @@ test("the mini card is laid out like the Home Connect mini cards, with one small
 
 test("the mini card shows a chip per active alert", () => {
   const html = mini(withIpp(mockHass(), IPP_READY)).shadowRoot.innerHTML;
-  assert.match(html, /<span class="r error"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon>Paper tray empty<\/span>/);
+  assert.match(html, /<span class="r error" title="Paper tray empty"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon><span class="tx">Paper tray empty<\/span><\/span>/);
 });
 
 test("the mini card says offline, without chips, when the printer is off", () => {
