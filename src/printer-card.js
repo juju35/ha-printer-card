@@ -2000,7 +2000,9 @@ var HP_MINI_STYLES =
   '.mini .content { display: flex; align-items: center; gap: 12px; }' +
   '.mini .pic { width: 56px; max-width: none; }' +
   '.mini .info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }' +
-  '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; }' +
+  // contain: inline-size: the line's text ("Last seen 3 days ago") never sets the card's min-content width, so the
+  // offline mini card still shrinks in a `1fr 1fr` grid (layout-card) instead of overflowing it; the text ends with an ellipsis.
+  '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; contain: inline-size; }' +
   '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; }' +
   '.line span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }' +
   '.rs { display: flex; flex-wrap: wrap; gap: 6px; }' +
