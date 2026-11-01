@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.4.7 - 2026-11-01
+
+### Added
+- Added Italian, Dutch, European Portuguese and Polish translations (`it`, `nl`, `pt`, `pl`), also in the editor's language list. A regional code (`it-IT`, `nl-BE`, `pl-PL`) falls back to its language, and Brazilian Portuguese (`pt-BR`) to European Portuguese.
+
+### Fixes
+- Mini card: an alert chip wider than the card ends with an ellipsis (full text in its tooltip) instead of running out of the card.
+- Numbers and dates use Home Assistant's full locale when it matches the card's language; plain `pt` is formatted as European Portuguese (`12 345`, not `12.345`).
+
+## 2.4.6 - 2026-11-01
+
+### Added
+- Added Serbian (Cyrillic and Latin) translations (`sr`, `sr-Latn`), also in the editor's language list. With Home Assistant in `sr-Latn`, the card picks the Latin script; a regional code (`fr-FR`) still falls back to its language.
+
+## 2.4.5
+
+### Fixes
+- When the system asks for reduced motion, the printer's control panel stays lit in the status color instead of pulsing while it prints, scans or copies, and ink levels and hover effects change without animation.
+- A low or nearly empty cartridge is now outlined outside its tank, on the full card and the mini card: a low yellow level no longer blends into the orange frame. A level above 0 % always keeps a visible line.
+- The sleeping and scanning status colors can be changed from a theme, with `--printer-card-sleep-color` and `--printer-card-scan-color` (defaults unchanged).
+
+### Maintenance
+- Biome 2.6.3 everywhere (pre-commit hook, lint job, `biome.json` schema); the lint job reads the version from `.pre-commit-config.yaml`.
+
 ## 2.4.4
 
 ### Fixes
