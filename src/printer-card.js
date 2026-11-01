@@ -387,7 +387,207 @@ var HpI18n = {
     zoom_in: 'Mostrar la tarjeta completa',
     zoom_out: 'Volver a la vista compacta',
   },
+  sr: {
+    printer: 'Штампач',
+    st_ready: 'Спреман',
+    st_inpowersave: 'У стању мировања',
+    st_processing: 'Штампа',
+    st_scanprocessing: 'Скенира',
+    st_copying: 'Копира',
+    st_canceljob: 'Отказивање задатка',
+    st_stopped: 'Заустављен',
+    st_offline: 'Ван мреже',
+    st_unknown: 'Непознато стање',
+    offline_text: 'Штампач је искључен или недоступан.',
+    last_seen: 'Последњи пут виђен {t}',
+    inks: 'Нивои мастила',
+    alerts: 'Упозорења',
+    no_alerts: 'Нема упозорења',
+    no_device: 'Није пронађен ниједан штампач',
+    toner: 'Нивои тонера',
+    pages: 'Одштампано страница: {n}',
+    pages_left: '≈ {n} страница',
+    c_black: 'Црна',
+    c_cyan: 'Цијан',
+    c_magenta: 'Магента',
+    c_yellow: 'Жута',
+    c_tricolor: 'Тробојна',
+    c_ink: 'Мастило',
+    printhead: 'Глава за штампање',
+    al_low: 'Низак ниво мастила: {c} ({p} %)',
+    al_empty: 'Мастило је скоро потрошено: {c} ({p} %)',
+    al_cartridge: 'Кертриџ ({c}): {s}',
+    al_printhead: 'Глава за штампање: {s}',
+    al_expired: 'Истекла је гаранција кертриџа ({c})',
+    al_stopped: 'Штампач је заустављен',
+    cs_missing: 'недостаје',
+    cs_empty: 'празан',
+    cs_used: 'већ коришћен',
+    cs_counterfeit: 'фалсификован',
+    cs_nongenuine: 'није оригинални HP',
+    cs_incompatible: 'некомпатибилан',
+    cs_damaged: 'оштећен',
+    cs_problem: 'откривен проблем',
+    ipp_media_empty: 'Лежиште за папир је празно',
+    ipp_media_low: 'Папир је при крају',
+    ipp_media_jam: 'Заглављен папир',
+    ipp_door_open: 'Врата су отворена',
+    ipp_cover_open: 'Поклопац је отворен',
+    ipp_input_tray_missing: 'Недостаје лежиште за папир',
+    ipp_output_area_full: 'Излазно лежиште је пуно',
+    ipp_marker_supply_empty: 'Кертриџ је празан',
+    ipp_media_needed: 'Убаците папир',
+    ipp_toner_empty: 'Тонер је празан',
+    ipp_marker_supply_missing: 'Недостаје кертриџ',
+    ipp_offline: 'Штампач је ван мреже',
+    ed_device: 'Штампач',
+    ed_device_helper: 'Уређај из интеграције HP Printer или IPP (било који бренд)',
+    ed_name: 'Назив',
+    ed_name_helper: 'Оставите празно за назив уређаја',
+    ed_show_image: 'Слика штампача',
+    ed_show_inks: 'Нивои мастила',
+    ed_show_alerts: 'Упозорења',
+    ed_show_stats: 'Бројач страница',
+    ed_show_expired: 'Упозорење о истеклој гаранцији',
+    ed_low_threshold: 'Праг ниског нивоа мастила (%)',
+    ed_show_logo: 'HP лого (иначе икона штампача)',
+    ed_admin_url: 'Страница за администрацију (URL)',
+    ed_admin_url_helper: 'Отвара се кликом на штампач — оставите празно за откривену адресу',
+    open_admin: 'Отвори страницу за администрацију штампача',
+    open_hp: 'Отвори hp.com',
+    ed_image: 'Прилагођена слика (URL)',
+    ed_image_helper: 'Нпр. /local/printer.png — замењује илустрацију',
+    ed_picture: 'Илустрација',
+    ed_picture_helper: 'Аутоматски: цртеж према HP линији, иначе генерички штампач',
+    pic_auto: 'Аутоматски',
+    pic_officejet: 'HP OfficeJet / PageWide (мултифункционални)',
+    pic_laserjet: 'HP LaserJet (ласерски)',
+    pic_deskjet: 'HP DeskJet / ENVY (компактни)',
+    pic_smart_tank: 'HP Smart Tank (резервоари за мастило)',
+    pic_generic: 'Генерички штампач (IPP)',
+    ed_language: 'Језик',
+    ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
+    ed_entities: 'Ентитети (напредно)',
+    ed_entities_helper: 'Откривају се из уређаја; попуните их само да бисте наметнули ентитет',
+    en_status: 'Статус',
+    en_ipp: 'IPP сензор (упозорења за папир, поклопац…)',
+    en_total_pages: 'Укупно страница',
+    en_eprint: 'ePrint статус',
+    en_eprint_registration: 'ePrint регистрација',
+    ed_show_eprint: 'ePrint статус',
+    ep_on: 'ePrint укључен',
+    ep_off: 'ePrint искључен',
+    ep_unregistered: 'ePrint није регистрован',
+    ed_zoom: 'Дугме за детаље',
+    ed_zoom_helper: 'Горе десно: приказује целу картицу, клик било где другде враћа на компактни приказ',
+    zoom_in: 'Прикажи целу картицу',
+    zoom_out: 'Назад на компактни приказ',
+  },
+  'sr-Latn': {
+    printer: 'Štampač',
+    st_ready: 'Spreman',
+    st_inpowersave: 'U stanju mirovanja',
+    st_processing: 'Štampa',
+    st_scanprocessing: 'Skenira',
+    st_copying: 'Kopira',
+    st_canceljob: 'Otkazivanje zadatka',
+    st_stopped: 'Zaustavljen',
+    st_offline: 'Van mreže',
+    st_unknown: 'Nepoznato stanje',
+    offline_text: 'Štampač je isključen ili nedostupan.',
+    last_seen: 'Poslednji put viđen {t}',
+    inks: 'Nivoi mastila',
+    alerts: 'Upozorenja',
+    no_alerts: 'Nema upozorenja',
+    no_device: 'Nije pronađen nijedan štampač',
+    toner: 'Nivoi tonera',
+    pages: 'Odštampano stranica: {n}',
+    pages_left: '≈ {n} stranica',
+    c_black: 'Crna',
+    c_cyan: 'Cijan',
+    c_magenta: 'Magenta',
+    c_yellow: 'Žuta',
+    c_tricolor: 'Trobojna',
+    c_ink: 'Mastilo',
+    printhead: 'Glava za štampanje',
+    al_low: 'Nizak nivo mastila: {c} ({p} %)',
+    al_empty: 'Mastilo je skoro potrošeno: {c} ({p} %)',
+    al_cartridge: 'Kertridž ({c}): {s}',
+    al_printhead: 'Glava za štampanje: {s}',
+    al_expired: 'Istekla je garancija kertridža ({c})',
+    al_stopped: 'Štampač je zaustavljen',
+    cs_missing: 'nedostaje',
+    cs_empty: 'prazan',
+    cs_used: 'već korišćen',
+    cs_counterfeit: 'falsifikovan',
+    cs_nongenuine: 'nije originalni HP',
+    cs_incompatible: 'nekompatibilan',
+    cs_damaged: 'oštećen',
+    cs_problem: 'otkriven problem',
+    ipp_media_empty: 'Ležište za papir je prazno',
+    ipp_media_low: 'Papir je pri kraju',
+    ipp_media_jam: 'Zaglavljen papir',
+    ipp_door_open: 'Vrata su otvorena',
+    ipp_cover_open: 'Poklopac je otvoren',
+    ipp_input_tray_missing: 'Nedostaje ležište za papir',
+    ipp_output_area_full: 'Izlazno ležište je puno',
+    ipp_marker_supply_empty: 'Kertridž je prazan',
+    ipp_media_needed: 'Ubacite papir',
+    ipp_toner_empty: 'Toner je prazan',
+    ipp_marker_supply_missing: 'Nedostaje kertridž',
+    ipp_offline: 'Štampač je van mreže',
+    ed_device: 'Štampač',
+    ed_device_helper: 'Uređaj iz integracije HP Printer ili IPP (bilo koji brend)',
+    ed_name: 'Naziv',
+    ed_name_helper: 'Ostavite prazno za naziv uređaja',
+    ed_show_image: 'Slika štampača',
+    ed_show_inks: 'Nivoi mastila',
+    ed_show_alerts: 'Upozorenja',
+    ed_show_stats: 'Brojač stranica',
+    ed_show_expired: 'Upozorenje o istekloj garanciji',
+    ed_low_threshold: 'Prag niskog nivoa mastila (%)',
+    ed_show_logo: 'HP logo (inače ikona štampača)',
+    ed_admin_url: 'Stranica za administraciju (URL)',
+    ed_admin_url_helper: 'Otvara se klikom na štampač — ostavite prazno za otkrivenu adresu',
+    open_admin: 'Otvori stranicu za administraciju štampača',
+    open_hp: 'Otvori hp.com',
+    ed_image: 'Prilagođena slika (URL)',
+    ed_image_helper: 'Npr. /local/printer.png — zamenjuje ilustraciju',
+    ed_picture: 'Ilustracija',
+    ed_picture_helper: 'Automatski: crtež prema HP liniji, inače generički štampač',
+    pic_auto: 'Automatski',
+    pic_officejet: 'HP OfficeJet / PageWide (multifunkcionalni)',
+    pic_laserjet: 'HP LaserJet (laserski)',
+    pic_deskjet: 'HP DeskJet / ENVY (kompaktni)',
+    pic_smart_tank: 'HP Smart Tank (rezervoari za mastilo)',
+    pic_generic: 'Generički štampač (IPP)',
+    ed_language: 'Jezik',
+    ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
+    ed_entities: 'Entiteti (napredno)',
+    ed_entities_helper: 'Otkrivaju se iz uređaja; popunite ih samo da biste nametnuli entitet',
+    en_status: 'Status',
+    en_ipp: 'IPP senzor (upozorenja za papir, poklopac…)',
+    en_total_pages: 'Ukupno stranica',
+    en_eprint: 'ePrint status',
+    en_eprint_registration: 'ePrint registracija',
+    ed_show_eprint: 'ePrint status',
+    ep_on: 'ePrint uključen',
+    ep_off: 'ePrint isključen',
+    ep_unregistered: 'ePrint nije registrovan',
+    ed_zoom: 'Dugme za detalje',
+    ed_zoom_helper: 'Gore desno: prikazuje celu karticu, klik bilo gde drugde vraća na kompaktni prikaz',
+    zoom_in: 'Prikaži celu karticu',
+    zoom_out: 'Nazad na kompaktni prikaz',
+  },
 };
+
+// Full code when the dictionary has it (sr-Latn), else the part before the dash (fr-FR -> fr), else en.
+function hpLang(language) {
+  var l = String(language || 'en');
+  if (HpI18n[l]) return l;
+  l = l.split('-')[0];
+  return HpI18n[l] ? l : 'en';
+}
 
 function hpT(lang, key) {
   var strings = HpI18n[lang] || HpI18n.en;
@@ -896,9 +1096,7 @@ class PrinterCard extends HTMLElement {
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
   _lang() {
-    var l = (this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en';
-    l = l.split('-')[0];
-    return HpI18n[l] ? l : 'en';
+    return hpLang((this._config?.language) || (this._hass?.language) || document.documentElement.lang);
   }
 
   _t(k, vars) { var s = hpT(this._lang(), k); return vars ? hpFill(s, vars) : s; }
@@ -1025,11 +1223,11 @@ class PrinterCard extends HTMLElement {
     return this._t(`c_${ink.color}`);
   }
 
-  // Label used inside a sentence: lower case in French and Spanish ("encre jaune", "cartucho negro"),
+  // Label used inside a sentence: lower case in French, Spanish and Serbian ("encre jaune", "cartucho negro", "црна"),
   // as is in English and German (nouns keep their capital).
   _inkWord(ink) {
     var l = ink.printhead ? this._t('printhead') : this._inkLabel(ink);
-    if (this._lang() === 'es') return l.toLowerCase();
+    if (['es', 'sr', 'sr-Latn'].indexOf(this._lang()) >= 0) return l.toLowerCase();
     if (this._lang() !== 'fr') return l;
     // "encre noire", "cartouche noire": the adjective agrees with the feminine noun.
     var w = hpT('fr', `cw_${ink.color}`);
@@ -1496,8 +1694,7 @@ class PrinterCardEditor extends HTMLElement {
   }
 
   _lang() {
-    var lang = ((this._config?.language) || (this._hass?.language) || 'en').split('-')[0];
-    return HpI18n[lang] ? lang : 'en';
+    return hpLang((this._config?.language) || (this._hass?.language));
   }
 
   _schema() {
@@ -1525,7 +1722,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'image', selector: { text: {} } },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,
