@@ -199,6 +199,12 @@ test("Spanish alerts write the cartridge color in lower case", () => {
   assert.match(render(hass).shadowRoot.innerHTML, /Tinta baja: negro/);
 });
 
+test("Serbian alerts write the cartridge color in lower case, in the script of the language", () => {
+  const html = (language) => render({ ...levels(mockHass(), { black: 10 }), language }).shadowRoot.innerHTML;
+  assert.match(html("sr"), /Низак ниво мастила: црна/);
+  assert.match(html("sr-Latn"), /Nizak nivo mastila: crna/);
+});
+
 test("without any host to compare, the same-model IPP sensor is still attached", () => {
   assert.equal(hpFindIppSensor(withIpp(mockHass(), IPP_READY), "p"), "sensor.ipp_printer");
 });

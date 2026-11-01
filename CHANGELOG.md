@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.6 - 2026-11-01
+
+### Added
+- Added Serbian (Cyrillic and Latin) translations (`sr`, `sr-Latn`), also in the editor's language list. With Home Assistant in `sr-Latn`, the card picks the Latin script; a regional code (`fr-FR`) still falls back to its language.
+
 ## 2.4.5
 
 ### Fixes
