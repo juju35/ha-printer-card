@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.4.5
+
+### Fixes
+- When the system asks for reduced motion, the printer's control panel stays lit in the status color instead of pulsing while it prints, scans or copies, and ink levels and hover effects change without animation.
+- A low or nearly empty cartridge is now outlined outside its tank, on the full card and the mini card: a low yellow level no longer blends into the orange frame. A level above 0 % always keeps a visible line.
+- The sleeping and scanning status colors can be changed from a theme, with `--printer-card-sleep-color` and `--printer-card-scan-color` (defaults unchanged).
+
+### Maintenance
+- Biome 2.6.3 everywhere (pre-commit hook, lint job, `biome.json` schema); the lint job reads the version from `.pre-commit-config.yaml`.
+
 ## 2.4.4
 
 ### Fixes
