@@ -556,6 +556,67 @@ test("a nearly empty cartridge keeps a visible level, an empty or unknown one sh
 });
 
 // ── Review pass 9 ──────────────────────────────────────────────────────────
+// A printhead (and the black cartridge) reporting a problem through their HP status binary sensors.
+function withProblems(hass, { printhead, black }) {
+  const out = { ...hass, states: { ...hass.states }, entities: { ...hass.entities }, devices: { ...hass.devices } };
+  out.devices.ph = { name: "OfficeJet printhead", via_device_id: "p" };
+  out.states["sensor.printhead_type"] = st("printhead", { options: ["ink", "printhead"] });
+  out.entities["sensor.printhead_type"] = { entity_id: "sensor.printhead_type", device_id: "ph" };
+  out.states["binary_sensor.printhead_status"] = st("off", { state: printhead });
+  out.entities["binary_sensor.printhead_status"] = { entity_id: "binary_sensor.printhead_status", device_id: "ph" };
+  if (black) {
+    out.states["binary_sensor.black_status"] = st("off", { state: black });
+    out.entities["binary_sensor.black_status"] = { entity_id: "binary_sensor.black_status", device_id: "ink_black" };
+  }
+  return out;
+}
+const alertsOf = (hass, language) => {
+  const html = render({ ...hass, language }).shadowRoot.innerHTML;
+  return Array.from(html.matchAll(/<div class="alert error"><ha-icon[^>]*><\/ha-icon><span>([^<]*)<\/span>/g), (m) => m[1]);
+};
+
+// The printhead (głowica, cabeça, глава / glava) is feminine: its states agree with it, not with the cartridge.
+const PRINTHEAD_CASES = {
+  pl: { used: "Głowica drukująca: Już używana", nongenuine: "Głowica drukująca: Nieoryginalna HP" },
+  pt: { used: "Cabeça de impressão: Já utilizada", counterfeit: "Cabeça de impressão: Contrafeita" },
+  sr: {
+    empty: "Глава за штампање: Празна", used: "Глава за штампање: Већ коришћена", counterfeit: "Глава за штампање: Фалсификована",
+    nongenuine: "Глава за штампање: Није оригинална HP", incompatible: "Глава за штампање: Некомпатибилна", damaged: "Глава за штампање: Оштећена",
+  },
+  "sr-Latn": {
+    empty: "Glava za štampanje: Prazna", used: "Glava za štampanje: Već korišćena", counterfeit: "Glava za štampanje: Falsifikovana",
+    nongenuine: "Glava za štampanje: Nije originalna HP", incompatible: "Glava za štampanje: Nekompatibilna", damaged: "Glava za štampanje: Oštećena",
+  },
+};
+
+test("printhead problems agree with the feminine printhead in pl, pt, sr and sr-Latn", () => {
+  for (const [lang, cases] of Object.entries(PRINTHEAD_CASES)) {
+    for (const [problem, expected] of Object.entries(cases)) {
+      const alerts = alertsOf(withProblems(mockHass(), { printhead: problem }), lang);
+      assert.ok(alerts.some((a) => a.toLowerCase() === expected.toLowerCase()), `${lang} ${problem}: ${alerts.join(" | ")}`);
+    }
+  }
+});
+
+test("cartridge problems keep their own (masculine) forms next to a printhead problem", () => {
+  const hass = withProblems(mockHass(), { printhead: "damaged", black: "damaged" });
+  const expected = {
+    sr: ["Глава за штампање: Оштећена", "Кертриџ (црна): Оштећен"],
+    "sr-Latn": ["Glava za štampanje: Oštećena", "Kertridž (crna): Oštećen"],
+    pl: ["Głowica drukująca: Uszkodzenie"],
+    fr: ["Tête d'impression : Endommagée"],
+    en: ["Printhead: Damaged", "Black cartridge: Damaged"],
+  };
+  for (const [lang, texts] of Object.entries(expected)) {
+    const alerts = alertsOf(hass, lang).map((a) => a.replace(/&#39;/g, "'"));
+    for (const t of texts) assert.ok(alerts.some((a) => a.toLowerCase() === t.toLowerCase()), `${lang}: ${t} not in ${alerts.join(" | ")}`);
+  }
+  // pt and pl cartridges: "Tinteiro" and "Wkład" are masculine.
+  const pt = withProblems(mockHass(), { printhead: "used", black: "used" });
+  assert.ok(alertsOf(pt, "pt").some((a) => /^Tinteiro \(.*\): já utilizado$/i.test(a)), alertsOf(pt, "pt").join(" | "));
+  assert.ok(alertsOf(pt, "pl").some((a) => /^Wkład \(.*\): już używany$/i.test(a)), alertsOf(pt, "pl").join(" | "));
+});
+
 // Narrow header (min_columns of the Sections view, ~156-250px): the name never collapses to 0px and
 // neither the status pill nor the detail button leaves the card. Measured in Chromium for the PR;
 // node has no layout engine, so this checks the CSS rules that guarantee it.

@@ -428,6 +428,13 @@ var HpI18n = {
     cs_incompatible: 'некомпатибилан',
     cs_damaged: 'оштећен',
     cs_problem: 'откривен проблем',
+    // The printhead (глава) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_empty: 'празна',
+    ph_used: 'већ коришћена',
+    ph_counterfeit: 'фалсификована',
+    ph_nongenuine: 'није оригинална HP',
+    ph_incompatible: 'некомпатибилна',
+    ph_damaged: 'оштећена',
     ipp_media_empty: 'Лежиште за папир је празно',
     ipp_media_low: 'Папир је при крају',
     ipp_media_jam: 'Заглављен папир',
@@ -524,6 +531,13 @@ var HpI18n = {
     cs_incompatible: 'nekompatibilan',
     cs_damaged: 'oštećen',
     cs_problem: 'otkriven problem',
+    // The printhead (glava) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_empty: 'prazna',
+    ph_used: 'već korišćena',
+    ph_counterfeit: 'falsifikovana',
+    ph_nongenuine: 'nije originalna HP',
+    ph_incompatible: 'nekompatibilna',
+    ph_damaged: 'oštećena',
     ipp_media_empty: 'Ležište za papir je prazno',
     ipp_media_low: 'Papir je pri kraju',
     ipp_media_jam: 'Zaglavljen papir',
@@ -812,6 +826,9 @@ var HpI18n = {
     cs_incompatible: 'incompatível',
     cs_damaged: 'com danos',
     cs_problem: 'problema detetado',
+    // The printhead (cabeça) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_used: 'já utilizada',
+    ph_counterfeit: 'contrafeita',
     ipp_media_empty: 'Tabuleiro de papel vazio',
     ipp_media_low: 'Pouco papel',
     ipp_media_jam: 'Papel encravado',
@@ -908,6 +925,9 @@ var HpI18n = {
     cs_incompatible: 'niezgodność',
     cs_damaged: 'uszkodzenie',
     cs_problem: 'wykryto problem',
+    // The printhead (głowica) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_used: 'już używana',
+    ph_nongenuine: 'nieoryginalna HP',
     ipp_media_empty: 'Podajnik papieru pusty',
     ipp_media_low: 'Kończy się papier',
     ipp_media_jam: 'Zacięcie papieru',
@@ -1644,7 +1664,9 @@ class PrinterCard extends HTMLElement {
       }
       var st = ink.status && this._hass.states[ink.status];
       if (st && st.state === 'off' && !hpCartridgeOk(st.attributes.state)) {
-        var problem = this._t(hpCartridgeProblem(st.attributes.state));
+        var key = hpCartridgeProblem(st.attributes.state);
+        // A printhead uses its own ph_* form when its language has one (feminine printhead, masculine cartridge).
+        var problem = (ink.printhead && (HpI18n[this._lang()] || {})[key.replace('cs_', 'ph_')]) || this._t(key);
         out.push({ level: 'error', icon: ink.printhead ? 'mdi:printer-alert' : 'mdi:alert-circle',
           text: ink.printhead ? this._t('al_printhead', { s: problem }) : this._t('al_cartridge', { c: label, s: problem }) });
       }
