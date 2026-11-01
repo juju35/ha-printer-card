@@ -712,7 +712,7 @@ var HpI18n = {
     cs_empty: 'leeg',
     cs_used: 'eerder gebruikt',
     cs_counterfeit: 'namaak',
-    cs_nongenuine: 'geen origineel HP-product',
+    cs_nongenuine: 'niet-origineel',
     cs_incompatible: 'incompatibel',
     cs_damaged: 'beschadigd',
     cs_problem: 'probleem gedetecteerd',
@@ -805,12 +805,12 @@ var HpI18n = {
     al_expired: 'Garantia do tinteiro ({c}) expirada',
     al_stopped: 'A impressora está parada',
     cs_missing: 'em falta',
-    cs_empty: 'vazio',
+    cs_empty: 'sem tinta',
     cs_used: 'já utilizado',
     cs_counterfeit: 'contrafeito',
     cs_nongenuine: 'não original HP',
     cs_incompatible: 'incompatível',
-    cs_damaged: 'danificado',
+    cs_damaged: 'com danos',
     cs_problem: 'problema detetado',
     ipp_media_empty: 'Tabuleiro de papel vazio',
     ipp_media_low: 'Pouco papel',
@@ -901,12 +901,12 @@ var HpI18n = {
     al_expired: 'Gwarancja wkładu ({c}) wygasła',
     al_stopped: 'Drukarka jest zatrzymana',
     cs_missing: 'brak',
-    cs_empty: 'pusty',
+    cs_empty: 'brak tuszu',
     cs_used: 'już używany',
-    cs_counterfeit: 'podrobiony',
+    cs_counterfeit: 'podróbka',
     cs_nongenuine: 'nieoryginalny HP',
-    cs_incompatible: 'niezgodny',
-    cs_damaged: 'uszkodzony',
+    cs_incompatible: 'niezgodność',
+    cs_damaged: 'uszkodzenie',
     cs_problem: 'wykryto problem',
     ipp_media_empty: 'Podajnik papieru pusty',
     ipp_media_low: 'Kończy się papier',
@@ -971,6 +971,15 @@ function hpLang(language) {
   if (HpI18n[l]) return l;
   l = l.split('-')[0];
   return HpI18n[l] ? l : 'en';
+}
+
+// Locale for Intl and toLocaleString: Home Assistant's full locale when it resolves to the card's language
+// (pt-BR, de-CH…), else the card's language (the `language` option wins). HA's plain `pt` is European
+// Portuguese, as is the card's dictionary, so it is passed as pt-PT (Intl reads `pt` as Brazilian).
+function hpLocale(lang, hass) {
+  var full = hass && (hass.locale?.language || hass.language);
+  var loc = full && hpLang(full) === lang ? String(full) : lang;
+  return loc === 'pt' ? 'pt-PT' : loc;
 }
 
 function hpT(lang, key) {
@@ -1680,13 +1689,13 @@ class PrinterCard extends HTMLElement {
     var secs = Math.round((date.getTime() - Date.now()) / 1000);
     var units = [['day', 86400], ['hour', 3600], ['minute', 60]];
     try {
-      var rtf = new Intl.RelativeTimeFormat(this._lang(), { numeric: 'auto' });
+      var rtf = new Intl.RelativeTimeFormat(hpLocale(this._lang(), this._hass), { numeric: 'auto' });
       for (var i = 0; i < units.length; i++) {
         if (Math.abs(secs) >= units[i][1]) return rtf.format(Math.round(secs / units[i][1]), units[i][0]);
       }
       return rtf.format(0, 'minute');
     } catch (_e) {
-      return date.toLocaleString(this._lang());
+      return date.toLocaleString(hpLocale(this._lang(), this._hass));
     }
   }
 
@@ -1817,7 +1826,7 @@ class PrinterCard extends HTMLElement {
     } else if (c.show_stats && this._avail(r.total_pages)) {
       var n = Number(this._val(r.total_pages));
       sub = '<div class="sub muted"><ha-icon icon="mdi:file-document-multiple-outline"></ha-icon>' +
-        hpEsc(this._t('pages', { n: Number.isNaN(n) ? this._val(r.total_pages) : n.toLocaleString(this._lang()) })) + '</div>';
+        hpEsc(this._t('pages', { n: Number.isNaN(n) ? this._val(r.total_pages) : n.toLocaleString(hpLocale(this._lang(), this._hass)) })) + '</div>';
     }
 
     // Like the Home Connect cards: logo, name and status pill on top, then the picture with the chips.
@@ -1954,9 +1963,11 @@ var HP_MINI_STYLES =
   '.rs { display: flex; flex-wrap: wrap; gap: 6px; }' +
   '.rs:empty { display: none; }' +
   '.r { --t: var(--secondary-text-color); display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px 1px 5px; border-radius: 12px;' +
-    ' font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--secondary-text-color);' +
+    ' font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--secondary-text-color); max-width: 100%; min-width: 0; box-sizing: border-box;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); }' +
-  '.r ha-icon { --mdc-icon-size: 13px; color: var(--t); }' +
+  '.r ha-icon { --mdc-icon-size: 13px; flex: none; color: var(--t); }' +
+  // A label wider than the card ends with an ellipsis instead of running out of it (the full text is in the title).
+  '.r .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
   // A small tank, like the full card's ink levels: filled to the level, outlined when low or nearly empty.
   '.r .mt { position: relative; width: 10px; height: 14px; flex: none; border-radius: 3px; overflow: hidden;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(128,128,128,0.25)); }' +
@@ -2051,7 +2062,8 @@ class PrinterMiniCard extends PrinterCard {
     }
     if (c.show_alerts) {
       v.alerts.filter((a) => !a.ink).forEach((a) => {
-        out.push(`<span class="r ${a.level}"><ha-icon icon="${a.icon}"></ha-icon>${hpEsc(hpCap(a.text))}</span>`);
+        var txt = hpEsc(hpCap(a.text));
+        out.push(`<span class="r ${a.level}" title="${txt}"><ha-icon icon="${a.icon}"></ha-icon><span class="tx">${txt}</span></span>`);
       });
     }
     return out.join('');
@@ -2106,7 +2118,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'image', selector: { text: {} } },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português' }, { value: 'pl', label: 'Polski' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,
