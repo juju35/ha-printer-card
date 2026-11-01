@@ -675,6 +675,12 @@ test("intrinsic width: the card keeps a natural width but asks for no minimum", 
       assert.doesNotMatch(rule(css, sel), /min-width: \d+px|contain-intrinsic/, sel);
     }
   }
+  // The offline mini card's "Last seen ..." line (nowrap) must not set the card's min-content width either, or the
+  // card overflows a `1fr 1fr` grid by up to 230px: its width comes from the card, its text ends with an ellipsis.
+  const small = styleOf(mini(mockHass()));
+  assert.match(rule(small, ".line"), /min-width: 0;.*contain: inline-size;/);
+  assert.match(rule(small, ".line span"), /overflow: hidden; text-overflow: ellipsis; white-space: nowrap;/);
+  // Measured in Chromium by test/layout.browser.mjs (npm run test:browser), offline included.
 });
 
 test("narrow header: the status text stays available as the pill's title and label", () => {

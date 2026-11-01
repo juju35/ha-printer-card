@@ -8,7 +8,8 @@
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs && node --check dist/printer-card.js",
     "screenshots": "node scripts/screenshots.mjs",
-    "test": "node --test \"test/*.test.mjs\""
+    "test": "node --test \"test/*.test.mjs\"",
+    "test:browser": "node --test test/layout.browser.mjs"
   },
   "license": "MIT",
   "devDependencies": {
