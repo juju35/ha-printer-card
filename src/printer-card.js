@@ -387,7 +387,600 @@ var HpI18n = {
     zoom_in: 'Mostrar la tarjeta completa',
     zoom_out: 'Volver a la vista compacta',
   },
+  sr: {
+    printer: 'Штампач',
+    st_ready: 'Спреман',
+    st_inpowersave: 'У стању мировања',
+    st_processing: 'Штампа',
+    st_scanprocessing: 'Скенира',
+    st_copying: 'Копира',
+    st_canceljob: 'Отказивање задатка',
+    st_stopped: 'Заустављен',
+    st_offline: 'Ван мреже',
+    st_unknown: 'Непознато стање',
+    offline_text: 'Штампач је искључен или недоступан.',
+    last_seen: 'Последњи пут виђен {t}',
+    inks: 'Нивои мастила',
+    alerts: 'Упозорења',
+    no_alerts: 'Нема упозорења',
+    no_device: 'Није пронађен ниједан штампач',
+    toner: 'Нивои тонера',
+    pages: 'Одштампано страница: {n}',
+    pages_left: '≈ {n} страница',
+    c_black: 'Црна',
+    c_cyan: 'Цијан',
+    c_magenta: 'Магента',
+    c_yellow: 'Жута',
+    c_tricolor: 'Тробојна',
+    c_ink: 'Мастило',
+    printhead: 'Глава за штампање',
+    al_low: 'Низак ниво мастила: {c} ({p} %)',
+    al_empty: 'Мастило је скоро потрошено: {c} ({p} %)',
+    al_cartridge: 'Кертриџ ({c}): {s}',
+    al_printhead: 'Глава за штампање: {s}',
+    al_expired: 'Истекла је гаранција кертриџа ({c})',
+    al_stopped: 'Штампач је заустављен',
+    cs_missing: 'недостаје',
+    cs_empty: 'празан',
+    cs_used: 'већ коришћен',
+    cs_counterfeit: 'фалсификован',
+    cs_nongenuine: 'није оригинални HP',
+    cs_incompatible: 'некомпатибилан',
+    cs_damaged: 'оштећен',
+    cs_problem: 'откривен проблем',
+    ipp_media_empty: 'Лежиште за папир је празно',
+    ipp_media_low: 'Папир је при крају',
+    ipp_media_jam: 'Заглављен папир',
+    ipp_door_open: 'Врата су отворена',
+    ipp_cover_open: 'Поклопац је отворен',
+    ipp_input_tray_missing: 'Недостаје лежиште за папир',
+    ipp_output_area_full: 'Излазно лежиште је пуно',
+    ipp_marker_supply_empty: 'Кертриџ је празан',
+    ipp_media_needed: 'Убаците папир',
+    ipp_toner_empty: 'Тонер је празан',
+    ipp_marker_supply_missing: 'Недостаје кертриџ',
+    ipp_offline: 'Штампач је ван мреже',
+    ed_device: 'Штампач',
+    ed_device_helper: 'Уређај из интеграције HP Printer или IPP (било који бренд)',
+    ed_name: 'Назив',
+    ed_name_helper: 'Оставите празно за назив уређаја',
+    ed_show_image: 'Слика штампача',
+    ed_show_inks: 'Нивои мастила',
+    ed_show_alerts: 'Упозорења',
+    ed_show_stats: 'Бројач страница',
+    ed_show_expired: 'Упозорење о истеклој гаранцији',
+    ed_low_threshold: 'Праг ниског нивоа мастила (%)',
+    ed_show_logo: 'HP лого (иначе икона штампача)',
+    ed_admin_url: 'Страница за администрацију (URL)',
+    ed_admin_url_helper: 'Отвара се кликом на штампач — оставите празно за откривену адресу',
+    open_admin: 'Отвори страницу за администрацију штампача',
+    open_hp: 'Отвори hp.com',
+    ed_image: 'Прилагођена слика (URL)',
+    ed_image_helper: 'Нпр. /local/printer.png — замењује илустрацију',
+    ed_picture: 'Илустрација',
+    ed_picture_helper: 'Аутоматски: цртеж према HP линији, иначе генерички штампач',
+    pic_auto: 'Аутоматски',
+    pic_officejet: 'HP OfficeJet / PageWide (мултифункционални)',
+    pic_laserjet: 'HP LaserJet (ласерски)',
+    pic_deskjet: 'HP DeskJet / ENVY (компактни)',
+    pic_smart_tank: 'HP Smart Tank (резервоари за мастило)',
+    pic_generic: 'Генерички штампач (IPP)',
+    ed_language: 'Језик',
+    ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
+    ed_entities: 'Ентитети (напредно)',
+    ed_entities_helper: 'Откривају се из уређаја; попуните их само да бисте наметнули ентитет',
+    en_status: 'Статус',
+    en_ipp: 'IPP сензор (упозорења за папир, поклопац…)',
+    en_total_pages: 'Укупно страница',
+    en_eprint: 'ePrint статус',
+    en_eprint_registration: 'ePrint регистрација',
+    ed_show_eprint: 'ePrint статус',
+    ep_on: 'ePrint укључен',
+    ep_off: 'ePrint искључен',
+    ep_unregistered: 'ePrint није регистрован',
+    ed_zoom: 'Дугме за детаље',
+    ed_zoom_helper: 'Горе десно: приказује целу картицу, клик било где другде враћа на компактни приказ',
+    zoom_in: 'Прикажи целу картицу',
+    zoom_out: 'Назад на компактни приказ',
+  },
+  'sr-Latn': {
+    printer: 'Štampač',
+    st_ready: 'Spreman',
+    st_inpowersave: 'U stanju mirovanja',
+    st_processing: 'Štampa',
+    st_scanprocessing: 'Skenira',
+    st_copying: 'Kopira',
+    st_canceljob: 'Otkazivanje zadatka',
+    st_stopped: 'Zaustavljen',
+    st_offline: 'Van mreže',
+    st_unknown: 'Nepoznato stanje',
+    offline_text: 'Štampač je isključen ili nedostupan.',
+    last_seen: 'Poslednji put viđen {t}',
+    inks: 'Nivoi mastila',
+    alerts: 'Upozorenja',
+    no_alerts: 'Nema upozorenja',
+    no_device: 'Nije pronađen nijedan štampač',
+    toner: 'Nivoi tonera',
+    pages: 'Odštampano stranica: {n}',
+    pages_left: '≈ {n} stranica',
+    c_black: 'Crna',
+    c_cyan: 'Cijan',
+    c_magenta: 'Magenta',
+    c_yellow: 'Žuta',
+    c_tricolor: 'Trobojna',
+    c_ink: 'Mastilo',
+    printhead: 'Glava za štampanje',
+    al_low: 'Nizak nivo mastila: {c} ({p} %)',
+    al_empty: 'Mastilo je skoro potrošeno: {c} ({p} %)',
+    al_cartridge: 'Kertridž ({c}): {s}',
+    al_printhead: 'Glava za štampanje: {s}',
+    al_expired: 'Istekla je garancija kertridža ({c})',
+    al_stopped: 'Štampač je zaustavljen',
+    cs_missing: 'nedostaje',
+    cs_empty: 'prazan',
+    cs_used: 'već korišćen',
+    cs_counterfeit: 'falsifikovan',
+    cs_nongenuine: 'nije originalni HP',
+    cs_incompatible: 'nekompatibilan',
+    cs_damaged: 'oštećen',
+    cs_problem: 'otkriven problem',
+    ipp_media_empty: 'Ležište za papir je prazno',
+    ipp_media_low: 'Papir je pri kraju',
+    ipp_media_jam: 'Zaglavljen papir',
+    ipp_door_open: 'Vrata su otvorena',
+    ipp_cover_open: 'Poklopac je otvoren',
+    ipp_input_tray_missing: 'Nedostaje ležište za papir',
+    ipp_output_area_full: 'Izlazno ležište je puno',
+    ipp_marker_supply_empty: 'Kertridž je prazan',
+    ipp_media_needed: 'Ubacite papir',
+    ipp_toner_empty: 'Toner je prazan',
+    ipp_marker_supply_missing: 'Nedostaje kertridž',
+    ipp_offline: 'Štampač je van mreže',
+    ed_device: 'Štampač',
+    ed_device_helper: 'Uređaj iz integracije HP Printer ili IPP (bilo koji brend)',
+    ed_name: 'Naziv',
+    ed_name_helper: 'Ostavite prazno za naziv uređaja',
+    ed_show_image: 'Slika štampača',
+    ed_show_inks: 'Nivoi mastila',
+    ed_show_alerts: 'Upozorenja',
+    ed_show_stats: 'Brojač stranica',
+    ed_show_expired: 'Upozorenje o istekloj garanciji',
+    ed_low_threshold: 'Prag niskog nivoa mastila (%)',
+    ed_show_logo: 'HP logo (inače ikona štampača)',
+    ed_admin_url: 'Stranica za administraciju (URL)',
+    ed_admin_url_helper: 'Otvara se klikom na štampač — ostavite prazno za otkrivenu adresu',
+    open_admin: 'Otvori stranicu za administraciju štampača',
+    open_hp: 'Otvori hp.com',
+    ed_image: 'Prilagođena slika (URL)',
+    ed_image_helper: 'Npr. /local/printer.png — zamenjuje ilustraciju',
+    ed_picture: 'Ilustracija',
+    ed_picture_helper: 'Automatski: crtež prema HP liniji, inače generički štampač',
+    pic_auto: 'Automatski',
+    pic_officejet: 'HP OfficeJet / PageWide (multifunkcionalni)',
+    pic_laserjet: 'HP LaserJet (laserski)',
+    pic_deskjet: 'HP DeskJet / ENVY (kompaktni)',
+    pic_smart_tank: 'HP Smart Tank (rezervoari za mastilo)',
+    pic_generic: 'Generički štampač (IPP)',
+    ed_language: 'Jezik',
+    ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
+    ed_entities: 'Entiteti (napredno)',
+    ed_entities_helper: 'Otkrivaju se iz uređaja; popunite ih samo da biste nametnuli entitet',
+    en_status: 'Status',
+    en_ipp: 'IPP senzor (upozorenja za papir, poklopac…)',
+    en_total_pages: 'Ukupno stranica',
+    en_eprint: 'ePrint status',
+    en_eprint_registration: 'ePrint registracija',
+    ed_show_eprint: 'ePrint status',
+    ep_on: 'ePrint uključen',
+    ep_off: 'ePrint isključen',
+    ep_unregistered: 'ePrint nije registrovan',
+    ed_zoom: 'Dugme za detalje',
+    ed_zoom_helper: 'Gore desno: prikazuje celu karticu, klik bilo gde drugde vraća na kompaktni prikaz',
+    zoom_in: 'Prikaži celu karticu',
+    zoom_out: 'Nazad na kompaktni prikaz',
+  },
+  it: {
+    printer: 'Stampante',
+    st_ready: 'Pronta',
+    st_inpowersave: 'In standby',
+    st_processing: 'Stampa in corso',
+    st_scanprocessing: 'Scansione in corso',
+    st_copying: 'Copia in corso',
+    st_canceljob: 'Annullamento del lavoro',
+    st_stopped: 'Arrestata',
+    st_offline: 'Non in linea',
+    st_unknown: 'Stato sconosciuto',
+    offline_text: 'La stampante è spenta o non raggiungibile.',
+    last_seen: 'Ultimo contatto {t}',
+    inks: 'Livelli di inchiostro',
+    alerts: 'Avvisi',
+    no_alerts: 'Nessun avviso',
+    no_device: 'Nessuna stampante trovata',
+    toner: 'Livelli di toner',
+    pages: '{n} pagine stampate',
+    pages_left: '≈ {n} pagine',
+    c_black: 'Nero',
+    c_cyan: 'Ciano',
+    c_magenta: 'Magenta',
+    c_yellow: 'Giallo',
+    c_tricolor: 'Tricolore',
+    c_ink: 'Inchiostro',
+    printhead: 'Testina di stampa',
+    al_low: 'Inchiostro scarso: {c} ({p} %)',
+    al_empty: 'Inchiostro quasi esaurito: {c} ({p} %)',
+    al_cartridge: 'Cartuccia ({c}): {s}',
+    al_printhead: 'Testina di stampa: {s}',
+    al_expired: 'Garanzia della cartuccia ({c}) scaduta',
+    al_stopped: 'La stampante è arrestata',
+    cs_missing: 'mancante',
+    cs_empty: 'vuota',
+    cs_used: 'già utilizzata',
+    cs_counterfeit: 'contraffatta',
+    cs_nongenuine: 'non originale HP',
+    cs_incompatible: 'incompatibile',
+    cs_damaged: 'danneggiata',
+    cs_problem: 'problema rilevato',
+    ipp_media_empty: 'Vassoio carta vuoto',
+    ipp_media_low: 'Carta in esaurimento',
+    ipp_media_jam: 'Inceppamento carta',
+    ipp_door_open: 'Sportello aperto',
+    ipp_cover_open: 'Coperchio aperto',
+    ipp_input_tray_missing: 'Vassoio carta mancante',
+    ipp_output_area_full: 'Vassoio di uscita pieno',
+    ipp_marker_supply_empty: 'Cartuccia vuota',
+    ipp_media_needed: 'Caricare la carta',
+    ipp_toner_empty: 'Toner esaurito',
+    ipp_marker_supply_missing: 'Cartuccia mancante',
+    ipp_offline: 'Stampante non in linea',
+    ed_device: 'Stampante',
+    ed_device_helper: 'Dispositivo dell\'integrazione HP Printer o IPP (qualsiasi marca)',
+    ed_name: 'Nome',
+    ed_name_helper: 'Lasciare vuoto per usare il nome del dispositivo',
+    ed_show_image: 'Immagine della stampante',
+    ed_show_inks: 'Livelli di inchiostro',
+    ed_show_alerts: 'Avvisi',
+    ed_show_stats: 'Contatore pagine',
+    ed_show_expired: 'Avviso di garanzia scaduta',
+    ed_low_threshold: 'Soglia di inchiostro scarso (%)',
+    ed_show_logo: 'Logo HP (altrimenti icona stampante)',
+    ed_admin_url: 'Pagina di amministrazione (URL)',
+    ed_admin_url_helper: 'Aperta al clic sulla stampante — lasciare vuoto per l\'indirizzo rilevato',
+    open_admin: 'Apri la pagina di amministrazione della stampante',
+    open_hp: 'Apri hp.com',
+    ed_image: 'Immagine personalizzata (URL)',
+    ed_image_helper: 'Es. /local/printer.png — sostituisce l\'illustrazione',
+    ed_picture: 'Illustrazione',
+    ed_picture_helper: 'Automatica: disegno in base alla gamma HP, altrimenti stampante generica',
+    pic_auto: 'Automatica',
+    pic_officejet: 'HP OfficeJet / PageWide (multifunzione)',
+    pic_laserjet: 'HP LaserJet (laser)',
+    pic_deskjet: 'HP DeskJet / ENVY (compatta)',
+    pic_smart_tank: 'HP Smart Tank (serbatoi di inchiostro)',
+    pic_generic: 'Stampante generica (IPP)',
+    ed_language: 'Lingua',
+    ed_language_helper: 'Lasciare vuoto per seguire la lingua di Home Assistant',
+    ed_entities: 'Entità (avanzate)',
+    ed_entities_helper: 'Rilevate dal dispositivo; da impostare solo per forzare un\'entità',
+    en_status: 'Stato',
+    en_ipp: 'Sensore IPP (avvisi carta, coperchio…)',
+    en_total_pages: 'Pagine totali',
+    en_eprint: 'Stato ePrint',
+    en_eprint_registration: 'Registrazione ePrint',
+    ed_show_eprint: 'Stato ePrint',
+    ep_on: 'ePrint attivo',
+    ep_off: 'ePrint disattivato',
+    ep_unregistered: 'ePrint non registrato',
+    ed_zoom: 'Pulsante dettagli',
+    ed_zoom_helper: 'In alto a destra: mostra la scheda completa, un clic altrove torna alla vista compatta',
+    zoom_in: 'Mostra la scheda completa',
+    zoom_out: 'Torna alla vista compatta',
+  },
+  nl: {
+    printer: 'Printer',
+    st_ready: 'Gereed',
+    st_inpowersave: 'Slaapstand',
+    st_processing: 'Bezig met afdrukken',
+    st_scanprocessing: 'Bezig met scannen',
+    st_copying: 'Bezig met kopiëren',
+    st_canceljob: 'Taak wordt geannuleerd',
+    st_stopped: 'Gestopt',
+    st_offline: 'Offline',
+    st_unknown: 'Onbekende status',
+    offline_text: 'De printer staat uit of is onbereikbaar.',
+    last_seen: 'Laatst gezien {t}',
+    inks: 'Inktniveaus',
+    alerts: 'Meldingen',
+    no_alerts: 'Geen meldingen',
+    no_device: 'Geen printer gevonden',
+    toner: 'Tonerniveaus',
+    pages: '{n} pagina\'s afgedrukt',
+    pages_left: '≈ {n} pagina\'s',
+    c_black: 'Zwart',
+    c_cyan: 'Cyaan',
+    c_magenta: 'Magenta',
+    c_yellow: 'Geel',
+    c_tricolor: 'Driekleur',
+    c_ink: 'Inkt',
+    printhead: 'Printkop',
+    al_low: 'Inktniveau laag: {c} ({p} %)',
+    al_empty: 'Inkt bijna op: {c} ({p} %)',
+    al_cartridge: 'Cartridge ({c}): {s}',
+    al_printhead: 'Printkop: {s}',
+    al_expired: 'Garantie van cartridge ({c}) verlopen',
+    al_stopped: 'De printer is gestopt',
+    cs_missing: 'ontbreekt',
+    cs_empty: 'leeg',
+    cs_used: 'eerder gebruikt',
+    cs_counterfeit: 'namaak',
+    cs_nongenuine: 'niet-origineel',
+    cs_incompatible: 'incompatibel',
+    cs_damaged: 'beschadigd',
+    cs_problem: 'probleem gedetecteerd',
+    ipp_media_empty: 'Papierlade leeg',
+    ipp_media_low: 'Papier bijna op',
+    ipp_media_jam: 'Papierstoring',
+    ipp_door_open: 'Klep open',
+    ipp_cover_open: 'Kap open',
+    ipp_input_tray_missing: 'Papierlade ontbreekt',
+    ipp_output_area_full: 'Uitvoerlade vol',
+    ipp_marker_supply_empty: 'Cartridge leeg',
+    ipp_media_needed: 'Plaats papier',
+    ipp_toner_empty: 'Toner leeg',
+    ipp_marker_supply_missing: 'Cartridge ontbreekt',
+    ipp_offline: 'Printer offline',
+    ed_device: 'Printer',
+    ed_device_helper: 'Apparaat van de HP Printer- of IPP-integratie (elk merk)',
+    ed_name: 'Naam',
+    ed_name_helper: 'Leeg laten om de apparaatnaam te gebruiken',
+    ed_show_image: 'Afbeelding van de printer',
+    ed_show_inks: 'Inktniveaus',
+    ed_show_alerts: 'Meldingen',
+    ed_show_stats: 'Paginateller',
+    ed_show_expired: 'Melding bij verlopen garantie',
+    ed_low_threshold: 'Drempel voor laag inktniveau (%)',
+    ed_show_logo: 'HP-logo (anders printerpictogram)',
+    ed_admin_url: 'Beheerpagina (URL)',
+    ed_admin_url_helper: 'Wordt geopend bij een klik op de printer — leeg laten voor het gedetecteerde adres',
+    open_admin: 'Beheerpagina van de printer openen',
+    open_hp: 'hp.com openen',
+    ed_image: 'Eigen afbeelding (URL)',
+    ed_image_helper: 'Bijv. /local/printer.png — vervangt de illustratie',
+    ed_picture: 'Illustratie',
+    ed_picture_helper: 'Automatisch: tekening volgens de HP-productlijn, anders een algemene printer',
+    pic_auto: 'Automatisch',
+    pic_officejet: 'HP OfficeJet / PageWide (all-in-one)',
+    pic_laserjet: 'HP LaserJet (laserprinter)',
+    pic_deskjet: 'HP DeskJet / ENVY (compact)',
+    pic_smart_tank: 'HP Smart Tank (inkttanks)',
+    pic_generic: 'Algemene printer (IPP)',
+    ed_language: 'Taal',
+    ed_language_helper: 'Leeg laten om de taal van Home Assistant te volgen',
+    ed_entities: 'Entiteiten (geavanceerd)',
+    ed_entities_helper: 'Gedetecteerd vanuit het apparaat; alleen invullen om een entiteit af te dwingen',
+    en_status: 'Status',
+    en_ipp: 'IPP-sensor (meldingen voor papier, klep…)',
+    en_total_pages: 'Totaal aantal pagina\'s',
+    en_eprint: 'ePrint-status',
+    en_eprint_registration: 'ePrint-registratie',
+    ed_show_eprint: 'ePrint-status',
+    ep_on: 'ePrint aan',
+    ep_off: 'ePrint uit',
+    ep_unregistered: 'ePrint niet geregistreerd',
+    ed_zoom: 'Detailknop',
+    ed_zoom_helper: 'Rechtsboven: toont de volledige kaart, een klik ergens anders gaat terug naar de compacte weergave',
+    zoom_in: 'Volledige kaart tonen',
+    zoom_out: 'Terug naar de compacte weergave',
+  },
+  pt: {
+    printer: 'Impressora',
+    st_ready: 'Pronta',
+    st_inpowersave: 'Em suspensão',
+    st_processing: 'A imprimir',
+    st_scanprocessing: 'A digitalizar',
+    st_copying: 'A copiar',
+    st_canceljob: 'A cancelar o trabalho',
+    st_stopped: 'Parada',
+    st_offline: 'Sem ligação',
+    st_unknown: 'Estado desconhecido',
+    offline_text: 'A impressora está desligada ou inacessível.',
+    last_seen: 'Último contacto {t}',
+    inks: 'Níveis de tinta',
+    alerts: 'Alertas',
+    no_alerts: 'Sem alertas',
+    no_device: 'Nenhuma impressora encontrada',
+    toner: 'Níveis de toner',
+    pages: '{n} páginas impressas',
+    pages_left: '≈ {n} páginas',
+    c_black: 'Preto',
+    c_cyan: 'Ciano',
+    c_magenta: 'Magenta',
+    c_yellow: 'Amarelo',
+    c_tricolor: 'Tricolor',
+    c_ink: 'Tinta',
+    printhead: 'Cabeça de impressão',
+    al_low: 'Pouca tinta: {c} ({p} %)',
+    al_empty: 'Tinta quase esgotada: {c} ({p} %)',
+    al_cartridge: 'Tinteiro ({c}): {s}',
+    al_printhead: 'Cabeça de impressão: {s}',
+    al_expired: 'Garantia do tinteiro ({c}) expirada',
+    al_stopped: 'A impressora está parada',
+    cs_missing: 'em falta',
+    cs_empty: 'sem tinta',
+    cs_used: 'já utilizado',
+    cs_counterfeit: 'contrafeito',
+    cs_nongenuine: 'não original HP',
+    cs_incompatible: 'incompatível',
+    cs_damaged: 'com danos',
+    cs_problem: 'problema detetado',
+    ipp_media_empty: 'Tabuleiro de papel vazio',
+    ipp_media_low: 'Pouco papel',
+    ipp_media_jam: 'Papel encravado',
+    ipp_door_open: 'Porta aberta',
+    ipp_cover_open: 'Tampa aberta',
+    ipp_input_tray_missing: 'Tabuleiro de papel em falta',
+    ipp_output_area_full: 'Tabuleiro de saída cheio',
+    ipp_marker_supply_empty: 'Tinteiro vazio',
+    ipp_media_needed: 'Coloque papel',
+    ipp_toner_empty: 'Toner vazio',
+    ipp_marker_supply_missing: 'Tinteiro em falta',
+    ipp_offline: 'Impressora sem ligação',
+    ed_device: 'Impressora',
+    ed_device_helper: 'Dispositivo da integração HP Printer ou IPP (qualquer marca)',
+    ed_name: 'Nome',
+    ed_name_helper: 'Deixar vazio para usar o nome do dispositivo',
+    ed_show_image: 'Imagem da impressora',
+    ed_show_inks: 'Níveis de tinta',
+    ed_show_alerts: 'Alertas',
+    ed_show_stats: 'Contador de páginas',
+    ed_show_expired: 'Alerta de garantia expirada',
+    ed_low_threshold: 'Limiar de tinta baixa (%)',
+    ed_show_logo: 'Logótipo HP (caso contrário, ícone de impressora)',
+    ed_admin_url: 'Página de administração (URL)',
+    ed_admin_url_helper: 'Aberta ao clicar na impressora — deixar vazio para o endereço detetado',
+    open_admin: 'Abrir a página de administração da impressora',
+    open_hp: 'Abrir hp.com',
+    ed_image: 'Imagem personalizada (URL)',
+    ed_image_helper: 'Ex.: /local/printer.png — substitui a ilustração',
+    ed_picture: 'Ilustração',
+    ed_picture_helper: 'Automática: desenho conforme a gama HP, caso contrário uma impressora genérica',
+    pic_auto: 'Automática',
+    pic_officejet: 'HP OfficeJet / PageWide (multifunções)',
+    pic_laserjet: 'HP LaserJet (laser)',
+    pic_deskjet: 'HP DeskJet / ENVY (compacta)',
+    pic_smart_tank: 'HP Smart Tank (depósitos de tinta)',
+    pic_generic: 'Impressora genérica (IPP)',
+    ed_language: 'Idioma',
+    ed_language_helper: 'Deixar vazio para seguir o idioma do Home Assistant',
+    ed_entities: 'Entidades (avançado)',
+    ed_entities_helper: 'Detetadas a partir do dispositivo; preencher apenas para forçar uma entidade',
+    en_status: 'Estado',
+    en_ipp: 'Sensor IPP (alertas de papel, tampa…)',
+    en_total_pages: 'Total de páginas',
+    en_eprint: 'Estado do ePrint',
+    en_eprint_registration: 'Registo do ePrint',
+    ed_show_eprint: 'Estado do ePrint',
+    ep_on: 'ePrint ativado',
+    ep_off: 'ePrint desativado',
+    ep_unregistered: 'ePrint não registado',
+    ed_zoom: 'Botão de detalhe',
+    ed_zoom_helper: 'Canto superior direito: mostra o cartão completo; um clique noutro sítio volta à vista compacta',
+    zoom_in: 'Mostrar o cartão completo',
+    zoom_out: 'Voltar à vista compacta',
+  },
+  pl: {
+    printer: 'Drukarka',
+    st_ready: 'Gotowa',
+    st_inpowersave: 'Uśpiona',
+    st_processing: 'Drukowanie',
+    st_scanprocessing: 'Skanowanie',
+    st_copying: 'Kopiowanie',
+    st_canceljob: 'Anulowanie zadania',
+    st_stopped: 'Zatrzymana',
+    st_offline: 'Offline',
+    st_unknown: 'Nieznany stan',
+    offline_text: 'Drukarka jest wyłączona lub nieosiągalna.',
+    last_seen: 'Ostatni kontakt {t}',
+    inks: 'Poziomy tuszu',
+    alerts: 'Alerty',
+    no_alerts: 'Brak alertów',
+    no_device: 'Nie znaleziono drukarki',
+    toner: 'Poziomy tonera',
+    pages: 'Wydrukowane strony: {n}',
+    pages_left: '≈ {n} str.',
+    c_black: 'Czarny',
+    c_cyan: 'Cyjan',
+    c_magenta: 'Magenta',
+    c_yellow: 'Żółty',
+    c_tricolor: 'Trójkolorowy',
+    c_ink: 'Tusz',
+    printhead: 'Głowica drukująca',
+    al_low: 'Niski poziom tuszu: {c} ({p} %)',
+    al_empty: 'Tusz prawie wyczerpany: {c} ({p} %)',
+    al_cartridge: 'Wkład ({c}): {s}',
+    al_printhead: 'Głowica drukująca: {s}',
+    al_expired: 'Gwarancja wkładu ({c}) wygasła',
+    al_stopped: 'Drukarka jest zatrzymana',
+    cs_missing: 'brak',
+    cs_empty: 'brak tuszu',
+    cs_used: 'już używany',
+    cs_counterfeit: 'podróbka',
+    cs_nongenuine: 'nieoryginalny HP',
+    cs_incompatible: 'niezgodność',
+    cs_damaged: 'uszkodzenie',
+    cs_problem: 'wykryto problem',
+    ipp_media_empty: 'Podajnik papieru pusty',
+    ipp_media_low: 'Kończy się papier',
+    ipp_media_jam: 'Zacięcie papieru',
+    ipp_door_open: 'Otwarte drzwiczki',
+    ipp_cover_open: 'Otwarta pokrywa',
+    ipp_input_tray_missing: 'Brak podajnika papieru',
+    ipp_output_area_full: 'Odbiornik papieru pełny',
+    ipp_marker_supply_empty: 'Pusty wkład',
+    ipp_media_needed: 'Włóż papier',
+    ipp_toner_empty: 'Pusty toner',
+    ipp_marker_supply_missing: 'Brak wkładu',
+    ipp_offline: 'Drukarka offline',
+    ed_device: 'Drukarka',
+    ed_device_helper: 'Urządzenie z integracji HP Printer lub IPP (dowolna marka)',
+    ed_name: 'Nazwa',
+    ed_name_helper: 'Pozostaw puste, aby użyć nazwy urządzenia',
+    ed_show_image: 'Obraz drukarki',
+    ed_show_inks: 'Poziomy tuszu',
+    ed_show_alerts: 'Alerty',
+    ed_show_stats: 'Licznik stron',
+    ed_show_expired: 'Alert o wygasłej gwarancji',
+    ed_low_threshold: 'Próg niskiego poziomu tuszu (%)',
+    ed_show_logo: 'Logo HP (w przeciwnym razie ikona drukarki)',
+    ed_admin_url: 'Strona administracyjna (URL)',
+    ed_admin_url_helper: 'Otwierana po kliknięciu drukarki — pozostaw puste, aby użyć wykrytego adresu',
+    open_admin: 'Otwórz stronę administracyjną drukarki',
+    open_hp: 'Otwórz hp.com',
+    ed_image: 'Własny obraz (URL)',
+    ed_image_helper: 'Np. /local/printer.png — zastępuje ilustrację',
+    ed_picture: 'Ilustracja',
+    ed_picture_helper: 'Automatycznie: rysunek według serii HP, w przeciwnym razie drukarka ogólna',
+    pic_auto: 'Automatycznie',
+    pic_officejet: 'HP OfficeJet / PageWide (urządzenie wielofunkcyjne)',
+    pic_laserjet: 'HP LaserJet (laserowa)',
+    pic_deskjet: 'HP DeskJet / ENVY (kompaktowa)',
+    pic_smart_tank: 'HP Smart Tank (zbiorniki tuszu)',
+    pic_generic: 'Drukarka ogólna (IPP)',
+    ed_language: 'Język',
+    ed_language_helper: 'Pozostaw puste, aby używać języka Home Assistant',
+    ed_entities: 'Encje (zaawansowane)',
+    ed_entities_helper: 'Wykrywane z urządzenia; ustaw je tylko, aby wymusić encję',
+    en_status: 'Status',
+    en_ipp: 'Czujnik IPP (alerty papieru, pokrywy…)',
+    en_total_pages: 'Łączna liczba stron',
+    en_eprint: 'Status ePrint',
+    en_eprint_registration: 'Rejestracja ePrint',
+    ed_show_eprint: 'Status ePrint',
+    ep_on: 'ePrint włączony',
+    ep_off: 'ePrint wyłączony',
+    ep_unregistered: 'ePrint niezarejestrowany',
+    ed_zoom: 'Przycisk szczegółów',
+    ed_zoom_helper: 'W prawym górnym rogu: pokazuje pełną kartę, kliknięcie w innym miejscu przywraca widok kompaktowy',
+    zoom_in: 'Pokaż pełną kartę',
+    zoom_out: 'Wróć do widoku kompaktowego',
+  },
 };
+
+// Full code when the dictionary has it (sr-Latn), else the part before the dash (fr-FR -> fr, pt-BR -> pt), else en.
+function hpLang(language) {
+  var l = String(language || 'en');
+  if (HpI18n[l]) return l;
+  l = l.split('-')[0];
+  return HpI18n[l] ? l : 'en';
+}
+
+// Locale for Intl and toLocaleString: Home Assistant's full locale when it resolves to the card's language
+// (pt-BR, de-CH…), else the card's language (the `language` option wins). HA's plain `pt` is European
+// Portuguese, as is the card's dictionary, so it is passed as pt-PT (Intl reads `pt` as Brazilian).
+function hpLocale(lang, hass) {
+  var full = hass && (hass.locale?.language || hass.language);
+  var loc = full && hpLang(full) === lang ? String(full) : lang;
+  return loc === 'pt' ? 'pt-PT' : loc;
+}
 
 function hpT(lang, key) {
   var strings = HpI18n[lang] || HpI18n.en;
@@ -484,9 +1077,10 @@ function hpPictureFor(device, kind) {
 // ── Status ───────────────────────────────────────────────────────────────────
 var HP_STATE_COLORS = {
   ready: 'var(--success-color, #43a047)',
-  inpowersave: '#5c8fd6',
+  // Overridable from a theme, like the other states which follow the HA status colors.
+  inpowersave: 'var(--printer-card-sleep-color, #5c8fd6)',
   processing: 'var(--info-color, #039be5)',
-  scanprocessing: '#8e24aa',
+  scanprocessing: 'var(--printer-card-scan-color, #8e24aa)',
   copying: 'var(--info-color, #039be5)',
   canceljob: 'var(--warning-color, #ffa600)',
   stopped: 'var(--error-color, #db4437)',
@@ -895,9 +1489,7 @@ class PrinterCard extends HTMLElement {
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
   _lang() {
-    var l = (this._config?.language) || (this._hass?.language) || document.documentElement.lang || 'en';
-    l = l.split('-')[0];
-    return HpI18n[l] ? l : 'en';
+    return hpLang((this._config?.language) || (this._hass?.language) || document.documentElement.lang);
   }
 
   _t(k, vars) { var s = hpT(this._lang(), k); return vars ? hpFill(s, vars) : s; }
@@ -1024,11 +1616,11 @@ class PrinterCard extends HTMLElement {
     return this._t(`c_${ink.color}`);
   }
 
-  // Label used inside a sentence: lower case in French and Spanish ("encre jaune", "cartucho negro"),
-  // as is in English and German (nouns keep their capital).
+  // Label used inside a sentence: lower case in French, Spanish, Serbian, Italian, Dutch, Portuguese and Polish
+  // ("encre jaune", "cartucho negro", "црна", "zwart"), as is in English and German (nouns keep their capital).
   _inkWord(ink) {
     var l = ink.printhead ? this._t('printhead') : this._inkLabel(ink);
-    if (this._lang() === 'es') return l.toLowerCase();
+    if (['es', 'sr', 'sr-Latn', 'it', 'nl', 'pt', 'pl'].indexOf(this._lang()) >= 0) return l.toLowerCase();
     if (this._lang() !== 'fr') return l;
     // "encre noire", "cartouche noire": the adjective agrees with the feminine noun.
     var w = hpT('fr', `cw_${ink.color}`);
@@ -1097,13 +1689,13 @@ class PrinterCard extends HTMLElement {
     var secs = Math.round((date.getTime() - Date.now()) / 1000);
     var units = [['day', 86400], ['hour', 3600], ['minute', 60]];
     try {
-      var rtf = new Intl.RelativeTimeFormat(this._lang(), { numeric: 'auto' });
+      var rtf = new Intl.RelativeTimeFormat(hpLocale(this._lang(), this._hass), { numeric: 'auto' });
       for (var i = 0; i < units.length; i++) {
         if (Math.abs(secs) >= units[i][1]) return rtf.format(Math.round(secs / units[i][1]), units[i][0]);
       }
       return rtf.format(0, 'minute');
     } catch (_e) {
-      return date.toLocaleString(this._lang());
+      return date.toLocaleString(hpLocale(this._lang(), this._hass));
     }
   }
 
@@ -1234,7 +1826,7 @@ class PrinterCard extends HTMLElement {
     } else if (c.show_stats && this._avail(r.total_pages)) {
       var n = Number(this._val(r.total_pages));
       sub = '<div class="sub muted"><ha-icon icon="mdi:file-document-multiple-outline"></ha-icon>' +
-        hpEsc(this._t('pages', { n: Number.isNaN(n) ? this._val(r.total_pages) : n.toLocaleString(this._lang()) })) + '</div>';
+        hpEsc(this._t('pages', { n: Number.isNaN(n) ? this._val(r.total_pages) : n.toLocaleString(hpLocale(this._lang(), this._hass)) })) + '</div>';
     }
 
     // Like the Home Connect cards: logo, name and status pill on top, then the picture with the chips.
@@ -1254,7 +1846,7 @@ class PrinterCard extends HTMLElement {
         cartridges.map((ink) => {
           var k = this._inkInfo(ink);
           return '<div class="ink' + (k.low ? ' low' : '') + (k.crit ? ' crit' : '') + (k.bad ? ' bad' : '') + '" title="' + hpEsc(k.title) + '">' +
-            '<div class="tank"><div class="level" style="height:' + k.pct + '%;background:' + HP_INK_COLORS[ink.color] + '"></div>' +
+            '<div class="tank"><div class="level" style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:3px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></div>' +
               (k.low || k.bad ? '<ha-icon class="flag" icon="mdi:alert"></ha-icon>' : '') + '</div>' +
             '<div class="pct">' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)}<small>%</small>`) + '</div>' +
             '<div class="lbl">' + hpEsc(this._inkLabel(ink)) + '</div>' +
@@ -1323,8 +1915,9 @@ class PrinterCard extends HTMLElement {
       '.tank { position: relative; width: 100%; max-width: 40px; height: 44px; border-radius: 8px; overflow: hidden;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(128,128,128,0.25)); }' +
       '.level { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 0 0 8px 8px; transition: height 0.6s ease; }' +
-      '.ink.low .tank, .ink.bad .tank { box-shadow: inset 0 0 0 2px var(--warning-color, #ffa600); }' +
-      '.ink.bad .tank, .ink.crit .tank { box-shadow: inset 0 0 0 2px var(--error-color, #db4437); }' +
+      // Low / nearly empty: outlined outside the tank, so the frame never hides a low level (a low yellow next to an orange frame).
+      '.ink.low .tank, .ink.bad .tank { outline: 2px solid var(--warning-color, #ffa600); outline-offset: 1px; }' +
+      '.ink.bad .tank, .ink.crit .tank { outline-color: var(--error-color, #db4437); }' +
       '.flag { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); --mdc-icon-size: 16px; color: var(--warning-color, #ffa600); }' +
       '.ink.bad .flag, .ink.crit .flag { color: var(--error-color, #db4437); }' +
       '.pct { font-size: 13px; font-weight: 500; color: var(--primary-text-color); }' +
@@ -1338,6 +1931,8 @@ class PrinterCard extends HTMLElement {
       '.alert.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 12%, transparent); } .alert.warn ha-icon { color: var(--warning-color, #ffa600); }' +
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
       '.alert.ok { color: var(--secondary-text-color); } .alert.ok ha-icon { color: var(--success-color, #43a047); }' +
+      // The screen keeps the status color but stops pulsing; levels and hovers change without motion.
+      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen { animation: none; } .logo, .pic, .level { transition: none; } }' +
     '</style>';
   }
 }
@@ -1368,14 +1963,16 @@ var HP_MINI_STYLES =
   '.rs { display: flex; flex-wrap: wrap; gap: 6px; }' +
   '.rs:empty { display: none; }' +
   '.r { --t: var(--secondary-text-color); display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px 1px 5px; border-radius: 12px;' +
-    ' font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--secondary-text-color);' +
+    ' font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--secondary-text-color); max-width: 100%; min-width: 0; box-sizing: border-box;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); }' +
-  '.r ha-icon { --mdc-icon-size: 13px; color: var(--t); }' +
+  '.r ha-icon { --mdc-icon-size: 13px; flex: none; color: var(--t); }' +
+  // A label wider than the card ends with an ellipsis instead of running out of it (the full text is in the title).
+  '.r .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
   // A small tank, like the full card's ink levels: filled to the level, outlined when low or nearly empty.
   '.r .mt { position: relative; width: 10px; height: 14px; flex: none; border-radius: 3px; overflow: hidden;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(128,128,128,0.25)); }' +
   '.r .mt > span { position: absolute; left: 0; right: 0; bottom: 0; }' +
-  '.r.warn .mt, .r.error .mt { box-shadow: inset 0 0 0 1.5px var(--t); }' +
+  '.r.warn .mt, .r.error .mt { outline: 1.5px solid var(--t); outline-offset: 0.5px; }' +
   '.r.warn { --t: var(--warning-color, #ffa600); }' +
   '.r.error { --t: var(--error-color, #db4437); }' +
   '.r.warn, .r.error { color: var(--t); background: color-mix(in srgb, var(--t) 15%, transparent); }';
@@ -1460,12 +2057,13 @@ class PrinterMiniCard extends PrinterCard {
       r.inks.filter((i) => !i.printhead && i.level).forEach((ink) => {
         var k = this._inkInfo(ink);
         out.push('<span class="r' + (k.crit || k.bad ? ' error' : (k.low ? ' warn' : '')) + '" title="' + hpEsc(k.title) + '">' +
-          '<span class="mt"><span style="height:' + k.pct + '%;background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');
+          '<span class="mt"><span style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:2px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');
       });
     }
     if (c.show_alerts) {
       v.alerts.filter((a) => !a.ink).forEach((a) => {
-        out.push(`<span class="r ${a.level}"><ha-icon icon="${a.icon}"></ha-icon>${hpEsc(hpCap(a.text))}</span>`);
+        var txt = hpEsc(hpCap(a.text));
+        out.push(`<span class="r ${a.level}" title="${txt}"><ha-icon icon="${a.icon}"></ha-icon><span class="tx">${txt}</span></span>`);
       });
     }
     return out.join('');
@@ -1492,8 +2090,7 @@ class PrinterCardEditor extends HTMLElement {
   }
 
   _lang() {
-    var lang = ((this._config?.language) || (this._hass?.language) || 'en').split('-')[0];
-    return HpI18n[lang] ? lang : 'en';
+    return hpLang((this._config?.language) || (this._hass?.language));
   }
 
   _schema() {
@@ -1521,7 +2118,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'image', selector: { text: {} } },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,

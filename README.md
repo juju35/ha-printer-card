@@ -27,7 +27,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 ## Features
 
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
-- **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works
+- **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
 - **Pictures**: a drawing per HP range (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank) and a generic printer for the other brands, picked from the device model or chosen in the editor
@@ -38,7 +38,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
 - Automatic entity discovery from the device (works with English or French entity IDs), status, IPP sensor, ePrint sensors and page counter can be overridden
 - Visual editor in the dashboard UI (no YAML needed)
-- English, French, German and Spanish, follows the Home Assistant language
+- English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese and Polish, follows the Home Assistant language
 - Light and dark theme compatible
 - Single file, no dependencies, HACS-ready
 
@@ -142,7 +142,7 @@ entities:
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
 | `picture` | ❌ | `auto` | Picture: `auto`, `officejet`, `laserjet`, `deskjet`, `smart_tank` or `generic` (see below) |
 | `image` | ❌ | — | URL of your own printer picture, e.g. `/local/printer.png`; replaces `picture` |
-| `language` | ❌ | Auto | Force language: `fr`, `en`, `de` or `es` (auto-detects from HA settings) |
+| `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt` or `pl` (auto-detects from HA settings) |
 | `entities` | ❌ | Auto | Override detected entities (see below) |
 | `zoom` | ❌ | `true` | Mini card only: detail button in the top right corner, showing the full card; a click on it or anywhere else goes back to the compact view. `false` removes it |
 
@@ -171,6 +171,15 @@ Cartridges are always found from the printer's devices.
 | `generic` | Printers of other brands (IPP) |
 
 The control panel of each picture lights up in the status color.
+
+### Theme colors
+
+The status colors follow the Home Assistant theme: `--success-color` (ready), `--info-color` (printing, copying), `--warning-color` (cancelling) and `--error-color` (stopped). Two states have no Home Assistant color and get their own variable, which a theme can set:
+
+| Variable | State | Default |
+|---|---|---|
+| `--printer-card-sleep-color` | Sleeping (power save) | `#5c8fd6` |
+| `--printer-card-scan-color` | Scanning | `#8e24aa` |
 
 ## Screenshots
 
@@ -232,6 +241,12 @@ The card auto-detects the language from your Home Assistant settings. Currently 
 | Français | `fr` |
 | Deutsch | `de` |
 | Español | `es` |
+| Српски | `sr` |
+| Srpski (latinica) | `sr-Latn` |
+| Italiano | `it` |
+| Nederlands | `nl` |
+| Português (Portugal) | `pt` |
+| Polski | `pl` |
 
 Contributions for additional languages are welcome!
 
