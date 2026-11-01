@@ -27,7 +27,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 ## Features
 
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
-- **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works
+- **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
 - **Pictures**: a drawing per HP range (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank) and a generic printer for the other brands, picked from the device model or chosen in the editor
@@ -171,6 +171,15 @@ Cartridges are always found from the printer's devices.
 | `generic` | Printers of other brands (IPP) |
 
 The control panel of each picture lights up in the status color.
+
+### Theme colors
+
+The status colors follow the Home Assistant theme: `--success-color` (ready), `--info-color` (printing, copying), `--warning-color` (cancelling) and `--error-color` (stopped). Two states have no Home Assistant color and get their own variable, which a theme can set:
+
+| Variable | State | Default |
+|---|---|---|
+| `--printer-card-sleep-color` | Sleeping (power save) | `#5c8fd6` |
+| `--printer-card-scan-color` | Scanning | `#8e24aa` |
 
 ## Screenshots
 
