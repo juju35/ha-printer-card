@@ -401,7 +401,7 @@ const documentClick = (path) => {
 test("the mini card is laid out like the Home Connect mini cards, with one small tank per cartridge, tinted when low", () => {
   const html = mini(levels(mockHass(), { yellow: 3, cyan: 12 })).shadowRoot.innerHTML;
   assert.match(html, /<ha-card class="mini">/);
-  assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st"><span class="dot"><\/span>Ready<\/span>/);
+  assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span>/);
   assert.match(html, /<div class="content">.*<div class="info">/);
   assert.equal((html.match(/class="mt"/g) || []).length, 4);
   assert.match(html, /<span class="r error"[^>]*><span class="mt"><span style="height:3%;[^"]*"><\/span><\/span>3 %/);
@@ -446,7 +446,7 @@ test("the detail button shows the full card, then the compact view again", () =>
   assert.doesNotMatch(full, /class="mini"/);
   assert.equal(card.getCardSize(), 5);
   // The grid stays the compact one: HA does not read it again on zoom, rows: 'auto' lets the card grow.
-  assert.deepEqual({ ...card.getGridOptions() }, { columns: 12, min_columns: 4, rows: "auto" });
+  assert.deepEqual({ ...card.getGridOptions() }, { columns: 12, min_columns: 6, rows: "auto" });
   clickZoom(card);
   assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
   assert.match(card.shadowRoot.innerHTML, /mdi:arrow-expand/);
@@ -553,4 +553,55 @@ test("a nearly empty cartridge keeps a visible level, an empty or unknown one sh
   assert.match(small, /<span class="mt"><span style="height:1%;min-height:2px;background:#f5c400"><\/span><\/span>1 %/);
   assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>0 %/);
   assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>—/);
+});
+
+// ── Review pass 9 ──────────────────────────────────────────────────────────
+// Narrow header (min_columns of the Sections view, ~156-250px): the name never collapses to 0px and
+// neither the status pill nor the detail button leaves the card. Measured in Chromium for the PR;
+// node has no layout engine, so this checks the CSS rules that guarantee it.
+const rule = (css, sel) => css.match(new RegExp(`(?:^|\\})\\s*${sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\{([^}]*)\\}`))?.[1] || "";
+
+test("narrow header: the title shrinks with an ellipsis but keeps a few characters", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const css = styleOf(card);
+    assert.match(rule(css, ".titles"), /flex: 1 1 auto;/);
+    assert.match(rule(css, ".titles"), /min-width: \d+ch;/);
+    assert.match(rule(css, ".name"), /text-overflow: ellipsis/);
+  }
+});
+
+test("narrow header: the status pill shrinks and truncates, then shows only its dot or icon", () => {
+  const full = styleOf(render(mockHass()));
+  const small = styleOf(mini(mockHass()));
+  for (const [css, sel, text] of [[full, ".status", ".status span"], [small, ".st", ".st .tx"]]) {
+    const r = rule(css, sel);
+    assert.match(r, /flex: 0 1 auto;/, `${sel} flex`);
+    assert.match(r, /min-width: 0;/, `${sel} min-width`);
+    assert.match(r, /max-width: 50%;/, `${sel} max-width`);
+    assert.doesNotMatch(r, /flex: none/, `${sel} must shrink`);
+    assert.match(rule(css, text), /overflow: hidden;.*text-overflow: ellipsis;/, `${text} ellipsis`);
+    assert.match(css, new RegExp(`@container printer-card \\(max-width: \\d+px\\) \\{[^@]*${text.replace(/\./g, "\\.")} \\{ display: none; \\}`), `${text} hidden when narrow`);
+  }
+  assert.match(rule(full, "ha-card"), /container: printer-card \/ inline-size;/);
+  assert.match(rule(full, ".status ha-icon"), /flex: none;/);
+  assert.match(rule(small, ".st .dot"), /flex: none;/);
+  assert.match(rule(small, ".zoom"), /flex: none;/);
+  // Narrow: the icon or dot is never cut, and the logo and gaps leave room for the name and the detail button.
+  assert.match(full, /@container printer-card \(max-width: 200px\) \{[^@]*\.status \{ min-width: 22px; padding: 2px 4px; \}/);
+  assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 6px; \} \.logo \{ width: 32px; height: 32px; \}/);
+  assert.match(small, /@container printer-card \(max-width: 200px\) \{ \.st \{ min-width: 14px; padding: 4px; \}/);
+});
+
+test("narrow header: the status text stays available as the pill's title and label", () => {
+  const html = render(mockHass({ status: "canceljob" }), { device_id: "p", language: "pl" }).shadowRoot.innerHTML;
+  assert.match(html, /<div class="status" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><ha-icon/);
+  const small = mini(mockHass({ status: "canceljob" }), { language: "pl" }).shadowRoot.innerHTML;
+  assert.match(small, /<span class="st" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><span class="dot"><\/span><span class="tx">Anulowanie zadania<\/span><\/span>/);
+});
+
+test("the mini card asks for at least 6 Sections columns, where its header fits", () => {
+  const g = new PrinterMiniCard().getGridOptions();
+  assert.equal(g.min_columns, 6);
+  assert.equal(g.rows, "auto");
+  assert.equal(new PrinterCard().getGridOptions().min_columns, 6);
 });
