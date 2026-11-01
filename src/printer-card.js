@@ -484,9 +484,10 @@ function hpPictureFor(device, kind) {
 // ── Status ───────────────────────────────────────────────────────────────────
 var HP_STATE_COLORS = {
   ready: 'var(--success-color, #43a047)',
-  inpowersave: '#5c8fd6',
+  // Overridable from a theme, like the other states which follow the HA status colors.
+  inpowersave: 'var(--printer-card-sleep-color, #5c8fd6)',
   processing: 'var(--info-color, #039be5)',
-  scanprocessing: '#8e24aa',
+  scanprocessing: 'var(--printer-card-scan-color, #8e24aa)',
   copying: 'var(--info-color, #039be5)',
   canceljob: 'var(--warning-color, #ffa600)',
   stopped: 'var(--error-color, #db4437)',
@@ -1254,7 +1255,7 @@ class PrinterCard extends HTMLElement {
         cartridges.map((ink) => {
           var k = this._inkInfo(ink);
           return '<div class="ink' + (k.low ? ' low' : '') + (k.crit ? ' crit' : '') + (k.bad ? ' bad' : '') + '" title="' + hpEsc(k.title) + '">' +
-            '<div class="tank"><div class="level" style="height:' + k.pct + '%;background:' + HP_INK_COLORS[ink.color] + '"></div>' +
+            '<div class="tank"><div class="level" style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:3px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></div>' +
               (k.low || k.bad ? '<ha-icon class="flag" icon="mdi:alert"></ha-icon>' : '') + '</div>' +
             '<div class="pct">' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)}<small>%</small>`) + '</div>' +
             '<div class="lbl">' + hpEsc(this._inkLabel(ink)) + '</div>' +
@@ -1323,8 +1324,9 @@ class PrinterCard extends HTMLElement {
       '.tank { position: relative; width: 100%; max-width: 40px; height: 44px; border-radius: 8px; overflow: hidden;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(128,128,128,0.25)); }' +
       '.level { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 0 0 8px 8px; transition: height 0.6s ease; }' +
-      '.ink.low .tank, .ink.bad .tank { box-shadow: inset 0 0 0 2px var(--warning-color, #ffa600); }' +
-      '.ink.bad .tank, .ink.crit .tank { box-shadow: inset 0 0 0 2px var(--error-color, #db4437); }' +
+      // Low / nearly empty: outlined outside the tank, so the frame never hides a low level (a low yellow next to an orange frame).
+      '.ink.low .tank, .ink.bad .tank { outline: 2px solid var(--warning-color, #ffa600); outline-offset: 1px; }' +
+      '.ink.bad .tank, .ink.crit .tank { outline-color: var(--error-color, #db4437); }' +
       '.flag { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); --mdc-icon-size: 16px; color: var(--warning-color, #ffa600); }' +
       '.ink.bad .flag, .ink.crit .flag { color: var(--error-color, #db4437); }' +
       '.pct { font-size: 13px; font-weight: 500; color: var(--primary-text-color); }' +
@@ -1338,6 +1340,8 @@ class PrinterCard extends HTMLElement {
       '.alert.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 12%, transparent); } .alert.warn ha-icon { color: var(--warning-color, #ffa600); }' +
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
       '.alert.ok { color: var(--secondary-text-color); } .alert.ok ha-icon { color: var(--success-color, #43a047); }' +
+      // The screen keeps the status color but stops pulsing; levels and hovers change without motion.
+      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen { animation: none; } .logo, .pic, .level { transition: none; } }' +
     '</style>';
   }
 }
@@ -1375,7 +1379,7 @@ var HP_MINI_STYLES =
   '.r .mt { position: relative; width: 10px; height: 14px; flex: none; border-radius: 3px; overflow: hidden;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(128,128,128,0.25)); }' +
   '.r .mt > span { position: absolute; left: 0; right: 0; bottom: 0; }' +
-  '.r.warn .mt, .r.error .mt { box-shadow: inset 0 0 0 1.5px var(--t); }' +
+  '.r.warn .mt, .r.error .mt { outline: 1.5px solid var(--t); outline-offset: 0.5px; }' +
   '.r.warn { --t: var(--warning-color, #ffa600); }' +
   '.r.error { --t: var(--error-color, #db4437); }' +
   '.r.warn, .r.error { color: var(--t); background: color-mix(in srgb, var(--t) 15%, transparent); }';
@@ -1460,7 +1464,7 @@ class PrinterMiniCard extends PrinterCard {
       r.inks.filter((i) => !i.printhead && i.level).forEach((ink) => {
         var k = this._inkInfo(ink);
         out.push('<span class="r' + (k.crit || k.bad ? ' error' : (k.low ? ' warn' : '')) + '" title="' + hpEsc(k.title) + '">' +
-          '<span class="mt"><span style="height:' + k.pct + '%;background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');
+          '<span class="mt"><span style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:2px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');
       });
     }
     if (c.show_alerts) {
