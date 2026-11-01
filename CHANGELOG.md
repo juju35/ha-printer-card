@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.4.8 - 2026-11-01
+
+### Fixes
+- Narrow cards: the printer name no longer disappears and the status pill no longer runs out of the card. The name ends with an ellipsis, the status text shortens, and on the narrowest cards the pill keeps only its icon or dot (the full status stays in its tooltip and for screen readers).
+- Mini card: it now needs at least 6 columns in a Sections view (was 4), where its name, status and detail button fit; at 4 columns the detail button was pushed out of the card.
+- Polish, Portuguese and Serbian printhead alerts agree with the printhead (feminine), e.g. "Głowica drukująca: już używana", "Cabeça de impressão: já utilizada", "Glava za štampanje: oštećena". Cartridge alerts are unchanged.
+
 ## 2.4.7 - 2026-11-01
 
 ### Added
