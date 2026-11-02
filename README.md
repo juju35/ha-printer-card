@@ -96,7 +96,7 @@ device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 zoom: true
 ```
 
-The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` and `show_logo` its picture and printer icon.
+The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` its picture.
 
 ### Full options
 
@@ -105,7 +105,6 @@ type: custom:printer-card
 device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 name: Printer
 show_image: true
-show_logo: true
 show_inks: true
 show_alerts: true
 show_stats: true
@@ -132,7 +131,6 @@ entities:
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device |
 | `name` | ❌ | Device name | Card title |
 | `show_image` | ❌ | `true` | Show the printer picture |
-| `show_logo` | ❌ | `true` | Show the printer icon before the name |
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |

@@ -66,7 +66,6 @@ var HpI18n = {
     ed_show_stats: 'Compteur de pages',
     ed_show_expired: 'Alerte garantie expirée',
     ed_low_threshold: 'Seuil d\'encre faible (%)',
-    ed_show_logo: 'Icône',
     ed_admin_url: 'Page d\'administration (URL)',
     ed_admin_url_helper: 'Ouverte au clic sur l\'imprimante — laisser vide pour l\'adresse détectée',
     open_admin: 'Ouvrir la page d\'administration de l\'imprimante',
@@ -161,7 +160,6 @@ var HpI18n = {
     ed_show_stats: 'Page counter',
     ed_show_expired: 'Expired warranty alert',
     ed_low_threshold: 'Low ink threshold (%)',
-    ed_show_logo: 'Icon',
     ed_admin_url: 'Admin page (URL)',
     ed_admin_url_helper: 'Opened when clicking the printer — leave empty for the detected address',
     open_admin: 'Open the printer admin page',
@@ -256,7 +254,6 @@ var HpI18n = {
     ed_show_stats: 'Seitenzähler',
     ed_show_expired: 'Warnung bei abgelaufener Garantie',
     ed_low_threshold: 'Schwellenwert für niedrigen Tintenstand (%)',
-    ed_show_logo: 'Symbol',
     ed_admin_url: 'Administrationsseite (URL)',
     ed_admin_url_helper: 'Wird beim Klicken auf den Drucker geöffnet – leer lassen, um die erkannte Adresse zu verwenden',
     open_admin: 'Drucker-Administrationsseite öffnen',
@@ -351,7 +348,6 @@ var HpI18n = {
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantía caducada',
     ed_low_threshold: 'Umbral de tinta baja (%)',
-    ed_show_logo: 'Icono',
     ed_admin_url: 'Página de administración (URL)',
     ed_admin_url_helper: 'Se abre al hacer clic en la impresora; déjalo vacío para usar la dirección detectada',
     open_admin: 'Abrir la página de administración de la impresora',
@@ -453,7 +449,6 @@ var HpI18n = {
     ed_show_stats: 'Бројач страница',
     ed_show_expired: 'Упозорење о истеклој гаранцији',
     ed_low_threshold: 'Праг ниског нивоа мастила (%)',
-    ed_show_logo: 'Иконица',
     ed_admin_url: 'Страница за администрацију (URL)',
     ed_admin_url_helper: 'Отвара се кликом на штампач — оставите празно за откривену адресу',
     open_admin: 'Отвори страницу за администрацију штампача',
@@ -555,7 +550,6 @@ var HpI18n = {
     ed_show_stats: 'Brojač stranica',
     ed_show_expired: 'Upozorenje o istekloj garanciji',
     ed_low_threshold: 'Prag niskog nivoa mastila (%)',
-    ed_show_logo: 'Ikonica',
     ed_admin_url: 'Stranica za administraciju (URL)',
     ed_admin_url_helper: 'Otvara se klikom na štampač — ostavite prazno za otkrivenu adresu',
     open_admin: 'Otvori stranicu za administraciju štampača',
@@ -650,7 +644,6 @@ var HpI18n = {
     ed_show_stats: 'Contatore pagine',
     ed_show_expired: 'Avviso di garanzia scaduta',
     ed_low_threshold: 'Soglia di inchiostro scarso (%)',
-    ed_show_logo: 'Icona',
     ed_admin_url: 'Pagina di amministrazione (URL)',
     ed_admin_url_helper: 'Aperta al clic sulla stampante — lasciare vuoto per l\'indirizzo rilevato',
     open_admin: 'Apri la pagina di amministrazione della stampante',
@@ -745,7 +738,6 @@ var HpI18n = {
     ed_show_stats: 'Paginateller',
     ed_show_expired: 'Melding bij verlopen garantie',
     ed_low_threshold: 'Drempel voor laag inktniveau (%)',
-    ed_show_logo: 'Pictogram',
     ed_admin_url: 'Beheerpagina (URL)',
     ed_admin_url_helper: 'Wordt geopend bij een klik op de printer — leeg laten voor het gedetecteerde adres',
     open_admin: 'Beheerpagina van de printer openen',
@@ -843,7 +835,6 @@ var HpI18n = {
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantia expirada',
     ed_low_threshold: 'Limiar de tinta baixa (%)',
-    ed_show_logo: 'Ícone',
     ed_admin_url: 'Página de administração (URL)',
     ed_admin_url_helper: 'Aberta ao clicar na impressora — deixar vazio para o endereço detetado',
     open_admin: 'Abrir a página de administração da impressora',
@@ -941,7 +932,6 @@ var HpI18n = {
     ed_show_stats: 'Licznik stron',
     ed_show_expired: 'Alert o wygasłej gwarancji',
     ed_low_threshold: 'Próg niskiego poziomu tuszu (%)',
-    ed_show_logo: 'Ikona',
     ed_admin_url: 'Strona administracyjna (URL)',
     ed_admin_url_helper: 'Otwierana po kliknięciu drukarki — pozostaw puste, aby użyć wykrytego adresu',
     open_admin: 'Otwórz stronę administracyjną drukarki',
@@ -1453,7 +1443,7 @@ function hpFocusKey(el) {
 }
 
 var HP_DEFAULTS = {
-  show_image: true, show_logo: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, low_threshold: 15, picture: 'auto',
+  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, low_threshold: 15, picture: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
@@ -1735,7 +1725,7 @@ class PrinterCard extends HTMLElement {
       color: offline ? 'var(--disabled-text-color, #9e9e9e)' : (HP_STATE_COLORS[state] || 'var(--secondary-text-color)'),
       alerts: offline ? [] : this._alerts(r, state),
       imageHtml: '',
-      logoHtml: c.show_logo ? '<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"></ha-icon></span>' : '',
+      logoHtml: '<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"></ha-icon></span>',
     };
 
     // Picture, with the control panel lit in the status color.
@@ -2129,7 +2119,6 @@ class PrinterCardEditor extends HTMLElement {
       {
         type: 'grid', name: '', schema: [
           { name: 'show_image', selector: { boolean: {} } },
-          { name: 'show_logo', selector: { boolean: {} } },
           { name: 'show_inks', selector: { boolean: {} } },
           { name: 'show_alerts', selector: { boolean: {} } },
           { name: 'show_stats', selector: { boolean: {} } },

@@ -284,7 +284,7 @@ const fakeEl = (tag, classes) => ({
 for (const [tag, cls, Card] of [["a", "pic", PrinterCard], ["button", "zoom", PrinterMiniCard]]) {
   test(`the focused ${cls} ${tag === "a" ? "link" : "button"} keeps the focus after a re-render`, () => {
     const hass = mockHass();
-    const card = render(hass, { device_id: "p", admin_url: "http://printer.local", show_logo: true }, Card);
+    const card = render(hass, { device_id: "p", admin_url: "http://printer.local" }, Card);
     const root = card.shadowRoot;
     root.activeElement = fakeEl(tag, `${cls} busy`);
     const focused = [];
@@ -349,7 +349,7 @@ test("the picture follows the model", () => {
   assert.equal(pic("ET-2850", "EPSON", "ipp"), "generic");
 });
 
-test("every printer gets the tinted printer icon of the showcase site, unless show_logo is off", () => {
+test("every printer gets the tinted printer icon of the showcase site", () => {
   const hass = mockHass();
   const icon = /<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"><\/ha-icon><\/span>/;
   const card = render(hass);
@@ -357,7 +357,6 @@ test("every printer gets the tinted printer icon of the showcase site, unless sh
   assert.match(render(hass, { device_id: "p", picture: "generic" }).shadowRoot.innerHTML, icon);
   assert.doesNotMatch(card.shadowRoot.innerHTML, /hp\.com/);
   assert.match(card.shadowRoot.innerHTML, /\.logo\.mark \{[^}]*#0096d6/);
-  assert.doesNotMatch(render(hass, { device_id: "p", show_logo: false }).shadowRoot.innerHTML, /class="logo/);
 });
 
 test("the picture option overrides detection, and a custom image overrides both", () => {
@@ -428,7 +427,6 @@ test("the mini card says offline, without chips, when the printer is off", () =>
 test("the mini card shows the same printer icon as the full card", () => {
   assert.match(mini(mockHass()).shadowRoot.innerHTML, /class="logo mark"/);
   assert.match(mini(mockHass(), { picture: "generic" }).shadowRoot.innerHTML, /class="logo mark"/);
-  assert.doesNotMatch(mini(mockHass(), { show_logo: false }).shadowRoot.innerHTML, /class="logo/);
 });
 
 test("the detail button shows the full card, then the compact view again", () => {
