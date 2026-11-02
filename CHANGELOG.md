@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+- Cards: the header shows the tinted round printer icon of the project's showcase page (blue `mdi:printer`) for every printer, instead of the HP logo or a printer icon in the status color. The `show_logo` option still hides it.
+
 ## 2.4.8 - 2026-11-01
 
 ### Fixes

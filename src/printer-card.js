@@ -66,11 +66,10 @@ var HpI18n = {
     ed_show_stats: 'Compteur de pages',
     ed_show_expired: 'Alerte garantie expirée',
     ed_low_threshold: 'Seuil d\'encre faible (%)',
-    ed_show_logo: 'Logo HP (icône imprimante sinon)',
+    ed_show_logo: 'Icône',
     ed_admin_url: 'Page d\'administration (URL)',
     ed_admin_url_helper: 'Ouverte au clic sur l\'imprimante — laisser vide pour l\'adresse détectée',
     open_admin: 'Ouvrir la page d\'administration de l\'imprimante',
-    open_hp: 'Ouvrir hp.com',
     ed_image: 'Image personnalisée (URL)',
     ed_image_helper: 'Ex. /local/imprimante.png — remplace l\'illustration',
     ed_picture: 'Illustration',
@@ -162,11 +161,10 @@ var HpI18n = {
     ed_show_stats: 'Page counter',
     ed_show_expired: 'Expired warranty alert',
     ed_low_threshold: 'Low ink threshold (%)',
-    ed_show_logo: 'HP logo (printer icon otherwise)',
+    ed_show_logo: 'Icon',
     ed_admin_url: 'Admin page (URL)',
     ed_admin_url_helper: 'Opened when clicking the printer — leave empty for the detected address',
     open_admin: 'Open the printer admin page',
-    open_hp: 'Open hp.com',
     ed_image: 'Custom picture (URL)',
     ed_image_helper: 'E.g. /local/printer.png — replaces the illustration',
     ed_picture: 'Illustration',
@@ -258,11 +256,10 @@ var HpI18n = {
     ed_show_stats: 'Seitenzähler',
     ed_show_expired: 'Warnung bei abgelaufener Garantie',
     ed_low_threshold: 'Schwellenwert für niedrigen Tintenstand (%)',
-    ed_show_logo: 'HP-Logo (andernfalls Druckersymbol)',
+    ed_show_logo: 'Symbol',
     ed_admin_url: 'Administrationsseite (URL)',
     ed_admin_url_helper: 'Wird beim Klicken auf den Drucker geöffnet – leer lassen, um die erkannte Adresse zu verwenden',
     open_admin: 'Drucker-Administrationsseite öffnen',
-    open_hp: 'hp.com öffnen',
     ed_image: 'Eigenes Bild (URL)',
     ed_image_helper: 'Z. B. /local/printer.png – ersetzt die Illustration',
     ed_picture: 'Illustration',
@@ -354,11 +351,10 @@ var HpI18n = {
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantía caducada',
     ed_low_threshold: 'Umbral de tinta baja (%)',
-    ed_show_logo: 'Logotipo de HP (si no, icono de impresora)',
+    ed_show_logo: 'Icono',
     ed_admin_url: 'Página de administración (URL)',
     ed_admin_url_helper: 'Se abre al hacer clic en la impresora; déjalo vacío para usar la dirección detectada',
     open_admin: 'Abrir la página de administración de la impresora',
-    open_hp: 'Abrir hp.com',
     ed_image: 'Imagen personalizada (URL)',
     ed_image_helper: 'P. ej. /local/printer.png; sustituye la ilustración',
     ed_picture: 'Ilustración',
@@ -457,11 +453,10 @@ var HpI18n = {
     ed_show_stats: 'Бројач страница',
     ed_show_expired: 'Упозорење о истеклој гаранцији',
     ed_low_threshold: 'Праг ниског нивоа мастила (%)',
-    ed_show_logo: 'HP лого (иначе икона штампача)',
+    ed_show_logo: 'Иконица',
     ed_admin_url: 'Страница за администрацију (URL)',
     ed_admin_url_helper: 'Отвара се кликом на штампач — оставите празно за откривену адресу',
     open_admin: 'Отвори страницу за администрацију штампача',
-    open_hp: 'Отвори hp.com',
     ed_image: 'Прилагођена слика (URL)',
     ed_image_helper: 'Нпр. /local/printer.png — замењује илустрацију',
     ed_picture: 'Илустрација',
@@ -560,11 +555,10 @@ var HpI18n = {
     ed_show_stats: 'Brojač stranica',
     ed_show_expired: 'Upozorenje o istekloj garanciji',
     ed_low_threshold: 'Prag niskog nivoa mastila (%)',
-    ed_show_logo: 'HP logo (inače ikona štampača)',
+    ed_show_logo: 'Ikonica',
     ed_admin_url: 'Stranica za administraciju (URL)',
     ed_admin_url_helper: 'Otvara se klikom na štampač — ostavite prazno za otkrivenu adresu',
     open_admin: 'Otvori stranicu za administraciju štampača',
-    open_hp: 'Otvori hp.com',
     ed_image: 'Prilagođena slika (URL)',
     ed_image_helper: 'Npr. /local/printer.png — zamenjuje ilustraciju',
     ed_picture: 'Ilustracija',
@@ -656,11 +650,10 @@ var HpI18n = {
     ed_show_stats: 'Contatore pagine',
     ed_show_expired: 'Avviso di garanzia scaduta',
     ed_low_threshold: 'Soglia di inchiostro scarso (%)',
-    ed_show_logo: 'Logo HP (altrimenti icona stampante)',
+    ed_show_logo: 'Icona',
     ed_admin_url: 'Pagina di amministrazione (URL)',
     ed_admin_url_helper: 'Aperta al clic sulla stampante — lasciare vuoto per l\'indirizzo rilevato',
     open_admin: 'Apri la pagina di amministrazione della stampante',
-    open_hp: 'Apri hp.com',
     ed_image: 'Immagine personalizzata (URL)',
     ed_image_helper: 'Es. /local/printer.png — sostituisce l\'illustrazione',
     ed_picture: 'Illustrazione',
@@ -752,11 +745,10 @@ var HpI18n = {
     ed_show_stats: 'Paginateller',
     ed_show_expired: 'Melding bij verlopen garantie',
     ed_low_threshold: 'Drempel voor laag inktniveau (%)',
-    ed_show_logo: 'HP-logo (anders printerpictogram)',
+    ed_show_logo: 'Pictogram',
     ed_admin_url: 'Beheerpagina (URL)',
     ed_admin_url_helper: 'Wordt geopend bij een klik op de printer — leeg laten voor het gedetecteerde adres',
     open_admin: 'Beheerpagina van de printer openen',
-    open_hp: 'hp.com openen',
     ed_image: 'Eigen afbeelding (URL)',
     ed_image_helper: 'Bijv. /local/printer.png — vervangt de illustratie',
     ed_picture: 'Illustratie',
@@ -851,11 +843,10 @@ var HpI18n = {
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantia expirada',
     ed_low_threshold: 'Limiar de tinta baixa (%)',
-    ed_show_logo: 'Logótipo HP (caso contrário, ícone de impressora)',
+    ed_show_logo: 'Ícone',
     ed_admin_url: 'Página de administração (URL)',
     ed_admin_url_helper: 'Aberta ao clicar na impressora — deixar vazio para o endereço detetado',
     open_admin: 'Abrir a página de administração da impressora',
-    open_hp: 'Abrir hp.com',
     ed_image: 'Imagem personalizada (URL)',
     ed_image_helper: 'Ex.: /local/printer.png — substitui a ilustração',
     ed_picture: 'Ilustração',
@@ -950,11 +941,10 @@ var HpI18n = {
     ed_show_stats: 'Licznik stron',
     ed_show_expired: 'Alert o wygasłej gwarancji',
     ed_low_threshold: 'Próg niskiego poziomu tuszu (%)',
-    ed_show_logo: 'Logo HP (w przeciwnym razie ikona drukarki)',
+    ed_show_logo: 'Ikona',
     ed_admin_url: 'Strona administracyjna (URL)',
     ed_admin_url_helper: 'Otwierana po kliknięciu drukarki — pozostaw puste, aby użyć wykrytego adresu',
     open_admin: 'Otwórz stronę administracyjną drukarki',
-    open_hp: 'Otwórz hp.com',
     ed_image: 'Własny obraz (URL)',
     ed_image_helper: 'Np. /local/printer.png — zastępuje ilustrację',
     ed_picture: 'Ilustracja',
@@ -1447,10 +1437,8 @@ function hpAdminUrl(hass, r) {
   return '';
 }
 
-var HP_LOGO = '<svg viewBox="0 0 1280 1280" aria-hidden="true"><defs><clipPath id="hp-logo-clip"><circle cx="640" cy="640" r="640"/></clipPath></defs>' +
-  '<circle cx="640" cy="640" r="640" fill="#024ad8"/><g clip-path="url(#hp-logo-clip)" fill="#fff">' +
-  '<path d="M485-20H619L482 360H597Q645 360 670 393Q695 427 676 477L515 918H380L552 444H451L277 918H142L349 360Z"/>' +
-  '<path fill-rule="evenodd" d="M819 358H1070Q1118 358 1143 391Q1168 424 1151 470L1009 866Q1000 890 977 905Q956 918 932 918H752L614 1300H485ZM924 441H1026L883 832H781Z"/></g></svg>';
+// Header icon: the tinted round printer of the project page on the showcase site, for every printer.
+var HP_ACCENT = '#0096d6';
 
 // A click inside a dialog (more-info opened from the card, say) is not a click outside the card.
 function hpInDialog(ev) {
@@ -1459,7 +1447,7 @@ function hpInDialog(ev) {
 
 // ── Card ─────────────────────────────────────────────────────────────────────
 // The card's focusable controls, by the selector that identifies each across renders.
-var HP_FOCUSABLE = ['a.pic', 'a.logo', 'button.zoom'];
+var HP_FOCUSABLE = ['a.pic', 'button.zoom'];
 function hpFocusKey(el) {
   return el?.matches ? HP_FOCUSABLE.find((sel) => el.matches(sel)) || '' : '';
 }
@@ -1734,7 +1722,7 @@ class PrinterCard extends HTMLElement {
     return `<svg class="art art-${pic}" viewBox="0 0 160 120" aria-hidden="true">${HP_ART_DEFS}${HP_ART[pic]}</svg>`;
   }
 
-  // What both cards show: name, state and its color, alerts, picture and HP logo.
+  // What both cards show: name, state and its color, alerts, picture and header icon.
   _view(r) {
     var c = this._config, hass = this._hass;
     var deviceName = hpDeviceName(hass, r.deviceId);
@@ -1747,12 +1735,7 @@ class PrinterCard extends HTMLElement {
       color: offline ? 'var(--disabled-text-color, #9e9e9e)' : (HP_STATE_COLORS[state] || 'var(--secondary-text-color)'),
       alerts: offline ? [] : this._alerts(r, state),
       imageHtml: '',
-      // No HP logo next to the generic printer, even for an HP device.
-      // Otherwise a printer icon takes its place in the corner.
-      logoHtml: !c.show_logo ? ''
-        : (r.isHp && this._pictureKey(r) !== 'generic'
-          ? `<a class="logo" href="https://www.hp.com" target="_blank" rel="noopener noreferrer" title="${hpEsc(this._t('open_hp'))}">${HP_LOGO}</a>`
-          : '<span class="logo mark"><ha-icon icon="mdi:printer"></ha-icon></span>'),
+      logoHtml: c.show_logo ? '<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"></ha-icon></span>' : '',
     };
 
     // Picture, with the control panel lit in the status color.
@@ -1907,11 +1890,9 @@ class PrinterCard extends HTMLElement {
       // Basis 0: the name only gets what the pill leaves, so the pill is cut only when even 5ch of name do not fit
       // beside it (with a basis of auto both shrank in proportion, and "Ready" became "Re…" at 320px).
       '.titles { flex: 1 1 0; min-width: 5ch; }' +
-      '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; transition: transform 0.2s; }' +
-      '.logo svg { width: 100%; height: 100%; }' +
-      'a.logo:hover { transform: scale(1.08); }' +
-      // In place of the HP logo: a printer in a round badge, in the status color.
-      '.logo.mark { display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--hp-color) 16%, transparent); color: var(--hp-color); }' +
+      '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; }' +
+      // A printer in a round badge, tinted with the accent of the showcase site.
+      '.logo.mark { display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, ' + HP_ACCENT + ' 16%, transparent); color: ' + HP_ACCENT + '; }' +
       '.logo.mark ha-icon { --mdc-icon-size: 24px; }' +
       '.head { display: flex; align-items: center; gap: 12px; }' +
       'a.pic { cursor: pointer; }' +
@@ -1971,7 +1952,7 @@ class PrinterCard extends HTMLElement {
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
       '.alert.ok { color: var(--secondary-text-color); } .alert.ok ha-icon { color: var(--success-color, #43a047); }' +
       // The screen keeps the status color but stops pulsing; levels and hovers change without motion.
-      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen { animation: none; } .logo, .pic, .level { transition: none; } }' +
+      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen { animation: none; } .pic, .level { transition: none; } }' +
     '</style>';
   }
 }
