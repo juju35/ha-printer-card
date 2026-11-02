@@ -659,6 +659,9 @@ test("narrow header: the status pill shrinks and truncates, then shows only its 
   assert.match(full, /@container printer-card \(max-width: 200px\) \{[^@]*\.status \{ min-width: 22px; padding: 2px 4px; \}/);
   assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 6px; \} \.logo \{ width: 32px; height: 32px; \}/);
   assert.match(small, /@container printer-card \(max-width: 200px\) \{ \.st \{ min-width: 14px; padding: 4px; \}/);
+  // The mini card keeps the full card's header icon (40 px, 24 px icon): only the narrow container rule shrinks it.
+  assert.doesNotMatch(small, /\.mini \.logo/);
+  assert.match(rule(small, ".logo"), /width: 40px; height: 40px;/);
 });
 
 test("intrinsic width: the card keeps a natural width but asks for no minimum", () => {
