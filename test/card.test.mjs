@@ -275,16 +275,16 @@ test("editor labels follow the language option", () => {
   assert.equal(label({ language: "en" }, "fr"), "Name");
 });
 
-// A focused control (picture link, HP logo, mini-card detail button) keeps the keyboard
+// A focused control (picture link, mini-card detail button) keeps the keyboard
 // focus when innerHTML rebuilds the card.
 const fakeEl = (tag, classes) => ({
   tagName: tag.toUpperCase(),
   matches: (sel) => classes.split(" ").some((k) => sel === `${tag}.${k}`),
 });
-for (const [tag, cls, Card] of [["a", "pic", PrinterCard], ["a", "logo", PrinterCard], ["button", "zoom", PrinterMiniCard]]) {
+for (const [tag, cls, Card] of [["a", "pic", PrinterCard], ["button", "zoom", PrinterMiniCard]]) {
   test(`the focused ${cls} ${tag === "a" ? "link" : "button"} keeps the focus after a re-render`, () => {
     const hass = mockHass();
-    const card = render(hass, { device_id: "p", admin_url: "http://printer.local", show_logo: true }, Card);
+    const card = render(hass, { device_id: "p", admin_url: "http://printer.local" }, Card);
     const root = card.shadowRoot;
     root.activeElement = fakeEl(tag, `${cls} busy`);
     const focused = [];
@@ -317,12 +317,12 @@ function ippHass({ state = "idle", reason = "none", manufacturer = "Brother", mo
   return { language: "en", states, entities, devices: { b: { name: "Brother HL-L2350DW", manufacturer, model } } };
 }
 
-test("an IPP printer of another brand gets the generic picture, its toner and no HP logo", () => {
+test("an IPP printer of another brand gets the generic picture, its toner and the printer icon", () => {
   const html = render(ippHass(), { device_id: "b" }).shadowRoot.innerHTML;
   assert.match(html, /class="art art-generic"/);
   assert.match(html, /Toner levels/);
   assert.match(html, /42<small>%<\/small>/);
-  assert.doesNotMatch(html, /class="logo"/);
+  assert.match(html, /class="logo mark"/);
 });
 
 test("IPP states and state reasons drive the status and alerts", () => {
@@ -332,9 +332,10 @@ test("IPP states and state reasons drive the status and alerts", () => {
   assert.match(html, /class="pic busy"|class="pic busy /);
 });
 
-test("an HP printer through IPP only keeps the HP logo", () => {
+test("an HP printer through IPP only gets the HP picture and the printer icon", () => {
   const html = render(ippHass({ manufacturer: "HP", model: "LaserJet Pro M404dn" }), { device_id: "b" }).shadowRoot.innerHTML;
-  assert.match(html, /class="logo"/);
+  assert.match(html, /class="logo mark"/);
+  assert.doesNotMatch(html, /hp\.com/);
   assert.match(html, /art-laserjet/);
 });
 
@@ -348,14 +349,14 @@ test("the picture follows the model", () => {
   assert.equal(pic("ET-2850", "EPSON", "ipp"), "generic");
 });
 
-test("the generic picture hides the HP logo, even for an HP printer", () => {
+test("every printer gets the tinted printer icon of the showcase site", () => {
   const hass = mockHass();
-  assert.match(render(hass).shadowRoot.innerHTML, /class="logo"/);
-  const generic = render(hass, { device_id: "p", picture: "generic" }).shadowRoot.innerHTML;
-  assert.doesNotMatch(generic, /class="logo"/);
-  // A printer icon takes the logo's place, unless show_logo is off.
-  assert.match(generic, /<span class="logo mark"><ha-icon icon="mdi:printer"><\/ha-icon><\/span>/);
-  assert.doesNotMatch(render(hass, { device_id: "p", picture: "generic", show_logo: false }).shadowRoot.innerHTML, /class="logo/);
+  const icon = /<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"><\/ha-icon><\/span>/;
+  const card = render(hass);
+  assert.match(card.shadowRoot.innerHTML, icon);
+  assert.match(render(hass, { device_id: "p", picture: "generic" }).shadowRoot.innerHTML, icon);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /hp\.com/);
+  assert.match(card.shadowRoot.innerHTML, /\.logo\.mark \{[^}]*#0096d6/);
 });
 
 test("the picture option overrides detection, and a custom image overrides both", () => {
@@ -423,9 +424,9 @@ test("the mini card says offline, without chips, when the printer is off", () =>
   assert.doesNotMatch(html, /class="mt"/);
 });
 
-test("the mini card keeps the HP logo rule of the full card", () => {
-  assert.match(mini(mockHass()).shadowRoot.innerHTML, /class="logo"/);
-  assert.doesNotMatch(mini(mockHass(), { picture: "generic" }).shadowRoot.innerHTML, /class="logo"/);
+test("the mini card shows the same printer icon as the full card", () => {
+  assert.match(mini(mockHass()).shadowRoot.innerHTML, /class="logo mark"/);
+  assert.match(mini(mockHass(), { picture: "generic" }).shadowRoot.innerHTML, /class="logo mark"/);
 });
 
 test("the detail button shows the full card, then the compact view again", () => {
@@ -518,7 +519,7 @@ test("with reduced motion, the busy screen no longer pulses and nothing slides o
     assert.match(css, /\.pic\.busy \.screen \{ animation: hp-glow/);
     const rm = reducedMotion(css);
     assert.match(rm, /\.pic\.busy \.screen \{ animation: none; \}/);
-    for (const sel of [".logo", ".pic", ".level"]) assert.ok(rm.includes(sel), `${sel} transition kept with reduced motion`);
+    for (const sel of [".pic", ".level"]) assert.ok(rm.includes(sel), `${sel} transition kept with reduced motion`);
     assert.match(rm, /transition: none/);
   }
 });

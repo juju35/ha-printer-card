@@ -34,7 +34,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Alerts**: low or nearly empty ink, missing / used / non-HP / damaged cartridge, printhead problem, and, through the IPP integration, empty paper tray, paper jam, open cover…
 - **ePrint status**: on, off or not registered (HP cloud printing)
 - Page counter
-- **Mini card**, laid out like the Home Connect mini cards: logo, name and status on top, then the picture with one chip per cartridge (a small tank at its level, outlined orange when low, red when nearly empty) and per alert
+- **Mini card**, laid out like the Home Connect mini cards: icon, name and status on top, then the picture with one chip per cartridge (a small tank at its level, outlined orange when low, red when nearly empty) and per alert
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
 - Automatic entity discovery from the device (works with English or French entity IDs), status, IPP sensor, ePrint sensors and page counter can be overridden
 - Visual editor in the dashboard UI (no YAML needed)
@@ -96,7 +96,7 @@ device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 zoom: true
 ```
 
-The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` and `show_logo` its picture and HP logo.
+The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` its picture.
 
 ### Full options
 
@@ -105,7 +105,6 @@ type: custom:printer-card
 device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 name: Printer
 show_image: true
-show_logo: true
 show_inks: true
 show_alerts: true
 show_stats: true
@@ -132,7 +131,6 @@ entities:
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device |
 | `name` | ❌ | Device name | Card title |
 | `show_image` | ❌ | `true` | Show the printer picture |
-| `show_logo` | ❌ | `true` | Show the HP logo before the name (HP printers, not with the `generic` picture; clicking it opens hp.com), or a printer icon in its place otherwise |
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |
@@ -210,7 +208,7 @@ While a job is printing, the card animates: the preview screen glows as pages ad
 
 The HP Printer integration creates one device per part of the printer (each cartridge, the printhead, the print, scan and copy counters) linked to the main device. The card reads the entity registry to list them, then for each cartridge finds its level, slot, status and warranty date. The printer is shown as **offline** when its status sensor reports `off` (that's what the integration does when the printer stops answering) or is unavailable.
 
-With the IPP integration only (any brand), the card reads the printer sensor of the IPP device for the status and the `printer-state-reasons` alerts, and its marker sensors for the ink or toner levels. The HP logo (replaced by a printer icon) and the ePrint chip are only shown for HP printers.
+With the IPP integration only (any brand), the card reads the printer sensor of the IPP device for the status and the `printer-state-reasons` alerts, and its marker sensors for the ink or toner levels. The ePrint chip is only shown for HP printers.
 
 Set `image` to use a photo of your own model (the lit control panel is only drawn on the bundled drawings).
 
