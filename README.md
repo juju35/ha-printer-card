@@ -42,6 +42,15 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - Light and dark theme compatible
 - Single file, no dependencies, HACS-ready
 
+## Supported integrations
+
+| Integration | Printers | What the card shows |
+|---|---|---|
+| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (HACS, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
+| [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
+
+With both integrations set up for the same printer, the card uses HP Printer for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts.
+
 ## Prerequisites
 
 - Home Assistant 2024.8 or later with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (recommended for HP printers) or the [IPP](https://www.home-assistant.io/integrations/ipp/) integration (any brand) set up
