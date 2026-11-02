@@ -428,6 +428,13 @@ var HpI18n = {
     cs_incompatible: 'некомпатибилан',
     cs_damaged: 'оштећен',
     cs_problem: 'откривен проблем',
+    // The printhead (глава) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_empty: 'празна',
+    ph_used: 'већ коришћена',
+    ph_counterfeit: 'фалсификована',
+    ph_nongenuine: 'није оригинална HP',
+    ph_incompatible: 'некомпатибилна',
+    ph_damaged: 'оштећена',
     ipp_media_empty: 'Лежиште за папир је празно',
     ipp_media_low: 'Папир је при крају',
     ipp_media_jam: 'Заглављен папир',
@@ -524,6 +531,13 @@ var HpI18n = {
     cs_incompatible: 'nekompatibilan',
     cs_damaged: 'oštećen',
     cs_problem: 'otkriven problem',
+    // The printhead (glava) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_empty: 'prazna',
+    ph_used: 'već korišćena',
+    ph_counterfeit: 'falsifikovana',
+    ph_nongenuine: 'nije originalna HP',
+    ph_incompatible: 'nekompatibilna',
+    ph_damaged: 'oštećena',
     ipp_media_empty: 'Ležište za papir je prazno',
     ipp_media_low: 'Papir je pri kraju',
     ipp_media_jam: 'Zaglavljen papir',
@@ -812,6 +826,9 @@ var HpI18n = {
     cs_incompatible: 'incompatível',
     cs_damaged: 'com danos',
     cs_problem: 'problema detetado',
+    // The printhead (cabeça) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_used: 'já utilizada',
+    ph_counterfeit: 'contrafeita',
     ipp_media_empty: 'Tabuleiro de papel vazio',
     ipp_media_low: 'Pouco papel',
     ipp_media_jam: 'Papel encravado',
@@ -908,6 +925,9 @@ var HpI18n = {
     cs_incompatible: 'niezgodność',
     cs_damaged: 'uszkodzenie',
     cs_problem: 'wykryto problem',
+    // The printhead (głowica) is feminine: its own forms, where they differ from the cartridge ones.
+    ph_used: 'już używana',
+    ph_nongenuine: 'nieoryginalna HP',
     ipp_media_empty: 'Podajnik papieru pusty',
     ipp_media_low: 'Kończy się papier',
     ipp_media_jam: 'Zacięcie papieru',
@@ -1644,7 +1664,9 @@ class PrinterCard extends HTMLElement {
       }
       var st = ink.status && this._hass.states[ink.status];
       if (st && st.state === 'off' && !hpCartridgeOk(st.attributes.state)) {
-        var problem = this._t(hpCartridgeProblem(st.attributes.state));
+        var key = hpCartridgeProblem(st.attributes.state);
+        // A printhead uses its own ph_* form when its language has one (feminine printhead, masculine cartridge).
+        var problem = (ink.printhead && (HpI18n[this._lang()] || {})[key.replace('cs_', 'ph_')]) || this._t(key);
         out.push({ level: 'error', icon: ink.printhead ? 'mdi:printer-alert' : 'mdi:alert-circle',
           text: ink.printhead ? this._t('al_printhead', { s: problem }) : this._t('al_cartridge', { c: label, s: problem }) });
       }
@@ -1750,8 +1772,9 @@ class PrinterCard extends HTMLElement {
   }
 
   _statusPill(v) {
-    return '<div class="status"><ha-icon icon="' + (HP_STATE_ICONS[v.state] || 'mdi:printer') + '"></ha-icon><span>' +
-      hpEsc(this._t(`st_${v.state}`)) + '</span></div>';
+    var label = hpEsc(this._t(`st_${v.state}`));
+    return `<div class="status" role="img" title="${label}" aria-label="${label}"><ha-icon icon="${HP_STATE_ICONS[v.state] || 'mdi:printer'}"></ha-icon><span>${
+      label}</span></div>`;
   }
 
   // "Last seen 5 minutes ago" while the printer is offline, '' when unknown.
@@ -1830,8 +1853,8 @@ class PrinterCard extends HTMLElement {
     }
 
     // Like the Home Connect cards: logo, name and status pill on top, then the picture with the chips.
-    var head = '<div class="header">' + v.logoHtml +
-      '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div>' +
+    var head = '<div class="hd"><div class="header">' + v.logoHtml +
+      '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div></div>' +
       '<div class="head">' + v.imageHtml +
       '<div class="meta">' +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') +
@@ -1870,10 +1893,20 @@ class PrinterCard extends HTMLElement {
     return '<style>' +
       ':host { display: block; height: 100%; --hp-color: ' + (color || 'var(--disabled-text-color, #9e9e9e)') + '; }' +
       'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 10px; }' +
+      // The header's wrapper is its size container (at the narrowest widths the status pill keeps only its icon or dot).
+      // Not ha-card: an inline-size container has no intrinsic width, so in a max-content parent (layout-card, an
+      // inline-block) the whole card collapsed to its padding; this wrapper only drops the header's own share...
+      '.hd { container: printer-card / inline-size; margin-bottom: -2px; }' +
+      // ...so the card would shrink to its body. This invisible line gives it back a natural width of ~300px (as wide
+      // as a usual header) in such parents, while it can still shrink: it breaks anywhere, so it asks for no minimum.
+      'ha-card::after { content: "\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0\\a0"; font: 10px monospace; overflow-wrap: anywhere; height: 0; overflow: hidden; visibility: hidden; margin-top: -10px; }' +
       '.empty { display: flex; align-items: center; gap: 10px; color: var(--secondary-text-color); }' +
-      // The body starts 8px under the header (the card gap is 10px between body blocks).
-      '.header { display: flex; align-items: center; gap: 10px; margin-bottom: -2px; }' +
-      '.titles { flex: 1; min-width: 0; }' +
+      // The body starts 8px under the header (the card gap is 10px between body blocks: see .hd).
+      '.header { display: flex; align-items: center; gap: 10px; }' +
+      // The name gives way first, with an ellipsis, but always keeps a few characters; the buttons never shrink.
+      // Basis 0: the name only gets what the pill leaves, so the pill is cut only when even 5ch of name do not fit
+      // beside it (with a basis of auto both shrank in proportion, and "Ready" became "Re…" at 320px).
+      '.titles { flex: 1 1 0; min-width: 5ch; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; transition: transform 0.2s; }' +
       '.logo svg { width: 100%; height: 100%; }' +
       'a.logo:hover { transform: scale(1.08); }' +
@@ -1893,9 +1926,15 @@ class PrinterCard extends HTMLElement {
       '.pic.off .screen { display: none; }' +
       '.meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }' +
       '.name { font-size: 16px; font-weight: 500; color: var(--primary-text-color); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
-      '.status { display: inline-flex; align-items: center; gap: 6px; flex: none; white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--hp-color);' +
+      '.status { display: inline-flex; align-items: center; gap: 6px; flex: 0 1 auto; min-width: 0; max-width: 50%; box-sizing: border-box; overflow: hidden;' +
+        ' white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--hp-color);' +
         ' padding: 2px 10px 2px 6px; border-radius: 12px; background: color-mix(in srgb, var(--hp-color) 15%, transparent); }' +
-      '.status ha-icon { --mdc-icon-size: 14px; }' +
+      '.status ha-icon { --mdc-icon-size: 14px; flex: none; }' +
+      '.status span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+      // Too narrow for a readable status: its icon only, never cut (the text stays in the pill's title and label),
+      // with a smaller logo and tighter gaps, so the name and the detail button of a zoomed mini card still fit at 6 columns.
+      '@container printer-card (max-width: 200px) { .header { gap: 6px; } .logo { width: 32px; height: 32px; } .logo.mark ha-icon { --mdc-icon-size: 20px; }' +
+        ' .status { min-width: 22px; padding: 2px 4px; } .status span { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
       '.chip ha-icon { --mdc-icon-size: 13px; }' +
@@ -1951,13 +1990,19 @@ var HP_MINI_STYLES =
   'ha-card.mini { gap: 10px; }' +
   '.mini .logo { width: 32px; height: 32px; }' +
   '.mini .logo.mark ha-icon { --mdc-icon-size: 20px; }' +
-  '.st { display: inline-flex; align-items: center; gap: 4px; flex: none; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
+  '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; box-sizing: border-box; overflow: hidden;' +
+    ' padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
     ' white-space: nowrap; background: color-mix(in srgb, var(--hp-color) 15%, transparent); color: var(--hp-color); }' +
-  '.st .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hp-color); }' +
+  '.st .dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--hp-color); }' +
+  '.st .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+  // Too narrow for a readable status: the dot only (the text stays in the pill's title and label).
+  '@container printer-card (max-width: 200px) { .st { min-width: 14px; padding: 4px; } .st .tx { display: none; } }' +
   '.mini .content { display: flex; align-items: center; gap: 12px; }' +
   '.mini .pic { width: 56px; max-width: none; }' +
   '.mini .info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }' +
-  '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; }' +
+  // contain: inline-size: the line's text ("Last seen 3 days ago") never sets the card's min-content width, so the
+  // offline mini card still shrinks in a `1fr 1fr` grid (layout-card) instead of overflowing it; the text ends with an ellipsis.
+  '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; contain: inline-size; }' +
   '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; }' +
   '.line span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }' +
   '.rs { display: flex; flex-wrap: wrap; gap: 6px; }' +
@@ -2009,7 +2054,8 @@ class PrinterMiniCard extends PrinterCard {
 
   // Home Assistant reads the grid options when it lays out the Sections view, not when the card is
   // zoomed: the mini card always asks for the compact grid, and rows: 'auto' lets the full view grow.
-  getGridOptions() { return { columns: 12, min_columns: 4, rows: 'auto' }; }
+  // At 4 columns (~100-160px) the header cannot hold the logo, a readable name and the detail button.
+  getGridOptions() { return { columns: 12, min_columns: 6, rows: 'auto' }; }
 
   _styles(color) {
     return super._styles(color).replace('</style>', `${HP_MINI_STYLES}</style>`);
@@ -2026,10 +2072,11 @@ class PrinterMiniCard extends PrinterCard {
     else {
       var v = this._view(r);
       var seen = v.offline ? this._lastSeen(r) : '';
-      this._paint(v, '<div class="header">' + v.logoHtml +
+      var label = hpEsc(this._t(`st_${v.state}`));
+      this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
           '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' +
-          '<span class="st"><span class="dot"></span>' + hpEsc(this._t(`st_${v.state}`)) + '</span>' + this._corner() +
-        '</div>' +
+          `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span>` + this._corner() +
+        '</div></div>' +
         '<div class="content">' + v.imageHtml + '<div class="info">' +
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +
           '<div class="rs">' + this._chips(r, v) + '</div>' +
@@ -2045,7 +2092,7 @@ class PrinterMiniCard extends PrinterCard {
     this._sig = null;
     this._update();
     // Keyboard use (Enter / Space: no click count) keeps the focus on the button that replaced this one.
-    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus();
+    if (ev.detail === 0) this.shadowRoot.querySelector('.zoom')?.focus({ preventScroll: true });
   }
 
   // One chip per cartridge (dot in its color and level), then one per alert the cartridges do not already show.

@@ -2,13 +2,30 @@
 // Usage: npm run build && npm run screenshots
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { decode, picturesDiffer } from "./pixels.mjs";
 
+// The mock entities changed at this instant, which is also the pages' clock (see openCard).
+const NOW = Date.parse("2026-11-01T10:00:00Z");
 const root = fileURLToPath(new URL("..", import.meta.url));
 const cardJs = readFileSync(`${root}dist/printer-card.js`, "utf8");
+
+// A screenshot is only rewritten when its decoded pixels changed: the same picture encoded again (other PNG
+// filtering or compression) is no change, so the workflow does not commit identical screenshots. Exact comparison
+// also for the GIFs: every frame is rendered at a fixed animation time and the palette is built from those frames
+// with ordered (Bayer) dithering, so the same frames always give the same GIF.
+function saveIfChanged(path, input) {
+  if (existsSync(path) && !picturesDiffer(decode(path), decode(input))) {
+    console.log(`${path.slice(root.length)} (unchanged)`);
+    return;
+  }
+  if (typeof input === "string") copyFileSync(input, path);
+  else writeFileSync(path, input);
+  console.log(path.slice(root.length));
+}
 
 const THEMES = {
   light: {
@@ -70,6 +87,8 @@ const pageHtml = (theme, width) => `<!doctype html><html><head><meta charset="ut
 // A fresh page per shot: re-running the scripts in the same realm would redeclare their globals.
 async function openCard(browser, s, { icons = {}, hass = {}, extra = "" }) {
   const page = await browser.newPage({ deviceScaleFactor: 2, viewport: { width: 1000, height: 2000 } });
+  // A fixed clock: "last seen" is relative to now, so a slow run must not turn "just now" into "1 minute ago".
+  await page.clock.setFixedTime(NOW);
   page.on("pageerror", (err) => console.error(`${s.file}: ${err.message}`));
   await page.setContent(pageHtml(s.theme, s.width));
   await page.addScriptTag({ content: haElements(icons) + extra });
@@ -97,12 +116,11 @@ export async function render(shots, { icons = {}, hass = {}, extra = "" } = {}) 
     await page.waitForTimeout(400);
     // The card plus the 16px page padding around it, on the theme background.
     const box = await page.locator("#root").boundingBox();
-    await page.screenshot({
-      path: `${root}screenshots/${s.file}.png`,
+    const png = await page.screenshot({
       clip: { x: 0, y: 0, width: s.width + 32, height: Math.ceil(box.height) + 32 },
       animations: "disabled",
     });
-    console.log(`screenshots/${s.file}.png`);
+    saveIfChanged(`${root}screenshots/${s.file}.png`, png);
     await page.close();
   }
   await browser.close();
@@ -119,18 +137,29 @@ export async function animate(shot, { icons = {}, hass = {}, extra = "", fps = 2
   const dir = mkdtempSync(join(tmpdir(), "pr-frames-"));
   const frames = Math.round(fps * seconds);
   for (let i = 0; i < frames; i++) {
-    await page.evaluate((t) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = t; } }, (i * 1000) / fps);
+    await page.evaluate(async (t) => {
+      // document.getAnimations() leaves out shadow trees, where the card's own animations run: walk every shadow root.
+      const all = [];
+      const walk = (root) => {
+        all.push(...root.getAnimations());
+        for (const el of root.querySelectorAll("*")) if (el.shadowRoot) walk(el.shadowRoot);
+      };
+      walk(document);
+      for (const a of all) { a.pause(); a.currentTime = t; }
+      // Let the paused time reach the compositor (opacity animations) before the screenshot.
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    }, (i * 1000) / fps);
     await page.screenshot({ path: join(dir, `f${String(i).padStart(3, "0")}.png`), clip });
   }
   await browser.close();
-  const out = `${root}screenshots/${shot.file}.gif`;
+  const out = join(dir, "out.gif");
   execFileSync("ffmpeg", [
     "-y", "-loglevel", "error", "-framerate", String(fps), "-i", join(dir, "f%03d.png"),
     "-vf", `scale=${clip.width}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128[p];[b][p]paletteuse=dither=bayer:bayer_scale=4`,
     "-loop", "0", out,
   ]);
+  saveIfChanged(`${root}screenshots/${shot.file}.gif`, out);
   rmSync(dir, { recursive: true });
-  console.log(`screenshots/${shot.file}.gif`);
 }
 
 const icons = {
@@ -168,7 +197,7 @@ const devices = {
 };
 const add = (device, id, state, attributes = {}) => {
   entities[id] = { entity_id: id, device_id: device };
-  states[id] = { entity_id: id, state, last_changed: new Date().toISOString(), attributes: { friendly_name: id, ...attributes } };
+  states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes: { friendly_name: id, ...attributes } };
 };
 add("hp", "sensor.officejet_status", "ready", { options: ["ready", "inpowersave", "processing", "scanprocessing", "copying", "canceljob", "stopped"] });
 add("hp", "binary_sensor.officejet_eprint", "on", { device_class: "connectivity" });
@@ -189,7 +218,7 @@ for (const [id, state, attributes] of [
   ["sensor.laser_black_toner", "64", { unit_of_measurement: "%", marker_type: "toner-cartridge", friendly_name: "Black toner" }],
 ]) {
   ipp.entities[id] = { entity_id: id, device_id: "laser" };
-  ipp.states[id] = { entity_id: id, state, last_changed: new Date().toISOString(), attributes };
+  ipp.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
 }
 
 const hass = { states, entities, devices };

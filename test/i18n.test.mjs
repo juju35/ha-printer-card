@@ -13,7 +13,13 @@ test("I18N parity: every language has exactly the keys and placeholders of en, a
   for (const lang of LANGS) {
     const strings = HpI18n[lang];
     assert.ok(strings, `${lang} is missing`);
-    assert.deepEqual(Object.keys(strings).sort(), Object.keys(en).sort(), `${lang} keys differ from en`);
+    // Optional ph_* keys: the printhead's own form of a cs_* state, where the language needs another agreement.
+    const own = Object.keys(strings).filter((k) => !k.startsWith("ph_")).sort();
+    assert.deepEqual(own, Object.keys(en).sort(), `${lang} keys differ from en`);
+    for (const key of Object.keys(strings).filter((k) => k.startsWith("ph_"))) {
+      assert.ok(key.replace("ph_", "cs_") in en, `${lang}.${key} has no cs_ counterpart`);
+      assert.ok(String(strings[key]).trim(), `${lang}.${key} is empty`);
+    }
     for (const key of Object.keys(en)) {
       assert.equal(typeof strings[key], typeof en[key], `${lang}.${key} type differs from en`);
       if (Array.isArray(en[key])) assert.equal(strings[key].length, en[key].length, `${lang}.${key} length differs from en`);
@@ -79,4 +85,12 @@ test("editor language options: one per dictionary, Italian, Dutch, Portuguese an
   assert.equal(labels.nl, "Nederlands");
   assert.equal(labels.pt, "Português (Portugal)");
   assert.equal(labels.pl, "Polski");
+});
+
+test("I18N: the feminine printhead has its own forms in pl, pt, sr and sr-Latn only", () => {
+  const withPh = Object.keys(HpI18n).filter((lang) => Object.keys(HpI18n[lang]).some((k) => k.startsWith("ph_"))).sort();
+  assert.deepEqual(withPh, ["pl", "pt", "sr", "sr-Latn"]);
+  // Same keys in both Serbian scripts.
+  const ph = (lang) => Object.keys(HpI18n[lang]).filter((k) => k.startsWith("ph_")).sort();
+  assert.deepEqual(ph("sr"), ph("sr-Latn"));
 });

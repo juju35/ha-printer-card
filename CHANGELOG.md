@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.4.8 - 2026-11-01
+
+### Fixes
+- Narrow cards: the printer name no longer disappears and the status pill no longer runs out of the card. The name ends with an ellipsis, the status text shortens, and on the narrowest cards the pill keeps only its icon or dot (the full status stays in its tooltip and for screen readers).
+- Mini card: it now needs at least 6 columns in a Sections view (was 4), where its name, status and detail button fit; at 4 columns the detail button was pushed out of the card.
+- The status pill shows its whole label at usual widths (e.g. "Ready" no longer became "Re…" next to a long printer name on a phone); only the printer name shortens until it would keep fewer than 5 characters.
+- The card no longer collapses to a thin strip when placed in a container that sizes it to its content (layout-card `auto` columns, button-card custom fields, inline blocks), and still shrinks normally in grids and horizontal stacks, the offline mini card included (its "Last seen" line ends with an ellipsis instead of widening the card past its column).
+- Pressing the detail button with the keyboard no longer scrolls the page to it.
+- Polish, Portuguese and Serbian printhead alerts agree with the printhead (feminine), e.g. "Głowica drukująca: już używana", "Cabeça de impressão: já utilizada", "Glava za štampanje: oštećena". Cartridge alerts are unchanged.
+
 ## 2.4.7 - 2026-11-01
 
 ### Added

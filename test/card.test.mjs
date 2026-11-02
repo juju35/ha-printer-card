@@ -387,7 +387,7 @@ function clickZoom(card, detail = 1) {
   let onClick;
   const focused = [];
   card.shadowRoot.querySelector = (sel) =>
-    sel === ".zoom" ? { addEventListener: (_t, fn) => { onClick = fn; }, focus: () => focused.push(sel) } : null;
+    sel === ".zoom" ? { addEventListener: (_t, fn) => { onClick = fn; }, focus: (o) => focused.push(o ? `${sel} ${JSON.stringify(o)}` : sel) } : null;
   card._sig = null;
   card._update();
   const ev = { detail, stopped: false, stopPropagation() { this.stopped = true; } };
@@ -401,7 +401,7 @@ const documentClick = (path) => {
 test("the mini card is laid out like the Home Connect mini cards, with one small tank per cartridge, tinted when low", () => {
   const html = mini(levels(mockHass(), { yellow: 3, cyan: 12 })).shadowRoot.innerHTML;
   assert.match(html, /<ha-card class="mini">/);
-  assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st"><span class="dot"><\/span>Ready<\/span>/);
+  assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span>/);
   assert.match(html, /<div class="content">.*<div class="info">/);
   assert.equal((html.match(/class="mt"/g) || []).length, 4);
   assert.match(html, /<span class="r error"[^>]*><span class="mt"><span style="height:3%;[^"]*"><\/span><\/span>3 %/);
@@ -446,7 +446,7 @@ test("the detail button shows the full card, then the compact view again", () =>
   assert.doesNotMatch(full, /class="mini"/);
   assert.equal(card.getCardSize(), 5);
   // The grid stays the compact one: HA does not read it again on zoom, rows: 'auto' lets the card grow.
-  assert.deepEqual({ ...card.getGridOptions() }, { columns: 12, min_columns: 4, rows: "auto" });
+  assert.deepEqual({ ...card.getGridOptions() }, { columns: 12, min_columns: 6, rows: "auto" });
   clickZoom(card);
   assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
   assert.match(card.shadowRoot.innerHTML, /mdi:arrow-expand/);
@@ -462,7 +462,8 @@ test("the full view is the same markup as the full card, plus the button", () =>
 
 test("a keyboard press on the detail button keeps the focus on it", () => {
   const card = mini(mockHass());
-  assert.deepEqual(clickZoom(card, 0).focused, [".zoom"]);
+  // preventScroll: the zoomed card grows or shrinks around the button, the page must not jump to it.
+  assert.deepEqual(clickZoom(card, 0).focused, ['.zoom {"preventScroll":true}']);
   assert.deepEqual(clickZoom(card, 1).focused, []);
 });
 
@@ -553,4 +554,145 @@ test("a nearly empty cartridge keeps a visible level, an empty or unknown one sh
   assert.match(small, /<span class="mt"><span style="height:1%;min-height:2px;background:#f5c400"><\/span><\/span>1 %/);
   assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>0 %/);
   assert.match(small, /<span class="mt"><span style="height:0%;background:[^"]*"><\/span><\/span>—/);
+});
+
+// ── Review pass 9 ──────────────────────────────────────────────────────────
+// A printhead (and the black cartridge) reporting a problem through their HP status binary sensors.
+function withProblems(hass, { printhead, black }) {
+  const out = { ...hass, states: { ...hass.states }, entities: { ...hass.entities }, devices: { ...hass.devices } };
+  out.devices.ph = { name: "OfficeJet printhead", via_device_id: "p" };
+  out.states["sensor.printhead_type"] = st("printhead", { options: ["ink", "printhead"] });
+  out.entities["sensor.printhead_type"] = { entity_id: "sensor.printhead_type", device_id: "ph" };
+  out.states["binary_sensor.printhead_status"] = st("off", { state: printhead });
+  out.entities["binary_sensor.printhead_status"] = { entity_id: "binary_sensor.printhead_status", device_id: "ph" };
+  if (black) {
+    out.states["binary_sensor.black_status"] = st("off", { state: black });
+    out.entities["binary_sensor.black_status"] = { entity_id: "binary_sensor.black_status", device_id: "ink_black" };
+  }
+  return out;
+}
+const alertsOf = (hass, language) => {
+  const html = render({ ...hass, language }).shadowRoot.innerHTML;
+  return Array.from(html.matchAll(/<div class="alert error"><ha-icon[^>]*><\/ha-icon><span>([^<]*)<\/span>/g), (m) => m[1]);
+};
+
+// The printhead (głowica, cabeça, глава / glava) is feminine: its states agree with it, not with the cartridge.
+const PRINTHEAD_CASES = {
+  pl: { used: "Głowica drukująca: Już używana", nongenuine: "Głowica drukująca: Nieoryginalna HP" },
+  pt: { used: "Cabeça de impressão: Já utilizada", counterfeit: "Cabeça de impressão: Contrafeita" },
+  sr: {
+    empty: "Глава за штампање: Празна", used: "Глава за штампање: Већ коришћена", counterfeit: "Глава за штампање: Фалсификована",
+    nongenuine: "Глава за штампање: Није оригинална HP", incompatible: "Глава за штампање: Некомпатибилна", damaged: "Глава за штампање: Оштећена",
+  },
+  "sr-Latn": {
+    empty: "Glava za štampanje: Prazna", used: "Glava za štampanje: Već korišćena", counterfeit: "Glava za štampanje: Falsifikovana",
+    nongenuine: "Glava za štampanje: Nije originalna HP", incompatible: "Glava za štampanje: Nekompatibilna", damaged: "Glava za štampanje: Oštećena",
+  },
+};
+
+test("printhead problems agree with the feminine printhead in pl, pt, sr and sr-Latn", () => {
+  for (const [lang, cases] of Object.entries(PRINTHEAD_CASES)) {
+    for (const [problem, expected] of Object.entries(cases)) {
+      const alerts = alertsOf(withProblems(mockHass(), { printhead: problem }), lang);
+      assert.ok(alerts.some((a) => a.toLowerCase() === expected.toLowerCase()), `${lang} ${problem}: ${alerts.join(" | ")}`);
+    }
+  }
+});
+
+test("cartridge problems keep their own (masculine) forms next to a printhead problem", () => {
+  const hass = withProblems(mockHass(), { printhead: "damaged", black: "damaged" });
+  const expected = {
+    sr: ["Глава за штампање: Оштећена", "Кертриџ (црна): Оштећен"],
+    "sr-Latn": ["Glava za štampanje: Oštećena", "Kertridž (crna): Oštećen"],
+    pl: ["Głowica drukująca: Uszkodzenie"],
+    fr: ["Tête d'impression : Endommagée"],
+    en: ["Printhead: Damaged", "Black cartridge: Damaged"],
+  };
+  for (const [lang, texts] of Object.entries(expected)) {
+    const alerts = alertsOf(hass, lang).map((a) => a.replace(/&#39;/g, "'"));
+    for (const t of texts) assert.ok(alerts.some((a) => a.toLowerCase() === t.toLowerCase()), `${lang}: ${t} not in ${alerts.join(" | ")}`);
+  }
+  // pt and pl cartridges: "Tinteiro" and "Wkład" are masculine.
+  const pt = withProblems(mockHass(), { printhead: "used", black: "used" });
+  assert.ok(alertsOf(pt, "pt").some((a) => /^Tinteiro \(.*\): já utilizado$/i.test(a)), alertsOf(pt, "pt").join(" | "));
+  assert.ok(alertsOf(pt, "pl").some((a) => /^Wkład \(.*\): już używany$/i.test(a)), alertsOf(pt, "pl").join(" | "));
+});
+
+// Narrow header (min_columns of the Sections view, ~156-250px): the name never collapses to 0px and
+// neither the status pill nor the detail button leaves the card. Measured in Chromium for the PR;
+// node has no layout engine, so this checks the CSS rules that guarantee it.
+const rule = (css, sel) => css.match(new RegExp(`(?:^|\\})\\s*${sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\{([^}]*)\\}`))?.[1] || "";
+
+test("narrow header: the title shrinks with an ellipsis but keeps a few characters", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const css = styleOf(card);
+    // Basis 0, not auto: with auto the name and the pill shrink in proportion to their natural widths, so a
+    // short "Ready" pill was cut ("Re…") at 320px next to a long name. The name takes what the pill leaves.
+    assert.match(rule(css, ".titles"), /flex: 1 1 0;/);
+    assert.match(rule(css, ".titles"), /min-width: \d+ch;/);
+    assert.match(rule(css, ".name"), /text-overflow: ellipsis/);
+  }
+});
+
+test("narrow header: the status pill shrinks and truncates, then shows only its dot or icon", () => {
+  const full = styleOf(render(mockHass()));
+  const small = styleOf(mini(mockHass()));
+  for (const [css, sel, text] of [[full, ".status", ".status span"], [small, ".st", ".st .tx"]]) {
+    const r = rule(css, sel);
+    assert.match(r, /flex: 0 1 auto;/, `${sel} flex`);
+    assert.match(r, /min-width: 0;/, `${sel} min-width`);
+    assert.match(r, /max-width: 50%;/, `${sel} max-width`);
+    assert.doesNotMatch(r, /flex: none/, `${sel} must shrink`);
+    assert.match(rule(css, text), /overflow: hidden;.*text-overflow: ellipsis;/, `${text} ellipsis`);
+    assert.match(css, new RegExp(`@container printer-card \\(max-width: \\d+px\\) \\{[^@]*${text.replace(/\./g, "\\.")} \\{ display: none; \\}`), `${text} hidden when narrow`);
+  }
+  // The size container is a wrapper of the header, not ha-card: an inline-size container has no intrinsic
+  // width, so ha-card itself as container collapsed to its padding in a max-content parent (layout-card).
+  assert.doesNotMatch(rule(full, "ha-card"), /container/);
+  for (const css of [full, small]) assert.match(rule(css, ".hd"), /container: printer-card \/ inline-size;/);
+  for (const card of [render(mockHass()), mini(mockHass())]) assert.match(card.shadowRoot.innerHTML, /<ha-card[^>]*><div class="hd"><div class="header">/);
+  assert.match(rule(full, ".status ha-icon"), /flex: none;/);
+  assert.match(rule(small, ".st .dot"), /flex: none;/);
+  assert.match(rule(small, ".zoom"), /flex: none;/);
+  // Narrow: the icon or dot is never cut, and the logo and gaps leave room for the name and the detail button.
+  assert.match(full, /@container printer-card \(max-width: 200px\) \{[^@]*\.status \{ min-width: 22px; padding: 2px 4px; \}/);
+  assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 6px; \} \.logo \{ width: 32px; height: 32px; \}/);
+  assert.match(small, /@container printer-card \(max-width: 200px\) \{ \.st \{ min-width: 14px; padding: 4px; \}/);
+});
+
+test("intrinsic width: the card keeps a natural width but asks for no minimum", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const css = styleOf(card);
+    // In an inline-block or an `auto` grid column the card is as wide as its widest line: the hidden line gives it
+    // ~300px instead of collapsing to its padding (24px)...
+    const after = rule(css, "ha-card::after");
+    assert.match(after, /content: "(\\a0){30,}";/);
+    assert.match(after, /overflow-wrap: anywhere;/);
+    assert.match(after, /height: 0;.*visibility: hidden;/);
+    // ...but a `1fr 1fr` grid or a horizontal stack must still shrink it: no px minimum and no intrinsic size,
+    // which would make the card overflow its column.
+    for (const sel of [":host", "ha-card"]) {
+      assert.doesNotMatch(rule(css, sel), /min-width: \d+px|contain-intrinsic/, sel);
+    }
+  }
+  // The offline mini card's "Last seen ..." line (nowrap) must not set the card's min-content width either, or the
+  // card overflows a `1fr 1fr` grid by up to 230px: its width comes from the card, its text ends with an ellipsis.
+  const small = styleOf(mini(mockHass()));
+  assert.match(rule(small, ".line"), /min-width: 0;.*contain: inline-size;/);
+  assert.match(rule(small, ".line span"), /overflow: hidden; text-overflow: ellipsis; white-space: nowrap;/);
+  // Measured in Chromium by test/layout.browser.mjs (npm run test:browser), offline included.
+});
+
+test("narrow header: the status text stays available as the pill's title and label", () => {
+  const html = render(mockHass({ status: "canceljob" }), { device_id: "p", language: "pl" }).shadowRoot.innerHTML;
+  assert.match(html, /<div class="status" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><ha-icon/);
+  const small = mini(mockHass({ status: "canceljob" }), { language: "pl" }).shadowRoot.innerHTML;
+  assert.match(small, /<span class="st" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><span class="dot"><\/span><span class="tx">Anulowanie zadania<\/span><\/span>/);
+});
+
+test("the mini card asks for at least 6 Sections columns, where its header fits", () => {
+  const g = new PrinterMiniCard().getGridOptions();
+  assert.equal(g.min_columns, 6);
+  assert.equal(g.rows, "auto");
+  assert.equal(new PrinterCard().getGridOptions().min_columns, 6);
 });
