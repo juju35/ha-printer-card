@@ -1959,8 +1959,6 @@ var HP_MINI_STYLES =
   '.header > .zoom { margin: -4px -4px -4px 0; }' +
   // Compact view, like the Home Connect mini cards: header (logo, name, status, detail button), then picture and details.
   'ha-card.mini { gap: 10px; }' +
-  '.mini .logo { width: 32px; height: 32px; }' +
-  '.mini .logo.mark ha-icon { --mdc-icon-size: 20px; }' +
   '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; box-sizing: border-box; overflow: hidden;' +
     ' padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500;' +
     ' white-space: nowrap; background: color-mix(in srgb, var(--hp-color) 15%, transparent); color: var(--hp-color); }' +
