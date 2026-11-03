@@ -72,13 +72,20 @@ var HpI18n = {
     ed_image: 'Image personnalisée (URL)',
     ed_image_helper: 'Ex. /local/imprimante.png — remplace l\'illustration',
     ed_picture: 'Illustration',
-    ed_picture_helper: 'Automatique : dessin selon la gamme HP, sinon imprimante générique',
+    ed_picture_helper: 'Automatique : dessin selon la marque et la gamme (HP, Brother, Epson, Canon), sinon imprimante générique',
     pic_auto: 'Automatique',
     pic_officejet: 'HP OfficeJet / PageWide (multifonction)',
     pic_laserjet: 'HP LaserJet (laser)',
     pic_deskjet: 'HP DeskJet / ENVY (compacte)',
     pic_smart_tank: 'HP Smart Tank (réservoirs)',
     pic_generic: 'Imprimante générique (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Langue',
     ed_language_helper: 'Laisser vide pour suivre la langue de Home Assistant',
     ed_entities: 'Entités (avancé)',
@@ -166,13 +173,20 @@ var HpI18n = {
     ed_image: 'Custom picture (URL)',
     ed_image_helper: 'E.g. /local/printer.png — replaces the illustration',
     ed_picture: 'Illustration',
-    ed_picture_helper: 'Automatic: drawing by HP range, else a generic printer',
+    ed_picture_helper: 'Automatic: drawing by brand and range (HP, Brother, Epson, Canon), else a generic printer',
     pic_auto: 'Automatic',
     pic_officejet: 'HP OfficeJet / PageWide (all-in-one)',
     pic_laserjet: 'HP LaserJet (laser)',
     pic_deskjet: 'HP DeskJet / ENVY (compact)',
     pic_smart_tank: 'HP Smart Tank (ink tanks)',
     pic_generic: 'Generic printer (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Language',
     ed_language_helper: 'Leave empty to follow the Home Assistant language',
     ed_entities: 'Entities (advanced)',
@@ -260,13 +274,20 @@ var HpI18n = {
     ed_image: 'Eigenes Bild (URL)',
     ed_image_helper: 'Z. B. /local/printer.png – ersetzt die Illustration',
     ed_picture: 'Illustration',
-    ed_picture_helper: 'Automatisch: Darstellung anhand der HP-Produktreihe, andernfalls ein allgemeiner Drucker',
+    ed_picture_helper: 'Automatisch: Darstellung anhand von Marke und Produktreihe (HP, Brother, Epson, Canon), andernfalls ein allgemeiner Drucker',
     pic_auto: 'Automatisch',
     pic_officejet: 'HP OfficeJet / PageWide (Multifunktionsgerät)',
     pic_laserjet: 'HP LaserJet (Laserdrucker)',
     pic_deskjet: 'HP DeskJet / ENVY (Kompaktdrucker)',
     pic_smart_tank: 'HP Smart Tank (Tintentanks)',
     pic_generic: 'Allgemeiner Drucker (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Sprache',
     ed_language_helper: 'Leer lassen, um die in Home Assistant eingestellte Sprache zu verwenden',
     ed_entities: 'Entitäten (erweitert)',
@@ -354,13 +375,20 @@ var HpI18n = {
     ed_image: 'Imagen personalizada (URL)',
     ed_image_helper: 'P. ej. /local/printer.png; sustituye la ilustración',
     ed_picture: 'Ilustración',
-    ed_picture_helper: 'Automática: dibujo según la gama HP; si no, una impresora genérica',
+    ed_picture_helper: 'Automática: dibujo según la marca y la gama (HP, Brother, Epson, Canon); si no, una impresora genérica',
     pic_auto: 'Automática',
     pic_officejet: 'HP OfficeJet / PageWide (multifunción)',
     pic_laserjet: 'HP LaserJet (láser)',
     pic_deskjet: 'HP DeskJet / ENVY (compacta)',
     pic_smart_tank: 'HP Smart Tank (depósitos de tinta)',
     pic_generic: 'Impresora genérica (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Idioma',
     ed_language_helper: 'Déjalo vacío para seguir el idioma de Home Assistant',
     ed_entities: 'Entidades (avanzado)',
@@ -455,13 +483,20 @@ var HpI18n = {
     ed_image: 'Прилагођена слика (URL)',
     ed_image_helper: 'Нпр. /local/printer.png — замењује илустрацију',
     ed_picture: 'Илустрација',
-    ed_picture_helper: 'Аутоматски: цртеж према HP линији, иначе генерички штампач',
+    ed_picture_helper: 'Аутоматски: цртеж према марки и линији (HP, Brother, Epson, Canon), иначе генерички штампач',
     pic_auto: 'Аутоматски',
     pic_officejet: 'HP OfficeJet / PageWide (мултифункционални)',
     pic_laserjet: 'HP LaserJet (ласерски)',
     pic_deskjet: 'HP DeskJet / ENVY (компактни)',
     pic_smart_tank: 'HP Smart Tank (резервоари за мастило)',
     pic_generic: 'Генерички штампач (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Језик',
     ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
     ed_entities: 'Ентитети (напредно)',
@@ -556,13 +591,20 @@ var HpI18n = {
     ed_image: 'Prilagođena slika (URL)',
     ed_image_helper: 'Npr. /local/printer.png — zamenjuje ilustraciju',
     ed_picture: 'Ilustracija',
-    ed_picture_helper: 'Automatski: crtež prema HP liniji, inače generički štampač',
+    ed_picture_helper: 'Automatski: crtež prema marki i liniji (HP, Brother, Epson, Canon), inače generički štampač',
     pic_auto: 'Automatski',
     pic_officejet: 'HP OfficeJet / PageWide (multifunkcionalni)',
     pic_laserjet: 'HP LaserJet (laserski)',
     pic_deskjet: 'HP DeskJet / ENVY (kompaktni)',
     pic_smart_tank: 'HP Smart Tank (rezervoari za mastilo)',
     pic_generic: 'Generički štampač (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Jezik',
     ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
     ed_entities: 'Entiteti (napredno)',
@@ -650,13 +692,20 @@ var HpI18n = {
     ed_image: 'Immagine personalizzata (URL)',
     ed_image_helper: 'Es. /local/printer.png — sostituisce l\'illustrazione',
     ed_picture: 'Illustrazione',
-    ed_picture_helper: 'Automatica: disegno in base alla gamma HP, altrimenti stampante generica',
+    ed_picture_helper: 'Automatica: disegno in base a marca e gamma (HP, Brother, Epson, Canon), altrimenti stampante generica',
     pic_auto: 'Automatica',
     pic_officejet: 'HP OfficeJet / PageWide (multifunzione)',
     pic_laserjet: 'HP LaserJet (laser)',
     pic_deskjet: 'HP DeskJet / ENVY (compatta)',
     pic_smart_tank: 'HP Smart Tank (serbatoi di inchiostro)',
     pic_generic: 'Stampante generica (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Lingua',
     ed_language_helper: 'Lasciare vuoto per seguire la lingua di Home Assistant',
     ed_entities: 'Entità (avanzate)',
@@ -744,13 +793,20 @@ var HpI18n = {
     ed_image: 'Eigen afbeelding (URL)',
     ed_image_helper: 'Bijv. /local/printer.png — vervangt de illustratie',
     ed_picture: 'Illustratie',
-    ed_picture_helper: 'Automatisch: tekening volgens de HP-productlijn, anders een algemene printer',
+    ed_picture_helper: 'Automatisch: tekening volgens merk en productlijn (HP, Brother, Epson, Canon), anders een algemene printer',
     pic_auto: 'Automatisch',
     pic_officejet: 'HP OfficeJet / PageWide (all-in-one)',
     pic_laserjet: 'HP LaserJet (laserprinter)',
     pic_deskjet: 'HP DeskJet / ENVY (compact)',
     pic_smart_tank: 'HP Smart Tank (inkttanks)',
     pic_generic: 'Algemene printer (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Taal',
     ed_language_helper: 'Leeg laten om de taal van Home Assistant te volgen',
     ed_entities: 'Entiteiten (geavanceerd)',
@@ -841,13 +897,20 @@ var HpI18n = {
     ed_image: 'Imagem personalizada (URL)',
     ed_image_helper: 'Ex.: /local/printer.png — substitui a ilustração',
     ed_picture: 'Ilustração',
-    ed_picture_helper: 'Automática: desenho conforme a gama HP, caso contrário uma impressora genérica',
+    ed_picture_helper: 'Automática: desenho conforme a marca e a gama (HP, Brother, Epson, Canon), caso contrário uma impressora genérica',
     pic_auto: 'Automática',
     pic_officejet: 'HP OfficeJet / PageWide (multifunções)',
     pic_laserjet: 'HP LaserJet (laser)',
     pic_deskjet: 'HP DeskJet / ENVY (compacta)',
     pic_smart_tank: 'HP Smart Tank (depósitos de tinta)',
     pic_generic: 'Impressora genérica (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Idioma',
     ed_language_helper: 'Deixar vazio para seguir o idioma do Home Assistant',
     ed_entities: 'Entidades (avançado)',
@@ -938,13 +1001,20 @@ var HpI18n = {
     ed_image: 'Własny obraz (URL)',
     ed_image_helper: 'Np. /local/printer.png — zastępuje ilustrację',
     ed_picture: 'Ilustracja',
-    ed_picture_helper: 'Automatycznie: rysunek według serii HP, w przeciwnym razie drukarka ogólna',
+    ed_picture_helper: 'Automatycznie: rysunek według marki i serii (HP, Brother, Epson, Canon), w przeciwnym razie drukarka ogólna',
     pic_auto: 'Automatycznie',
     pic_officejet: 'HP OfficeJet / PageWide (urządzenie wielofunkcyjne)',
     pic_laserjet: 'HP LaserJet (laserowa)',
     pic_deskjet: 'HP DeskJet / ENVY (kompaktowa)',
     pic_smart_tank: 'HP Smart Tank (zbiorniki tuszu)',
     pic_generic: 'Drukarka ogólna (IPP)',
+    pic_brother_laser: 'Brother HL / DCP-L / MFC-L',
+    pic_brother_inkjet: 'Brother MFC-J / DCP-J',
+    pic_ecotank: 'Epson EcoTank',
+    pic_epson_inkjet: 'Epson Expression / WorkForce',
+    pic_pixma: 'Canon PIXMA / MAXIFY',
+    pic_megatank: 'Canon MegaTank (PIXMA G)',
+    pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Język',
     ed_language_helper: 'Pozostaw puste, aby używać języka Home Assistant',
     ed_entities: 'Encje (zaawansowane)',
@@ -1054,9 +1124,70 @@ var HP_ART = {
     '<rect x="98" y="46" width="38" height="14" rx="4" fill="#23272e"/><rect class="screen" x="101" y="49" width="32" height="8" rx="2"/>' +
     '<rect x="60" y="76" width="72" height="7" rx="3.5" fill="url(#pc-dark)"/>' +
     '<path d="M66 80h60l4 16H62z" fill="url(#pc-paper)" stroke="#c3c9d1"/>',
+  // Brother: compact mono laser (HL / DCP-L / MFC-L) and inkjet all-in-one with a dark scanner lid (MFC-J / DCP-J).
+  brother_laser:
+    '<rect x="24" y="16" width="112" height="88" rx="6" fill="url(#pc-body)" stroke="#b5bcc6"/>' +
+    '<path d="M24 22a6 6 0 0 1 6-6h100a6 6 0 0 1 6 6v18H24z" fill="url(#pc-dark)"/>' +
+    '<path d="M40 22h64l-4 12H44z" fill="#16191d"/><rect x="50" y="25" width="44" height="4" rx="1" fill="url(#pc-paper)"/>' +
+    '<rect x="110" y="24" width="20" height="10" rx="3" fill="#23272e"/><rect class="screen" x="112" y="26" width="16" height="6" rx="1.5"/>' +
+    '<path d="M25 58h110" stroke="#aab2bc"/><rect x="30" y="66" width="100" height="26" rx="3" fill="#e9ecf0" stroke="#c3c9d1"/>' +
+    '<rect x="66" y="76" width="28" height="4" rx="2" fill="#8a929c"/>',
+  brother_inkjet:
+    '<rect x="18" y="20" width="124" height="18" rx="5" fill="url(#pc-dark)"/>' +
+    '<rect x="18" y="36" width="124" height="66" rx="8" fill="url(#pc-body)" stroke="#b5bcc6"/>' +
+    '<path d="M22 42h40l-4 16H26z" fill="#23272e"/><rect class="screen" x="28" y="45" width="28" height="10" rx="2"/>' +
+    '<rect x="34" y="72" width="92" height="7" rx="3.5" fill="url(#pc-dark)"/>' +
+    '<path d="M42 76h76l4 18H38z" fill="url(#pc-paper)" stroke="#c3c9d1"/>' +
+    '<path d="M19 96h122" stroke="#aab2bc"/>',
+  // Epson: EcoTank with its ink tanks on the front right, and a compact dark Expression / WorkForce inkjet.
+  ecotank:
+    '<rect x="14" y="22" width="132" height="16" rx="5" fill="url(#pc-dark)"/>' +
+    '<rect x="14" y="36" width="104" height="66" rx="7" fill="url(#pc-body)" stroke="#b5bcc6"/>' +
+    '<rect x="116" y="36" width="30" height="66" rx="6" fill="#dde1e6" stroke="#b5bcc6"/>' +
+    '<rect x="120" y="44" width="5" height="50" rx="1.5" fill="#fff"/><rect x="120" y="56" width="5" height="38" rx="1.5" fill="#2b2f36"/>' +
+    '<rect x="126" y="44" width="5" height="50" rx="1.5" fill="#fff"/><rect x="126" y="62" width="5" height="32" rx="1.5" fill="#00a6d6"/>' +
+    '<rect x="132" y="44" width="5" height="50" rx="1.5" fill="#fff"/><rect x="132" y="52" width="5" height="42" rx="1.5" fill="#d6197c"/>' +
+    '<rect x="138" y="44" width="4" height="50" rx="1.5" fill="#fff"/><rect x="138" y="68" width="4" height="26" rx="1.5" fill="#f5c400"/>' +
+    '<rect x="22" y="44" width="34" height="12" rx="3" fill="#23272e"/><rect class="screen" x="25" y="47" width="28" height="6" rx="1.5"/>' +
+    '<rect x="26" y="74" width="80" height="7" rx="3.5" fill="url(#pc-dark)"/>' +
+    '<path d="M32 78h68l4 18H28z" fill="url(#pc-paper)" stroke="#c3c9d1"/>',
+  epson_inkjet:
+    '<rect x="54" y="18" width="52" height="16" rx="1" fill="url(#pc-paper)" stroke="#c3c9d1"/>' +
+    '<rect x="16" y="30" width="128" height="62" rx="9" fill="url(#pc-dark)"/>' +
+    '<rect x="16" y="30" width="128" height="10" rx="5" fill="#626a76"/>' +
+    '<path d="M24 48h44l-3 14H27z" fill="#16191d"/><rect class="screen" x="29" y="51" width="34" height="8" rx="2"/>' +
+    '<circle cx="128" cy="55" r="3.5" fill="#8a929c"/>' +
+    '<rect x="34" y="74" width="92" height="7" rx="3.5" fill="#16191d"/>' +
+    '<path d="M42 78h76l6 26H36z" fill="url(#pc-paper)" stroke="#c3c9d1"/>',
+  // Canon: low PIXMA / MAXIFY inkjet, MegaTank (PIXMA G) with its front tanks, and an i-SENSYS / imageCLASS laser.
+  pixma:
+    '<rect x="14" y="40" width="132" height="54" rx="12" fill="url(#pc-dark)"/>' +
+    '<rect x="20" y="43" width="120" height="7" rx="3.5" fill="#6b7380" opacity="0.7"/>' +
+    '<rect x="100" y="56" width="32" height="12" rx="3" fill="#16191d"/><rect class="screen" x="103" y="59" width="26" height="6" rx="1.5"/>' +
+    '<rect x="30" y="74" width="100" height="7" rx="3.5" fill="#16191d"/>' +
+    '<path d="M38 78h84l8 24H30z" fill="url(#pc-paper)" stroke="#c3c9d1"/>',
+  megatank:
+    '<rect x="14" y="30" width="132" height="16" rx="5" fill="url(#pc-dark)"/>' +
+    '<rect x="14" y="44" width="132" height="58" rx="8" fill="#3a4049"/>' +
+    '<rect x="20" y="52" width="30" height="42" rx="4" fill="#5b636e"/>' +
+    '<rect x="23" y="56" width="5" height="34" rx="1.5" fill="#cfd5dc"/><rect x="23" y="66" width="5" height="24" rx="1.5" fill="#1c1f24"/>' +
+    '<rect x="30" y="56" width="5" height="34" rx="1.5" fill="#cfd5dc"/><rect x="30" y="70" width="5" height="20" rx="1.5" fill="#00a6d6"/>' +
+    '<rect x="37" y="56" width="5" height="34" rx="1.5" fill="#cfd5dc"/><rect x="37" y="62" width="5" height="28" rx="1.5" fill="#d6197c"/>' +
+    '<rect x="44" y="56" width="4" height="34" rx="1.5" fill="#cfd5dc"/><rect x="44" y="74" width="4" height="16" rx="1.5" fill="#f5c400"/>' +
+    '<rect x="100" y="52" width="36" height="12" rx="3" fill="#16191d"/><rect class="screen" x="103" y="55" width="30" height="6" rx="1.5"/>' +
+    '<rect x="62" y="76" width="72" height="7" rx="3.5" fill="#16191d"/>' +
+    '<path d="M68 80h60l4 16H64z" fill="url(#pc-paper)" stroke="#c3c9d1"/>',
+  canon_laser:
+    '<rect x="22" y="14" width="116" height="92" rx="7" fill="url(#pc-body)" stroke="#b5bcc6"/>' +
+    '<path d="M36 20h88l-8 16H44z" fill="url(#pc-dark)"/><rect x="54" y="24" width="52" height="5" rx="1" fill="url(#pc-paper)"/>' +
+    '<rect x="30" y="44" width="26" height="14" rx="3" fill="#23272e"/><rect class="screen" x="33" y="47" width="20" height="8" rx="1.5"/>' +
+    '<rect x="64" y="46" width="66" height="10" rx="5" fill="#e3e7ec"/>' +
+    '<path d="M23 66h114" stroke="#aab2bc"/><rect x="28" y="72" width="104" height="28" rx="3" fill="#e9ecf0" stroke="#c3c9d1"/>' +
+    '<rect x="64" y="84" width="32" height="4" rx="2" fill="#8a929c"/>',
 };
 
-var HP_PICTURES = ['auto', 'officejet', 'laserjet', 'deskjet', 'smart_tank', 'generic'];
+var HP_PICTURES = ['auto', 'officejet', 'laserjet', 'deskjet', 'smart_tank', 'brother_laser', 'brother_inkjet', 'ecotank', 'epson_inkjet',
+  'pixma', 'megatank', 'canon_laser', 'generic'];
 
 function hpIsHpDevice(device) {
   var maker = String(device?.manufacturer || '').toLowerCase();
@@ -1066,8 +1197,15 @@ function hpIsHpDevice(device) {
 
 // Picture matching a device: the drawing of its HP range, or the generic printer for the other brands.
 function hpPictureFor(device, kind) {
-  if (kind !== 'hp' && !hpIsHpDevice(device)) return 'generic';
   var model = `${device?.model || ''} ${device?.name || ''}`.toLowerCase();
+  var brand = hpBrandOf(device);
+  if (brand === 'brother') return /\b(mfc|dcp)-?j|inkjet/.test(model) ? 'brother_inkjet' : 'brother_laser';
+  if (brand === 'epson') return /ecotank|\b(et|l)-?\d{3,5}/.test(model) ? 'ecotank' : 'epson_inkjet';
+  if (brand === 'canon') {
+    if (/megatank|\bg\d{3,4}\b/.test(model)) return 'megatank';
+    return /i-sensys|imageclass|imagerunner|\b(lbp|mf)\s?\d|laser/.test(model) ? 'canon_laser' : 'pixma';
+  }
+  if (kind !== 'hp' && brand !== 'hp') return 'generic';
   if (/laserjet|neverstop/.test(model)) return 'laserjet';
   if (/smart tank|ink tank/.test(model)) return 'smart_tank';
   if (/deskjet|envy|tango/.test(model)) return 'deskjet';
@@ -1099,6 +1237,27 @@ var HP_STATE_ICONS = {
 
 // States reported by the IPP integration, mapped onto the HP Printer ones.
 var HP_IPP_STATES = { idle: 'ready', printing: 'processing', stopped: 'stopped' };
+
+// Brother integration (core, SNMP): the "Printer status" sensor (idle / printing / warmup / other), else the raw
+// "Status" text the printer reports, in its own language ("ready", "sleep", "printing", "druk"…).
+var HP_BROTHER_STATES = { idle: 'ready', printing: 'processing', warmup: 'processing', other: 'ready' };
+function hpBrotherState(v) {
+  if (HP_BROTHER_STATES[v]) return HP_BROTHER_STATES[v];
+  var t = String(v).toLowerCase();
+  if (/print|druk|impr|stampa|drukowa|печат|štamp/.test(t)) return 'processing';
+  if (/sleep|veille|ruhe|reposo|riposo|slaap|uśpi|спава|spava|deep/.test(t)) return 'inpowersave';
+  return 'ready';
+}
+// Status entity of a Brother printer (the normalized one first) and its ink / toner sensors, by translation key.
+function hpIsBrotherStatus(e) {
+  return e?.platform === 'brother' && (e.translation_key === 'printer_status' || e.translation_key === 'status');
+}
+function hpBrotherInks(list) {
+  return list.map((e) => {
+    var m = /^(black|cyan|magenta|yellow)_(toner|ink)_remaining$/.exec(e.platform === 'brother' ? e.translation_key || '' : '');
+    return m && { name: e.entity_id, color: m[1], level: e.entity_id, toner: m[2] === 'toner' };
+  }).filter(Boolean).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
+}
 
 var HP_BUSY = ['processing', 'scanprocessing', 'copying'];
 
@@ -1204,11 +1363,12 @@ function hpFindPrinters(hass) {
   var out = [];
   hpDeviceSensors(hass.entities).forEach((e) => {
     var s = hass.states[e.entity_id];
-    var kind = hpIsHpStatus(s) ? 'hp' : (hpIsIppStatus(s) ? 'ipp' : null);
+    var kind = hpIsHpStatus(s) ? 'hp' : hpIsBrotherStatus(e) ? 'brother' : (hpIsIppStatus(s) ? 'ipp' : null);
     if (kind && !out.some((p) => p.id === e.device_id)) out.push({ id: e.device_id, kind: kind });
   });
-  // HP Printer integration first: it carries the richer data.
-  return out.sort((a, b) => (a.kind === 'hp' ? 0 : 1) - (b.kind === 'hp' ? 0 : 1));
+  // HP Printer, then Brother, first: they carry richer data than IPP.
+  var rank = { hp: 0, brother: 1, ipp: 2 };
+  return out.sort((a, b) => rank[a.kind] - rank[b.kind]);
 }
 
 // The HP Printer integration splits a printer into one device per part
@@ -1428,6 +1588,23 @@ function hpAdminUrl(hass, r) {
 }
 
 // Header icon: the tinted round printer of the project page on the showcase site, for every printer.
+// Brand logo, as a badge on the header printer icon, embedded: HP (round mark), Brother, Epson and Canon (wordmarks,
+// images/*.svg). Other brands get the icon alone.
+var HP_BRAND_LOGOS = {
+  hp: '<svg viewBox="0 0 1280 1280"><defs><clipPath id="hp-logo-clip"><circle cx="640" cy="640" r="640"/></clipPath></defs>' +
+  '<circle cx="640" cy="640" r="640" fill="#024ad8"/><g clip-path="url(#hp-logo-clip)" fill="#fff">' +
+  '<path d="M485-20H619L482 360H597Q645 360 670 393Q695 427 676 477L515 918H380L552 444H451L277 918H142L349 360Z"/>' +
+  '<path fill-rule="evenodd" d="M819 358H1070Q1118 358 1143 391Q1168 424 1151 470L1009 866Q1000 890 977 905Q956 918 932 918H752L614 1300H485ZM924 441H1026L883 832H781Z"/></g></svg>',
+  brother: '<svg fill="#005cab" fill-rule="evenodd" viewBox="0 0 2.65 0.64"><path d="M2.565.138c-.146 0-.224.082-.227.188a.23.23 0 0 0-.233-.19.23.23 0 0 0-.23.188.186.186 0 0 0-.183-.188.16.16 0 0 0-.115.047V.035h-.11v.33l-.001.033C1.459.466 1.413.5 1.363.5c-.052 0-.1-.024-.1-.102L1.26.37V.247h.171V.143h-.17V.035H1.15v.29A.235.235 0 0 0 .738.222V.138H.725C.582.138.505.218.5.32A.22.22 0 0 0 .282.138a.2.2 0 0 0-.137.056v-.16H.038V.37C.04.5.13.604.27.604.39.604.477.526.5.422v.171h.11V.35C.613.282.655.243.723.242a.235.235 0 1 0 .428.172c0 .114.09.19.2.19.046 0 .086-.02.117-.052v.04h.11V.346c.003-.075.047-.107.095-.107s.09.032.09.106l.001.018v.23h.112V.42c.02.112.116.185.23.185a.216.216 0 0 0 .221-.169h-.108a.12.12 0 0 1-.113.078c-.06 0-.111-.04-.124-.108h.357v.188h.11V.38L2.45.35c.002-.067.046-.106.116-.106h.012V.138zM.269.498A.127.127 0 0 1 .141.37C.141.3.197.242.27.242S.398.298.398.37a.127.127 0 0 1-.129.128m.65 0A.127.127 0 0 1 .793.37C.792.3.847.242.92.242s.128.056.128.128A.127.127 0 0 1 .92.498m1.067-.18a.125.125 0 0 1 .119-.09c.07 0 .11.056.119.09zm.539.227c0 .03.025.055.055.055a.055.055 0 1 0 0-.11.055.055 0 0 0-.055.055m.007 0a.048.048 0 1 1 .096 0 .048.048 0 0 1-.096 0" /><path d="M2.565.52h.022q.013 0 .012.011 0 .012-.012.012h-.022zm0 .03h.022q.01 0 .01.013V.57L2.6.578h.01V.577L2.606.569V.56Q2.604.55 2.598.546q.01-.003.01-.017 0-.016-.02-.018h-.032v.066h.009z" /></svg>',
+  epson: '<svg fill="#003f98" viewBox="0 0 300 73.749"><path d="M207.281 60.68c-12.828 0-17.772-11.808-17.772-23.808s4.944-23.8 17.772-23.8c12.815 0 17.772 11.8 17.772 23.8S220.096 60.68 207.28 60.68m0-59.68c-20.2 0-31.864 15.135-31.864 35.872 0 20.744 11.664 35.876 31.864 35.876 20.19 0 31.85-15.132 31.85-35.876C239.13 16.135 227.47 1 207.28 1M1 3.013h50.616v12.074H15.079v15.017H49.15v11.769H15.08v16.796h36.537v12.069H1zm83.472 35.338H71.725v-23.28h12.747c8.86 0 14.752 3.855 14.752 11.643S93.33 38.35 84.472 38.35m-26.82 32.384h14.073v-20.32h12.747c17.251 0 28.828-8.474 28.828-23.701s-11.577-23.7-28.828-23.7h-26.82zM258.905 3.013H244.45v67.725h13.803V43.305c0-7.508-.268-14.168-.523-20.058 1.627 3.39 6.57 13.577 8.85 17.404l17.965 30.087H299V3.013h-13.803V29.76c0 7.5.276 14.86.523 20.736-1.627-3.39-6.557-13.572-8.87-17.393zM129.289 48.33c0 9.101 7.572 12.639 15.624 12.639 5.257 0 13.793-1.525 13.793-8.515 0-7.383-10.429-8.778-20.492-11.457-10.552-2.793-20.715-6.751-20.715-19.3C117.5 7.706 130.732 1 143.092 1c14.27 0 27.396 6.228 27.396 22.034h-14.082c-.478-8.237-6.801-10.35-13.987-10.35-4.794 0-10.83 2.014-10.83 7.77 0 5.266 3.445 6.078 20.583 10.49 4.989 1.247 20.618 4.264 20.618 19.778 0 12.557-9.869 21.937-28.465 21.937-15.128 0-29.307-7.467-29.12-24.329z"/></svg>',
+  canon: '<svg viewBox="0 0 118 25"><g fill="#C00"><path d="M19.56 22.251c-5.464 0-9.895-4.4-9.895-9.83s4.43-9.83 9.896-9.83c1.927 0 3.724.547 5.245 1.493L19.56 12.42l9.874-5.663c-1.072-1.699-2.611-3.163-4.476-4.273C22.595 1.08 19.303.208 15.662.208c-5.196 0-9.752 1.872-12.294 4.68-1.88 2.076-3 4.691-3 7.533s1.12 5.457 3 7.533c2.548 2.815 7.036 4.68 12.144 4.68s9.595-1.867 12.146-4.68q.21-.231.405-.47l-.387-1.436a9.9 9.9 0 0 1-8.115 4.203m20.092-.596c-1.987 0-3.599-1.6-3.599-3.574s1.612-3.574 3.599-3.574 3.599 1.6 3.599 3.574-1.612 3.574-3.599 3.574m12.64 2.384L48.151 8.684a5.84 5.84 0 0 0-5.65-4.306c-.702 0-1.376.124-2 .35L31.58 7.952h9.177l1.568 5.815a8.7 8.7 0 0 0-5.67-2.092c-4.307 0-7.798 2.868-7.798 6.405s3.491 6.404 7.797 6.404a9.3 9.3 0 0 0 7.531-3.821l.91 3.375zM69.191 4.378c-.543 0-1.058.12-1.52.335l-5.726 2.652a3.59 3.59 0 0 0-3.55-2.987c-.543 0-1.058.12-1.52.335l-6.994 3.24h4.916v16.086h7.197V9.74c0-.987.806-1.787 1.8-1.787.993 0 1.799.8 1.799 1.787v14.3h7.196V7.953c0-1.974-1.61-3.575-3.598-3.575m45.132 0c-.543 0-1.058.12-1.52.335l-5.726 2.652a3.59 3.59 0 0 0-3.55-2.987c-.543 0-1.058.12-1.52.335l-6.994 3.24h4.916v16.086h7.197V9.74c0-.987.806-1.787 1.8-1.787.993 0 1.799.8 1.799 1.787v14.3h7.197V7.953c0-1.974-1.61-3.575-3.599-3.575"/><path d="M86.41 7.455a2.25 2.25 0 0 0-2.754-1.58 2.23 2.23 0 0 0-1.59 2.736l3.493 12.948a2.25 2.25 0 0 0 2.754 1.58 2.23 2.23 0 0 0 1.59-2.737zm9.77 7.052c0 5.593-4.564 10.127-10.195 10.127S75.789 20.1 75.789 14.507 80.353 4.378 85.985 4.378c5.63 0 10.196 4.535 10.196 10.129"/></g></svg>',
+};
+function hpBrandOf(device) {
+  if (hpIsHpDevice(device)) return 'hp';
+  var id = `${device?.manufacturer || ''} ${device?.model || ''} ${device?.name || ''}`.toLowerCase();
+  return /\bbrother\b/.test(id) ? 'brother' : /\bepson\b/.test(id) ? 'epson' : /\bcanon\b/.test(id) ? 'canon' : null;
+}
+var hpBrandBadge = (brand) => (HP_BRAND_LOGOS[brand] ? `<span class="hp-badge ${brand}">${HP_BRAND_LOGOS[brand]}</span>` : '');
 var HP_ACCENT = '#0096d6';
 
 // A click inside a dialog (more-info opened from the card, say) is not a click outside the card.
@@ -1500,7 +1677,7 @@ class PrinterCard extends HTMLElement {
     var hass = this._hass, m = this._memo;
     if (m && m.entities === hass.entities && m.devices === hass.devices && m.config === this._config &&
       m.avail === this._availSig(m.devs)) {
-      if (m.r.kind === 'hp' && !m.r.ipp) {
+      if ((m.r.kind === 'hp' || m.r.kind === 'brother') && !m.r.ipp) {
         var ipp = hpFindIppSensor(hass, m.r.deviceId);
         if (ipp) m.r = Object.assign({}, m.r, { ipp: ipp });
       }
@@ -1550,6 +1727,16 @@ class PrinterCard extends HTMLElement {
         r.total_pages = hpPick(all, hass, (eid) => /_printer_total_pages$/.test(eid)) ||
           hpPick(all, hass, (eid, s) => hpUnit(s) === 'pages' && s.attributes.state_class === 'total_increasing' && /total_(pages|impressions)$/.test(eid));
       }
+    } else if (!status && main.some(hpIsBrotherStatus)) {
+      // Brother integration: its status and ink / toner sensors, plus the IPP sensor of the same model for the
+      // paper and cover alerts, when the printer is also set up with IPP.
+      r.kind = 'brother';
+      r.isHp = false;
+      var bro = main.filter((e) => e.platform === 'brother');
+      r.status = (bro.find((e) => e.translation_key === 'printer_status') || bro.find((e) => e.translation_key === 'status')).entity_id;
+      r.inks = hpBrotherInks(bro);
+      if (!r.ipp) r.ipp = hpFindIppSensor(hass, deviceId);
+      if (!r.total_pages) r.total_pages = bro.find((e) => e.translation_key === 'page_counter')?.entity_id;
     } else {
       // IPP-only printer (or status forced to an IPP sensor).
       r.kind = 'ipp';
@@ -1607,6 +1794,7 @@ class PrinterCard extends HTMLElement {
     var v = this._val(r.status);
     if (v === undefined || v === 'unavailable' || v === 'off') return 'offline';
     if (r.kind === 'ipp') return HP_IPP_STATES[v] || 'unknown';
+    if (r.kind === 'brother') return hpBrotherState(v);
     return HP_STATE_COLORS[v] ? v : 'unknown';
   }
 
@@ -1725,7 +1913,7 @@ class PrinterCard extends HTMLElement {
       color: offline ? 'var(--disabled-text-color, #9e9e9e)' : (HP_STATE_COLORS[state] || 'var(--secondary-text-color)'),
       alerts: offline ? [] : this._alerts(r, state),
       imageHtml: '',
-      logoHtml: '<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"></ha-icon></span>',
+      logoHtml: `<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"></ha-icon>${hpBrandBadge(hpBrandOf(this._hass.devices?.[r.deviceId]))}</span>`,
     };
 
     // Picture, with the control panel lit in the status color.
@@ -1882,8 +2070,14 @@ class PrinterCard extends HTMLElement {
       '.titles { flex: 1 1 0; min-width: 5ch; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; }' +
       // A printer in a round badge, tinted with the accent of the showcase site.
-      '.logo.mark { display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, ' + HP_ACCENT + ' 16%, transparent); color: ' + HP_ACCENT + '; }' +
+      '.logo.mark { position: relative; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, ' + HP_ACCENT + ' 16%, transparent); color: ' + HP_ACCENT + '; }' +
       '.logo.mark ha-icon { --mdc-icon-size: 24px; }' +
+      '.hp-badge { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 50%; line-height: 0;' +
+        ' box-shadow: 0 0 0 2px var(--card-background-color, #fff); }' +
+      '.hp-badge svg, .hp-badge img { width: 100%; height: 100%; object-fit: contain; }' +
+      // Wordmarks: a white pill wider than the round HP mark, still clear of the name.
+      '.hp-badge.brother, .hp-badge.epson, .hp-badge.canon { width: 28px; height: 12px; right: -8px; bottom: -3px; padding: 2px 3px; box-sizing: border-box;' +
+        ' border-radius: 4px; background: #fff; box-shadow: 0 0 0 1px var(--divider-color, rgba(0,0,0,.12)), 0 0 0 3px var(--card-background-color, #fff); }' +
       '.head { display: flex; align-items: center; gap: 12px; }' +
       'a.pic { cursor: pointer; }' +
       'a.pic:hover img { filter: brightness(1.06); }' +
@@ -1904,7 +2098,7 @@ class PrinterCard extends HTMLElement {
       '.status span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
       // Too narrow for a readable status: its icon only, never cut (the text stays in the pill's title and label),
       // with a smaller logo and tighter gaps, so the name and the detail button of a zoomed mini card still fit at 6 columns.
-      '@container printer-card (max-width: 200px) { .header { gap: 6px; } .logo { width: 32px; height: 32px; } .logo.mark ha-icon { --mdc-icon-size: 20px; }' +
+      '@container printer-card (max-width: 200px) { .header { gap: 6px; } .logo { width: 32px; height: 32px; } .logo.mark ha-icon { --mdc-icon-size: 20px; } .hp-badge { width: 14px; height: 14px; right: -3px; bottom: -3px; }' +
         ' .status { min-width: 22px; padding: 2px 4px; } .status span { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
@@ -2112,7 +2306,7 @@ class PrinterCardEditor extends HTMLElement {
   _schema() {
     var t = (k) => hpT(this._lang(), k);
     return [
-      { name: 'device_id', selector: { device: { filter: [{ integration: 'hpprinter' }, { integration: 'ipp' }] } } },
+      { name: 'device_id', selector: { device: { filter: [{ integration: 'hpprinter' }, { integration: 'brother' }, { integration: 'ipp' }] } } },
       { name: 'name', selector: { text: {} } },
       {
         type: 'grid', name: '', schema: [

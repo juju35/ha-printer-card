@@ -7,7 +7,14 @@
 [![Release](https://img.shields.io/github/v/release/juju35/ha-printer-card)](https://github.com/juju35/ha-printer-card/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Custom Lovelace card for printers in Home Assistant: built for HP printers with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (`hpprinter`), and working with **any IPP printer** (Brother, Canon, Epson, Xerox…) through the core [IPP](https://www.home-assistant.io/integrations/ipp/) integration.
+<p align="center">
+  <img src="images/hp.svg" alt="HP" height="56">&nbsp;&nbsp;&nbsp;
+  <img src="images/brother.svg" alt="Brother" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="images/epson.svg" alt="Epson" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="images/canon.svg" alt="Canon" height="28">
+</p>
+
+Custom Lovelace card for printers in Home Assistant: **HP** printers with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (`hpprinter`), **Brother** printers with the core [Brother](https://www.home-assistant.io/integrations/brother/) integration, and **any IPP printer** (Epson, Canon, Brother, Xerox…) through the core [IPP](https://www.home-assistant.io/integrations/ipp/) integration. HP, Brother, Epson and Canon printers get their brand logo and a drawing of their range.
 
 > Formerly `ha-hp-printer-card`: since 2.0.1, cards must use `type: custom:printer-card` (`custom:hp-printer-card` is no longer registered).
 
@@ -17,13 +24,10 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
 
-| HP Printer | Dark theme | Offline | IPP printer (any brand) |
+| <img src="images/hp.svg" alt="HP" height="20"> | <img src="images/brother.svg" alt="Brother" height="14"> | <img src="images/epson.svg" alt="Epson" height="14"> | <img src="images/canon.svg" alt="Canon" height="14"> |
 |---|---|---|---|
-| ![Printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png) | ![Printer card, dark theme](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card-dark.png) | ![Printer card, printer offline](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/offline.png) | ![Printer card, IPP laser printer](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png) |
-
-| Printer Mini Card | Mini card, full view (detail button) |
-|---|---|
-| ![Printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png) | ![Printer mini card, full view](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom.png) |
+| ![HP printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png) | ![Brother printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png) | ![Epson printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson.png) | ![Canon printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png) |
+| ![HP printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png) | ![Brother printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp.png) | ![Epson printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson.png) | ![Canon printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png) |
 
 ## Features
 
@@ -31,7 +35,8 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
-- **Pictures**: a drawing per HP range (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank) and a generic printer for the other brands, picked from the device model or chosen in the editor
+- **Pictures**: a drawing per range for HP (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank), Brother (laser, inkjet), Epson (EcoTank, Expression / WorkForce) and Canon (PIXMA / MAXIFY, MegaTank, i-SENSYS), and a generic printer for the other brands, picked from the device model or chosen in the editor
+- **Brand logo** (HP, Brother, Epson or Canon) as a badge on the header printer icon
 - **Alerts**: low or nearly empty ink, missing / used / non-HP / damaged cartridge, printhead problem, and, through the IPP integration, empty paper tray, paper jam, open cover…
 - **ePrint status**: on, off or not registered (HP cloud printing)
 - Page counter
@@ -48,9 +53,10 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 | Integration | Printers | What the card shows |
 |---|---|---|
 | [HP Printer](https://github.com/elad-bar/ha-hpprinter) (HACS, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
-| [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
+| [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
+| [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
 
-With both integrations set up for the same printer, the card uses HP Printer for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts.
+With HP Printer or Brother and IPP both set up for the same printer, the card uses HP Printer or Brother for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts. Epson and Canon printers have no dedicated Home Assistant integration: they go through IPP.
 
 ## Prerequisites
 
@@ -176,7 +182,20 @@ Cartridges are always found from the printer's devices.
 | `laserjet` | HP LaserJet, Neverstop |
 | `deskjet` | HP DeskJet, ENVY, Tango |
 | `smart_tank` | HP Smart Tank, Ink Tank |
+| `brother_laser` | Brother laser printers (HL, DCP-L, MFC-L) and other Brother models |
+| `brother_inkjet` | Brother inkjet all-in-ones (MFC-J, DCP-J) |
+| `ecotank` | Epson EcoTank (ET, L series) |
+| `epson_inkjet` | Other Epson models (Expression, WorkForce…) |
+| `pixma` | Canon PIXMA, MAXIFY and other Canon inkjets |
+| `megatank` | Canon MegaTank (PIXMA G series) |
+| `canon_laser` | Canon i-SENSYS, imageCLASS, imageRUNNER (LBP, MF) |
 | `generic` | Printers of other brands (IPP) |
+
+The drawings by brand:
+
+<p align="center"><img src="images/models-hp.svg" alt="HP printer pictures" width="680"></p>
+<p align="center"><img src="images/models-brother.svg" alt="Brother printer pictures" width="340">&nbsp;&nbsp;<img src="images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+<p align="center"><img src="images/models-canon.svg" alt="Canon printer pictures" width="510">&nbsp;&nbsp;<img src="images/models-generic.svg" alt="Generic printer picture" width="170"></p>
 
 The control panel of each picture lights up in the status color.
 
@@ -191,21 +210,48 @@ The status colors follow the Home Assistant theme: `--success-color` (ready), `-
 
 ## Screenshots
 
-Card:
+The header icon carries the logo of the printer's brand as a badge: HP, Brother, Epson or Canon (the other brands get the icon alone).
+
+### <img src="images/hp.svg" alt="" width="24"> HP
+
+OfficeJet Pro 9010, set up with the HP Printer integration (and IPP for the paper alerts):
 
 | | Light | Dark |
 |---|---|---|
-| Inkjet | ![card](screenshots/card.png) | ![card dark](screenshots/card-dark.png) |
+| Card | ![card](screenshots/card.png) | ![card dark](screenshots/card-dark.png) |
 | Printer offline | ![offline](screenshots/offline.png) | ![offline dark](screenshots/offline-dark.png) |
-| IPP laser printer | ![ipp](screenshots/ipp.png) | ![ipp dark](screenshots/ipp-dark.png) |
+| Mini card | ![mini card](screenshots/mini-card.png) | ![mini card dark](screenshots/mini-card-dark.png) |
+| Mini card offline | ![mini card offline](screenshots/mini-offline.png) | ![mini card offline dark](screenshots/mini-offline-dark.png) |
+| Mini card, full view | ![mini card full view](screenshots/mini-zoom.png) | ![mini card full view dark](screenshots/mini-zoom-dark.png) |
 
-Mini card:
+### <img src="images/brother.svg" alt="" height="16"> Brother
+
+HL-L2350DW laser printer, set up with the IPP integration:
 
 | | Light | Dark |
 |---|---|---|
-| Compact | ![mini card](screenshots/mini-card.png) | ![mini card dark](screenshots/mini-card-dark.png) |
-| Offline | ![mini card offline](screenshots/mini-offline.png) | ![mini card offline dark](screenshots/mini-offline-dark.png) |
-| Full view | ![mini card full view](screenshots/mini-zoom.png) | ![mini card full view dark](screenshots/mini-zoom-dark.png) |
+| Card | ![brother card](screenshots/ipp.png) | ![brother card dark](screenshots/ipp-dark.png) |
+| Mini card | ![brother mini card](screenshots/mini-ipp.png) | ![brother mini card dark](screenshots/mini-ipp-dark.png) |
+
+### <img src="images/epson.svg" alt="" height="16"> Epson
+
+EcoTank ET-2850 ink tank printer, set up with the IPP integration:
+
+| | Light | Dark |
+|---|---|---|
+| Card | ![epson card](screenshots/epson.png) | ![epson card dark](screenshots/epson-dark.png) |
+| Mini card | ![epson mini card](screenshots/mini-epson.png) | ![epson mini card dark](screenshots/mini-epson-dark.png) |
+
+### <img src="images/canon.svg" alt="" height="16"> Canon
+
+PIXMA G650 MegaTank printer, set up with the IPP integration:
+
+| | Light | Dark |
+|---|---|---|
+| Card | ![canon card](screenshots/canon.png) | ![canon card dark](screenshots/canon-dark.png) |
+| Mini card | ![canon mini card](screenshots/mini-canon.png) | ![canon mini card dark](screenshots/mini-canon-dark.png) |
+
+### Animations
 
 While a job is printing, the card animates: the preview screen glows as pages advance. It settles to a still card when idle. The mini card's preview glows the same way.
 
@@ -228,7 +274,8 @@ Set `image` to use a photo of your own model (the lit control panel is only draw
 npm install
 npm run build        # stamps the version of package.json into dist/printer-card.js
 npm run check        # builds and checks the card (run in CI)
-npm run screenshots  # renders the cards with mock HP and IPP printers into screenshots/ (and the printing GIFs in light and dark, needs ffmpeg)
+npm run screenshots  # renders the cards with mock HP, Brother, Epson and Canon printers into screenshots/ (and the printing GIFs in light and dark, needs ffmpeg)
+npm run models       # renders the drawings by brand into images/models-<brand>.svg
 ```
 
 `dist/` is not committed: `npm run build` creates it locally, CI builds it on every push, and the release workflow attaches the built file to the release, which is where HACS downloads it from.

@@ -40,7 +40,7 @@ test("I18N: fr has the en keys and placeholders, plus its own cw_* adjective for
 });
 
 // Brands, product names, units and paths stay in Latin script in the Cyrillic dictionary.
-const LATIN_OK = /Home Assistant|HP Printer|OfficeJet|PageWide|LaserJet|DeskJet|ENVY|Smart Tank|ePrint|hp\.com|\/local\/printer\.png|URL|IPP|HP|\{\w+\}/g;
+const LATIN_OK = /Home Assistant|HP Printer|Brother|Epson|EcoTank|Expression|WorkForce|Canon|PIXMA|MAXIFY|MegaTank|i-SENSYS|imageCLASS|HL|DCP-L|MFC-L|MFC-J|DCP-J|G\)|OfficeJet|PageWide|LaserJet|DeskJet|ENVY|Smart Tank|ePrint|hp\.com|\/local\/printer\.png|URL|IPP|HP|\{\w+\}/g;
 
 test("I18N: sr is written in Cyrillic and sr-Latn in Latin script", () => {
   for (const [key, value] of Object.entries(HpI18n.sr)) {

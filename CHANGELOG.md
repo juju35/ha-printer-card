@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.5.0 - 2026-11-03
+
+### Features
+- **Brother integration** (core, SNMP): Brother printers are found automatically, with their status (the printer status sensor, else the raw status text), ink or toner levels and page counter; the IPP sensor of the same printer still brings the paper and cover alerts.
+- **Brand logos**: the header printer icon carries the brand logo as a badge, on the full card and the mini card: HP (as before 2.4.9), Brother, Epson and Canon. Other brands keep the icon alone.
+- **Drawings by brand and range**: Brother laser and inkjet, Epson EcoTank and Expression / WorkForce, Canon PIXMA / MAXIFY, MegaTank and i-SENSYS / imageCLASS, picked from the device model or chosen in the editor (`picture` option).
+- README: brand logos on top, screenshots per brand (HP, Brother, Epson, Canon) and the drawings by brand (`scripts/models.mjs`).
+
 ## 2.4.10 - 2026-11-02
 
 ### Fixes
