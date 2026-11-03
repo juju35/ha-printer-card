@@ -289,15 +289,32 @@ await render(
   { icons, hass }
 );
 
+// The printer of each brand while a job prints: HP (printing.gif, the base brand), then Brother, Epson and Canon
+// (<brand>-printing.gif), each card and mini card.
+const printing = (mock, id, state) => {
+  const out = structuredClone(mock);
+  out.states[id].state = state;
+  if (out.states["sensor.officejet_ipp"]) out.states["sensor.officejet_ipp"].attributes.state_reason = "none";
+  return out;
+};
+const printers = [
+  { prefix: "", device: "hp", hass: printing(hass, "sensor.officejet_status", "processing") },
+  { prefix: "brother-", device: "laser", hass: ipp },
+  { prefix: "epson-", device: "epson", hass: printing(epson, "sensor.epson_et_2850", "printing") },
+  { prefix: "canon-", device: "canon", hass: canon },
+];
+
 // Every animation in both themes: each light GIF gets a `-dark` twin with the exact same setup.
-for (const theme of ["light", "dark"]) {
-  const suffix = theme === "dark" ? "-dark" : "";
-  await animate(
-    { file: `printing${suffix}`, type: "printer-card", theme, width: 460, config: { device_id: "laser" }, hass: ipp },
-    { icons, hass }
-  );
-  await animate(
-    { file: `printing-mini${suffix}`, type: "printer-mini-card", theme, width: 380, config: { device_id: "laser" }, hass: ipp },
-    { icons, hass }
-  );
+for (const { prefix, device, hass: mock } of printers) {
+  for (const theme of ["light", "dark"]) {
+    const suffix = theme === "dark" ? "-dark" : "";
+    await animate(
+      { file: `${prefix}printing${suffix}`, type: "printer-card", theme, width: 460, config: { device_id: device }, hass: mock },
+      { icons, hass }
+    );
+    await animate(
+      { file: `${prefix}printing-mini${suffix}`, type: "printer-mini-card", theme, width: 380, config: { device_id: device }, hass: mock },
+      { icons, hass }
+    );
+  }
 }

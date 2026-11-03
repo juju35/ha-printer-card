@@ -210,55 +210,104 @@ The status colors follow the Home Assistant theme: `--success-color` (ready), `-
 
 ## Screenshots
 
-The header icon carries the logo of the printer's brand as a badge: HP, Brother, Epson or Canon (the other brands get the icon alone).
+The header icon carries the logo of the printer's brand as a badge: HP, Brother, Epson or Canon (the other brands get the icon alone). The drawing follows the brand and range of the printer.
+
+### Animations
+
+While a job prints, the card animates for every brand (Brother, Epson and Canon animations in their sections below): the preview screen glows as pages advance and the control panel pulses in the status colour. The card settles back to a still picture once the printer is idle, and the mini card's preview glows the same way.
+
+HP OfficeJet Pro 9010 printing:
+
+| | Card | Mini card |
+|---|---|---|
+| Light | ![HP printing animation](screenshots/printing.gif) | ![HP mini card printing animation](screenshots/printing-mini.gif) |
+| Dark | ![HP printing animation dark](screenshots/printing-dark.gif) | ![HP mini card printing animation dark](screenshots/printing-mini-dark.gif) |
 
 ### <img src="images/hp.svg" alt="" width="24"> HP
 
 OfficeJet Pro 9010, set up with the HP Printer integration (and IPP for the paper alerts):
 
-| | Light | Dark |
+| | Card | Mini card |
 |---|---|---|
-| Card | ![card](screenshots/card.png) | ![card dark](screenshots/card-dark.png) |
-| Printer offline | ![offline](screenshots/offline.png) | ![offline dark](screenshots/offline-dark.png) |
-| Mini card | ![mini card](screenshots/mini-card.png) | ![mini card dark](screenshots/mini-card-dark.png) |
-| Mini card offline | ![mini card offline](screenshots/mini-offline.png) | ![mini card offline dark](screenshots/mini-offline-dark.png) |
-| Mini card, full view | ![mini card full view](screenshots/mini-zoom.png) | ![mini card full view dark](screenshots/mini-zoom-dark.png) |
+| Light | ![card](screenshots/card.png) | ![mini card](screenshots/mini-card.png) |
+| Dark | ![card dark](screenshots/card-dark.png) | ![mini card dark](screenshots/mini-card-dark.png) |
+
+Printer turned off: the picture turns grey and the card only says *Offline* with the last time it was seen:
+
+| | Card | Mini card |
+|---|---|---|
+| Light | ![offline](screenshots/offline.png) | ![mini card offline](screenshots/mini-offline.png) |
+| Dark | ![offline dark](screenshots/offline-dark.png) | ![mini card offline dark](screenshots/mini-offline-dark.png) |
+
+Mini card zoomed in with its detail button (top right, click it again or anywhere outside the card to go back):
+
+| Light | Dark |
+|---|---|
+| ![mini card full view](screenshots/mini-zoom.png) | ![mini card full view dark](screenshots/mini-zoom-dark.png) |
+
+Drawn HP ranges:
+
+<p align="center"><img src="images/models-hp.svg" alt="HP printer pictures" width="680"></p>
 
 ### <img src="images/brother.svg" alt="" height="16"> Brother
 
 HL-L2350DW laser printer, set up with the IPP integration:
 
-| | Light | Dark |
+| | Card | Mini card |
 |---|---|---|
-| Card | ![brother card](screenshots/ipp.png) | ![brother card dark](screenshots/ipp-dark.png) |
-| Mini card | ![brother mini card](screenshots/mini-ipp.png) | ![brother mini card dark](screenshots/mini-ipp-dark.png) |
+| Light | ![brother card](screenshots/ipp.png) | ![brother mini card](screenshots/mini-ipp.png) |
+| Dark | ![brother card dark](screenshots/ipp-dark.png) | ![brother mini card dark](screenshots/mini-ipp-dark.png) |
+
+Drawn Brother ranges:
+
+<p align="center"><img src="images/models-brother.svg" alt="Brother printer pictures" width="340"></p>
+
+The laser printer printing:
+
+| | Card | Mini card |
+|---|---|---|
+| Light | ![brother printing animation](screenshots/brother-printing.gif) | ![brother mini card printing animation](screenshots/brother-printing-mini.gif) |
+| Dark | ![brother printing animation dark](screenshots/brother-printing-dark.gif) | ![brother mini card printing animation dark](screenshots/brother-printing-mini-dark.gif) |
 
 ### <img src="images/epson.svg" alt="" height="16"> Epson
 
 EcoTank ET-2850 ink tank printer, set up with the IPP integration:
 
-| | Light | Dark |
+| | Card | Mini card |
 |---|---|---|
-| Card | ![epson card](screenshots/epson.png) | ![epson card dark](screenshots/epson-dark.png) |
-| Mini card | ![epson mini card](screenshots/mini-epson.png) | ![epson mini card dark](screenshots/mini-epson-dark.png) |
+| Light | ![epson card](screenshots/epson.png) | ![epson mini card](screenshots/mini-epson.png) |
+| Dark | ![epson card dark](screenshots/epson-dark.png) | ![epson mini card dark](screenshots/mini-epson-dark.png) |
+
+Drawn Epson ranges:
+
+<p align="center"><img src="images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+
+The EcoTank printing:
+
+| | Card | Mini card |
+|---|---|---|
+| Light | ![epson printing animation](screenshots/epson-printing.gif) | ![epson mini card printing animation](screenshots/epson-printing-mini.gif) |
+| Dark | ![epson printing animation dark](screenshots/epson-printing-dark.gif) | ![epson mini card printing animation dark](screenshots/epson-printing-mini-dark.gif) |
 
 ### <img src="images/canon.svg" alt="" height="16"> Canon
 
 PIXMA G650 MegaTank printer, set up with the IPP integration:
 
-| | Light | Dark |
+| | Card | Mini card |
 |---|---|---|
-| Card | ![canon card](screenshots/canon.png) | ![canon card dark](screenshots/canon-dark.png) |
-| Mini card | ![canon mini card](screenshots/mini-canon.png) | ![canon mini card dark](screenshots/mini-canon-dark.png) |
+| Light | ![canon card](screenshots/canon.png) | ![canon mini card](screenshots/mini-canon.png) |
+| Dark | ![canon card dark](screenshots/canon-dark.png) | ![canon mini card dark](screenshots/mini-canon-dark.png) |
 
-### Animations
+Drawn Canon ranges:
 
-While a job is printing, the card animates: the preview screen glows as pages advance. It settles to a still card when idle. The mini card's preview glows the same way.
+<p align="center"><img src="images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
 
-| | Light | Dark |
+The MegaTank printing:
+
+| | Card | Mini card |
 |---|---|---|
-| Card while a job prints | ![printer printing animation](screenshots/printing.gif) | ![printer printing animation dark](screenshots/printing-dark.gif) |
-| Mini card glowing while a job prints | ![printer mini card printing animation](screenshots/printing-mini.gif) | ![printer mini card printing animation dark](screenshots/printing-mini-dark.gif) |
+| Light | ![canon printing animation](screenshots/canon-printing.gif) | ![canon mini card printing animation](screenshots/canon-printing-mini.gif) |
+| Dark | ![canon printing animation dark](screenshots/canon-printing-dark.gif) | ![canon mini card printing animation dark](screenshots/canon-printing-mini-dark.gif) |
 
 ## How it works
 
