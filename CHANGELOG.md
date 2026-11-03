@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.5.2 - 2026-11-04
+
+### Fixes
+- README: the Brother logo shows on GitHub again (`images/brother.svg` had a sub-pixel size that GitHub's SVG viewer refused).
+
+### Documentation
+- README: screenshots by brand, like ha-vacuum-card: one section per brand (HP, Brother, Epson, Canon) with the card and mini card in light and dark, the drawn ranges of the brand and its printing animation.
+- Printing animation per brand: `printing.gif` is now the HP OfficeJet, and Brother, Epson and Canon get their own (`<brand>-printing.gif`, card and mini card, light and dark).
+
 ## 2.5.1 - 2026-11-04
 
 ### Fixes
