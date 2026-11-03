@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.5.1 - 2026-11-04
+
+### Fixes
+- Header: the Brother, Epson and Canon logos are readable again: their badge is a wider white tag centred under the printer icon (44 × 15 px) instead of a small tag in its corner.
+
 ## 2.5.0 - 2026-11-03
 
 ### Features

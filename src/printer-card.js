@@ -2076,7 +2076,8 @@ class PrinterCard extends HTMLElement {
         ' box-shadow: 0 0 0 2px var(--card-background-color, #fff); }' +
       '.hp-badge svg, .hp-badge img { width: 100%; height: 100%; object-fit: contain; }' +
       // Wordmarks: a white pill wider than the round HP mark, still clear of the name.
-      '.hp-badge.brother, .hp-badge.epson, .hp-badge.canon { width: 28px; height: 12px; right: -8px; bottom: -3px; padding: 2px 3px; box-sizing: border-box;' +
+      '.hp-badge.brother, .hp-badge.epson, .hp-badge.canon { width: 44px; height: 15px; right: auto; left: 50%; bottom: -9px; transform: translateX(-50%);' +
+        ' padding: 2px 4px; box-sizing: border-box;' +
         ' border-radius: 4px; background: #fff; box-shadow: 0 0 0 1px var(--divider-color, rgba(0,0,0,.12)), 0 0 0 3px var(--card-background-color, #fff); }' +
       '.head { display: flex; align-items: center; gap: 12px; }' +
       'a.pic { cursor: pointer; }' +
