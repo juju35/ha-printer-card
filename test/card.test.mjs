@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, customElements, listeners } = loadCard("printer-card.js", [
+const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, hpBrandOf, customElements, listeners } = loadCard("printer-card.js", [
+  "hpBrandOf",
   "PrinterCard",
   "PrinterCardEditor",
   "PrinterMiniCard",
@@ -317,9 +318,10 @@ function ippHass({ state = "idle", reason = "none", manufacturer = "Brother", mo
   return { language: "en", states, entities, devices: { b: { name: "Brother HL-L2350DW", manufacturer, model } } };
 }
 
-test("an IPP printer of another brand gets the generic picture, its toner and the printer icon", () => {
+test("an IPP printer of another brand gets its brand picture, its toner, the printer icon and the brand badge", () => {
   const html = render(ippHass(), { device_id: "b" }).shadowRoot.innerHTML;
-  assert.match(html, /class="art art-generic"/);
+  assert.match(html, /class="art art-brother_laser"/);
+  assert.match(html, /class="hp-badge brother"/);
   assert.match(html, /Toner levels/);
   assert.match(html, /42<small>%<\/small>/);
   assert.match(html, /class="logo mark"/);
@@ -346,12 +348,19 @@ test("the picture follows the model", () => {
   assert.equal(pic("Color LaserJet Pro MFP M479fdw"), "laserjet");
   assert.equal(pic("DeskJet 2720e"), "deskjet");
   assert.equal(pic("Smart Tank 7305"), "smart_tank");
-  assert.equal(pic("ET-2850", "EPSON", "ipp"), "generic");
+  assert.equal(pic("ET-2850", "EPSON", "ipp"), "ecotank");
+  assert.equal(pic("XP-3200", "EPSON", "ipp"), "epson_inkjet");
+  assert.equal(pic("HL-L2350DW", "Brother", "ipp"), "brother_laser");
+  assert.equal(pic("MFC-J5340DW", "Brother", "brother"), "brother_inkjet");
+  assert.equal(pic("PIXMA TS5350", "Canon", "ipp"), "pixma");
+  assert.equal(pic("PIXMA G650", "Canon", "ipp"), "megatank");
+  assert.equal(pic("i-SENSYS MF445dw", "Canon", "ipp"), "canon_laser");
+  assert.equal(pic("WF-7840", "Kyocera", "ipp"), "generic");
 });
 
-test("every printer gets the tinted printer icon of the showcase site", () => {
+test("every printer gets the tinted printer icon of the showcase site, with the HP logo badge for an HP printer", () => {
   const hass = mockHass();
-  const icon = /<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"><\/ha-icon><\/span>/;
+  const icon = /<span class="logo mark" aria-hidden="true"><ha-icon icon="mdi:printer"><\/ha-icon><span class="hp-badge hp"><svg viewBox="0 0 1280 1280">/;
   const card = render(hass);
   assert.match(card.shadowRoot.innerHTML, icon);
   assert.match(render(hass, { device_id: "p", picture: "generic" }).shadowRoot.innerHTML, icon);
@@ -699,4 +708,46 @@ test("the mini card asks for at least 6 Sections columns, where its header fits"
   assert.equal(g.min_columns, 6);
   assert.equal(g.rows, "auto");
   assert.equal(new PrinterCard().getGridOptions().min_columns, 6);
+});
+
+test("hpBrandOf: the badge brand from the device maker or model", () => {
+  assert.equal(hpBrandOf({ manufacturer: "HP", model: "OfficeJet Pro 9010" }), "hp");
+  assert.equal(hpBrandOf({ manufacturer: "Brother", model: "HL-L2350DW" }), "brother");
+  assert.equal(hpBrandOf({ manufacturer: "EPSON", model: "ET-2850 Series" }), "epson");
+  assert.equal(hpBrandOf({ manufacturer: "Canon", model: "PIXMA G650" }), "canon");
+  assert.equal(hpBrandOf({ manufacturer: "Kyocera", model: "ECOSYS P2040dn" }), null);
+});
+
+// Brother integration (core, SNMP): sensors identified by their translation key.
+function brotherHass({ status = "idle", key = "printer_status" } = {}) {
+  const raw = [
+    ["sensor.mfc_status", key, status, {}],
+    ["sensor.mfc_page_counter", "page_counter", "5120", {}],
+    ["sensor.mfc_black_toner_remaining", "black_toner_remaining", "64", { unit_of_measurement: "%" }],
+    ["sensor.mfc_cyan_toner_remaining", "cyan_toner_remaining", "12", { unit_of_measurement: "%" }],
+    ["sensor.mfc_drum_remaining_life", "drum_remaining_life", "80", { unit_of_measurement: "%" }],
+  ];
+  const states = {}, entities = {};
+  for (const [id, translation_key, state, attributes] of raw) {
+    states[id] = st(state, attributes);
+    entities[id] = { entity_id: id, device_id: "bro", platform: "brother", translation_key };
+  }
+  return { language: "en", states, entities, devices: { bro: { id: "bro", name: "MFC-L3770CDW", manufacturer: "Brother", model: "MFC-L3770CDW" } } };
+}
+
+test("Brother integration: found automatically, its printer status, toners (not the drum) and the Brother badge", () => {
+  const html = render(brotherHass(), {}).shadowRoot.innerHTML;
+  assert.match(html, /Ready/);
+  assert.match(html, /Toner levels/);
+  assert.match(html, /64<small>%<\/small>/);
+  assert.match(html, /12<small>%<\/small>/);
+  assert.doesNotMatch(html, /80<small>%<\/small>/);
+  assert.match(html, /class="hp-badge brother"/);
+  assert.match(html, /class="art art-brother_laser"/);
+  assert.match(render(brotherHass({ status: "printing" }), {}).shadowRoot.innerHTML, /Printing/);
+});
+
+test("Brother integration: the raw status text when the printer status sensor is missing", () => {
+  assert.match(render(brotherHass({ key: "status", status: "sleep" }), {}).shadowRoot.innerHTML, /Sleeping|Sleep|Power save/i);
+  assert.match(render(brotherHass({ key: "status", status: "printing" }), {}).shadowRoot.innerHTML, /Printing/);
 });

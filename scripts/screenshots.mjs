@@ -221,6 +221,32 @@ for (const [id, state, attributes] of [
   ipp.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
 }
 
+// Mock IPP-only Epson ink tank printer (four inks): generic picture, Epson logo badge.
+const epson = { states: { ...states }, entities: { ...entities },
+  devices: { ...devices, epson: { id: "epson", name: "Living room printer", manufacturer: "EPSON", model: "ET-2850 Series" } } };
+for (const [id, state, attributes] of [
+  ["sensor.epson_et_2850", "idle", { uri_supported: "ipp://192.168.1.32/ipp/print", options: ["idle", "printing", "stopped"], state_reason: "none" }],
+  ...[["black", "72"], ["cyan", "58"], ["magenta", "41"], ["yellow", "18"]].map(([color, level]) => [
+    `sensor.epson_${color}_ink`, level, { unit_of_measurement: "%", marker_type: "ink", friendly_name: `${color[0].toUpperCase() + color.slice(1)} ink` },
+  ]),
+]) {
+  epson.entities[id] = { entity_id: id, device_id: "epson" };
+  epson.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
+}
+
+// Mock IPP-only Canon MegaTank printer (four inks): MegaTank picture, Canon logo badge.
+const canon = { states: { ...states }, entities: { ...entities },
+  devices: { ...devices, canon: { id: "canon", name: "Study printer", manufacturer: "Canon", model: "PIXMA G650" } } };
+for (const [id, state, attributes] of [
+  ["sensor.canon_g650", "printing", { uri_supported: "ipp://192.168.1.33/ipp/print", options: ["idle", "printing", "stopped"], state_reason: "none" }],
+  ...[["black", "88"], ["cyan", "64"], ["magenta", "9"], ["yellow", "52"]].map(([color, level]) => [
+    `sensor.canon_${color}_ink`, level, { unit_of_measurement: "%", marker_type: "ink-cartridge", marker_low_level: 10, friendly_name: `${color[0].toUpperCase() + color.slice(1)} ink` },
+  ]),
+]) {
+  canon.entities[id] = { entity_id: id, device_id: "canon" };
+  canon.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
+}
+
 const hass = { states, entities, devices };
 const offline = structuredClone(states);
 offline["sensor.officejet_status"].state = "unavailable";
@@ -243,10 +269,20 @@ await render(
     { file: "offline-dark", type: "printer-card", theme: "dark", width: 460, config: {}, hass: { states: offline } },
     { file: "ipp", type: "printer-card", theme: "light", width: 460, config: { device_id: "laser" }, hass: ipp },
     { file: "ipp-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "laser" }, hass: ipp },
+    { file: "epson", type: "printer-card", theme: "light", width: 460, config: { device_id: "epson" }, hass: epson },
+    { file: "epson-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "epson" }, hass: epson },
+    { file: "canon", type: "printer-card", theme: "light", width: 460, config: { device_id: "canon" }, hass: canon },
+    { file: "canon-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "canon" }, hass: canon },
     { file: "mini-card", type: "printer-mini-card", theme: "light", width: 380, config: {} },
     { file: "mini-card-dark", type: "printer-mini-card", theme: "dark", width: 380, config: {} },
     { file: "mini-offline", type: "printer-mini-card", theme: "light", width: 380, config: {}, hass: { states: offline } },
     { file: "mini-offline-dark", type: "printer-mini-card", theme: "dark", width: 380, config: {}, hass: { states: offline } },
+    { file: "mini-ipp", type: "printer-mini-card", theme: "light", width: 380, config: { device_id: "laser" }, hass: ipp },
+    { file: "mini-ipp-dark", type: "printer-mini-card", theme: "dark", width: 380, config: { device_id: "laser" }, hass: ipp },
+    { file: "mini-epson", type: "printer-mini-card", theme: "light", width: 380, config: { device_id: "epson" }, hass: epson },
+    { file: "mini-epson-dark", type: "printer-mini-card", theme: "dark", width: 380, config: { device_id: "epson" }, hass: epson },
+    { file: "mini-canon", type: "printer-mini-card", theme: "light", width: 380, config: { device_id: "canon" }, hass: canon },
+    { file: "mini-canon-dark", type: "printer-mini-card", theme: "dark", width: 380, config: { device_id: "canon" }, hass: canon },
     { file: "mini-zoom", type: "printer-mini-card", theme: "light", width: 460, config: {}, after: zoomIn },
     { file: "mini-zoom-dark", type: "printer-mini-card", theme: "dark", width: 460, config: {}, after: zoomIn },
   ],
