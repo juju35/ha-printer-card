@@ -5,7 +5,7 @@ import { loadCard } from "./load.mjs";
 const { HpI18n, PrinterCard, PrinterCardEditor } = loadCard("printer-card.js", ["HpI18n", "PrinterCard", "PrinterCardEditor"]);
 const placeholders = (s) => String(s).match(/\{\w+\}/g)?.sort() ?? [];
 
-const NEW_LANGS = ["ro", "da", "sv", "bg", "ru", "uk", "hu", "ga", "sk", "cs", "sl", "mt", "lv", "el"];
+const NEW_LANGS = ["ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"];
 const LANGS = ["de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", ...NEW_LANGS];
 
 test("I18N parity: every language has exactly the keys and placeholders of en, and no empty value", () => {
@@ -58,7 +58,7 @@ test("language resolution: full code, then the part before the dash, then en", (
     "fr-FR": "fr", "sr-Latn": "sr-Latn", sr: "sr", de: "de",
     "it-IT": "it", "nl-BE": "nl", pt: "pt", "pt-BR": "pt", "pl-PL": "pl", ja: "en",
     "ro-RO": "ro", "da-DK": "da", "sv-SE": "sv", "bg-BG": "bg", "ru-RU": "ru", "uk-UA": "uk", "hu-HU": "hu",
-    "ga-IE": "ga", "sk-SK": "sk", "cs-CZ": "cs", "sl-SI": "sl", "mt-MT": "mt", "lv-LV": "lv", "el-GR": "el",
+    "sk-SK": "sk", "cs-CZ": "cs", "sl-SI": "sl", "lv-LV": "lv", "el-GR": "el",
   };
   for (const [language, expected] of Object.entries(cases)) {
     // Card: config.language, then the HA language.
@@ -90,18 +90,18 @@ test("editor language options: one per dictionary, with their native names", () 
   assert.equal(labels.pl, "Polski");
   const native = {
     ro: "Română", da: "Dansk", sv: "Svenska", bg: "Български", ru: "Русский", uk: "Українська", hu: "Magyar",
-    ga: "Gaeilge", sk: "Slovenčina", cs: "Čeština", sl: "Slovenščina", mt: "Malti", lv: "Latviešu", el: "Ελληνικά",
+    sk: "Slovenčina", cs: "Čeština", sl: "Slovenščina", lv: "Latviešu", el: "Ελληνικά",
   };
   for (const [lang, label] of Object.entries(native)) assert.equal(labels[lang], label, `${lang} label`);
-  // Same order as the README table: the 14 new languages follow Polski.
+  // Same order as the README table: the 12 new languages follow Polski.
   const values = Array.from(options, (o) => o.value);
   assert.deepEqual(values.slice(values.indexOf("pl") + 1), NEW_LANGS);
 });
 
 test("I18N: the printhead has its own forms where its gender differs from the cartridge's", () => {
   const withPh = Object.keys(HpI18n).filter((lang) => Object.keys(HpI18n[lang]).some((k) => k.startsWith("ph_"))).sort();
-  // Feminine printhead next to a masculine cartridge (pl, pt, sr, ru, uk, mt), neuter next to a common-gender one (da, sv).
-  assert.deepEqual(withPh, ["da", "mt", "pl", "pt", "ru", "sr", "sr-Latn", "sv", "uk"]);
+  // Feminine printhead next to a masculine cartridge (pl, pt, sr, ru, uk), neuter next to a common-gender one (da, sv).
+  assert.deepEqual(withPh, ["da", "pl", "pt", "ru", "sr", "sr-Latn", "sv", "uk"]);
   // Same keys in both Serbian scripts.
   const ph = (lang) => Object.keys(HpI18n[lang]).filter((k) => k.startsWith("ph_")).sort();
   assert.deepEqual(ph("sr"), ph("sr-Latn"));

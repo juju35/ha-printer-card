@@ -44,7 +44,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
 - Automatic entity discovery from the device (works with English or French entity IDs), status, IPP sensor, ePrint sensors and page counter can be overridden
 - Visual editor in the dashboard UI (no YAML needed)
-- English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Irish, Slovak, Czech, Slovenian, Maltese, Latvian and Greek, follows the Home Assistant language
+- English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
 - Light and dark theme compatible
 - Single file, no dependencies, HACS-ready
 
@@ -156,7 +156,7 @@ entities:
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
 | `picture` | ❌ | `auto` | Picture: `auto`, `officejet`, `laserjet`, `deskjet`, `smart_tank` or `generic` (see below) |
 | `image` | ❌ | — | URL of your own printer picture, e.g. `/local/printer.png`; replaces `picture` |
-| `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `ga`, `sk`, `cs`, `sl`, `mt`, `lv` or `el` (auto-detects from HA settings) |
+| `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 | `entities` | ❌ | Auto | Override detected entities (see below) |
 | `zoom` | ❌ | `true` | Mini card only: detail button in the top right corner, showing the full card; a click on it or anywhere else goes back to the compact view. `false` removes it |
 
@@ -358,11 +358,9 @@ The card auto-detects the language from your Home Assistant settings. Currently 
 | Русский | `ru` |
 | Українська | `uk` |
 | Magyar | `hu` |
-| Gaeilge | `ga` |
 | Slovenčina | `sk` |
 | Čeština | `cs` |
 | Slovenščina | `sl` |
-| Malti | `mt` |
 | Latviešu | `lv` |
 | Ελληνικά | `el` |
 

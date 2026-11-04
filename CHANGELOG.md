@@ -3,7 +3,7 @@
 ## 2.5.3 - 2026-11-04
 
 ### Added
-- Added Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Irish, Slovak, Czech, Slovenian, Maltese, Latvian and Greek translations (`ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `ga`, `sk`, `cs`, `sl`, `mt`, `lv`, `el`), also in the editor's language list. A regional code (`cs-CZ`, `el-GR`…) falls back to its language. In alerts, the cartridge color is written in lower case, and printhead problems agree with the printhead where its gender differs from the cartridge's (Danish, Swedish, Russian, Ukrainian, Maltese).
+- Added Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek translations (`ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv`, `el`), also in the editor's language list. A regional code (`cs-CZ`, `el-GR`…) falls back to its language. In alerts, the cartridge color is written in lower case, and printhead problems agree with the printhead where its gender differs from the cartridge's (Danish, Swedish, Russian, Ukrainian).
 
 ## 2.5.2 - 2026-11-04
 

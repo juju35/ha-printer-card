@@ -214,13 +214,13 @@ test("Italian, Dutch, Portuguese and Polish alerts write the cartridge color in 
   assert.match(html("pl-PL"), /Niski poziom tuszu: czarny/);
 });
 
-test("the 14 newer languages write the cartridge color in lower case in alerts", () => {
+test("the 12 newer languages write the cartridge color in lower case in alerts", () => {
   const html = (language) => render({ ...levels(mockHass(), { black: 10 }), language }).shadowRoot.innerHTML;
   const expected = {
     ro: /Cerneală puțină: negru/, da: /Lavt blækniveau: sort/, sv: /Låg bläcknivå: svart/, bg: /Ниско ниво на мастилото: черна/,
     ru: /Низкий уровень чернил: чёрный/, uk: /Низький рівень чорнила: чорний/, hu: /Alacsony tintaszint: fekete/,
-    ga: /Dúch íseal: dubh/, sk: /Nízka hladina atramentu: čierna/, "cs-CZ": /Nízká hladina inkoustu: černá/,
-    sl: /Malo črnila: črna/, mt: /Linka baxxa: iswed/, lv: /Zems tintes līmenis: melna/, "el-GR": /Χαμηλή στάθμη μελανιού: μαύρη/,
+    sk: /Nízka hladina atramentu: čierna/, "cs-CZ": /Nízká hladina inkoustu: černá/,
+    sl: /Malo črnila: črna/, lv: /Zems tintes līmenis: melna/, "el-GR": /Χαμηλή στάθμη μελανιού: μαύρη/,
   };
   for (const [lang, re] of Object.entries(expected)) assert.match(html(lang), re, lang);
 });
@@ -606,7 +606,6 @@ const PRINTHEAD_CASES = {
   sv: { empty: "Skrivhuvud: Tomt", used: "Skrivhuvud: Redan använt", damaged: "Skrivhuvud: Skadat" },
   ru: { empty: "Печатающая головка: Пуста", damaged: "Печатающая головка: Повреждена" },
   uk: { missing: "Друкувальна головка: Відсутня", damaged: "Друкувальна головка: Пошкоджена" },
-  mt: { missing: "Ras tal-istampar: Nieqsa", empty: "Ras tal-istampar: Vojta" },
   sr: {
     empty: "Глава за штампање: Празна", used: "Глава за штампање: Већ коришћена", counterfeit: "Глава за штампање: Фалсификована",
     nongenuine: "Глава за штампање: Није оригинална HP", incompatible: "Глава за штампање: Некомпатибилна", damaged: "Глава за штампање: Оштећена",
@@ -617,7 +616,7 @@ const PRINTHEAD_CASES = {
   },
 };
 
-test("printhead problems agree with the printhead in da, sv, mt, pl, pt, ru, uk, sr and sr-Latn", () => {
+test("printhead problems agree with the printhead in da, sv, pl, pt, ru, uk, sr and sr-Latn", () => {
   for (const [lang, cases] of Object.entries(PRINTHEAD_CASES)) {
     for (const [problem, expected] of Object.entries(cases)) {
       const alerts = alertsOf(withProblems(mockHass(), { printhead: problem }), lang);
@@ -643,7 +642,7 @@ test("cartridge problems keep their own (masculine) forms next to a printhead pr
   const pt = withProblems(mockHass(), { printhead: "used", black: "used" });
   assert.ok(alertsOf(pt, "pt").some((a) => /^Tinteiro \(.*\): já utilizado$/i.test(a)), alertsOf(pt, "pt").join(" | "));
   assert.ok(alertsOf(pt, "pl").some((a) => /^Wkład \(.*\): już używany$/i.test(a)), alertsOf(pt, "pl").join(" | "));
-  // ru, uk and mt cartridges are masculine, da and sv ones of common gender.
+  // ru and uk cartridges are masculine, da and sv ones of common gender.
   const dmg = withProblems(mockHass(), { printhead: "damaged", black: "damaged" });
   assert.ok(alertsOf(dmg, "ru").includes("Картридж (чёрный): повреждён"), alertsOf(dmg, "ru").join(" | "));
   assert.ok(alertsOf(dmg, "uk").includes("Картридж (чорний): пошкоджений"), alertsOf(dmg, "uk").join(" | "));
