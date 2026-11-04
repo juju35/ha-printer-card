@@ -5,14 +5,14 @@
 [![Validate](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml)
 [![Lint](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml)
 [![Release](https://img.shields.io/github/v/release/juju35/ha-printer-card)](https://github.com/juju35/ha-printer-card/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/juju35/ha-printer-card/blob/main/LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/julienstep9)
 
 <p align="center">
-  <img src="images/hp.svg" alt="HP" height="56">&nbsp;&nbsp;&nbsp;
-  <img src="images/brother.svg" alt="Brother" height="28">&nbsp;&nbsp;&nbsp;
-  <img src="images/epson.svg" alt="Epson" height="28">&nbsp;&nbsp;&nbsp;
-  <img src="images/canon.svg" alt="Canon" height="28">
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="HP" height="56">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="Brother" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="Epson" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="Canon" height="28">
 </p>
 
 Custom Lovelace card for printers in Home Assistant: **HP** printers with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (`hpprinter`), **Brother** printers with the core [Brother](https://www.home-assistant.io/integrations/brother/) integration, and **any IPP printer** (Epson, Canon, Brother, Xerox…) through the core [IPP](https://www.home-assistant.io/integrations/ipp/) integration. HP, Brother, Epson and Canon printers get their brand logo and a drawing of their range.
@@ -25,7 +25,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
 
-| <img src="images/hp.svg" alt="HP" height="20"> | <img src="images/brother.svg" alt="Brother" height="14"> | <img src="images/epson.svg" alt="Epson" height="14"> | <img src="images/canon.svg" alt="Canon" height="14"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="HP" height="20"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="Brother" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="Epson" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="Canon" height="14"> |
 |---|---|---|---|
 | ![HP printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png) | ![Brother printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png) | ![Epson printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson.png) | ![Canon printer card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png) |
 | ![HP printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png) | ![Brother printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp.png) | ![Epson printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson.png) | ![Canon printer mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png) |
@@ -194,9 +194,9 @@ Cartridges are always found from the printer's devices.
 
 The drawings by brand:
 
-<p align="center"><img src="images/models-hp.svg" alt="HP printer pictures" width="680"></p>
-<p align="center"><img src="images/models-brother.svg" alt="Brother printer pictures" width="340">&nbsp;&nbsp;<img src="images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
-<p align="center"><img src="images/models-canon.svg" alt="Canon printer pictures" width="510">&nbsp;&nbsp;<img src="images/models-generic.svg" alt="Generic printer picture" width="170"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-generic.svg" alt="Generic printer picture" width="170"></p>
 
 The control panel of each picture lights up in the status color.
 
@@ -221,94 +221,94 @@ HP OfficeJet Pro 9010 printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![HP printing animation](screenshots/printing.gif) | ![HP mini card printing animation](screenshots/printing-mini.gif) |
-| Dark | ![HP printing animation dark](screenshots/printing-dark.gif) | ![HP mini card printing animation dark](screenshots/printing-mini-dark.gif) |
+| Light | ![HP printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing.gif) | ![HP mini card printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-mini.gif) |
+| Dark | ![HP printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-dark.gif) | ![HP mini card printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-mini-dark.gif) |
 
-### <img src="images/hp.svg" alt="" width="24"> HP
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="24"> HP
 
 OfficeJet Pro 9010, set up with the HP Printer integration (and IPP for the paper alerts):
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![card](screenshots/card.png) | ![mini card](screenshots/mini-card.png) |
-| Dark | ![card dark](screenshots/card-dark.png) | ![mini card dark](screenshots/mini-card-dark.png) |
+| Light | ![card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png) | ![mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png) |
+| Dark | ![card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card-dark.png) | ![mini card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card-dark.png) |
 
 Printer turned off: the picture turns grey and the card only says *Offline* with the last time it was seen:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![offline](screenshots/offline.png) | ![mini card offline](screenshots/mini-offline.png) |
-| Dark | ![offline dark](screenshots/offline-dark.png) | ![mini card offline dark](screenshots/mini-offline-dark.png) |
+| Light | ![offline](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/offline.png) | ![mini card offline](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-offline.png) |
+| Dark | ![offline dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/offline-dark.png) | ![mini card offline dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-offline-dark.png) |
 
 Mini card zoomed in with its detail button (top right, click it again or anywhere outside the card to go back):
 
 | Light | Dark |
 |---|---|
-| ![mini card full view](screenshots/mini-zoom.png) | ![mini card full view dark](screenshots/mini-zoom-dark.png) |
+| ![mini card full view](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom.png) | ![mini card full view dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom-dark.png) |
 
 Drawn HP ranges:
 
-<p align="center"><img src="images/models-hp.svg" alt="HP printer pictures" width="680"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
 
-### <img src="images/brother.svg" alt="" height="16"> Brother
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="" height="16"> Brother
 
 HL-L2350DW laser printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![brother card](screenshots/ipp.png) | ![brother mini card](screenshots/mini-ipp.png) |
-| Dark | ![brother card dark](screenshots/ipp-dark.png) | ![brother mini card dark](screenshots/mini-ipp-dark.png) |
+| Light | ![brother card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png) | ![brother mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp.png) |
+| Dark | ![brother card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp-dark.png) | ![brother mini card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp-dark.png) |
 
 Drawn Brother ranges:
 
-<p align="center"><img src="images/models-brother.svg" alt="Brother printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340"></p>
 
 The laser printer printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![brother printing animation](screenshots/brother-printing.gif) | ![brother mini card printing animation](screenshots/brother-printing-mini.gif) |
-| Dark | ![brother printing animation dark](screenshots/brother-printing-dark.gif) | ![brother mini card printing animation dark](screenshots/brother-printing-mini-dark.gif) |
+| Light | ![brother printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing.gif) | ![brother mini card printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-mini.gif) |
+| Dark | ![brother printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-dark.gif) | ![brother mini card printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-mini-dark.gif) |
 
-### <img src="images/epson.svg" alt="" height="16"> Epson
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="" height="16"> Epson
 
 EcoTank ET-2850 ink tank printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![epson card](screenshots/epson.png) | ![epson mini card](screenshots/mini-epson.png) |
-| Dark | ![epson card dark](screenshots/epson-dark.png) | ![epson mini card dark](screenshots/mini-epson-dark.png) |
+| Light | ![epson card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson.png) | ![epson mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson.png) |
+| Dark | ![epson card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-dark.png) | ![epson mini card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson-dark.png) |
 
 Drawn Epson ranges:
 
-<p align="center"><img src="images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
 
 The EcoTank printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![epson printing animation](screenshots/epson-printing.gif) | ![epson mini card printing animation](screenshots/epson-printing-mini.gif) |
-| Dark | ![epson printing animation dark](screenshots/epson-printing-dark.gif) | ![epson mini card printing animation dark](screenshots/epson-printing-mini-dark.gif) |
+| Light | ![epson printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing.gif) | ![epson mini card printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-mini.gif) |
+| Dark | ![epson printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-dark.gif) | ![epson mini card printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-mini-dark.gif) |
 
-### <img src="images/canon.svg" alt="" height="16"> Canon
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="" height="16"> Canon
 
 PIXMA G650 MegaTank printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![canon card](screenshots/canon.png) | ![canon mini card](screenshots/mini-canon.png) |
-| Dark | ![canon card dark](screenshots/canon-dark.png) | ![canon mini card dark](screenshots/mini-canon-dark.png) |
+| Light | ![canon card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png) | ![canon mini card](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png) |
+| Dark | ![canon card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-dark.png) | ![canon mini card dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon-dark.png) |
 
 Drawn Canon ranges:
 
-<p align="center"><img src="images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
 
 The MegaTank printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | ![canon printing animation](screenshots/canon-printing.gif) | ![canon mini card printing animation](screenshots/canon-printing-mini.gif) |
-| Dark | ![canon printing animation dark](screenshots/canon-printing-dark.gif) | ![canon mini card printing animation dark](screenshots/canon-printing-mini-dark.gif) |
+| Light | ![canon printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing.gif) | ![canon mini card printing animation](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-mini.gif) |
+| Dark | ![canon printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-dark.gif) | ![canon mini card printing animation dark](https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-mini-dark.gif) |
 
 ## How it works
 
@@ -333,7 +333,7 @@ npm run models       # renders the drawings by brand into images/models-<brand>.
 ### Releasing
 
 1. Bump `version` in `package.json`
-2. Add a `## <version>` section at the top of [CHANGELOG.md](CHANGELOG.md)
+2. Add a `## <version>` section at the top of [CHANGELOG.md](https://github.com/juju35/ha-printer-card/blob/main/CHANGELOG.md)
 3. Push to `main`: the **Release** workflow builds the card, creates the tag and the GitHub release with the changelog section as notes, and attaches `printer-card.js`
 
 ## Translations
@@ -369,7 +369,7 @@ Contributions for additional languages are welcome!
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/juju35/ha-printer-card/blob/main/LICENSE)
 
 ## Support
 
