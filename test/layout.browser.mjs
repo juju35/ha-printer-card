@@ -25,7 +25,8 @@ const CONTEXTS = [
 const VIEWS = ["printer-card", "printer-mini-card", "zoomed mini"];
 // "unavailable" is the offline view: its "Last seen ..." line is the longest unbreakable text of the mini card.
 const STATES = ["ready", "processing", "canceljob", "inpowersave", "unknown", "unavailable"];
-const LANGS = ["en", "pl", "sr-Latn"];
+// hu, bg and el: the longest labels of the newer languages (section titles, status pill, offline line).
+const LANGS = ["en", "pl", "sr-Latn", "hu", "bg", "el"];
 
 let browser;
 let page;

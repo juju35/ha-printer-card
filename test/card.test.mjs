@@ -214,6 +214,17 @@ test("Italian, Dutch, Portuguese and Polish alerts write the cartridge color in 
   assert.match(html("pl-PL"), /Niski poziom tuszu: czarny/);
 });
 
+test("the 12 newer languages write the cartridge color in lower case in alerts", () => {
+  const html = (language) => render({ ...levels(mockHass(), { black: 10 }), language }).shadowRoot.innerHTML;
+  const expected = {
+    ro: /Cerneală puțină: negru/, da: /Lavt blækniveau: sort/, sv: /Låg bläcknivå: svart/, bg: /Ниско ниво на мастилото: черна/,
+    ru: /Низкий уровень чернил: чёрный/, uk: /Низький рівень чорнила: чорний/, hu: /Alacsony tintaszint: fekete/,
+    sk: /Nízka hladina atramentu: čierna/, "cs-CZ": /Nízká hladina inkoustu: černá/,
+    sl: /Malo črnila: črna/, lv: /Zems tintes līmenis: melna/, "el-GR": /Χαμηλή στάθμη μελανιού: μαύρη/,
+  };
+  for (const [lang, re] of Object.entries(expected)) assert.match(html(lang), re, lang);
+});
+
 test("total pages: HA's full locale when it matches the card's language, pt read as European Portuguese", () => {
   const html = (hass, config) => render({ ...mockHass(), ...hass }, { device_id: "p", ...config }).shadowRoot.innerHTML;
   // Grouping with a (narrow no-break) space in pt-PT, a dot in pt-BR.
@@ -586,10 +597,15 @@ const alertsOf = (hass, language) => {
   return Array.from(html.matchAll(/<div class="alert error"><ha-icon[^>]*><\/ha-icon><span>([^<]*)<\/span>/g), (m) => m[1]);
 };
 
-// The printhead (głowica, cabeça, глава / glava) is feminine: its states agree with it, not with the cartridge.
+// The printhead (głowica, cabeça, глава / glava, головка, ras) is feminine, skrivehoved / skrivhuvud neuter: its states
+// agree with it, not with the cartridge.
 const PRINTHEAD_CASES = {
   pl: { used: "Głowica drukująca: Już używana", nongenuine: "Głowica drukująca: Nieoryginalna HP" },
   pt: { used: "Cabeça de impressão: Já utilizada", counterfeit: "Cabeça de impressão: Contrafeita" },
+  da: { empty: "Skrivehoved: Tomt", nongenuine: "Skrivehoved: Ikke originalt HP", incompatible: "Skrivehoved: Inkompatibelt" },
+  sv: { empty: "Skrivhuvud: Tomt", used: "Skrivhuvud: Redan använt", damaged: "Skrivhuvud: Skadat" },
+  ru: { empty: "Печатающая головка: Пуста", damaged: "Печатающая головка: Повреждена" },
+  uk: { missing: "Друкувальна головка: Відсутня", damaged: "Друкувальна головка: Пошкоджена" },
   sr: {
     empty: "Глава за штампање: Празна", used: "Глава за штампање: Већ коришћена", counterfeit: "Глава за штампање: Фалсификована",
     nongenuine: "Глава за штампање: Није оригинална HP", incompatible: "Глава за штампање: Некомпатибилна", damaged: "Глава за штампање: Оштећена",
@@ -600,7 +616,7 @@ const PRINTHEAD_CASES = {
   },
 };
 
-test("printhead problems agree with the feminine printhead in pl, pt, sr and sr-Latn", () => {
+test("printhead problems agree with the printhead in da, sv, pl, pt, ru, uk, sr and sr-Latn", () => {
   for (const [lang, cases] of Object.entries(PRINTHEAD_CASES)) {
     for (const [problem, expected] of Object.entries(cases)) {
       const alerts = alertsOf(withProblems(mockHass(), { printhead: problem }), lang);
@@ -626,6 +642,11 @@ test("cartridge problems keep their own (masculine) forms next to a printhead pr
   const pt = withProblems(mockHass(), { printhead: "used", black: "used" });
   assert.ok(alertsOf(pt, "pt").some((a) => /^Tinteiro \(.*\): já utilizado$/i.test(a)), alertsOf(pt, "pt").join(" | "));
   assert.ok(alertsOf(pt, "pl").some((a) => /^Wkład \(.*\): już używany$/i.test(a)), alertsOf(pt, "pl").join(" | "));
+  // ru and uk cartridges are masculine, da and sv ones of common gender.
+  const dmg = withProblems(mockHass(), { printhead: "damaged", black: "damaged" });
+  assert.ok(alertsOf(dmg, "ru").includes("Картридж (чёрный): повреждён"), alertsOf(dmg, "ru").join(" | "));
+  assert.ok(alertsOf(dmg, "uk").includes("Картридж (чорний): пошкоджений"), alertsOf(dmg, "uk").join(" | "));
+  assert.ok(alertsOf(dmg, "sv").includes("Bläckpatron (svart): skadad"), alertsOf(dmg, "sv").join(" | "));
 });
 
 // Narrow header (min_columns of the Sections view, ~156-250px): the name never collapses to 0px and

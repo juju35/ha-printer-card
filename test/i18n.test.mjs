@@ -5,7 +5,8 @@ import { loadCard } from "./load.mjs";
 const { HpI18n, PrinterCard, PrinterCardEditor } = loadCard("printer-card.js", ["HpI18n", "PrinterCard", "PrinterCardEditor"]);
 const placeholders = (s) => String(s).match(/\{\w+\}/g)?.sort() ?? [];
 
-const LANGS = ["de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl"];
+const NEW_LANGS = ["ro", "da", "sv", "bg", "ru", "uk", "hu", "sk", "cs", "sl", "lv", "el"];
+const LANGS = ["de", "es", "sr", "sr-Latn", "it", "nl", "pt", "pl", ...NEW_LANGS];
 
 test("I18N parity: every language has exactly the keys and placeholders of en, and no empty value", () => {
   const en = HpI18n.en;
@@ -56,6 +57,8 @@ test("language resolution: full code, then the part before the dash, then en", (
   const cases = {
     "fr-FR": "fr", "sr-Latn": "sr-Latn", sr: "sr", de: "de",
     "it-IT": "it", "nl-BE": "nl", pt: "pt", "pt-BR": "pt", "pl-PL": "pl", ja: "en",
+    "ro-RO": "ro", "da-DK": "da", "sv-SE": "sv", "bg-BG": "bg", "ru-RU": "ru", "uk-UA": "uk", "hu-HU": "hu",
+    "sk-SK": "sk", "cs-CZ": "cs", "sl-SI": "sl", "lv-LV": "lv", "el-GR": "el",
   };
   for (const [language, expected] of Object.entries(cases)) {
     // Card: config.language, then the HA language.
@@ -75,7 +78,7 @@ test("relative times follow the script: Latin for sr-Latn, Cyrillic for sr", () 
   assert.match(cyrl, /[Ѐ-ӿ]/, cyrl);
 });
 
-test("editor language options: one per dictionary, Italian, Dutch, Portuguese and Polish included", () => {
+test("editor language options: one per dictionary, with their native names", () => {
   const schema = PrinterCardEditor.prototype._schema.call({ _lang: () => "en", _config: {} });
   const field = schema.find((s) => s.name === "language");
   const options = field.selector.select.options;
@@ -85,12 +88,44 @@ test("editor language options: one per dictionary, Italian, Dutch, Portuguese an
   assert.equal(labels.nl, "Nederlands");
   assert.equal(labels.pt, "Português (Portugal)");
   assert.equal(labels.pl, "Polski");
+  const native = {
+    ro: "Română", da: "Dansk", sv: "Svenska", bg: "Български", ru: "Русский", uk: "Українська", hu: "Magyar",
+    sk: "Slovenčina", cs: "Čeština", sl: "Slovenščina", lv: "Latviešu", el: "Ελληνικά",
+  };
+  for (const [lang, label] of Object.entries(native)) assert.equal(labels[lang], label, `${lang} label`);
+  // Same order as the README table: the 12 new languages follow Polski.
+  const values = Array.from(options, (o) => o.value);
+  assert.deepEqual(values.slice(values.indexOf("pl") + 1), NEW_LANGS);
 });
 
-test("I18N: the feminine printhead has its own forms in pl, pt, sr and sr-Latn only", () => {
+test("I18N: the printhead has its own forms where its gender differs from the cartridge's", () => {
   const withPh = Object.keys(HpI18n).filter((lang) => Object.keys(HpI18n[lang]).some((k) => k.startsWith("ph_"))).sort();
-  assert.deepEqual(withPh, ["pl", "pt", "sr", "sr-Latn"]);
+  // Feminine printhead next to a masculine cartridge (pl, pt, sr, ru, uk), neuter next to a common-gender one (da, sv).
+  assert.deepEqual(withPh, ["da", "pl", "pt", "ru", "sr", "sr-Latn", "sv", "uk"]);
   // Same keys in both Serbian scripts.
   const ph = (lang) => Object.keys(HpI18n[lang]).filter((k) => k.startsWith("ph_")).sort();
   assert.deepEqual(ph("sr"), ph("sr-Latn"));
+});
+
+// Only Serbian is bound to one script: the other Cyrillic (bg, ru, uk) and the Greek dictionaries keep Latin brands,
+// and no Latin-script dictionary carries a Cyrillic or Greek letter.
+test("I18N: bg, ru and uk are written in Cyrillic, el in Greek, the others in Latin script", () => {
+  const scripts = { bg: /[Ѐ-ӿ]/, ru: /[Ѐ-ӿ]/, uk: /[Ѐ-ӿ]/, el: /[Ͱ-Ͽἀ-῿]/ };
+  for (const lang of NEW_LANGS) {
+    for (const [key, value] of Object.entries(HpI18n[lang])) {
+      const rest = value.replace(LATIN_OK, "");
+      if (scripts[lang]) {
+        assert.doesNotMatch(rest, /[A-Za-z]/, `${lang}.${key} has Latin letters: ${value}`);
+        if (rest.trim() && /\p{L}/u.test(rest)) assert.match(rest, scripts[lang], `${lang}.${key} is not in its script: ${value}`);
+      } else {
+        assert.doesNotMatch(value, /[Ѐ-ӿͰ-Ͽ]/, `${lang}.${key} has Cyrillic or Greek letters: ${value}`);
+      }
+    }
+  }
+});
+
+test("relative times follow the language: Cyrillic for bg, ru and uk, Greek for el", () => {
+  const date = new Date(Date.now() - 3 * 3600 * 1000);
+  for (const lang of ["bg", "ru", "uk"]) assert.match(PrinterCard.prototype._relative.call({ _lang: () => lang }, date), /[Ѐ-ӿ]/, lang);
+  assert.match(PrinterCard.prototype._relative.call({ _lang: () => "el" }, date), /[Ͱ-Ͽ]/);
 });
