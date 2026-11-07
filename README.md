@@ -1,6 +1,6 @@
 # ha-printer-card
 
-[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![Marketplace](https://img.shields.io/badge/Marketplace-Custom-41BDF5.svg)](https://www.home-assistant.io/integrations/marketplace/)
 [![HACS Validation](https://github.com/juju35/ha-printer-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/hacs.yml)
 [![Validate](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml)
 [![Lint](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml)
@@ -23,7 +23,7 @@ When the printer is off, the card simply says it's **offline**. Otherwise it sho
 
 Pick the printer, the card finds all its entities by itself. A compact **Printer Mini Card** shows the same printer on two lines, and its detail button opens the full card in place.
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
+[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
 
 | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="HP" height="20"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="Brother" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="Epson" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="Canon" height="14"> |
 |---|---|---|---|
@@ -47,13 +47,13 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - Visual editor in the dashboard UI (no YAML needed)
 - English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek, follows the Home Assistant language
 - Light and dark theme compatible
-- Single file, no dependencies, HACS-ready
+- Single file, no dependencies, ready for the Marketplace
 
 ## Supported integrations
 
 | Integration | Printers | What the card shows |
 |---|---|---|
-| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (HACS, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
+| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
 | [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
 | [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
 
@@ -66,20 +66,20 @@ With HP Printer or Brother and IPP both set up for the same printer, the card us
 
 ## Installation
 
-### Via HACS (recommended)
+### Via the Marketplace (recommended)
 
 Click the button below to add the repository directly:
 
-[![Add to HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
+[![Add to the Marketplace](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
 
 Or manually:
 
-1. Open HACS → **⋮** → **Custom repositories**
+1. Open **Settings → Marketplace → Add from link** (top right; this needs a GitHub account connected)
 2. Add `https://github.com/juju35/ha-printer-card` — Type: **Dashboard**
-3. Search for **Printer Card** and install it
+3. Open **Printer Card** and click **Install**
 4. Clear your browser cache and refresh
 
-HACS registers the dashboard resource for you.
+The Marketplace registers the dashboard resource for you.
 
 ### Manual
 
@@ -328,7 +328,7 @@ npm run screenshots  # renders the cards with mock HP, Brother, Epson and Canon 
 npm run models       # renders the drawings by brand into images/models-<brand>.svg
 ```
 
-`dist/` is not committed: `npm run build` creates it locally, CI builds it on every push, and the release workflow attaches the built file to the release, which is where HACS downloads it from.
+`dist/` is not committed: `npm run build` creates it locally, CI builds it on every push, and the release workflow attaches the built file to the release, which is where the Marketplace installs it from.
 
 ### Releasing
 
