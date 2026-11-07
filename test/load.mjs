@@ -13,7 +13,9 @@ export function loadCard(file, names) {
     console: { info() {}, log() {}, warn() {}, error() {} },
     HTMLElement: class {
       attachShadow() {
-        this.shadowRoot = { innerHTML: "", activeElement: null, addEventListener() {}, querySelector: () => null };
+        // Listeners added on the shadow root, by event type, so tests can fire them (keyboard on a chip).
+        const handlers = {};
+        this.shadowRoot = { innerHTML: "", activeElement: null, handlers, addEventListener: (type, fn) => { (handlers[type] ||= []).push(fn); }, querySelector: () => null };
         return this.shadowRoot;
       }
       addEventListener() {}
