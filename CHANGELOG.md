@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.6.0 - 2026-11-07
+
+### Features
+- Clicking a chip opens the more-info dialog of its entity: a cartridge level, the IPP printer sensor for its alerts, the ePrint sensor, or the entity of the first alert for the full card's alert counts.
+- The mini card takes 6 columns (half the width) by default in a Sections view.
+
 ## 2.5.4 - 2026-11-04
 
 ### Documentation

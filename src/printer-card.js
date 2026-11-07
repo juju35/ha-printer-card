@@ -2875,7 +2875,11 @@ class PrinterCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({}, this.constructor.defaults, config);
-    if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
+    if (!this.shadowRoot) {
+      this.attachShadow({ mode: 'open' });
+      // A chip opens the more-info dialog of its entity (`data-entity`), like a tile.
+      this.shadowRoot.addEventListener('click', (ev) => this._chipClick(ev));
+    }
     this._sig = null;
     this._update();
   }
@@ -2897,6 +2901,16 @@ class PrinterCard extends HTMLElement {
   }
 
   getCardSize() { return 5; }
+
+  _chipClick(ev) {
+    var chip = ev.composedPath().find((n) => n.dataset?.entity);
+    if (!chip) return;
+    ev.stopPropagation();
+    this.dispatchEvent(new CustomEvent('hass-more-info', { detail: { entityId: chip.dataset.entity }, bubbles: true, composed: true }));
+  }
+
+  // `data-entity` attribute of a chip that opens the more-info dialog of its entity ('' without one).
+  _ent(id) { return id ? ` data-entity="${hpEsc(id)}"` : ''; }
 
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
@@ -3061,7 +3075,7 @@ class PrinterCard extends HTMLElement {
         var p = this._num(ink.level);
         if (!Number.isNaN(p) && p <= low) {
           // `ink`: shown by the cartridge itself (tank or chip), not repeated as a chip in the mini card.
-          out.push({ level: p <= critical ? 'error' : 'warn', icon: 'mdi:water-alert', ink: true,
+          out.push({ level: p <= critical ? 'error' : 'warn', icon: 'mdi:water-alert', ink: true, entity: ink.level,
             text: this._t(p <= critical ? 'al_empty' : 'al_low', { c: label, p: Math.round(p) }) });
         }
       }
@@ -3070,17 +3084,17 @@ class PrinterCard extends HTMLElement {
         var key = hpCartridgeProblem(st.attributes.state);
         // A printhead uses its own ph_* form when its language has one (printhead and cartridge of another gender).
         var problem = (ink.printhead && (HpI18n[this._lang()] || {})[key.replace('cs_', 'ph_')]) || this._t(key);
-        out.push({ level: 'error', icon: ink.printhead ? 'mdi:printer-alert' : 'mdi:alert-circle',
+        out.push({ level: 'error', icon: ink.printhead ? 'mdi:printer-alert' : 'mdi:alert-circle', entity: ink.status,
           text: ink.printhead ? this._t('al_printhead', { s: problem }) : this._t('al_cartridge', { c: label, s: problem }) });
       }
       if (c.show_expired && ink.expiry && this._avail(ink.expiry)) {
         var d = new Date(this._val(ink.expiry));
         if (!Number.isNaN(d.getTime()) && d.getTime() < Date.now()) {
-          out.push({ level: 'info', icon: 'mdi:calendar-alert', text: this._t('al_expired', { c: label }) });
+          out.push({ level: 'info', icon: 'mdi:calendar-alert', entity: ink.expiry, text: this._t('al_expired', { c: label }) });
         }
       }
     });
-    if (state === 'stopped') out.push({ level: 'error', icon: 'mdi:printer-alert', text: this._t('al_stopped') });
+    if (state === 'stopped') out.push({ level: 'error', icon: 'mdi:printer-alert', entity: r.status, text: this._t('al_stopped') });
     out = out.concat(this._ippAlerts(r));
     var rank = { error: 0, warn: 1, info: 2 };
     return out.sort((a, b) => rank[a.level] - rank[b.level]);
@@ -3105,7 +3119,7 @@ class PrinterCard extends HTMLElement {
       if (text === key) text = base.replace(/-/g, ' ').replace(/^./, (ch) => ch.toUpperCase());
       if (seen[text]) return;
       seen[text] = true;
-      out.push({ level: level, icon: /media|paper|tray/.test(base) ? 'mdi:paper-roll-outline' : 'mdi:alert', text: text });
+      out.push({ level: level, icon: /media|paper|tray/.test(base) ? 'mdi:paper-roll-outline' : 'mdi:alert', entity: r.ipp, text: text });
     });
     return out;
   }
@@ -3229,14 +3243,16 @@ class PrinterCard extends HTMLElement {
     if (!offline && c.show_alerts) {
       var errors = alerts.filter((a) => a.level === 'error').length;
       var warns = alerts.filter((a) => a.level === 'warn').length;
-      if (errors) chips.push(`<span class="chip error"><ha-icon icon="mdi:alert-circle"></ha-icon>${errors}</span>`);
-      if (warns) chips.push(`<span class="chip warn"><ha-icon icon="mdi:alert"></ha-icon>${warns}</span>`);
+      // A count opens the entity of its first (most important) alert.
+      var first = (lvl) => this._ent(alerts.find((a) => a.level === lvl)?.entity);
+      if (errors) chips.push(`<span class="chip error"${first('error')}><ha-icon icon="mdi:alert-circle"></ha-icon>${errors}</span>`);
+      if (warns) chips.push(`<span class="chip warn"${first('warn')}><ha-icon icon="mdi:alert"></ha-icon>${warns}</span>`);
     }
     if (!offline && c.show_eprint && this._avail(r.eprint)) {
       var epOn = this._val(r.eprint) === 'on';
       var epReg = !r.eprint_registration || !this._avail(r.eprint_registration) || this._val(r.eprint_registration) === 'on';
       var epKey = !epReg ? 'ep_unregistered' : (epOn ? 'ep_on' : 'ep_off');
-      chips.push('<span class="chip ' + (epOn && epReg ? 'on' : 'muted') + '"><ha-icon icon="' +
+      chips.push('<span class="chip ' + (epOn && epReg ? 'on' : 'muted') + '"' + this._ent(epReg ? r.eprint : r.eprint_registration) + '><ha-icon icon="' +
         (epOn && epReg ? 'mdi:cloud-print-outline' : 'mdi:cloud-off-outline') + '"></ha-icon>' + this._t(epKey) + '</span>');
     }
 
@@ -3341,6 +3357,7 @@ class PrinterCard extends HTMLElement {
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
       '.chip ha-icon { --mdc-icon-size: 13px; }' +
+      '[data-entity] { cursor: pointer; }' +
       '.chip.error { background: color-mix(in srgb, var(--error-color, #db4437) 15%, transparent); color: var(--error-color, #db4437); }' +
       '.chip.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 15%, transparent); color: var(--warning-color, #ffa600); }' +
       '.chip.on { background: color-mix(in srgb, var(--info-color, #039be5) 15%, transparent); color: var(--info-color, #039be5); }' +
@@ -3456,7 +3473,7 @@ class PrinterMiniCard extends PrinterCard {
   // Home Assistant reads the grid options when it lays out the Sections view, not when the card is
   // zoomed: the mini card always asks for the compact grid, and rows: 'auto' lets the full view grow.
   // At 4 columns (~100-160px) the header cannot hold the logo, a readable name and the detail button.
-  getGridOptions() { return { columns: 12, min_columns: 6, rows: 'auto' }; }
+  getGridOptions() { return { columns: 6, min_columns: 6, rows: 'auto' }; }
 
   _styles(color) {
     return super._styles(color).replace('</style>', `${HP_MINI_STYLES}</style>`);
@@ -3504,14 +3521,14 @@ class PrinterMiniCard extends PrinterCard {
     if (c.show_inks) {
       r.inks.filter((i) => !i.printhead && i.level).forEach((ink) => {
         var k = this._inkInfo(ink);
-        out.push('<span class="r' + (k.crit || k.bad ? ' error' : (k.low ? ' warn' : '')) + '" title="' + hpEsc(k.title) + '">' +
+        out.push('<span class="r' + (k.crit || k.bad ? ' error' : (k.low ? ' warn' : '')) + '" title="' + hpEsc(k.title) + '"' + this._ent(ink.level) + '>' +
           '<span class="mt"><span style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:2px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');
       });
     }
     if (c.show_alerts) {
       v.alerts.filter((a) => !a.ink).forEach((a) => {
         var txt = hpEsc(hpCap(a.text));
-        out.push(`<span class="r ${a.level}" title="${txt}"><ha-icon icon="${a.icon}"></ha-icon><span class="tx">${txt}</span></span>`);
+        out.push(`<span class="r ${a.level}" title="${txt}"${this._ent(a.entity)}><ha-icon icon="${a.icon}"></ha-icon><span class="tx">${txt}</span></span>`);
       });
     }
     return out.join('');

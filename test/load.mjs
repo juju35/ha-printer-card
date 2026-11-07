@@ -20,7 +20,12 @@ export function loadCard(file, names) {
       dispatchEvent() {}
       appendChild() {}
     },
-    CustomEvent: class {},
+    CustomEvent: class {
+      constructor(type, init = {}) {
+        this.type = type;
+        Object.assign(this, init);
+      }
+    },
     customElements: { get: (n) => registry.get(n), define: (n, c) => registry.set(n, c) },
     document: {
       documentElement: { lang: "en" },

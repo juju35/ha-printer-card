@@ -40,6 +40,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Brand logo** (HP, Brother, Epson or Canon) as a badge on the header printer icon
 - **Alerts**: low or nearly empty ink, missing / used / non-HP / damaged cartridge, printhead problem, and, through the IPP integration, empty paper tray, paper jam, open cover…
 - **ePrint status**: on, off or not registered (HP cloud printing)
+- **Clickable chips**: a chip opens the more-info dialog of its entity (cartridge level, IPP printer sensor, ePrint sensor…)
 - Page counter
 - **Mini card**, laid out like the Home Connect mini cards: icon, name and status on top, then the picture with one chip per cartridge (a small tank at its level, outlined orange when low, red when nearly empty) and per alert
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
@@ -113,7 +114,7 @@ device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 zoom: true
 ```
 
-The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` its picture.
+The mini card takes the same options as the full card (they also apply to its full view), plus `zoom`. `show_inks` and `show_alerts` choose its chips; `show_image` its picture. In a Sections view it takes 6 columns (half the width) by default.
 
 ### Full options
 

@@ -434,7 +434,43 @@ test("the mini card is laid out like the Home Connect mini cards, with one small
 
 test("the mini card shows a chip per active alert", () => {
   const html = mini(withIpp(mockHass(), IPP_READY)).shadowRoot.innerHTML;
-  assert.match(html, /<span class="r error" title="Paper tray empty"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon><span class="tx">Paper tray empty<\/span><\/span>/);
+  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon><span class="tx">Paper tray empty<\/span><\/span>/);
+});
+
+// Clicks the element carrying data-entity="id": returns the events the card dispatched.
+function clickChip(card, id) {
+  const fired = [];
+  card.dispatchEvent = (e) => fired.push(e);
+  const ev = { stopped: false, stopPropagation() { this.stopped = true; }, composedPath: () => [{}, { dataset: { entity: id } }, card] };
+  card._chipClick(ev);
+  assert.equal(ev.stopped, true);
+  return fired;
+}
+
+test("chips open the more-info dialog of their entity", () => {
+  const hass = withIpp(levels(mockHass(), { yellow: 3 }), IPP_READY);
+  const small = mini(hass);
+  const html = small.shadowRoot.innerHTML;
+  assert.match(html, /<span class="r error" title="Yellow · 3 %" data-entity="sensor.yellow_level">/);
+  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer">/);
+  const fired = clickChip(small, "sensor.yellow_level");
+  assert.equal(fired.length, 1);
+  assert.equal(fired[0].type, "hass-more-info");
+  assert.deepEqual({ ...fired[0].detail }, { entityId: "sensor.yellow_level" });
+  assert.equal(fired[0].bubbles, true);
+  assert.equal(fired[0].composed, true);
+  // Full card: a count opens the entity of its first alert, the ePrint chip its binary sensor.
+  const ep = { ...hass, states: { ...hass.states, "binary_sensor.printer_eprint_status": st("on", { device_class: "connectivity" }) },
+    entities: { ...hass.entities, "binary_sensor.printer_eprint_status": { entity_id: "binary_sensor.printer_eprint_status", device_id: "p" } } };
+  const full = render(ep).shadowRoot.innerHTML;
+  assert.match(full, /<span class="chip error" data-entity="sensor.yellow_level">/);
+  assert.match(full, /<span class="chip on" data-entity="binary_sensor.printer_eprint_status">/);
+  // A click elsewhere in the card fires nothing.
+  const card = render(hass);
+  const other = [];
+  card.dispatchEvent = (e) => other.push(e);
+  card._chipClick({ composedPath: () => [{}, card], stopPropagation() {} });
+  assert.equal(other.length, 0);
 });
 
 test("the mini card says offline, without chips, when the printer is off", () => {
@@ -467,7 +503,7 @@ test("the detail button shows the full card, then the compact view again", () =>
   assert.doesNotMatch(full, /class="mini"/);
   assert.equal(card.getCardSize(), 5);
   // The grid stays the compact one: HA does not read it again on zoom, rows: 'auto' lets the card grow.
-  assert.deepEqual({ ...card.getGridOptions() }, { columns: 12, min_columns: 6, rows: "auto" });
+  assert.deepEqual({ ...card.getGridOptions() }, { columns: 6, min_columns: 6, rows: "auto" });
   clickZoom(card);
   assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
   assert.match(card.shadowRoot.innerHTML, /mdi:arrow-expand/);
@@ -726,6 +762,7 @@ test("narrow header: the status text stays available as the pill's title and lab
 
 test("the mini card asks for at least 6 Sections columns, where its header fits", () => {
   const g = new PrinterMiniCard().getGridOptions();
+  assert.equal(g.columns, 6);
   assert.equal(g.min_columns, 6);
   assert.equal(g.rows, "auto");
   assert.equal(new PrinterCard().getGridOptions().min_columns, 6);
