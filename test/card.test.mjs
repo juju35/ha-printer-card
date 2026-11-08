@@ -434,7 +434,7 @@ test("the mini card is laid out like the Home Connect mini cards, with one small
 
 test("the mini card shows a chip per active alert", () => {
   const html = mini(withIpp(mockHass(), IPP_READY)).shadowRoot.innerHTML;
-  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon><span class="tx">Paper tray empty<\/span><\/span>/);
+  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer" role="button" tabindex="0"><ha-icon icon="mdi:paper-roll-outline"><\/ha-icon><span class="tx">Paper tray empty<\/span><\/span>/);
 });
 
 // Clicks the element carrying data-entity="id": returns the events the card dispatched.
@@ -451,8 +451,8 @@ test("chips open the more-info dialog of their entity", () => {
   const hass = withIpp(levels(mockHass(), { yellow: 3 }), IPP_READY);
   const small = mini(hass);
   const html = small.shadowRoot.innerHTML;
-  assert.match(html, /<span class="r error" title="Yellow · 3 %" data-entity="sensor.yellow_level">/);
-  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer">/);
+  assert.match(html, /<span class="r error" title="Yellow · 3 %" data-entity="sensor.yellow_level" role="button" tabindex="0">/);
+  assert.match(html, /<span class="r error" title="Paper tray empty" data-entity="sensor.ipp_printer" role="button" tabindex="0">/);
   const fired = clickChip(small, "sensor.yellow_level");
   assert.equal(fired.length, 1);
   assert.equal(fired[0].type, "hass-more-info");
@@ -463,14 +463,32 @@ test("chips open the more-info dialog of their entity", () => {
   const ep = { ...hass, states: { ...hass.states, "binary_sensor.printer_eprint_status": st("on", { device_class: "connectivity" }) },
     entities: { ...hass.entities, "binary_sensor.printer_eprint_status": { entity_id: "binary_sensor.printer_eprint_status", device_id: "p" } } };
   const full = render(ep).shadowRoot.innerHTML;
-  assert.match(full, /<span class="chip error" data-entity="sensor.yellow_level">/);
-  assert.match(full, /<span class="chip on" data-entity="binary_sensor.printer_eprint_status">/);
+  assert.match(full, /<span class="chip error" data-entity="sensor.yellow_level" role="button" tabindex="0">/);
+  assert.match(full, /<span class="chip on" data-entity="binary_sensor.printer_eprint_status" role="button" tabindex="0">/);
   // A click elsewhere in the card fires nothing.
   const card = render(hass);
   const other = [];
   card.dispatchEvent = (e) => other.push(e);
   card._chipClick({ composedPath: () => [{}, card], stopPropagation() {} });
   assert.equal(other.length, 0);
+});
+
+test("chips work from the keyboard: Enter or Space opens the more-info dialog, other keys do nothing", () => {
+  const card = mini(withIpp(levels(mockHass(), { yellow: 3 }), IPP_READY));
+  const fired = [];
+  card.dispatchEvent = (e) => fired.push(e);
+  const [onKey] = card.shadowRoot.handlers.keydown;
+  const press = (key, entity) => {
+    const target = { dataset: entity ? { entity } : {} };
+    const ev = { key, target, prevented: false, preventDefault() { this.prevented = true; }, stopPropagation() {}, composedPath: () => [target, card] };
+    onKey(ev);
+    return ev.prevented;
+  };
+  assert.equal(press("Enter", "sensor.yellow_level"), true);
+  assert.equal(press(" ", "sensor.ipp_printer"), true);
+  assert.equal(press("a", "sensor.yellow_level"), false);
+  assert.equal(press("Enter"), false);
+  assert.deepEqual(fired.map((e) => e.detail.entityId), ["sensor.yellow_level", "sensor.ipp_printer"]);
 });
 
 test("the mini card says offline, without chips, when the printer is off", () => {
@@ -777,9 +795,11 @@ test("hpBrandOf: the badge brand from the device maker or model", () => {
 });
 
 // Brother integration (core, SNMP): sensors identified by their translation key.
-function brotherHass({ status = "idle", key = "printer_status" } = {}) {
+function brotherHass({ status = "idle", key = "printer_status", text, parts = [] } = {}) {
   const raw = [
     ["sensor.mfc_status", key, status, {}],
+    ...(text === undefined ? [] : [["sensor.mfc_status_text", "status", text, {}]]),
+    ...parts,
     ["sensor.mfc_page_counter", "page_counter", "5120", {}],
     ["sensor.mfc_black_toner_remaining", "black_toner_remaining", "64", { unit_of_measurement: "%" }],
     ["sensor.mfc_cyan_toner_remaining", "cyan_toner_remaining", "12", { unit_of_measurement: "%" }],
@@ -793,13 +813,16 @@ function brotherHass({ status = "idle", key = "printer_status" } = {}) {
   return { language: "en", states, entities, devices: { bro: { id: "bro", name: "MFC-L3770CDW", manufacturer: "Brother", model: "MFC-L3770CDW" } } };
 }
 
-test("Brother integration: found automatically, its printer status, toners (not the drum) and the Brother badge", () => {
+test("Brother integration: found automatically, its printer status, toners (the drum apart) and the Brother badge", () => {
   const html = render(brotherHass(), {}).shadowRoot.innerHTML;
   assert.match(html, /Ready/);
   assert.match(html, /Toner levels/);
   assert.match(html, /64<small>%<\/small>/);
   assert.match(html, /12<small>%<\/small>/);
-  assert.doesNotMatch(html, /80<small>%<\/small>/);
+  // The drum is a part, in its own section after the toners, not a toner.
+  const [toners, parts] = html.split("Parts</div>");
+  assert.doesNotMatch(toners, /80<small>%<\/small>/);
+  assert.match(parts, /80<small>%<\/small><\/div><div class="lbl">Drum<\/div>/);
   assert.match(html, /class="hp-badge brother"/);
   assert.match(html, /class="art art-brother_laser"/);
   assert.match(render(brotherHass({ status: "printing" }), {}).shadowRoot.innerHTML, /Printing/);
@@ -808,4 +831,52 @@ test("Brother integration: found automatically, its printer status, toners (not 
 test("Brother integration: the raw status text when the printer status sensor is missing", () => {
   assert.match(render(brotherHass({ key: "status", status: "sleep" }), {}).shadowRoot.innerHTML, /Sleeping|Sleep|Power save/i);
   assert.match(render(brotherHass({ key: "status", status: "printing" }), {}).shadowRoot.innerHTML, /Printing/);
+});
+
+test("Brother integration: an error in the status text stops the printer, with that text as an error alert", () => {
+  for (const text of ["paper jam", "cover is open", "no paper", "replace toner", "error 46", "unable to print 2a", "bourrage papier"]) {
+    const html = render(brotherHass({ status: "idle", text }), {}).shadowRoot.innerHTML;
+    assert.match(html, /aria-label="Stopped"/, text);
+    const cap = text[0].toUpperCase() + text.slice(1);
+    assert.ok(html.includes(`<div class="alert error"><ha-icon icon="mdi:printer-alert"></ha-icon><span>${cap}</span></div>`), text);
+    assert.doesNotMatch(html, /The printer is stopped/);
+  }
+  // A text without an error: the printer status rules, and "toner low" is not a stop.
+  assert.match(render(brotherHass({ status: "idle", text: "toner low" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
+  assert.match(render(brotherHass({ status: "printing", text: "printing" }), {}).shadowRoot.innerHTML, /aria-label="Printing"/);
+  // Only the status text sensor: the error is read there too.
+  assert.match(render(brotherHass({ key: "status", status: "paper jam" }), {}).shadowRoot.innerHTML, /aria-label="Stopped"[\s\S]*Paper jam/);
+});
+
+test("Brother integration: `other` takes the state of the status text, else is unknown", () => {
+  assert.match(render(brotherHass({ status: "other" }), {}).shadowRoot.innerHTML, /aria-label="Unknown state"/);
+  assert.match(render(brotherHass({ status: "other", text: "something odd" }), {}).shadowRoot.innerHTML, /aria-label="Unknown state"/);
+  assert.match(render(brotherHass({ status: "other", text: "sleep" }), {}).shadowRoot.innerHTML, /aria-label="Sleeping|aria-label="Power save/);
+  assert.match(render(brotherHass({ status: "other", text: "ready" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
+});
+
+test("Brother integration: drum, belt, fuser and paper feed kits are parts, with alerts at the low threshold", () => {
+  const part = (key, value) => [`sensor.mfc_${key}`, key, value, { unit_of_measurement: "%" }];
+  const hass = brotherHass({
+    parts: [
+      part("fuser_remaining_life", "55"), part("cyan_drum_remaining_life", "4"), part("belt_unit_remaining_life", "12"),
+      part("pf_kit_mp_remaining_life", "90"), part("pf_kit_1_remaining_life", "70"), part("laser_remaining_life", "3"),
+    ],
+  });
+  const html = render(hass, {}).shadowRoot.innerHTML;
+  const section = html.split("Parts</div>")[1].split('<div class="section">')[0];
+  const labels = [...section.matchAll(/<div class="lbl">([^<]*)<\/div>/g)].map((m) => m[1]);
+  assert.deepEqual(labels, ["Drum", "Drum", "Belt unit", "Fuser", "Paper feed kit 1", "Paper feed kit MP"]);
+  assert.match(section, /title="Drum \(Cyan\) · 4 %"/);
+  assert.match(section, /<div class="ink low crit" title="Drum \(Cyan\) · 4 %"/);
+  assert.match(html, /<div class="alert error"><ha-icon icon="mdi:wrench-clock"><\/ha-icon><span>Drum \(Cyan\): replace soon \(4 %\)<\/span>/);
+  assert.match(html, /<div class="alert warn"><ha-icon icon="mdi:wrench-clock"><\/ha-icon><span>Belt unit: 12 % of life left<\/span>/);
+  assert.doesNotMatch(html, /Fuser:|Paper feed kit 1:/);
+  // The threshold is the card's low_threshold.
+  assert.doesNotMatch(render(hass, { low_threshold: 10 }).shadowRoot.innerHTML, /Belt unit:/);
+  // Without show_inks the section goes, the alerts stay; the mini card shows them as chips.
+  const noInks = render(hass, { show_inks: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(noInks, /Parts<\/div>/);
+  assert.match(noInks, /Belt unit: 12 %/);
+  assert.match(render(hass, {}, PrinterMiniCard).shadowRoot.innerHTML, /<span class="r warn" title="Belt unit: 12 % of life left" data-entity="sensor.mfc_belt_unit_remaining_life"/);
 });

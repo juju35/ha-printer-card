@@ -35,12 +35,13 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
+- **Brother parts** (Brother integration): drum (or one per color), belt unit, fuser and paper feed kits by remaining life, in a *Parts* section, with an alert at the low threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
 - **Pictures**: a drawing per range for HP (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank), Brother (laser, inkjet), Epson (EcoTank, Expression / WorkForce) and Canon (PIXMA / MAXIFY, MegaTank, i-SENSYS), and a generic printer for the other brands, picked from the device model or chosen in the editor
 - **Brand logo** (HP, Brother, Epson or Canon) as a badge on the header printer icon
 - **Alerts**: low or nearly empty ink, missing / used / non-HP / damaged cartridge, printhead problem, and, through the IPP integration, empty paper tray, paper jam, open cover…
 - **ePrint status**: on, off or not registered (HP cloud printing)
-- **Clickable chips**: a chip opens the more-info dialog of its entity (cartridge level, IPP printer sensor, ePrint sensor…)
+- **Clickable chips**: a chip opens the more-info dialog of its entity (cartridge level, IPP printer sensor, ePrint sensor…), also from the keyboard (Tab, then Enter or Space)
 - Page counter
 - **Mini card**, laid out like the Home Connect mini cards: icon, name and status on top, then the picture with one chip per cartridge (a small tank at its level, outlined orange when low, red when nearly empty) and per alert
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
@@ -149,12 +150,12 @@ entities:
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device |
 | `name` | ❌ | Device name | Card title |
 | `show_image` | ❌ | `true` | Show the printer picture |
-| `show_inks` | ❌ | `true` | Show the ink or toner levels |
+| `show_inks` | ❌ | `true` | Show the ink or toner levels (and the Brother parts) |
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |
 | `show_expired` | ❌ | `false` | Also alert when a cartridge's warranty date has passed |
-| `low_threshold` | ❌ | `15` | Ink level (%) at or below which a cartridge is flagged as low; at 5 % or less it is nearly empty |
+| `low_threshold` | ❌ | `15` | Ink level (%) at or below which a cartridge is flagged as low; at 5 % or less it is nearly empty. Also the remaining life (%) at which a Brother part (drum, belt, fuser, paper feed kit) raises an alert |
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
 | `picture` | ❌ | `auto` | Picture: `auto`, `officejet`, `laserjet`, `deskjet`, `smart_tank` or `generic` (see below) |
 | `image` | ❌ | — | URL of your own printer picture, e.g. `/local/printer.png`; replaces `picture` |
@@ -314,6 +315,8 @@ The MegaTank printing:
 ## How it works
 
 The HP Printer integration creates one device per part of the printer (each cartridge, the printhead, the print, scan and copy counters) linked to the main device. The card reads the entity registry to list them, then for each cartridge finds its level, slot, status and warranty date. The printer is shown as **offline** when its status sensor reports `off` (that's what the integration does when the printer stops answering) or is unavailable.
+
+With the Brother integration, the card reads its *Printer status* sensor, and its *Status* text for the errors (paper jam, no paper, cover open, toner empty, "unable to print"…): the printer is then shown as stopped with that text as an alert. Its toner or ink levels are the cartridges, and the remaining life of the drum, belt unit, fuser and paper feed kits fills the *Parts* section.
 
 With the IPP integration only (any brand), the card reads the printer sensor of the IPP device for the status and the `printer-state-reasons` alerts, and its marker sensors for the ink or toner levels. The ePrint chip is only shown for HP printers.
 

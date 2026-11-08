@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.7.0 - 2026-11-07
+
+### Features
+- Brother integration: the drum (or one per color), belt unit, fuser and paper feed kits are shown by remaining life in a Parts section, with an alert at the low threshold.
+- Chips are buttons for the keyboard: Tab reaches them, and Enter or Space opens the more-info dialog of their entity.
+
+### Fixes
+- Brother integration: an error in the printer's status text (paper jam, no paper, cover open, toner empty, "unable to print"…) shows the printer as stopped, with that text as an error alert, instead of Ready.
+- Brother integration: the `other` printer status follows the status text, else shows an unknown state instead of Ready.
+
 ## 2.6.0 - 2026-11-07
 
 ### Features

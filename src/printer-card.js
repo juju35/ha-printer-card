@@ -36,6 +36,13 @@ var HpI18n = {
     al_printhead: 'Tête d\'impression : {s}',
     al_expired: 'Garantie de la cartouche {c} expirée',
     al_stopped: 'L\'imprimante est arrêtée',
+    parts: 'Pièces d\'usure',
+    pt_drum: 'Tambour',
+    pt_belt: 'Courroie',
+    pt_fuser: 'Unité de fusion',
+    pt_pf_kit: 'Kit d\'alimentation papier',
+    al_part_low: '{c} : {p} % de durée de vie restante',
+    al_part_end: '{c} : à remplacer bientôt ({p} %)',
     cs_missing: 'absente',
     cs_empty: 'vide',
     cs_used: 'déjà utilisée',
@@ -137,6 +144,13 @@ var HpI18n = {
     al_printhead: 'Printhead: {s}',
     al_expired: '{c} cartridge warranty expired',
     al_stopped: 'The printer is stopped',
+    parts: 'Parts',
+    pt_drum: 'Drum',
+    pt_belt: 'Belt unit',
+    pt_fuser: 'Fuser',
+    pt_pf_kit: 'Paper feed kit',
+    al_part_low: '{c}: {p} % of life left',
+    al_part_end: '{c}: replace soon ({p} %)',
     cs_missing: 'missing',
     cs_empty: 'empty',
     cs_used: 'previously used',
@@ -238,6 +252,13 @@ var HpI18n = {
     al_printhead: 'Druckkopf: {s}',
     al_expired: 'Garantie der Patrone {c} abgelaufen',
     al_stopped: 'Der Drucker wurde angehalten',
+    parts: 'Verschleißteile',
+    pt_drum: 'Trommel',
+    pt_belt: 'Bandeinheit',
+    pt_fuser: 'Fixiereinheit',
+    pt_pf_kit: 'Papiereinzugskit',
+    al_part_low: '{c}: noch {p} % Lebensdauer',
+    al_part_end: '{c}: bald ersetzen ({p} %)',
     cs_missing: 'fehlt',
     cs_empty: 'leer',
     cs_used: 'bereits verwendet',
@@ -339,6 +360,13 @@ var HpI18n = {
     al_printhead: 'Cabezal de impresión: {s}',
     al_expired: 'Garantía del cartucho {c} caducada',
     al_stopped: 'La impresora está detenida',
+    parts: 'Piezas de desgaste',
+    pt_drum: 'Tambor',
+    pt_belt: 'Unidad de cinta',
+    pt_fuser: 'Unidad de fusión',
+    pt_pf_kit: 'Kit de alimentación de papel',
+    al_part_low: '{c}: queda un {p} % de vida útil',
+    al_part_end: '{c}: sustituir pronto ({p} %)',
     cs_missing: 'ausente',
     cs_empty: 'vacío',
     cs_used: 'ya utilizado',
@@ -440,6 +468,13 @@ var HpI18n = {
     al_printhead: 'Глава за штампање: {s}',
     al_expired: 'Истекла је гаранција кертриџа ({c})',
     al_stopped: 'Штампач је заустављен',
+    parts: 'Потрошни делови',
+    pt_drum: 'Бубањ',
+    pt_belt: 'Јединица траке',
+    pt_fuser: 'Грејна јединица',
+    pt_pf_kit: 'Комплет за увлачење папира',
+    al_part_low: '{c}: преостало {p} % века трајања',
+    al_part_end: '{c}: ускоро заменити ({p} %)',
     cs_missing: 'недостаје',
     cs_empty: 'празан',
     cs_used: 'већ коришћен',
@@ -548,6 +583,13 @@ var HpI18n = {
     al_printhead: 'Glava za štampanje: {s}',
     al_expired: 'Istekla je garancija kertridža ({c})',
     al_stopped: 'Štampač je zaustavljen',
+    parts: 'Potrošni delovi',
+    pt_drum: 'Bubanj',
+    pt_belt: 'Jedinica trake',
+    pt_fuser: 'Grejna jedinica',
+    pt_pf_kit: 'Komplet za uvlačenje papira',
+    al_part_low: '{c}: preostalo {p} % veka trajanja',
+    al_part_end: '{c}: uskoro zameniti ({p} %)',
     cs_missing: 'nedostaje',
     cs_empty: 'prazan',
     cs_used: 'već korišćen',
@@ -656,6 +698,13 @@ var HpI18n = {
     al_printhead: 'Testina di stampa: {s}',
     al_expired: 'Garanzia della cartuccia ({c}) scaduta',
     al_stopped: 'La stampante è arrestata',
+    parts: 'Parti di usura',
+    pt_drum: 'Tamburo',
+    pt_belt: 'Unità nastro',
+    pt_fuser: 'Unità di fusione',
+    pt_pf_kit: 'Kit di alimentazione carta',
+    al_part_low: '{c}: {p} % di vita residua',
+    al_part_end: '{c}: da sostituire a breve ({p} %)',
     cs_missing: 'mancante',
     cs_empty: 'vuota',
     cs_used: 'già utilizzata',
@@ -757,6 +806,13 @@ var HpI18n = {
     al_printhead: 'Printkop: {s}',
     al_expired: 'Garantie van cartridge ({c}) verlopen',
     al_stopped: 'De printer is gestopt',
+    parts: 'Slijtdelen',
+    pt_drum: 'Drum',
+    pt_belt: 'Bandeenheid',
+    pt_fuser: 'Fuser',
+    pt_pf_kit: 'Papierinvoerkit',
+    al_part_low: '{c}: nog {p} % levensduur',
+    al_part_end: '{c}: binnenkort vervangen ({p} %)',
     cs_missing: 'ontbreekt',
     cs_empty: 'leeg',
     cs_used: 'eerder gebruikt',
@@ -858,6 +914,13 @@ var HpI18n = {
     al_printhead: 'Cabeça de impressão: {s}',
     al_expired: 'Garantia do tinteiro ({c}) expirada',
     al_stopped: 'A impressora está parada',
+    parts: 'Peças de desgaste',
+    pt_drum: 'Tambor',
+    pt_belt: 'Unidade de correia',
+    pt_fuser: 'Unidade de fusão',
+    pt_pf_kit: 'Kit de alimentação de papel',
+    al_part_low: '{c}: {p} % de vida útil restante',
+    al_part_end: '{c}: substituir em breve ({p} %)',
     cs_missing: 'em falta',
     cs_empty: 'sem tinta',
     cs_used: 'já utilizado',
@@ -962,6 +1025,13 @@ var HpI18n = {
     al_printhead: 'Głowica drukująca: {s}',
     al_expired: 'Gwarancja wkładu ({c}) wygasła',
     al_stopped: 'Drukarka jest zatrzymana',
+    parts: 'Części eksploatacyjne',
+    pt_drum: 'Bęben',
+    pt_belt: 'Pas transmisyjny',
+    pt_fuser: 'Utrwalacz',
+    pt_pf_kit: 'Zestaw podawania papieru',
+    al_part_low: '{c}: pozostało {p} % żywotności',
+    al_part_end: '{c}: wkrótce wymienić ({p} %)',
     cs_missing: 'brak',
     cs_empty: 'brak tuszu',
     cs_used: 'już używany',
@@ -1066,6 +1136,13 @@ var HpI18n = {
     al_printhead: 'Cap de imprimare: {s}',
     al_expired: 'Garanția cartușului ({c}) a expirat',
     al_stopped: 'Imprimanta este oprită',
+    parts: 'Piese de uzură',
+    pt_drum: 'Cilindru',
+    pt_belt: 'Unitate de bandă',
+    pt_fuser: 'Cuptor',
+    pt_pf_kit: 'Kit de alimentare cu hârtie',
+    al_part_low: '{c}: {p} % durată de viață rămasă',
+    al_part_end: '{c}: de înlocuit în curând ({p} %)',
     cs_missing: 'lipsă',
     cs_empty: 'gol',
     cs_used: 'deja folosit',
@@ -1167,6 +1244,13 @@ var HpI18n = {
     al_printhead: 'Skrivehoved: {s}',
     al_expired: 'Garantien for patronen ({c}) er udløbet',
     al_stopped: 'Printeren er stoppet',
+    parts: 'Sliddele',
+    pt_drum: 'Tromle',
+    pt_belt: 'Bælteenhed',
+    pt_fuser: 'Fikseringsenhed',
+    pt_pf_kit: 'Papirfødningssæt',
+    al_part_low: '{c}: {p} % levetid tilbage',
+    al_part_end: '{c}: skal snart udskiftes ({p} %)',
     cs_missing: 'mangler',
     cs_empty: 'tom',
     cs_used: 'allerede brugt',
@@ -1272,6 +1356,13 @@ var HpI18n = {
     al_printhead: 'Skrivhuvud: {s}',
     al_expired: 'Garantin för bläckpatronen ({c}) har gått ut',
     al_stopped: 'Skrivaren är stoppad',
+    parts: 'Slitdelar',
+    pt_drum: 'Trumma',
+    pt_belt: 'Bältesenhet',
+    pt_fuser: 'Fixeringsenhet',
+    pt_pf_kit: 'Pappersmatningssats',
+    al_part_low: '{c}: {p} % livslängd kvar',
+    al_part_end: '{c}: byt snart ({p} %)',
     cs_missing: 'saknas',
     cs_empty: 'tom',
     cs_used: 'redan använd',
@@ -1379,6 +1470,13 @@ var HpI18n = {
     al_printhead: 'Печатаща глава: {s}',
     al_expired: 'Гаранцията на касетата ({c}) е изтекла',
     al_stopped: 'Принтерът е спрян',
+    parts: 'Консумативни части',
+    pt_drum: 'Барабан',
+    pt_belt: 'Лентов модул',
+    pt_fuser: 'Фюзер',
+    pt_pf_kit: 'Комплект за подаване на хартия',
+    al_part_low: '{c}: остават {p} % от живота',
+    al_part_end: '{c}: сменете скоро ({p} %)',
     cs_missing: 'липсва',
     cs_empty: 'празна',
     cs_used: 'вече използвана',
@@ -1480,6 +1578,13 @@ var HpI18n = {
     al_printhead: 'Печатающая головка: {s}',
     al_expired: 'Истёк срок гарантии картриджа ({c})',
     al_stopped: 'Принтер остановлен',
+    parts: 'Расходные детали',
+    pt_drum: 'Барабан',
+    pt_belt: 'Ленточный блок',
+    pt_fuser: 'Блок термозакрепления',
+    pt_pf_kit: 'Комплект подачи бумаги',
+    al_part_low: '{c}: осталось {p} % ресурса',
+    al_part_end: '{c}: скоро потребуется замена ({p} %)',
     cs_missing: 'отсутствует',
     cs_empty: 'пуст',
     cs_used: 'уже использовался',
@@ -1588,6 +1693,13 @@ var HpI18n = {
     al_printhead: 'Друкувальна головка: {s}',
     al_expired: 'Гарантія на картридж ({c}) закінчилася',
     al_stopped: 'Принтер зупинено',
+    parts: 'Витратні деталі',
+    pt_drum: 'Барабан',
+    pt_belt: 'Стрічковий блок',
+    pt_fuser: 'Блок термозакріплення',
+    pt_pf_kit: 'Комплект подачі паперу',
+    al_part_low: '{c}: залишилося {p} % ресурсу',
+    al_part_end: '{c}: незабаром потрібна заміна ({p} %)',
     cs_missing: 'відсутній',
     cs_empty: 'порожній',
     cs_used: 'уже використовувався',
@@ -1697,6 +1809,13 @@ var HpI18n = {
     al_printhead: 'Nyomtatófej: {s}',
     al_expired: 'A patron ({c}) garanciája lejárt',
     al_stopped: 'A nyomtató leállt',
+    parts: 'Kopóalkatrészek',
+    pt_drum: 'Dob',
+    pt_belt: 'Szalagegység',
+    pt_fuser: 'Beégető egység',
+    pt_pf_kit: 'Papíradagoló készlet',
+    al_part_low: '{c}: {p} % élettartam van hátra',
+    al_part_end: '{c}: hamarosan cserélni kell ({p} %)',
     cs_missing: 'hiányzik',
     cs_empty: 'üres',
     cs_used: 'már használt',
@@ -1798,6 +1917,13 @@ var HpI18n = {
     al_printhead: 'Tlačová hlava: {s}',
     al_expired: 'Záruka kazety ({c}) vypršala',
     al_stopped: 'Tlačiareň je zastavená',
+    parts: 'Spotrebné diely',
+    pt_drum: 'Valec',
+    pt_belt: 'Pásová jednotka',
+    pt_fuser: 'Fixačná jednotka',
+    pt_pf_kit: 'Súprava podávania papiera',
+    al_part_low: '{c}: zostáva {p} % životnosti',
+    al_part_end: '{c}: čoskoro vymeniť ({p} %)',
     cs_missing: 'chýba',
     cs_empty: 'prázdna',
     cs_used: 'už použitá',
@@ -1899,6 +2025,13 @@ var HpI18n = {
     al_printhead: 'Tisková hlava: {s}',
     al_expired: 'Záruka kazety ({c}) vypršela',
     al_stopped: 'Tiskárna je zastavena',
+    parts: 'Spotřební díly',
+    pt_drum: 'Válec',
+    pt_belt: 'Pásová jednotka',
+    pt_fuser: 'Fixační jednotka',
+    pt_pf_kit: 'Sada podávání papíru',
+    al_part_low: '{c}: zbývá {p} % životnosti',
+    al_part_end: '{c}: brzy vyměnit ({p} %)',
     cs_missing: 'chybí',
     cs_empty: 'prázdná',
     cs_used: 'již použitá',
@@ -2000,6 +2133,13 @@ var HpI18n = {
     al_printhead: 'Tiskalna glava: {s}',
     al_expired: 'Garancija kartuše ({c}) je potekla',
     al_stopped: 'Tiskalnik je ustavljen',
+    parts: 'Obrabni deli',
+    pt_drum: 'Boben',
+    pt_belt: 'Tračna enota',
+    pt_fuser: 'Fiksirna enota',
+    pt_pf_kit: 'Komplet za podajanje papirja',
+    al_part_low: '{c}: preostane {p} % življenjske dobe',
+    al_part_end: '{c}: kmalu zamenjajte ({p} %)',
     cs_missing: 'manjka',
     cs_empty: 'prazna',
     cs_used: 'že uporabljena',
@@ -2101,6 +2241,13 @@ var HpI18n = {
     al_printhead: 'Drukas galviņa: {s}',
     al_expired: 'Kasetnes ({c}) garantija ir beigusies',
     al_stopped: 'Printeris ir apturēts',
+    parts: 'Nolietojamās daļas',
+    pt_drum: 'Trumulis',
+    pt_belt: 'Lentes bloks',
+    pt_fuser: 'Fiksēšanas bloks',
+    pt_pf_kit: 'Papīra padeves komplekts',
+    al_part_low: '{c}: atlikuši {p} % kalpošanas laika',
+    al_part_end: '{c}: drīz jānomaina ({p} %)',
     cs_missing: 'trūkst',
     cs_empty: 'tukša',
     cs_used: 'jau lietota',
@@ -2202,6 +2349,13 @@ var HpI18n = {
     al_printhead: 'Κεφαλή εκτύπωσης: {s}',
     al_expired: 'Η εγγύηση της κασέτας ({c}) έληξε',
     al_stopped: 'Ο εκτυπωτής έχει σταματήσει',
+    parts: 'Αναλώσιμα εξαρτήματα',
+    pt_drum: 'Τύμπανο',
+    pt_belt: 'Μονάδα ιμάντα',
+    pt_fuser: 'Μονάδα τήξης',
+    pt_pf_kit: 'Κιτ τροφοδοσίας χαρτιού',
+    al_part_low: '{c}: απομένει {p} % διάρκειας ζωής',
+    al_part_end: '{c}: αντικαταστήστε σύντομα ({p} %)',
     cs_missing: 'λείπει',
     cs_empty: 'άδεια',
     cs_used: 'ήδη χρησιμοποιημένη',
@@ -2475,15 +2629,32 @@ var HP_STATE_ICONS = {
 // States reported by the IPP integration, mapped onto the HP Printer ones.
 var HP_IPP_STATES = { idle: 'ready', printing: 'processing', stopped: 'stopped' };
 
-// Brother integration (core, SNMP): the "Printer status" sensor (idle / printing / warmup / other), else the raw
-// "Status" text the printer reports, in its own language ("ready", "sleep", "printing", "druk"…).
-var HP_BROTHER_STATES = { idle: 'ready', printing: 'processing', warmup: 'processing', other: 'ready' };
-function hpBrotherState(v) {
-  if (HP_BROTHER_STATES[v]) return HP_BROTHER_STATES[v];
-  var t = String(v).toLowerCase();
+// Brother integration (core, SNMP): the "Printer status" sensor (idle / printing / warmup / other), and the raw
+// "Status" text the printer reports, in its own language ("ready", "sleep", "printing", "paper jam", "druk"…).
+var HP_BROTHER_STATES = { idle: 'ready', printing: 'processing', warmup: 'processing' };
+// Raw texts of a printer that cannot print: jam, no paper, cover open, toner empty, error, "unable to print"…
+var HP_BROTHER_ERROR = new RegExp(['jam', 'stau', 'bourrage', 'atasco', 'incepp', 'zacię', 'no paper', 'out of paper', 'paper empty',
+  'load paper', 'kein papier', 'pas de papier', 'sin papel', 'cover', 'door', 'capot', 'abdeckung', 'tapa', 'coperchio',
+  'toner empty', 'toner end', 'replace toner', 'no toner', 'toner vide', 'error', 'erreur', 'fehler', 'errore', 'fout', 'błąd',
+  'unable', 'impossible'].join('|'));
+// State told by the raw text, null when the text is not recognized.
+function hpBrotherText(text) {
+  var t = String(text || '').toLowerCase();
+  if (!t || t === 'unknown' || t === 'unavailable') return null;
+  if (HP_BROTHER_ERROR.test(t)) return 'stopped';
   if (/print|druk|impr|stampa|drukowa|печат|štamp/.test(t)) return 'processing';
   if (/sleep|veille|ruhe|reposo|riposo|slaap|uśpi|спава|spava|deep/.test(t)) return 'inpowersave';
-  return 'ready';
+  if (/ready|pr[eê]t|bereit|listo|pronto|gereed|gotow|готов|spreman|klar/.test(t)) return 'ready';
+  return null;
+}
+// `status`: the printer status (undefined without that sensor), `text`: the raw status text. An error in the text
+// stops the printer whatever the printer status says; `other` takes the text's state, else is unknown.
+function hpBrotherState(status, text) {
+  var fromText = hpBrotherText(text);
+  if (fromText === 'stopped') return 'stopped';
+  if (HP_BROTHER_STATES[status]) return HP_BROTHER_STATES[status];
+  if (status === undefined) return fromText || 'ready';
+  return fromText || 'unknown';
 }
 // Status entity of a Brother printer (the normalized one first) and its ink / toner sensors, by translation key.
 function hpIsBrotherStatus(e) {
@@ -2494,6 +2665,15 @@ function hpBrotherInks(list) {
     var m = /^(black|cyan|magenta|yellow)_(toner|ink)_remaining$/.exec(e.platform === 'brother' ? e.translation_key || '' : '');
     return m && { name: e.entity_id, color: m[1], level: e.entity_id, toner: m[2] === 'toner' };
   }).filter(Boolean).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
+}
+// Its parts that wear out, by remaining life (%): drum (or one per color), belt unit, fuser, paper feed kits.
+var HP_PART_ORDER = { drum: 0, belt: 1, fuser: 2, pf_kit: 3 };
+function hpBrotherParts(list) {
+  return list.map((e) => {
+    var m = /^(?:(?:(black|cyan|magenta|yellow)_)?(drum)|(belt)_unit|(fuser)|(pf_kit)_(1|mp))_remaining_life$/.exec(e.platform === 'brother' ? e.translation_key || '' : '');
+    return m && { kind: m[2] || m[3] || m[4] || m[5], color: m[1], suffix: m[6]?.toUpperCase(), level: e.entity_id };
+  }).filter(Boolean).sort((a, b) => HP_PART_ORDER[a.kind] - HP_PART_ORDER[b.kind] ||
+    (HP_INK_ORDER[a.color] ?? -1) - (HP_INK_ORDER[b.color] ?? -1) || String(a.suffix).localeCompare(String(b.suffix)));
 }
 
 var HP_BUSY = ['processing', 'scanprocessing', 'copying'];
@@ -2853,7 +3033,10 @@ function hpInDialog(ev) {
 // The card's focusable controls, by the selector that identifies each across renders.
 var HP_FOCUSABLE = ['a.pic', 'button.zoom'];
 function hpFocusKey(el) {
-  return el?.matches ? HP_FOCUSABLE.find((sel) => el.matches(sel)) || '' : '';
+  if (!el?.matches) return '';
+  // A chip: by its tag, classes and entity.
+  if (el.dataset?.entity) return `${el.localName}${[...el.classList].map((c) => `.${c}`).join('')}[data-entity="${el.dataset.entity}"]`;
+  return HP_FOCUSABLE.find((sel) => el.matches(sel)) || '';
 }
 
 var HP_DEFAULTS = {
@@ -2879,6 +3062,13 @@ class PrinterCard extends HTMLElement {
       this.attachShadow({ mode: 'open' });
       // A chip opens the more-info dialog of its entity (`data-entity`), like a tile.
       this.shadowRoot.addEventListener('click', (ev) => this._chipClick(ev));
+      // ...and from the keyboard: a chip is a button (Enter or Space).
+      this.shadowRoot.addEventListener('keydown', (ev) => {
+        if ((ev.key === 'Enter' || ev.key === ' ') && ev.target?.dataset?.entity) {
+          ev.preventDefault();
+          this._chipClick(ev);
+        }
+      });
     }
     this._sig = null;
     this._update();
@@ -2909,8 +3099,8 @@ class PrinterCard extends HTMLElement {
     this.dispatchEvent(new CustomEvent('hass-more-info', { detail: { entityId: chip.dataset.entity }, bubbles: true, composed: true }));
   }
 
-  // `data-entity` attribute of a chip that opens the more-info dialog of its entity ('' without one).
-  _ent(id) { return id ? ` data-entity="${hpEsc(id)}"` : ''; }
+  // `data-entity` attribute of a chip that opens the more-info dialog of its entity ('' without one), focusable as a button.
+  _ent(id) { return id ? ` data-entity="${hpEsc(id)}" role="button" tabindex="0"` : ''; }
 
   getGridOptions() { return { columns: 12, min_columns: 6 }; }
 
@@ -2984,8 +3174,11 @@ class PrinterCard extends HTMLElement {
       r.kind = 'brother';
       r.isHp = false;
       var bro = main.filter((e) => e.platform === 'brother');
+      // `raw`: the "Status" text sensor, which tells the errors (jam, no paper…) the printer status does not.
+      r.raw = bro.find((e) => e.translation_key === 'status')?.entity_id;
       r.status = (bro.find((e) => e.translation_key === 'printer_status') || bro.find((e) => e.translation_key === 'status')).entity_id;
       r.inks = hpBrotherInks(bro);
+      r.parts = hpBrotherParts(bro);
       if (!r.ipp) r.ipp = hpFindIppSensor(hass, deviceId);
       if (!r.total_pages) r.total_pages = bro.find((e) => e.translation_key === 'page_counter')?.entity_id;
     } else {
@@ -3000,8 +3193,9 @@ class PrinterCard extends HTMLElement {
   }
 
   _ids(r) {
-    var ids = [r.status, r.ipp, r.total_pages, r.eprint, r.eprint_registration];
+    var ids = [r.status, r.raw, r.ipp, r.total_pages, r.eprint, r.eprint_registration];
     r.inks.forEach((i) => { ids.push(i.level, i.status, i.expiry, i.pages_left); });
+    (r.parts || []).forEach((p) => { ids.push(p.level); });
     return ids.filter(Boolean);
   }
 
@@ -3045,12 +3239,19 @@ class PrinterCard extends HTMLElement {
     var v = this._val(r.status);
     if (v === undefined || v === 'unavailable' || v === 'off') return 'offline';
     if (r.kind === 'ipp') return HP_IPP_STATES[v] || 'unknown';
-    if (r.kind === 'brother') return hpBrotherState(v);
+    if (r.kind === 'brother') return hpBrotherState(r.raw === r.status ? undefined : v, this._val(r.raw));
     return HP_STATE_COLORS[v] ? v : 'unknown';
   }
 
   _inkLabel(ink) {
     return this._t(`c_${ink.color}`);
+  }
+
+  // Name of a wearing part: "Drum (Cyan)", "Belt unit", "Paper feed kit MP"; `short` leaves out the color.
+  _partLabel(part, short) {
+    var l = this._t(`pt_${part.kind}`);
+    if (part.suffix) return `${l} ${part.suffix}`;
+    return part.color && !short ? `${l} (${this._inkLabel(part)})` : l;
   }
 
   // Label used inside a sentence: lower case in every language but English and German, whose colors keep their
@@ -3094,7 +3295,18 @@ class PrinterCard extends HTMLElement {
         }
       }
     });
-    if (state === 'stopped') out.push({ level: 'error', icon: 'mdi:printer-alert', entity: r.status, text: this._t('al_stopped') });
+    (r.parts || []).forEach((part) => {
+      var p = this._num(part.level);
+      if (!Number.isNaN(p) && p <= low) {
+        out.push({ level: p <= critical ? 'error' : 'warn', icon: 'mdi:wrench-clock', entity: part.level,
+          text: this._t(p <= critical ? 'al_part_end' : 'al_part_low', { c: this._partLabel(part), p: Math.round(p) }) });
+      }
+    });
+    if (state === 'stopped') {
+      // Brother: the printer's own words ("paper jam", "cover is open"…) rather than a bare "stopped".
+      var raw = r.kind === 'brother' && hpBrotherText(this._val(r.raw)) === 'stopped' ? this._val(r.raw) : '';
+      out.push({ level: 'error', icon: 'mdi:printer-alert', entity: raw ? r.raw : r.status, text: raw || this._t('al_stopped') });
+    }
     out = out.concat(this._ippAlerts(r));
     var rank = { error: 0, warn: 1, info: 2 };
     return out.sort((a, b) => rank[a.level] - rank[b.level]);
@@ -3197,7 +3409,7 @@ class PrinterCard extends HTMLElement {
   }
 
   // Level of a cartridge and how it is flagged: low (at or below the threshold), nearly empty, faulty.
-  _inkInfo(ink) {
+  _inkInfo(ink, label) {
     var low = Number(this._config.low_threshold);
     if (Number.isNaN(low)) low = 15;
     var p = this._num(ink.level);
@@ -3209,7 +3421,7 @@ class PrinterCard extends HTMLElement {
       low: known && p <= low,
       crit: known && p <= Math.min(low, 5),
       bad: !!ink.status && this._val(ink.status) === 'off' && !hpCartridgeOk(this._hass.states[ink.status]?.attributes.state),
-      title: this._inkLabel(ink) + (known ? ` · ${Math.round(p)} %` : '') +
+      title: (label || this._inkLabel(ink)) + (known ? ` · ${Math.round(p)} %` : '') +
         (this._avail(ink.pages_left) && !Number.isNaN(left) ? ` · ${this._t('pages_left', { n: left })}` : ''),
     };
   }
@@ -3279,16 +3491,14 @@ class PrinterCard extends HTMLElement {
     var cartridges = r.inks.filter((i) => !i.printhead && i.level);
     if (!offline && c.show_inks && cartridges.length) {
       var toner = cartridges.every((i) => i.toner);
-      inksHtml = '<div class="section"><div class="section-title"><ha-icon icon="' + (toner ? 'mdi:invert-colors' : 'mdi:water-outline') + '"></ha-icon>' + this._t(toner ? 'toner' : 'inks') + '</div><div class="inks" style="--n:' + cartridges.length + '">' +
-        cartridges.map((ink) => {
-          var k = this._inkInfo(ink);
-          return '<div class="ink' + (k.low ? ' low' : '') + (k.crit ? ' crit' : '') + (k.bad ? ' bad' : '') + '" title="' + hpEsc(k.title) + '">' +
-            '<div class="tank"><div class="level" style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:3px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></div>' +
-              (k.low || k.bad ? '<ha-icon class="flag" icon="mdi:alert"></ha-icon>' : '') + '</div>' +
-            '<div class="pct">' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)}<small>%</small>`) + '</div>' +
-            '<div class="lbl">' + hpEsc(this._inkLabel(ink)) + '</div>' +
-          '</div>';
-        }).join('') + '</div></div>';
+      inksHtml = this._tanks(toner ? 'mdi:invert-colors' : 'mdi:water-outline', this._t(toner ? 'toner' : 'inks'),
+        cartridges.map((ink) => this._tank(this._inkInfo(ink), HP_INK_COLORS[ink.color], this._inkLabel(ink))));
+    }
+    // Brother: drum, belt unit, fuser and paper feed kits, by remaining life, drawn like the cartridges.
+    var parts = r.parts || [];
+    if (!offline && c.show_inks && parts.length) {
+      inksHtml += this._tanks('mdi:cog-outline', this._t('parts'),
+        parts.map((part) => this._tank(this._inkInfo(part, this._partLabel(part)), HP_INK_COLORS[part.color || 'ink'], this._partLabel(part, true))));
     }
 
     var alertsHtml = '';
@@ -3301,6 +3511,22 @@ class PrinterCard extends HTMLElement {
     }
 
     return head + inksHtml + alertsHtml;
+  }
+
+  // A section of level tanks (cartridges, parts): icon and title, then the tanks.
+  _tanks(icon, title, tanks) {
+    return `<div class="section"><div class="section-title"><ha-icon icon="${icon}"></ha-icon>${title}</div><div class="inks" style="--n:${tanks.length}">${
+      tanks.join('')}</div></div>`;
+  }
+
+  // One tank filled to its level (`k` from _inkInfo), flagged when low or faulty.
+  _tank(k, fill, label) {
+    return '<div class="ink' + (k.low ? ' low' : '') + (k.crit ? ' crit' : '') + (k.bad ? ' bad' : '') + '" title="' + hpEsc(k.title) + '">' +
+      '<div class="tank"><div class="level" style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:3px;' : '') + 'background:' + fill + '"></div>' +
+        (k.low || k.bad ? '<ha-icon class="flag" icon="mdi:alert"></ha-icon>' : '') + '</div>' +
+      '<div class="pct">' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)}<small>%</small>`) + '</div>' +
+      '<div class="lbl">' + hpEsc(label) + '</div>' +
+    '</div>';
   }
 
   _styles(color) {
@@ -3358,6 +3584,7 @@ class PrinterCard extends HTMLElement {
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
       '.chip ha-icon { --mdc-icon-size: 13px; }' +
       '[data-entity] { cursor: pointer; }' +
+      '[data-entity]:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
       '.chip.error { background: color-mix(in srgb, var(--error-color, #db4437) 15%, transparent); color: var(--error-color, #db4437); }' +
       '.chip.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 15%, transparent); color: var(--warning-color, #ffa600); }' +
       '.chip.on { background: color-mix(in srgb, var(--info-color, #039be5) 15%, transparent); color: var(--info-color, #039be5); }' +
