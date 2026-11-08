@@ -582,6 +582,33 @@ test("the mini card editor offers zoom and keeps it out of the YAML at its defau
   assert.ok(!new PrinterCardEditor()._schema.call({ _lang: () => "en" }).some((s) => s.name === "zoom"));
 });
 
+test("the editor offers show_parts and an Automatic language, both kept out of the YAML", () => {
+  const ed = new PrinterCardEditor();
+  ed.setConfig({ type: "custom:printer-card" });
+  ed.hass = { language: "fr" };
+  const names = ed._form.schema.flatMap((s) => (s.schema ? s.schema.map((x) => x.name) : [s.name]));
+  assert.ok(names.includes("show_parts"));
+  assert.equal(ed._form.computeLabel({ name: "show_parts" }), "Pièces d'usure");
+  assert.equal(ed._form.data.show_parts, true);
+  const lang = ed._form.schema.find((s) => s.name === "language").selector.select.options[0];
+  assert.deepEqual({ ...lang }, { value: "", label: "Automatique" });
+  assert.equal(ed._form.data.language, "");
+  const sent = [];
+  ed.dispatchEvent = (e) => sent.push(e);
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { language: "", show_parts: true } } });
+  assert.deepEqual({ ...ed._config }, { type: "custom:printer-card" });
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { language: "de", show_parts: false } } });
+  assert.equal(ed._config.show_parts, false);
+  assert.equal(ed._config.language, "de");
+  // Its default is the value of show_inks: kept only when it differs.
+  ed.setConfig({ type: "custom:printer-card", show_inks: false });
+  assert.equal(ed._form.data.show_parts, false);
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_inks: false, show_parts: false } } });
+  assert.deepEqual({ ...ed._config }, { type: "custom:printer-card", show_inks: false });
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_inks: false, show_parts: true } } });
+  assert.equal(ed._config.show_parts, true);
+});
+
 // ── Review pass 8 ──────────────────────────────────────────────────────────
 const styleOf = (card) => card.shadowRoot.innerHTML.match(/<style>([\s\S]*)<\/style>/)[1];
 const reducedMotion = (css) => css.match(/@media \(prefers-reduced-motion: reduce\) \{([\s\S]*?\})\s*\}/)?.[1] || "";
@@ -739,11 +766,14 @@ test("narrow header: the status pill shrinks and truncates, then shows only its 
   assert.match(rule(full, ".status ha-icon"), /flex: none;/);
   assert.match(rule(small, ".st .dot"), /flex: none;/);
   assert.match(rule(small, ".zoom"), /flex: none;/);
-  // Narrow: the icon or dot is never cut, and the logo and gaps leave room for the name and the detail button.
+  // Narrow: the icon or dot is never cut, and the gaps leave room for the name and the detail button.
   assert.match(full, /@container printer-card \(max-width: 200px\) \{[^@]*\.status \{ min-width: 22px; padding: 2px 4px; \}/);
-  assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 6px; \} \.logo \{ width: 32px; height: 32px; \}/);
+  assert.match(full, /@container printer-card \(max-width: 200px\) \{ \.header \{ gap: 4px; \}/);
+  // The header icon stays 40 px (24 px icon, full-size badge) even there.
+  const narrow = (css) => css.match(/@container printer-card \(max-width: 200px\) \{([^@]*)/)[1];
+  for (const css of [full, small]) assert.doesNotMatch(narrow(css), /\.logo|\.hp-badge/);
   assert.match(small, /@container printer-card \(max-width: 200px\) \{ \.st \{ min-width: 14px; padding: 4px; \}/);
-  // The mini card keeps the full card's header icon (40 px, 24 px icon): only the narrow container rule shrinks it.
+  // The mini card keeps the full card's header icon (40 px, 24 px icon).
   assert.doesNotMatch(small, /\.mini \.logo/);
   assert.match(rule(small, ".logo"), /width: 40px; height: 40px;/);
 });
@@ -844,6 +874,11 @@ test("Brother integration: an error in the status text stops the printer, with t
   // A text without an error: the printer status rules, and "toner low" is not a stop.
   assert.match(render(brotherHass({ status: "idle", text: "toner low" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
   assert.match(render(brotherHass({ status: "printing", text: "printing" }), {}).shadowRoot.innerHTML, /aria-label="Printing"/);
+  // The drum at its end stops the printer; "Drum End Soon" is only a warning.
+  for (const text of ["Replace Drum", "Drum Stop", "Trommel ersetzen", "Remplacer tambour", "Sostituire tamburo"]) {
+    assert.match(render(brotherHass({ status: "idle", text }), {}).shadowRoot.innerHTML, /aria-label="Stopped"/, text);
+  }
+  assert.match(render(brotherHass({ status: "idle", text: "Drum End Soon" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
   // Only the status text sensor: the error is read there too.
   assert.match(render(brotherHass({ key: "status", status: "paper jam" }), {}).shadowRoot.innerHTML, /aria-label="Stopped"[\s\S]*Paper jam/);
 });
@@ -874,9 +909,17 @@ test("Brother integration: drum, belt, fuser and paper feed kits are parts, with
   assert.doesNotMatch(html, /Fuser:|Paper feed kit 1:/);
   // The threshold is the card's low_threshold.
   assert.doesNotMatch(render(hass, { low_threshold: 10 }).shadowRoot.innerHTML, /Belt unit:/);
-  // Without show_inks the section goes, the alerts stay; the mini card shows them as chips.
-  const noInks = render(hass, { show_inks: false }).shadowRoot.innerHTML;
-  assert.doesNotMatch(noInks, /Parts<\/div>/);
-  assert.match(noInks, /Belt unit: 12 %/);
+  // show_inks and show_parts are apart: each hides its own section only; the part alerts stay.
+  const noInks = render(hass, { show_inks: false, show_parts: true }).shadowRoot.innerHTML;
+  assert.match(noInks, /Parts<\/div>/);
+  assert.doesNotMatch(noInks, /Toner levels/);
+  // Not set, show_parts follows show_inks: `show_inks: false` alone hides both, as before show_parts existed.
+  const noInksAlone = render(hass, { show_inks: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(noInksAlone, /Parts<\/div>/);
+  assert.match(noInksAlone, /Belt unit: 12 %/);
+  const noParts = render(hass, { show_parts: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(noParts, /Parts<\/div>/);
+  assert.match(noParts, /Toner levels/);
+  assert.match(noParts, /Belt unit: 12 %/);
   assert.match(render(hass, {}, PrinterMiniCard).shadowRoot.innerHTML, /<span class="r warn" title="Belt unit: 12 % of life left" data-entity="sensor.mfc_belt_unit_remaining_life"/);
 });

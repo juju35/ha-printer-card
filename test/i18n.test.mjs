@@ -81,7 +81,9 @@ test("relative times follow the script: Latin for sr-Latn, Cyrillic for sr", () 
 test("editor language options: one per dictionary, with their native names", () => {
   const schema = PrinterCardEditor.prototype._schema.call({ _lang: () => "en", _config: {} });
   const field = schema.find((s) => s.name === "language");
-  const options = field.selector.select.options;
+  // Automatic first (empty value: follows Home Assistant), then one per dictionary.
+  assert.deepEqual({ ...field.selector.select.options[0] }, { value: "", label: "Automatic" });
+  const options = field.selector.select.options.slice(1);
   assert.deepEqual(Array.from(options, (o) => o.value).sort(), Object.keys(HpI18n).sort());
   const labels = Object.fromEntries(options.map((o) => [o.value, o.label]));
   assert.equal(labels.it, "Italiano");

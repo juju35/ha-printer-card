@@ -69,6 +69,7 @@ var HpI18n = {
     ed_name_helper: 'Laisser vide pour le nom de l\'appareil',
     ed_show_image: 'Image de l\'imprimante',
     ed_show_inks: 'Niveaux d\'encre',
+    ed_show_parts: 'Pièces d\'usure',
     ed_show_alerts: 'Alertes',
     ed_show_stats: 'Compteur de pages',
     ed_show_expired: 'Alerte garantie expirée',
@@ -95,6 +96,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Langue',
     ed_language_helper: 'Laisser vide pour suivre la langue de Home Assistant',
+    ed_lang_auto: 'Automatique',
     ed_entities: 'Entités (avancé)',
     ed_entities_helper: 'Détectées automatiquement depuis l\'appareil ; à renseigner seulement pour forcer une entité',
     en_status: 'Statut',
@@ -177,6 +179,7 @@ var HpI18n = {
     ed_name_helper: 'Leave empty to use the device name',
     ed_show_image: 'Printer picture',
     ed_show_inks: 'Ink levels',
+    ed_show_parts: 'Parts',
     ed_show_alerts: 'Alerts',
     ed_show_stats: 'Page counter',
     ed_show_expired: 'Expired warranty alert',
@@ -203,6 +206,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Language',
     ed_language_helper: 'Leave empty to follow the Home Assistant language',
+    ed_lang_auto: 'Automatic',
     ed_entities: 'Entities (advanced)',
     ed_entities_helper: 'Detected from the device; only set them to force an entity',
     en_status: 'Status',
@@ -285,6 +289,7 @@ var HpI18n = {
     ed_name_helper: 'Leer lassen, um den Gerätenamen zu verwenden',
     ed_show_image: 'Druckerbild',
     ed_show_inks: 'Tintenfüllstände',
+    ed_show_parts: 'Verschleißteile',
     ed_show_alerts: 'Warnmeldungen',
     ed_show_stats: 'Seitenzähler',
     ed_show_expired: 'Warnung bei abgelaufener Garantie',
@@ -311,6 +316,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Sprache',
     ed_language_helper: 'Leer lassen, um die in Home Assistant eingestellte Sprache zu verwenden',
+    ed_lang_auto: 'Automatisch',
     ed_entities: 'Entitäten (erweitert)',
     ed_entities_helper: 'Automatisch anhand des Geräts erkannt; nur festlegen, wenn eine bestimmte Entität erzwungen werden soll',
     en_status: 'Status',
@@ -393,6 +399,7 @@ var HpI18n = {
     ed_name_helper: 'Déjalo vacío para usar el nombre del dispositivo',
     ed_show_image: 'Imagen de la impresora',
     ed_show_inks: 'Niveles de tinta',
+    ed_show_parts: 'Piezas de desgaste',
     ed_show_alerts: 'Alertas',
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantía caducada',
@@ -419,6 +426,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Idioma',
     ed_language_helper: 'Déjalo vacío para seguir el idioma de Home Assistant',
+    ed_lang_auto: 'Automático',
     ed_entities: 'Entidades (avanzado)',
     ed_entities_helper: 'Detectadas a partir del dispositivo; indícalas solo para forzar una entidad',
     en_status: 'Estado',
@@ -508,6 +516,7 @@ var HpI18n = {
     ed_name_helper: 'Оставите празно за назив уређаја',
     ed_show_image: 'Слика штампача',
     ed_show_inks: 'Нивои мастила',
+    ed_show_parts: 'Потрошни делови',
     ed_show_alerts: 'Упозорења',
     ed_show_stats: 'Бројач страница',
     ed_show_expired: 'Упозорење о истеклој гаранцији',
@@ -534,6 +543,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Језик',
     ed_language_helper: 'Оставите празно да бисте пратили језик Home Assistant-а',
+    ed_lang_auto: 'Аутоматски',
     ed_entities: 'Ентитети (напредно)',
     ed_entities_helper: 'Откривају се из уређаја; попуните их само да бисте наметнули ентитет',
     en_status: 'Статус',
@@ -623,6 +633,7 @@ var HpI18n = {
     ed_name_helper: 'Ostavite prazno za naziv uređaja',
     ed_show_image: 'Slika štampača',
     ed_show_inks: 'Nivoi mastila',
+    ed_show_parts: 'Potrošni delovi',
     ed_show_alerts: 'Upozorenja',
     ed_show_stats: 'Brojač stranica',
     ed_show_expired: 'Upozorenje o istekloj garanciji',
@@ -649,6 +660,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Jezik',
     ed_language_helper: 'Ostavite prazno da biste pratili jezik Home Assistant-a',
+    ed_lang_auto: 'Automatski',
     ed_entities: 'Entiteti (napredno)',
     ed_entities_helper: 'Otkrivaju se iz uređaja; popunite ih samo da biste nametnuli entitet',
     en_status: 'Status',
@@ -731,6 +743,7 @@ var HpI18n = {
     ed_name_helper: 'Lasciare vuoto per usare il nome del dispositivo',
     ed_show_image: 'Immagine della stampante',
     ed_show_inks: 'Livelli di inchiostro',
+    ed_show_parts: 'Parti di usura',
     ed_show_alerts: 'Avvisi',
     ed_show_stats: 'Contatore pagine',
     ed_show_expired: 'Avviso di garanzia scaduta',
@@ -757,6 +770,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Lingua',
     ed_language_helper: 'Lasciare vuoto per seguire la lingua di Home Assistant',
+    ed_lang_auto: 'Automatico',
     ed_entities: 'Entità (avanzate)',
     ed_entities_helper: 'Rilevate dal dispositivo; da impostare solo per forzare un\'entità',
     en_status: 'Stato',
@@ -839,6 +853,7 @@ var HpI18n = {
     ed_name_helper: 'Leeg laten om de apparaatnaam te gebruiken',
     ed_show_image: 'Afbeelding van de printer',
     ed_show_inks: 'Inktniveaus',
+    ed_show_parts: 'Slijtdelen',
     ed_show_alerts: 'Meldingen',
     ed_show_stats: 'Paginateller',
     ed_show_expired: 'Melding bij verlopen garantie',
@@ -865,6 +880,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Taal',
     ed_language_helper: 'Leeg laten om de taal van Home Assistant te volgen',
+    ed_lang_auto: 'Automatisch',
     ed_entities: 'Entiteiten (geavanceerd)',
     ed_entities_helper: 'Gedetecteerd vanuit het apparaat; alleen invullen om een entiteit af te dwingen',
     en_status: 'Status',
@@ -950,6 +966,7 @@ var HpI18n = {
     ed_name_helper: 'Deixar vazio para usar o nome do dispositivo',
     ed_show_image: 'Imagem da impressora',
     ed_show_inks: 'Níveis de tinta',
+    ed_show_parts: 'Peças de desgaste',
     ed_show_alerts: 'Alertas',
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantia expirada',
@@ -976,6 +993,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Idioma',
     ed_language_helper: 'Deixar vazio para seguir o idioma do Home Assistant',
+    ed_lang_auto: 'Automático',
     ed_entities: 'Entidades (avançado)',
     ed_entities_helper: 'Detetadas a partir do dispositivo; preencher apenas para forçar uma entidade',
     en_status: 'Estado',
@@ -1061,6 +1079,7 @@ var HpI18n = {
     ed_name_helper: 'Pozostaw puste, aby użyć nazwy urządzenia',
     ed_show_image: 'Obraz drukarki',
     ed_show_inks: 'Poziomy tuszu',
+    ed_show_parts: 'Części eksploatacyjne',
     ed_show_alerts: 'Alerty',
     ed_show_stats: 'Licznik stron',
     ed_show_expired: 'Alert o wygasłej gwarancji',
@@ -1087,6 +1106,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Język',
     ed_language_helper: 'Pozostaw puste, aby używać języka Home Assistant',
+    ed_lang_auto: 'Automatycznie',
     ed_entities: 'Encje (zaawansowane)',
     ed_entities_helper: 'Wykrywane z urządzenia; ustaw je tylko, aby wymusić encję',
     en_status: 'Status',
@@ -1169,6 +1189,7 @@ var HpI18n = {
     ed_name_helper: 'Lăsați gol pentru a folosi numele dispozitivului',
     ed_show_image: 'Imaginea imprimantei',
     ed_show_inks: 'Nivel cerneală',
+    ed_show_parts: 'Piese de uzură',
     ed_show_alerts: 'Alerte',
     ed_show_stats: 'Contor de pagini',
     ed_show_expired: 'Alertă de garanție expirată',
@@ -1195,6 +1216,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Limbă',
     ed_language_helper: 'Lăsați gol pentru a urma limba Home Assistant',
+    ed_lang_auto: 'Automat',
     ed_entities: 'Entități (avansat)',
     ed_entities_helper: 'Detectate din dispozitiv; completați-le doar pentru a impune o entitate',
     en_status: 'Stare',
@@ -1281,6 +1303,7 @@ var HpI18n = {
     ed_name_helper: 'Lad feltet være tomt for at bruge enhedens navn',
     ed_show_image: 'Billede af printeren',
     ed_show_inks: 'Blækniveauer',
+    ed_show_parts: 'Sliddele',
     ed_show_alerts: 'Advarsler',
     ed_show_stats: 'Sidetæller',
     ed_show_expired: 'Advarsel om udløbet garanti',
@@ -1307,6 +1330,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Sprog',
     ed_language_helper: 'Lad feltet være tomt for at følge sproget i Home Assistant',
+    ed_lang_auto: 'Automatisk',
     ed_entities: 'Entiteter (avanceret)',
     ed_entities_helper: 'Registreres fra enheden; udfyld dem kun for at gennemtvinge en entitet',
     en_status: 'Status',
@@ -1395,6 +1419,7 @@ var HpI18n = {
     ed_name_helper: 'Lämna tomt för att använda enhetens namn',
     ed_show_image: 'Bild av skrivaren',
     ed_show_inks: 'Bläcknivåer',
+    ed_show_parts: 'Slitdelar',
     ed_show_alerts: 'Varningar',
     ed_show_stats: 'Sidräknare',
     ed_show_expired: 'Varning om utgången garanti',
@@ -1421,6 +1446,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Språk',
     ed_language_helper: 'Lämna tomt för att följa språket i Home Assistant',
+    ed_lang_auto: 'Automatiskt',
     ed_entities: 'Entiteter (avancerat)',
     ed_entities_helper: 'Identifieras från enheten; fyll bara i dem för att tvinga fram en entitet',
     en_status: 'Status',
@@ -1503,6 +1529,7 @@ var HpI18n = {
     ed_name_helper: 'Оставете празно, за да се използва името на устройството',
     ed_show_image: 'Изображение на принтера',
     ed_show_inks: 'Нива на мастилото',
+    ed_show_parts: 'Консумативни части',
     ed_show_alerts: 'Известия',
     ed_show_stats: 'Брояч на страници',
     ed_show_expired: 'Предупреждение за изтекла гаранция',
@@ -1529,6 +1556,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Език',
     ed_language_helper: 'Оставете празно, за да се следва езикът на Home Assistant',
+    ed_lang_auto: 'Автоматично',
     ed_entities: 'Обекти (разширени)',
     ed_entities_helper: 'Откриват се от устройството; задайте ги само за да наложите обект',
     en_status: 'Състояние',
@@ -1618,6 +1646,7 @@ var HpI18n = {
     ed_name_helper: 'Оставьте пустым, чтобы использовать название устройства',
     ed_show_image: 'Изображение принтера',
     ed_show_inks: 'Уровни чернил',
+    ed_show_parts: 'Расходные детали',
     ed_show_alerts: 'Оповещения',
     ed_show_stats: 'Счётчик страниц',
     ed_show_expired: 'Предупреждение об истёкшей гарантии',
@@ -1644,6 +1673,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Язык',
     ed_language_helper: 'Оставьте пустым, чтобы использовать язык Home Assistant',
+    ed_lang_auto: 'Автоматически',
     ed_entities: 'Объекты (дополнительно)',
     ed_entities_helper: 'Определяются по устройству; заполняйте, только чтобы задать объект вручную',
     en_status: 'Состояние',
@@ -1734,6 +1764,7 @@ var HpI18n = {
     ed_name_helper: 'Залиште порожнім, щоб використати назву пристрою',
     ed_show_image: 'Зображення принтера',
     ed_show_inks: 'Рівні чорнила',
+    ed_show_parts: 'Витратні деталі',
     ed_show_alerts: 'Сповіщення',
     ed_show_stats: 'Лічильник сторінок',
     ed_show_expired: 'Попередження про закінчення гарантії',
@@ -1760,6 +1791,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Мова',
     ed_language_helper: 'Залиште порожнім, щоб використовувати мову Home Assistant',
+    ed_lang_auto: 'Автоматично',
     ed_entities: 'Сутності (розширені)',
     ed_entities_helper: 'Визначаються з пристрою; заповнюйте, лише щоб задати сутність вручну',
     en_status: 'Стан',
@@ -1842,6 +1874,7 @@ var HpI18n = {
     ed_name_helper: 'Hagyja üresen az eszköz nevének használatához',
     ed_show_image: 'A nyomtató képe',
     ed_show_inks: 'Tintaszintek',
+    ed_show_parts: 'Kopóalkatrészek',
     ed_show_alerts: 'Értesítések',
     ed_show_stats: 'Oldalszámláló',
     ed_show_expired: 'Lejárt garancia figyelmeztetés',
@@ -1868,6 +1901,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Nyelv',
     ed_language_helper: 'Hagyja üresen a Home Assistant nyelvének követéséhez',
+    ed_lang_auto: 'Automatikus',
     ed_entities: 'Entitások (haladó)',
     ed_entities_helper: 'Az eszközből észlelve; csak egy entitás kikényszerítéséhez adja meg őket',
     en_status: 'Állapot',
@@ -1950,6 +1984,7 @@ var HpI18n = {
     ed_name_helper: 'Ponechajte prázdne pre názov zariadenia',
     ed_show_image: 'Obrázok tlačiarne',
     ed_show_inks: 'Hladiny atramentu',
+    ed_show_parts: 'Spotrebné diely',
     ed_show_alerts: 'Upozornenia',
     ed_show_stats: 'Počítadlo strán',
     ed_show_expired: 'Upozornenie na vypršanú záruku',
@@ -1976,6 +2011,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Jazyk',
     ed_language_helper: 'Ponechajte prázdne, ak chcete použiť jazyk Home Assistant',
+    ed_lang_auto: 'Automaticky',
     ed_entities: 'Entity (pokročilé)',
     ed_entities_helper: 'Zisťujú sa zo zariadenia; vyplňte ich, len ak chcete vynútiť entitu',
     en_status: 'Stav',
@@ -2058,6 +2094,7 @@ var HpI18n = {
     ed_name_helper: 'Ponechte prázdné pro název zařízení',
     ed_show_image: 'Obrázek tiskárny',
     ed_show_inks: 'Hladiny inkoustu',
+    ed_show_parts: 'Spotřební díly',
     ed_show_alerts: 'Upozornění',
     ed_show_stats: 'Počítadlo stránek',
     ed_show_expired: 'Upozornění na vypršelou záruku',
@@ -2084,6 +2121,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Jazyk',
     ed_language_helper: 'Ponechte prázdné pro jazyk Home Assistantu',
+    ed_lang_auto: 'Automaticky',
     ed_entities: 'Entity (pokročilé)',
     ed_entities_helper: 'Zjišťují se ze zařízení; vyplňte je, jen pokud chcete vynutit entitu',
     en_status: 'Stav',
@@ -2166,6 +2204,7 @@ var HpI18n = {
     ed_name_helper: 'Pustite prazno za ime naprave',
     ed_show_image: 'Slika tiskalnika',
     ed_show_inks: 'Ravni črnila',
+    ed_show_parts: 'Obrabni deli',
     ed_show_alerts: 'Opozorila',
     ed_show_stats: 'Števec strani',
     ed_show_expired: 'Opozorilo o potekli garanciji',
@@ -2192,6 +2231,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Jezik',
     ed_language_helper: 'Pustite prazno, da sledi jeziku Home Assistanta',
+    ed_lang_auto: 'Samodejno',
     ed_entities: 'Entitete (napredno)',
     ed_entities_helper: 'Zaznane iz naprave; izpolnite jih le, če želite vsiliti entiteto',
     en_status: 'Stanje',
@@ -2274,6 +2314,7 @@ var HpI18n = {
     ed_name_helper: 'Atstājiet tukšu, lai izmantotu ierīces nosaukumu',
     ed_show_image: 'Printera attēls',
     ed_show_inks: 'Tintes līmeņi',
+    ed_show_parts: 'Nolietojamās daļas',
     ed_show_alerts: 'Brīdinājumi',
     ed_show_stats: 'Lapu skaitītājs',
     ed_show_expired: 'Brīdinājums par beigušos garantiju',
@@ -2300,6 +2341,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Valoda',
     ed_language_helper: 'Atstājiet tukšu, lai izmantotu Home Assistant valodu',
+    ed_lang_auto: 'Automātiski',
     ed_entities: 'Vienības (papildu)',
     ed_entities_helper: 'Nosaka no ierīces; aizpildiet tikai, lai piespiedu kārtā norādītu vienību',
     en_status: 'Statuss',
@@ -2382,6 +2424,7 @@ var HpI18n = {
     ed_name_helper: 'Αφήστε κενό για να χρησιμοποιηθεί το όνομα της συσκευής',
     ed_show_image: 'Εικόνα εκτυπωτή',
     ed_show_inks: 'Στάθμες μελανιού',
+    ed_show_parts: 'Αναλώσιμα εξαρτήματα',
     ed_show_alerts: 'Ειδοποιήσεις',
     ed_show_stats: 'Μετρητής σελίδων',
     ed_show_expired: 'Ειδοποίηση λήξης εγγύησης',
@@ -2408,6 +2451,7 @@ var HpI18n = {
     pic_canon_laser: 'Canon i-SENSYS / imageCLASS',
     ed_language: 'Γλώσσα',
     ed_language_helper: 'Αφήστε κενό για να ακολουθεί τη γλώσσα του Home Assistant',
+    ed_lang_auto: 'Αυτόματα',
     ed_entities: 'Οντότητες (για προχωρημένους)',
     ed_entities_helper: 'Εντοπίζονται από τη συσκευή· συμπληρώστε τες μόνο για να επιβάλετε μια οντότητα',
     en_status: 'Κατάσταση',
@@ -2636,7 +2680,11 @@ var HP_BROTHER_STATES = { idle: 'ready', printing: 'processing', warmup: 'proces
 var HP_BROTHER_ERROR = new RegExp(['jam', 'stau', 'bourrage', 'atasco', 'incepp', 'zacię', 'no paper', 'out of paper', 'paper empty',
   'load paper', 'kein papier', 'pas de papier', 'sin papel', 'cover', 'door', 'capot', 'abdeckung', 'tapa', 'coperchio',
   'toner empty', 'toner end', 'replace toner', 'no toner', 'toner vide', 'error', 'erreur', 'fehler', 'errore', 'fout', 'błąd',
-  'unable', 'impossible'].join('|'));
+  'unable', 'impossible',
+  // The drum at its end: "Replace Drum", "Drum Stop" (not "Drum End Soon", a warning).
+  'replace drum', 'change drum', 'drum stop', 'trommel ersetzen', 'trommel wechseln', 'trommel stop', 'remplacer tambour',
+  'arrêt tambour', 'tambour arrêt', 'cambiar tambor', 'sustituir tambor', 'tambor parado', 'sostituire tamburo', 'tamburo fermo',
+  'drum vervangen', 'vervang drum'].join('|'));
 // State told by the raw text, null when the text is not recognized.
 function hpBrotherText(text) {
   var t = String(text || '').toLowerCase();
@@ -3058,6 +3106,8 @@ class PrinterCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({}, this.constructor.defaults, config);
+    // Not set, show_parts follows show_inks (so `show_inks: false` still hides the parts, as before 2.8.0).
+    if (this._config.show_parts === undefined) this._config.show_parts = this._config.show_inks;
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       // A chip opens the more-info dialog of its entity (`data-entity`), like a tile.
@@ -3496,7 +3546,7 @@ class PrinterCard extends HTMLElement {
     }
     // Brother: drum, belt unit, fuser and paper feed kits, by remaining life, drawn like the cartridges.
     var parts = r.parts || [];
-    if (!offline && c.show_inks && parts.length) {
+    if (!offline && c.show_parts && parts.length) {
       inksHtml += this._tanks('mdi:cog-outline', this._t('parts'),
         parts.map((part) => this._tank(this._inkInfo(part, this._partLabel(part)), HP_INK_COLORS[part.color || 'ink'], this._partLabel(part, true))));
     }
@@ -3577,8 +3627,8 @@ class PrinterCard extends HTMLElement {
       '.status ha-icon { --mdc-icon-size: 14px; flex: none; }' +
       '.status span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
       // Too narrow for a readable status: its icon only, never cut (the text stays in the pill's title and label),
-      // with a smaller logo and tighter gaps, so the name and the detail button of a zoomed mini card still fit at 6 columns.
-      '@container printer-card (max-width: 200px) { .header { gap: 6px; } .logo { width: 32px; height: 32px; } .logo.mark ha-icon { --mdc-icon-size: 20px; } .hp-badge { width: 14px; height: 14px; right: -3px; bottom: -3px; }' +
+      // with tighter gaps (the 40px logo is never shrunk), so the name and the detail button of a zoomed mini card still fit at 6 columns.
+      '@container printer-card (max-width: 200px) { .header { gap: 4px; }' +
         ' .status { min-width: 22px; padding: 2px 4px; } .status span { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
@@ -3794,6 +3844,7 @@ class PrinterCardEditor extends HTMLElement {
         type: 'grid', name: '', schema: [
           { name: 'show_image', selector: { boolean: {} } },
           { name: 'show_inks', selector: { boolean: {} } },
+          { name: 'show_parts', selector: { boolean: {} } },
           { name: 'show_alerts', selector: { boolean: {} } },
           { name: 'show_stats', selector: { boolean: {} } },
           { name: 'show_eprint', selector: { boolean: {} } },
@@ -3809,7 +3860,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'image', selector: { text: {} } },
       {
         name: 'language',
-        selector: { select: { mode: 'dropdown', options: [{ value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }, { value: 'ro', label: 'Română' }, { value: 'da', label: 'Dansk' }, { value: 'sv', label: 'Svenska' }, { value: 'bg', label: 'Български' }, { value: 'ru', label: 'Русский' }, { value: 'uk', label: 'Українська' }, { value: 'hu', label: 'Magyar' }, { value: 'sk', label: 'Slovenčina' }, { value: 'cs', label: 'Čeština' }, { value: 'sl', label: 'Slovenščina' }, { value: 'lv', label: 'Latviešu' }, { value: 'el', label: 'Ελληνικά' }] } },
+        selector: { select: { mode: 'dropdown', options: [{ value: '', label: t('ed_lang_auto') }, { value: 'fr', label: 'Français' }, { value: 'en', label: 'English' }, { value: 'de', label: 'Deutsch' }, { value: 'es', label: 'Español' }, { value: 'sr', label: 'Српски' }, { value: 'sr-Latn', label: 'Srpski (latinica)' }, { value: 'it', label: 'Italiano' }, { value: 'nl', label: 'Nederlands' }, { value: 'pt', label: 'Português (Portugal)' }, { value: 'pl', label: 'Polski' }, { value: 'ro', label: 'Română' }, { value: 'da', label: 'Dansk' }, { value: 'sv', label: 'Svenska' }, { value: 'bg', label: 'Български' }, { value: 'ru', label: 'Русский' }, { value: 'uk', label: 'Українська' }, { value: 'hu', label: 'Magyar' }, { value: 'sk', label: 'Slovenčina' }, { value: 'cs', label: 'Čeština' }, { value: 'sl', label: 'Slovenščina' }, { value: 'lv', label: 'Latviešu' }, { value: 'el', label: 'Ελληνικά' }] } },
       },
       {
         type: 'expandable', name: 'entities', title: t('ed_entities'), flatten: false,
@@ -3843,7 +3894,9 @@ class PrinterCardEditor extends HTMLElement {
       var txt = hpT(lang, key);
       return txt === key ? undefined : txt;
     };
-    this._form.data = Object.assign({}, this.constructor.defaults, this._config);
+    // No language option: the dropdown shows Automatic (dropped again from the YAML on change).
+    this._form.data = Object.assign({ language: '' }, this.constructor.defaults, this._config);
+    if (this._form.data.show_parts === undefined) this._form.data.show_parts = this._form.data.show_inks;
   }
 
   _valueChanged(ev) {
@@ -3853,6 +3906,8 @@ class PrinterCardEditor extends HTMLElement {
     Object.keys(value).forEach((key) => {
       if (value[key] === '' || value[key] === null || value[key] === undefined) delete value[key];
     });
+    // show_parts at the value of show_inks is its default.
+    if (value.show_parts === (value.show_inks !== false)) delete value.show_parts;
     var defaults = this.constructor.defaults;
     Object.keys(defaults).forEach((key) => {
       if (value[key] === defaults[key]) delete value[key];
