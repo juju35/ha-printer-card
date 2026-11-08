@@ -152,7 +152,7 @@ entities:
 | `name` | ❌ | Device name | Card title |
 | `show_image` | ❌ | `true` | Show the printer picture |
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |
-| `show_parts` | ❌ | `true` | Show the Brother parts (drum, belt unit, fuser, paper feed kits) by remaining life |
+| `show_parts` | ❌ | Value of `show_inks` | Show the Brother parts (drum, belt unit, fuser, paper feed kits) by remaining life |
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |

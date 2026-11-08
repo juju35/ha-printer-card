@@ -3,7 +3,7 @@
 ## 2.8.0 - 2026-11-08
 
 ### Features
-- New `show_parts` option (default `true`), also in the visual editor: shows or hides the Brother parts section on its own, apart from `show_inks`.
+- New `show_parts` option, also in the visual editor: shows or hides the Brother parts section on its own, apart from `show_inks`. When not set, it takes the value of `show_inks`, so `show_inks: false` still hides the parts.
 - The editor's language list starts with an Automatic entry, which follows the Home Assistant language.
 
 ### Fixes

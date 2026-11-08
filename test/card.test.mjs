@@ -600,6 +600,13 @@ test("the editor offers show_parts and an Automatic language, both kept out of t
   ed._valueChanged({ stopPropagation() {}, detail: { value: { language: "de", show_parts: false } } });
   assert.equal(ed._config.show_parts, false);
   assert.equal(ed._config.language, "de");
+  // Its default is the value of show_inks: kept only when it differs.
+  ed.setConfig({ type: "custom:printer-card", show_inks: false });
+  assert.equal(ed._form.data.show_parts, false);
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_inks: false, show_parts: false } } });
+  assert.deepEqual({ ...ed._config }, { type: "custom:printer-card", show_inks: false });
+  ed._valueChanged({ stopPropagation() {}, detail: { value: { show_inks: false, show_parts: true } } });
+  assert.equal(ed._config.show_parts, true);
 });
 
 // ── Review pass 8 ──────────────────────────────────────────────────────────
@@ -903,9 +910,13 @@ test("Brother integration: drum, belt, fuser and paper feed kits are parts, with
   // The threshold is the card's low_threshold.
   assert.doesNotMatch(render(hass, { low_threshold: 10 }).shadowRoot.innerHTML, /Belt unit:/);
   // show_inks and show_parts are apart: each hides its own section only; the part alerts stay.
-  const noInks = render(hass, { show_inks: false }).shadowRoot.innerHTML;
+  const noInks = render(hass, { show_inks: false, show_parts: true }).shadowRoot.innerHTML;
   assert.match(noInks, /Parts<\/div>/);
   assert.doesNotMatch(noInks, /Toner levels/);
+  // Not set, show_parts follows show_inks: `show_inks: false` alone hides both, as before show_parts existed.
+  const noInksAlone = render(hass, { show_inks: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(noInksAlone, /Parts<\/div>/);
+  assert.match(noInksAlone, /Belt unit: 12 %/);
   const noParts = render(hass, { show_parts: false }).shadowRoot.innerHTML;
   assert.doesNotMatch(noParts, /Parts<\/div>/);
   assert.match(noParts, /Toner levels/);

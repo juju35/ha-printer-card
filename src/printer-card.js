@@ -3088,7 +3088,7 @@ function hpFocusKey(el) {
 }
 
 var HP_DEFAULTS = {
-  show_image: true, show_inks: true, show_parts: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, low_threshold: 15, picture: 'auto',
+  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, low_threshold: 15, picture: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
@@ -3106,6 +3106,8 @@ class PrinterCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({}, this.constructor.defaults, config);
+    // Not set, show_parts follows show_inks (so `show_inks: false` still hides the parts, as before 2.8.0).
+    if (this._config.show_parts === undefined) this._config.show_parts = this._config.show_inks;
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' });
       // A chip opens the more-info dialog of its entity (`data-entity`), like a tile.
@@ -3894,6 +3896,7 @@ class PrinterCardEditor extends HTMLElement {
     };
     // No language option: the dropdown shows Automatic (dropped again from the YAML on change).
     this._form.data = Object.assign({ language: '' }, this.constructor.defaults, this._config);
+    if (this._form.data.show_parts === undefined) this._form.data.show_parts = this._form.data.show_inks;
   }
 
   _valueChanged(ev) {
@@ -3903,6 +3906,8 @@ class PrinterCardEditor extends HTMLElement {
     Object.keys(value).forEach((key) => {
       if (value[key] === '' || value[key] === null || value[key] === undefined) delete value[key];
     });
+    // show_parts at the value of show_inks is its default.
+    if (value.show_parts === (value.show_inks !== false)) delete value.show_parts;
     var defaults = this.constructor.defaults;
     Object.keys(defaults).forEach((key) => {
       if (value[key] === defaults[key]) delete value[key];
