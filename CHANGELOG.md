@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.8.0 - 2026-11-08
+
+### Features
+- New `show_parts` option (default `true`), also in the visual editor: shows or hides the Brother parts section on its own, apart from `show_inks`.
+- The editor's language list starts with an Automatic entry, which follows the Home Assistant language.
+
+### Fixes
+- Brother integration: a drum at its end ("Replace Drum", "Drum Stop", "Trommel ersetzen"…) shows the printer as stopped, instead of Ready.
+- The header icon keeps its 40 px size in a narrow card, instead of shrinking to 32 px.
+
 ## 2.7.0 - 2026-11-07
 
 ### Features

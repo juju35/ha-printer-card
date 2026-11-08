@@ -125,6 +125,7 @@ device_id: e1146b5da5cdfee3f4b06c25b0c863a7
 name: Printer
 show_image: true
 show_inks: true
+show_parts: true
 show_alerts: true
 show_stats: true
 show_eprint: true
@@ -150,7 +151,8 @@ entities:
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device |
 | `name` | ❌ | Device name | Card title |
 | `show_image` | ❌ | `true` | Show the printer picture |
-| `show_inks` | ❌ | `true` | Show the ink or toner levels (and the Brother parts) |
+| `show_inks` | ❌ | `true` | Show the ink or toner levels |
+| `show_parts` | ❌ | `true` | Show the Brother parts (drum, belt unit, fuser, paper feed kits) by remaining life |
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |
@@ -159,7 +161,7 @@ entities:
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
 | `picture` | ❌ | `auto` | Picture: `auto`, `officejet`, `laserjet`, `deskjet`, `smart_tank` or `generic` (see below) |
 | `image` | ❌ | — | URL of your own printer picture, e.g. `/local/printer.png`; replaces `picture` |
-| `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
+| `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings; *Automatic* in the visual editor) |
 | `entities` | ❌ | Auto | Override detected entities (see below) |
 | `zoom` | ❌ | `true` | Mini card only: detail button in the top right corner, showing the full card; a click on it or anywhere else goes back to the compact view. `false` removes it |
 
