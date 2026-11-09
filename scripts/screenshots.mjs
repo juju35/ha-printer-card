@@ -98,7 +98,7 @@ async function openCard(browser, s, { icons = {}, hass = {}, extra = "" }) {
       const el = document.createElement(type);
       el.setConfig({ type: `custom:${type}`, ...config });
       el.hass = { states: {}, entities: {}, devices: {}, language: "en", locale: { language: "en" },
-                  themes: { darkMode: dark }, callService: async () => {}, callWS: async () => ({}), ...hass };
+                  themes: { darkMode: dark }, callService: async () => {}, callWS: async () => ({}), ...hass, ...(window.__ws ? { callWS: window.__ws } : {}) };
       document.getElementById("root").appendChild(el);
     },
     { type: s.type, config: s.config || {}, hass: { ...hass, ...(s.hass || {}) }, dark: s.theme === "dark" }
@@ -261,6 +261,23 @@ const zoomIn = (page) =>
       .dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 })),
   );
 
+// Recorder mock: 60 days of daily mean levels, each cartridge or part used up at its own pace down to its level now,
+// so the card shows when it should be empty.
+const ws = `window.__ws = async (msg) => {
+  if (msg.type !== "recorder/statistics_during_period") return {};
+  // Asked from the hass setter, before the card is in the page: answer once it is.
+  await new Promise((r) => setTimeout(r, 50));
+  const states = document.querySelector("#root").firstElementChild._hass.states;
+  const day = 86400000, now = Date.now(), out = {};
+  msg.statistic_ids.forEach((id, k) => {
+    const level = Number(states[id]?.state);
+    if (!Number.isFinite(level)) return;
+    const perDay = [0.45, 0.8, 0.3, 0.6, 0.2][k % 5];
+    out[id] = Array.from({ length: 60 }, (_, i) => ({ start: now - (60 - i) * day, mean: Math.min(100, level + (60 - i) * perDay) }));
+  });
+  return out;
+};`;
+
 await render(
   [
     { file: "card", type: "printer-card", theme: "light", width: 460, config: {} },
@@ -286,7 +303,7 @@ await render(
     { file: "mini-zoom", type: "printer-mini-card", theme: "light", width: 460, config: {}, after: zoomIn },
     { file: "mini-zoom-dark", type: "printer-mini-card", theme: "dark", width: 460, config: {}, after: zoomIn },
   ],
-  { icons, hass }
+  { icons, hass, extra: ws }
 );
 
 // The printer of each brand while a job prints: HP (printing.gif, the base brand), then Brother, Epson and Canon
