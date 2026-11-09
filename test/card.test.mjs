@@ -957,8 +957,10 @@ test("the forecast under each tank, from one daily statistics query", async () =
   assert.equal(calls[0].statistic_ids.length, 4);
   const html = card.shadowRoot.innerHTML;
   // 1 point a day, 50 % left: 50 days, about 7 weeks.
-  assert.match(html, /<div class="eta">≈ 7w<\/div>/);
-  assert.match(html, /Empty in 7 weeks/);
+  // Whole words under the tank ("7w" also read as 7 minutes or months), the date it runs out in the tooltip.
+  assert.match(html, /<div class="eta">≈ 7 weeks<\/div>/);
+  const on = new Intl.DateTimeFormat("en", { day: "numeric", month: "short" }).format(new Date(Date.now() + 50 * 86400000));
+  assert.ok(html.includes(`Empty in 7 weeks (${on})`), html.match(/title="[^"]*Empty[^"]*"/)?.[0]);
   // Off: no query, no forecast.
   const off = mockHass();
   off.callWS = () => {

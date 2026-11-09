@@ -35,7 +35,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
-- **Empty forecast**: under each cartridge and part, about how long it lasts at the pace of the last 90 days (*≈ 7w*; *Empty in 7 weeks* on hover), from the recorder's daily statistics, a refill starting the count over
+- **Empty forecast**: under each cartridge and part, about how long it lasts at the pace of the last 90 days (*≈ 7 weeks*; *Empty in 7 weeks (12 Mar)* on hover, with the date it runs out), from the recorder's daily statistics, a refill starting the count over
 - **Brother parts** (Brother integration): drum (or one per color), belt unit, fuser and paper feed kits by remaining life, in a *Parts* section, with an alert at the low threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
 - **Pictures**: a drawing per range for HP (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank), Brother (laser, inkjet), Epson (EcoTank, Expression / WorkForce) and Canon (PIXMA / MAXIFY, MegaTank, i-SENSYS), and a generic printer for the other brands, picked from the device model or chosen in the editor

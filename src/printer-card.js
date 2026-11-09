@@ -3151,12 +3151,13 @@ function hpDaysToEmpty(points, current) {
   return current / perDay;
 }
 
-// "≈ 6 w", "≈ 3 mo": the forecast under a tank, in the card's language.
+// "≈ 6 weeks", "≈ 3 months": the forecast under a tank, in the card's language. Whole words: the narrow forms
+// ("4m") read as minutes as well as months.
 function hpShortDuration(locale, days) {
   var unit = days < 14 ? 'day' : days < 63 ? 'week' : 'month';
   var n = Math.max(1, Math.round(days / (unit === 'day' ? 1 : unit === 'week' ? 7 : 30.44)));
   try {
-    return '≈ ' + new Intl.NumberFormat(locale, { style: 'unit', unit: unit, unitDisplay: 'narrow' }).format(n);
+    return '≈ ' + new Intl.NumberFormat(locale, { style: 'unit', unit: unit, unitDisplay: 'long' }).format(n);
   } catch (_e) {
     return '≈ ' + n + ' ' + unit.charAt(0);
   }
@@ -3581,6 +3582,9 @@ class PrinterCard extends HTMLElement {
       var unit = empty < 14 ? 'day' : empty < 63 ? 'week' : 'month';
       var n = Math.max(1, Math.round(empty / (unit === 'day' ? 1 : unit === 'week' ? 7 : 30.44)));
       when = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(n, unit);
+      // The date it should run out, in the tooltip: "in 4 months (12 Mar)".
+      var on = new Date(Date.now() + empty * 86400000);
+      when += ' (' + new Intl.DateTimeFormat(locale, empty > 300 ? { day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'short' }).format(on) + ')';
     }
     return {
       p: p,
@@ -3780,7 +3784,7 @@ class PrinterCard extends HTMLElement {
       '.pct { font-size: 13px; font-weight: 500; color: var(--primary-text-color); }' +
       '.pct small { font-size: 11px; font-weight: 500; margin-left: 1px; color: var(--secondary-text-color); }' +
       '.lbl { font-size: 11px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }' +
-      '.eta { font-size: 10px; color: var(--secondary-text-color); white-space: nowrap; }' +
+      '.eta { font-size: 10px; color: var(--secondary-text-color); white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }' +
       '.ink.low .eta, .ink.crit .eta { color: var(--primary-text-color); font-weight: 500; }' +
       '.alerts { display: flex; flex-direction: column; gap: 6px; }' +
       '.alert { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 8px; border-radius: 10px;' +

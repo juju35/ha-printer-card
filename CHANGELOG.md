@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.10.2 - 2026-11-09
+
+### Improvements
+- Empty forecast under the tanks in whole words (*≈ 7 weeks*, *≈ 4 months*, in the card's language): the narrow forms (*7w*, *4m*) read as minutes as well as months. The tooltip adds the date it should run out (*Empty in 4 months (12 Mar)*).
+
 ## 2.10.1 - 2026-11-09
 
 ### Maintenance
