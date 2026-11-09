@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.10.0 - 2026-11-09
+
+### Features
+- **Empty forecast**: under each cartridge and part, about how long it lasts (*≈ 7w*, *Empty in 7 weeks* on hover), from the drop per day of its level since the last refill over the last 90 days of the recorder's daily statistics (one query for all of them, every 6 hours). `show_forecast: false` hides it.
+
 ## 2.9.1 - 2026-11-09
 
 ### Fixes

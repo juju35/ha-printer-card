@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, hpBrandOf, customElements, listeners } = loadCard("printer-card.js", [
+const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, hpBrandOf, hpDaysToEmpty, customElements, listeners } = loadCard("printer-card.js", [
   "hpBrandOf",
   "PrinterCard",
   "PrinterCardEditor",
@@ -14,6 +14,7 @@ const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, 
   "hpFill",
   "hpSubDevices",
   "hpFindIppSensor",
+  "hpDaysToEmpty",
 ]);
 
 const st = (state, attributes = {}, extra = {}) => ({ state, attributes, ...extra });
@@ -922,4 +923,46 @@ test("Brother integration: drum, belt, fuser and paper feed kits are parts, with
   assert.match(noParts, /Toner levels/);
   assert.match(noParts, /Belt unit: 12 %/);
   assert.match(render(hass, {}, PrinterMiniCard).shadowRoot.innerHTML, /<span class="r warn" title="Belt unit: 12 % of life left" data-entity="sensor.mfc_belt_unit_remaining_life"/);
+});
+
+
+const DAY = 86400000;
+const dailyLevels = (values, end = Date.now()) => values.map((v, i) => ({ t: end - (values.length - 1 - i) * DAY, v }));
+
+test("days to empty: the drop per day since the last refill, over at least a week", () => {
+  // 1 point a day for 20 days, from 70 to 50: empty in 50 days.
+  assert.equal(Math.round(hpDaysToEmpty(dailyLevels(Array.from({ length: 21 }, (_, i) => 70 - i)), 50)), 50);
+  // A refill restarts the count: only the drop after it.
+  const refilled = dailyLevels([30, 25, 20, 100, 98, 96, 94, 92, 90, 88, 86]);
+  assert.equal(Math.round(hpDaysToEmpty(refilled, 86)), 43);
+  // Too little history, or not used up.
+  assert.equal(hpDaysToEmpty(dailyLevels([60, 59, 58]), 58), null);
+  assert.equal(hpDaysToEmpty(dailyLevels(Array(15).fill(40)), 40), null);
+  assert.equal(hpDaysToEmpty(undefined, 40), null);
+});
+
+test("the forecast under each tank, from one daily statistics query", async () => {
+  const hass = mockHass();
+  const calls = [];
+  hass.callWS = (msg) => {
+    calls.push(msg);
+    const out = {};
+    for (const id of msg.statistic_ids) out[id] = dailyLevels(Array.from({ length: 29 }, (_, i) => 78 - i)).map((p) => ({ start: p.t, mean: p.v }));
+    return Promise.resolve(out);
+  };
+  const card = render(hass, { device_id: "p", language: "en" });
+  await new Promise((r) => setTimeout(r, 10));
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].period, "day");
+  assert.equal(calls[0].statistic_ids.length, 4);
+  const html = card.shadowRoot.innerHTML;
+  // 1 point a day, 50 % left: 50 days, about 7 weeks.
+  assert.match(html, /<div class="eta">≈ 7w<\/div>/);
+  assert.match(html, /Empty in 7 weeks/);
+  // Off: no query, no forecast.
+  const off = mockHass();
+  off.callWS = () => {
+    throw new Error("no query expected");
+  };
+  assert.doesNotMatch(render(off, { device_id: "p", show_forecast: false }).shadowRoot.innerHTML, /class="eta"/);
 });

@@ -35,6 +35,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
+- **Empty forecast**: under each cartridge and part, about how long it lasts at the pace of the last 90 days (*≈ 7w*; *Empty in 7 weeks* on hover), from the recorder's daily statistics, a refill starting the count over
 - **Brother parts** (Brother integration): drum (or one per color), belt unit, fuser and paper feed kits by remaining life, in a *Parts* section, with an alert at the low threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
 - **Pictures**: a drawing per range for HP (OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank), Brother (laser, inkjet), Epson (EcoTank, Expression / WorkForce) and Canon (PIXMA / MAXIFY, MegaTank, i-SENSYS), and a generic printer for the other brands, picked from the device model or chosen in the editor
@@ -156,6 +157,7 @@ entities:
 | `show_alerts` | ❌ | `true` | Show the alerts |
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |
+| `show_forecast` | ❌ | `true` | Show under each tank when it is forecast to be empty: the drop per day since the last refill (a rise of 20 points or more), over at least a week of the last 90 days of the recorder's daily statistics; nothing for a level that doesn't go down |
 | `show_expired` | ❌ | `false` | Also alert when a cartridge's warranty date has passed |
 | `low_threshold` | ❌ | `15` | Ink level (%) at or below which a cartridge is flagged as low; at 5 % or less it is nearly empty. Also the remaining life (%) at which a Brother part (drum, belt, fuser, paper feed kit) raises an alert |
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
