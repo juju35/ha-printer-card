@@ -22,6 +22,8 @@ var HpI18n = {
     toner: 'Niveaux de toner',
     pages: '{n} pages imprimées',
     pages_left: '≈ {n} pages',
+    empty_in: 'Vide {when}',
+    ed_show_forecast: 'Prévision de cartouche vide',
     c_black: 'Noir',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -133,6 +135,8 @@ var HpI18n = {
     toner: 'Toner levels',
     pages: '{n} pages printed',
     pages_left: '≈ {n} pages',
+    empty_in: 'Empty {when}',
+    ed_show_forecast: 'Empty cartridge forecast',
     c_black: 'Black',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -243,6 +247,8 @@ var HpI18n = {
     toner: 'Tonerfüllstände',
     pages: '{n} Seiten gedruckt',
     pages_left: '≈ {n} Seiten',
+    empty_in: 'Leer {when}',
+    ed_show_forecast: 'Prognose leere Patrone',
     c_black: 'Schwarz',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -353,6 +359,8 @@ var HpI18n = {
     toner: 'Niveles de tóner',
     pages: '{n} páginas impresas',
     pages_left: '≈ {n} páginas',
+    empty_in: 'Vacío {when}',
+    ed_show_forecast: 'Previsión de cartucho vacío',
     c_black: 'Negro',
     c_cyan: 'Cian',
     c_magenta: 'Magenta',
@@ -463,6 +471,8 @@ var HpI18n = {
     toner: 'Нивои тонера',
     pages: 'Одштампано страница: {n}',
     pages_left: '≈ {n} страница',
+    empty_in: 'Празно {when}',
+    ed_show_forecast: 'Прогноза празног кертриџа',
     c_black: 'Црна',
     c_cyan: 'Цијан',
     c_magenta: 'Магента',
@@ -580,6 +590,8 @@ var HpI18n = {
     toner: 'Nivoi tonera',
     pages: 'Odštampano stranica: {n}',
     pages_left: '≈ {n} stranica',
+    empty_in: 'Prazno {when}',
+    ed_show_forecast: 'Prognoza praznog kertridža',
     c_black: 'Crna',
     c_cyan: 'Cijan',
     c_magenta: 'Magenta',
@@ -697,6 +709,8 @@ var HpI18n = {
     toner: 'Livelli di toner',
     pages: '{n} pagine stampate',
     pages_left: '≈ {n} pagine',
+    empty_in: 'Vuota {when}',
+    ed_show_forecast: 'Previsione cartuccia vuota',
     c_black: 'Nero',
     c_cyan: 'Ciano',
     c_magenta: 'Magenta',
@@ -807,6 +821,8 @@ var HpI18n = {
     toner: 'Tonerniveaus',
     pages: '{n} pagina\'s afgedrukt',
     pages_left: '≈ {n} pagina\'s',
+    empty_in: 'Leeg {when}',
+    ed_show_forecast: 'Voorspelling lege cartridge',
     c_black: 'Zwart',
     c_cyan: 'Cyaan',
     c_magenta: 'Magenta',
@@ -917,6 +933,8 @@ var HpI18n = {
     toner: 'Níveis de toner',
     pages: '{n} páginas impressas',
     pages_left: '≈ {n} páginas',
+    empty_in: 'Vazio {when}',
+    ed_show_forecast: 'Previsão de tinteiro vazio',
     c_black: 'Preto',
     c_cyan: 'Ciano',
     c_magenta: 'Magenta',
@@ -1030,6 +1048,8 @@ var HpI18n = {
     toner: 'Poziomy tonera',
     pages: 'Wydrukowane strony: {n}',
     pages_left: '≈ {n} str.',
+    empty_in: 'Pusty {when}',
+    ed_show_forecast: 'Prognoza pustego wkładu',
     c_black: 'Czarny',
     c_cyan: 'Cyjan',
     c_magenta: 'Magenta',
@@ -1143,6 +1163,8 @@ var HpI18n = {
     toner: 'Nivel toner',
     pages: 'Pagini tipărite: {n}',
     pages_left: '≈ {n} pag.',
+    empty_in: 'Gol {when}',
+    ed_show_forecast: 'Prognoză cartuș gol',
     c_black: 'Negru',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -1253,6 +1275,8 @@ var HpI18n = {
     toner: 'Tonerniveauer',
     pages: 'Udskrevne sider: {n}',
     pages_left: '≈ {n} sider',
+    empty_in: 'Tom {when}',
+    ed_show_forecast: 'Prognose for tom patron',
     c_black: 'Sort',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -1367,6 +1391,8 @@ var HpI18n = {
     toner: 'Tonernivåer',
     pages: 'Utskrivna sidor: {n}',
     pages_left: '≈ {n} sidor',
+    empty_in: 'Tom {when}',
+    ed_show_forecast: 'Prognos för tom patron',
     c_black: 'Svart',
     c_cyan: 'Cyan',
     c_magenta: 'Magenta',
@@ -1483,6 +1509,8 @@ var HpI18n = {
     toner: 'Нива на тонера',
     pages: 'Отпечатани страници: {n}',
     pages_left: '≈ {n} стр.',
+    empty_in: 'Празна {when}',
+    ed_show_forecast: 'Прогноза за празна касета',
     c_black: 'Черна',
     c_cyan: 'Циан',
     c_magenta: 'Магента',
@@ -1593,6 +1621,8 @@ var HpI18n = {
     toner: 'Уровни тонера',
     pages: 'Напечатано страниц: {n}',
     pages_left: '≈ {n} стр.',
+    empty_in: 'Пусто {when}',
+    ed_show_forecast: 'Прогноз пустого картриджа',
     c_black: 'Чёрный',
     c_cyan: 'Голубой',
     c_magenta: 'Пурпурный',
@@ -1710,6 +1740,8 @@ var HpI18n = {
     toner: 'Рівні тонера',
     pages: 'Надруковано сторінок: {n}',
     pages_left: '≈ {n} стор.',
+    empty_in: 'Порожньо {when}',
+    ed_show_forecast: 'Прогноз порожнього картриджа',
     c_black: 'Чорний',
     c_cyan: 'Блакитний',
     c_magenta: 'Пурпуровий',
@@ -1828,6 +1860,8 @@ var HpI18n = {
     toner: 'Tonerszintek',
     pages: 'Kinyomtatott oldalak: {n}',
     pages_left: '≈ {n} oldal',
+    empty_in: 'Üres {when}',
+    ed_show_forecast: 'Üres patron előrejelzése',
     c_black: 'Fekete',
     c_cyan: 'Cián',
     c_magenta: 'Bíbor',
@@ -1938,6 +1972,8 @@ var HpI18n = {
     toner: 'Hladiny tonera',
     pages: 'Vytlačené strany: {n}',
     pages_left: '≈ {n} str.',
+    empty_in: 'Prázdna {when}',
+    ed_show_forecast: 'Predpoveď prázdnej kazety',
     c_black: 'Čierna',
     c_cyan: 'Azúrová',
     c_magenta: 'Purpurová',
@@ -2048,6 +2084,8 @@ var HpI18n = {
     toner: 'Hladiny toneru',
     pages: 'Vytištěné stránky: {n}',
     pages_left: '≈ {n} str.',
+    empty_in: 'Prázdná {when}',
+    ed_show_forecast: 'Předpověď prázdné kazety',
     c_black: 'Černá',
     c_cyan: 'Azurová',
     c_magenta: 'Purpurová',
@@ -2158,6 +2196,8 @@ var HpI18n = {
     toner: 'Ravni tonerja',
     pages: 'Natisnjene strani: {n}',
     pages_left: '≈ {n} str.',
+    empty_in: 'Prazna {when}',
+    ed_show_forecast: 'Napoved prazne kartuše',
     c_black: 'Črna',
     c_cyan: 'Cian',
     c_magenta: 'Magenta',
@@ -2268,6 +2308,8 @@ var HpI18n = {
     toner: 'Tonera līmeņi',
     pages: 'Izdrukātās lapas: {n}',
     pages_left: '≈ {n} lpp.',
+    empty_in: 'Tukša {when}',
+    ed_show_forecast: 'Tukšas kasetnes prognoze',
     c_black: 'Melna',
     c_cyan: 'Ciāna',
     c_magenta: 'Fuksīna',
@@ -2378,6 +2420,8 @@ var HpI18n = {
     toner: 'Στάθμες τόνερ',
     pages: 'Εκτυπωμένες σελίδες: {n}',
     pages_left: '≈ {n} σελ.',
+    empty_in: 'Άδειο {when}',
+    ed_show_forecast: 'Πρόβλεψη άδειου δοχείου',
     c_black: 'Μαύρη',
     c_cyan: 'Κυανή',
     c_magenta: 'Ματζέντα',
@@ -3087,8 +3131,39 @@ function hpFocusKey(el) {
   return HP_FOCUSABLE.find((sel) => el.matches(sel)) || '';
 }
 
+// Days before a cartridge or part is empty, from its daily mean levels ({ t, v }, oldest first) and its level now:
+// the drop per day since the last refill (a rise of 20 points or more), over at least a week. Null when it is not
+// used up (a flat or rising level) or there is too little history.
+var HP_REFILL_JUMP = 20;
+var HP_FORECAST_DAYS = 90;
+function hpDaysToEmpty(points, current) {
+  if (!Array.isArray(points) || Number.isNaN(current)) return null;
+  var start = 0;
+  for (var i = 1; i < points.length; i++) if (points[i].v - points[i - 1].v >= HP_REFILL_JUMP) start = i;
+  var seg = points.slice(start);
+  if (seg.length < 2) return null;
+  var first = seg[0];
+  var last = seg[seg.length - 1];
+  var days = (last.t - first.t) / 86400000;
+  if (days < 7) return null;
+  var perDay = (first.v - last.v) / days;
+  if (!(perDay > 0.02)) return null;
+  return current / perDay;
+}
+
+// "≈ 6 w", "≈ 3 mo": the forecast under a tank, in the card's language.
+function hpShortDuration(locale, days) {
+  var unit = days < 14 ? 'day' : days < 63 ? 'week' : 'month';
+  var n = Math.max(1, Math.round(days / (unit === 'day' ? 1 : unit === 'week' ? 7 : 30.44)));
+  try {
+    return '≈ ' + new Intl.NumberFormat(locale, { style: 'unit', unit: unit, unitDisplay: 'narrow' }).format(n);
+  } catch (_e) {
+    return '≈ ' + n + ' ' + unit.charAt(0);
+  }
+}
+
 var HP_DEFAULTS = {
-  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, low_threshold: 15, picture: 'auto',
+  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, low_threshold: 15, picture: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
@@ -3459,20 +3534,64 @@ class PrinterCard extends HTMLElement {
   }
 
   // Level of a cartridge and how it is flagged: low (at or below the threshold), nearly empty, faulty.
+  // Daily mean levels of the cartridges and parts over HP_FORECAST_DAYS, from the recorder's long-term statistics:
+  // fetched again every 6 hours, rendered again when they arrive.
+  _fetchLevels(ids) {
+    var hass = this._hass;
+    var key = ids.join(',');
+    if (!key || !hass.callWS || this._config.show_forecast === false || this._levelsBusy) return;
+    if (this._levelsKey === key && Date.now() - (this._levelsAt || 0) < 6 * 3600000) return;
+    this._levelsBusy = true;
+    this._levelsKey = key;
+    this._levelsAt = Date.now();
+    hass.callWS({ type: 'recorder/statistics_during_period', statistic_ids: ids, period: 'day', types: ['mean'],
+      start_time: new Date(Date.now() - HP_FORECAST_DAYS * 86400000).toISOString() })
+      .then((x) => {
+        var out = {};
+        ids.forEach((id) => {
+          out[id] = (x?.[id] || []).map((p) => ({ t: typeof p.start === 'number' ? p.start : Date.parse(p.start), v: Number(p.mean) }))
+            .filter((p) => Number.isFinite(p.t) && Number.isFinite(p.v));
+        });
+        this._levels = out;
+      })
+      .catch(() => { this._levels = this._levels || {}; })
+      .finally(() => {
+        this._levelsBusy = false;
+        this._sig = null;
+        this._update();
+      });
+  }
+
+  // Days before `ink` (a cartridge or a part) is empty, or null (see hpDaysToEmpty).
+  _daysToEmpty(ink) {
+    if (this._config.show_forecast === false || !ink.level) return null;
+    return hpDaysToEmpty(this._levels?.[ink.level], this._num(ink.level));
+  }
+
   _inkInfo(ink, label) {
     var low = Number(this._config.low_threshold);
     if (Number.isNaN(low)) low = 15;
     var p = this._num(ink.level);
     var known = !Number.isNaN(p);
     var left = Number(this._val(ink.pages_left));
+    var empty = this._daysToEmpty(ink);
+    var locale = hpLocale(this._lang(), this._hass);
+    var when = '';
+    if (empty !== null) {
+      var unit = empty < 14 ? 'day' : empty < 63 ? 'week' : 'month';
+      var n = Math.max(1, Math.round(empty / (unit === 'day' ? 1 : unit === 'week' ? 7 : 30.44)));
+      when = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(n, unit);
+    }
     return {
       p: p,
+      eta: empty === null ? '' : hpShortDuration(locale, empty),
       pct: known ? Math.max(0, Math.min(100, p)) : 0,
       low: known && p <= low,
       crit: known && p <= Math.min(low, 5),
       bad: !!ink.status && this._val(ink.status) === 'off' && !hpCartridgeOk(this._hass.states[ink.status]?.attributes.state),
       title: (label || this._inkLabel(ink)) + (known ? ` · ${Math.round(p)} %` : '') +
-        (this._avail(ink.pages_left) && !Number.isNaN(left) ? ` · ${this._t('pages_left', { n: left })}` : ''),
+        (this._avail(ink.pages_left) && !Number.isNaN(left) ? ` · ${this._t('pages_left', { n: left })}` : '') +
+        (when ? ` · ${this._t('empty_in', { when: when })}` : ''),
     };
   }
 
@@ -3539,6 +3658,7 @@ class PrinterCard extends HTMLElement {
 
     var inksHtml = '';
     var cartridges = r.inks.filter((i) => !i.printhead && i.level);
+    if (!offline) this._fetchLevels([...cartridges, ...(r.parts || [])].map((i) => i.level).filter(Boolean));
     if (!offline && c.show_inks && cartridges.length) {
       var toner = cartridges.every((i) => i.toner);
       inksHtml = this._tanks(toner ? 'mdi:invert-colors' : 'mdi:water-outline', this._t(toner ? 'toner' : 'inks'),
@@ -3576,6 +3696,7 @@ class PrinterCard extends HTMLElement {
         (k.low || k.bad ? '<ha-icon class="flag" icon="mdi:alert"></ha-icon>' : '') + '</div>' +
       '<div class="pct">' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)}<small>%</small>`) + '</div>' +
       '<div class="lbl">' + hpEsc(label) + '</div>' +
+      (k.eta ? '<div class="eta">' + hpEsc(k.eta) + '</div>' : '') +
     '</div>';
   }
 
@@ -3659,6 +3780,8 @@ class PrinterCard extends HTMLElement {
       '.pct { font-size: 13px; font-weight: 500; color: var(--primary-text-color); }' +
       '.pct small { font-size: 11px; font-weight: 500; margin-left: 1px; color: var(--secondary-text-color); }' +
       '.lbl { font-size: 11px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }' +
+      '.eta { font-size: 10px; color: var(--secondary-text-color); white-space: nowrap; }' +
+      '.ink.low .eta, .ink.crit .eta { color: var(--primary-text-color); font-weight: 500; }' +
       '.alerts { display: flex; flex-direction: column; gap: 6px; }' +
       '.alert { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 8px; border-radius: 10px;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.1)); color: var(--primary-text-color); }' +
@@ -3848,6 +3971,7 @@ class PrinterCardEditor extends HTMLElement {
           { name: 'show_alerts', selector: { boolean: {} } },
           { name: 'show_stats', selector: { boolean: {} } },
           { name: 'show_eprint', selector: { boolean: {} } },
+          { name: 'show_forecast', selector: { boolean: {} } },
         ],
       },
       { name: 'low_threshold', selector: { number: { min: 0, max: 50, step: 1, mode: 'slider', unit_of_measurement: '%' } } },
