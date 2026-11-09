@@ -85,8 +85,8 @@ The Marketplace registers the dashboard resource for you.
 
 ### Manual
 
-1. Download `printer-card.js` from the [latest release](https://github.com/juju35/ha-printer-card/releases/latest)
-2. Copy it to `/config/www/printer-card.js`
+1. Download `printer-card.js` and the `printer-card.i18n.*.js` translation files from the [latest release](https://github.com/juju35/ha-printer-card/releases/latest)
+2. Copy them all to `/config/www/` (without the translation files, the cards show in English)
 3. Go to **Settings → Dashboards → Resources** → Add resource:
    - URL: `/local/printer-card.js`
    - Type: **JavaScript Module**
