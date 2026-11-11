@@ -1,9 +1,25 @@
 // Pixel comparison for the screenshot script: a screenshot is rewritten only when what it shows changed,
 // not when the encoder produced other bytes for the same picture (PNG filtering and compression).
 import { execFileSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+
+// Debian 12's ffmpeg (5.1) cannot read a GIF from a pipe (its demuxer seeks back): decode a temporary copy instead.
+const viaFile = (buf, fn) => {
+  const dir = mkdtempSync(join(tmpdir(), "pixels-"));
+  const file = join(dir, "input");
+  try {
+    writeFileSync(file, buf);
+    return fn(file);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+};
 
 // Decodes a PNG or GIF (path or buffer) with ffmpeg into { width, height, frames: [RGBA buffers] }.
 export function decode(input) {
+  if (typeof input !== "string") return viaFile(input, decode);
   const src = typeof input === "string" ? input : "pipe:0";
   const opts = typeof input === "string" ? {} : { input };
   const [width, height] = execFileSync(
