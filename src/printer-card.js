@@ -130,6 +130,10 @@ var HpI18n = {
     sc_failed: 'Échec du scan : {e}',
     sc_add_hint: 'Ajoute la page posée sur la vitre au dernier PDF',
     ed_show_scan: 'Numérisation',
+    sc_color_mode: 'Couleur',
+    sc_color: 'Couleur',
+    sc_gray: 'Niveaux de gris',
+    sc_bw: 'Noir et blanc',
   },
   en: {
     printer: 'Printer',
@@ -258,6 +262,10 @@ var HpI18n = {
     sc_failed: 'Scan failed: {e}',
     sc_add_hint: 'Adds the page on the glass to the last PDF',
     ed_show_scan: 'Scan',
+    sc_color_mode: 'Color mode',
+    sc_color: 'Color',
+    sc_gray: 'Grayscale',
+    sc_bw: 'Black and white',
   },
   de: {
     printer: 'Drucker',
@@ -386,6 +394,10 @@ var HpI18n = {
     sc_failed: 'Scan fehlgeschlagen: {e}',
     sc_add_hint: 'Fügt die Seite auf dem Vorlagenglas dem letzten PDF hinzu',
     ed_show_scan: 'Scannen',
+    sc_color_mode: 'Farbmodus',
+    sc_color: 'Farbe',
+    sc_gray: 'Graustufen',
+    sc_bw: 'Schwarzweiß',
   },
   es: {
     printer: 'Impresora',
@@ -514,6 +526,10 @@ var HpI18n = {
     sc_failed: 'Error al escanear: {e}',
     sc_add_hint: 'Añade la página del cristal al último PDF',
     ed_show_scan: 'Escaneo',
+    sc_color_mode: 'Modo de color',
+    sc_color: 'Color',
+    sc_gray: 'Escala de grises',
+    sc_bw: 'Blanco y negro',
   },
   sr: {
     printer: 'Штампач',
@@ -649,6 +665,10 @@ var HpI18n = {
     sc_failed: 'Скенирање није успело: {e}',
     sc_add_hint: 'Додаје страницу са стакла у последњи PDF',
     ed_show_scan: 'Скенирање',
+    sc_color_mode: 'Режим боја',
+    sc_color: 'У боји',
+    sc_gray: 'Нијансе сиве',
+    sc_bw: 'Црно-бело',
   },
   'sr-Latn': {
     printer: 'Štampač',
@@ -784,6 +804,10 @@ var HpI18n = {
     sc_failed: 'Skeniranje nije uspelo: {e}',
     sc_add_hint: 'Dodaje stranicu sa stakla u poslednji PDF',
     ed_show_scan: 'Skeniranje',
+    sc_color_mode: 'Režim boja',
+    sc_color: 'U boji',
+    sc_gray: 'Nijanse sive',
+    sc_bw: 'Crno-belo',
   },
   it: {
     printer: 'Stampante',
@@ -912,6 +936,10 @@ var HpI18n = {
     sc_failed: 'Scansione non riuscita: {e}',
     sc_add_hint: 'Aggiunge la pagina sul vetro all\'ultimo PDF',
     ed_show_scan: 'Scansione',
+    sc_color_mode: 'Modalità colore',
+    sc_color: 'Colore',
+    sc_gray: 'Scala di grigi',
+    sc_bw: 'Bianco e nero',
   },
   nl: {
     printer: 'Printer',
@@ -1040,6 +1068,10 @@ var HpI18n = {
     sc_failed: 'Scannen mislukt: {e}',
     sc_add_hint: 'Voegt de pagina op de glasplaat toe aan de laatste PDF',
     ed_show_scan: 'Scannen',
+    sc_color_mode: 'Kleurmodus',
+    sc_color: 'Kleur',
+    sc_gray: 'Grijstinten',
+    sc_bw: 'Zwart-wit',
   },
   pt: {
     printer: 'Impressora',
@@ -1171,6 +1203,10 @@ var HpI18n = {
     sc_failed: 'A digitalização falhou: {e}',
     sc_add_hint: 'Adiciona a página do vidro ao último PDF',
     ed_show_scan: 'Digitalização',
+    sc_color_mode: 'Modo de cor',
+    sc_color: 'Cor',
+    sc_gray: 'Tons de cinzento',
+    sc_bw: 'Preto e branco',
   },
   pl: {
     printer: 'Drukarka',
@@ -1302,6 +1338,10 @@ var HpI18n = {
     sc_failed: 'Skanowanie nie powiodło się: {e}',
     sc_add_hint: 'Dodaje stronę z szyby do ostatniego PDF',
     ed_show_scan: 'Skanowanie',
+    sc_color_mode: 'Tryb koloru',
+    sc_color: 'Kolor',
+    sc_gray: 'Skala szarości',
+    sc_bw: 'Czarno-biały',
   },
   ro: {
     printer: 'Imprimantă',
@@ -1430,6 +1470,10 @@ var HpI18n = {
     sc_failed: 'Scanarea a eșuat: {e}',
     sc_add_hint: 'Adaugă pagina de pe geam la ultimul PDF',
     ed_show_scan: 'Scanare',
+    sc_color_mode: 'Mod culoare',
+    sc_color: 'Color',
+    sc_gray: 'Tonuri de gri',
+    sc_bw: 'Alb-negru',
   },
   da: {
     printer: 'Printer',
@@ -1562,6 +1606,10 @@ var HpI18n = {
     sc_failed: 'Scanningen mislykkedes: {e}',
     sc_add_hint: 'Tilføjer siden på glaspladen til den seneste PDF',
     ed_show_scan: 'Scanning',
+    sc_color_mode: 'Farvetilstand',
+    sc_color: 'Farve',
+    sc_gray: 'Gråtoner',
+    sc_bw: 'Sort-hvid',
   },
   sv: {
     printer: 'Skrivare',
@@ -1696,6 +1744,10 @@ var HpI18n = {
     sc_failed: 'Skanningen misslyckades: {e}',
     sc_add_hint: 'Lägger till sidan på glaset i den senaste PDF:en',
     ed_show_scan: 'Skanning',
+    sc_color_mode: 'Färgläge',
+    sc_color: 'Färg',
+    sc_gray: 'Gråskala',
+    sc_bw: 'Svartvitt',
   },
   bg: {
     printer: 'Принтер',
@@ -1824,6 +1876,10 @@ var HpI18n = {
     sc_failed: 'Сканирането не успя: {e}',
     sc_add_hint: 'Добавя страницата от стъклото към последния PDF',
     ed_show_scan: 'Сканиране',
+    sc_color_mode: 'Цветови режим',
+    sc_color: 'Цветно',
+    sc_gray: 'Нюанси на сивото',
+    sc_bw: 'Черно-бяло',
   },
   ru: {
     printer: 'Принтер',
@@ -1959,6 +2015,10 @@ var HpI18n = {
     sc_failed: 'Сканирование не удалось: {e}',
     sc_add_hint: 'Добавляет страницу со стекла в последний PDF',
     ed_show_scan: 'Сканирование',
+    sc_color_mode: 'Цветовой режим',
+    sc_color: 'Цветной',
+    sc_gray: 'Оттенки серого',
+    sc_bw: 'Чёрно-белый',
   },
   uk: {
     printer: 'Принтер',
@@ -2095,6 +2155,10 @@ var HpI18n = {
     sc_failed: 'Сканування не вдалося: {e}',
     sc_add_hint: 'Додає сторінку зі скла до останнього PDF',
     ed_show_scan: 'Сканування',
+    sc_color_mode: 'Колірний режим',
+    sc_color: 'Кольоровий',
+    sc_gray: 'Відтінки сірого',
+    sc_bw: 'Чорно-білий',
   },
   hu: {
     printer: 'Nyomtató',
@@ -2223,6 +2287,10 @@ var HpI18n = {
     sc_failed: 'A szkennelés nem sikerült: {e}',
     sc_add_hint: 'Az üveglapon lévő oldalt az utolsó PDF-hez adja',
     ed_show_scan: 'Szkennelés',
+    sc_color_mode: 'Színmód',
+    sc_color: 'Színes',
+    sc_gray: 'Szürkeárnyalatos',
+    sc_bw: 'Fekete-fehér',
   },
   sk: {
     printer: 'Tlačiareň',
@@ -2351,6 +2419,10 @@ var HpI18n = {
     sc_failed: 'Skenovanie zlyhalo: {e}',
     sc_add_hint: 'Pridá stranu zo skla do posledného PDF',
     ed_show_scan: 'Skenovanie',
+    sc_color_mode: 'Farebný režim',
+    sc_color: 'Farebne',
+    sc_gray: 'Odtiene sivej',
+    sc_bw: 'Čiernobielo',
   },
   cs: {
     printer: 'Tiskárna',
@@ -2479,6 +2551,10 @@ var HpI18n = {
     sc_failed: 'Skenování selhalo: {e}',
     sc_add_hint: 'Přidá stránku ze skla do posledního PDF',
     ed_show_scan: 'Skenování',
+    sc_color_mode: 'Barevný režim',
+    sc_color: 'Barevně',
+    sc_gray: 'Odstíny šedi',
+    sc_bw: 'Černobíle',
   },
   sl: {
     printer: 'Tiskalnik',
@@ -2607,6 +2683,10 @@ var HpI18n = {
     sc_failed: 'Optično branje ni uspelo: {e}',
     sc_add_hint: 'Doda stran s stekla v zadnji PDF',
     ed_show_scan: 'Optično branje',
+    sc_color_mode: 'Barvni način',
+    sc_color: 'Barvno',
+    sc_gray: 'Sivine',
+    sc_bw: 'Črno-belo',
   },
   lv: {
     printer: 'Printeris',
@@ -2735,6 +2815,10 @@ var HpI18n = {
     sc_failed: 'Skenēšana neizdevās: {e}',
     sc_add_hint: 'Pievieno lapu no stikla pēdējam PDF',
     ed_show_scan: 'Skenēšana',
+    sc_color_mode: 'Krāsu režīms',
+    sc_color: 'Krāsains',
+    sc_gray: 'Pelēktoņu',
+    sc_bw: 'Melnbalts',
   },
   el: {
     printer: 'Εκτυπωτής',
@@ -2863,6 +2947,10 @@ var HpI18n = {
     sc_failed: 'Η σάρωση απέτυχε: {e}',
     sc_add_hint: 'Προσθέτει τη σελίδα από το γυαλί στο τελευταίο PDF',
     ed_show_scan: 'Σάρωση',
+    sc_color_mode: 'Λειτουργία χρώματος',
+    sc_color: 'Έγχρωμο',
+    sc_gray: 'Αποχρώσεις του γκρι',
+    sc_bw: 'Ασπρόμαυρο',
   },
 };
 
@@ -3673,7 +3761,7 @@ class PrinterCard extends HTMLElement {
       // Its scanner: the Scan buttons, the settings shared with them, and the last scan with its files.
       if (key('scan')) {
         r.scan = { button: key('scan'), source: key('scan_source'), format: key('scan_format'),
-          resolution: key('scan_resolution'), last: key('last_scan') };
+          resolution: key('scan_resolution'), color: key('scan_color_mode'), last: key('last_scan') };
       }
     } else if (status && hpIsHpStatus(hass.states[status])) {
       var subs = hpSubDevices(hass, deviceId);
@@ -3720,7 +3808,7 @@ class PrinterCard extends HTMLElement {
 
   _ids(r) {
     var ids = [r.status, r.raw, r.ipp, r.total_pages, r.eprint, r.eprint_registration];
-    if (r.scan) ids.push(r.scan.source, r.scan.format, r.scan.resolution, r.scan.last);
+    if (r.scan) ids.push(r.scan.source, r.scan.format, r.scan.resolution, r.scan.color, r.scan.last);
     r.inks.forEach((i) => { ids.push(i.level, i.status, i.expiry, i.pages_left); });
     (r.parts || []).forEach((p) => { ids.push(p.level); });
     return ids.filter(Boolean);
@@ -4108,6 +4196,7 @@ class PrinterCard extends HTMLElement {
     var label = (kind, o) => {
       if (kind === 'source') return this._t({ flatbed: 'sc_glass', feeder: 'sc_feeder', feeder_duplex: 'sc_duplex' }[o] || o);
       if (kind === 'resolution') return `${o} dpi`;
+      if (kind === 'color') return this._t({ color: 'sc_color', grayscale: 'sc_gray', black_and_white: 'sc_bw' }[o] || o);
       return String(o).toUpperCase();
     };
     var row = (kind, title) => {
@@ -4130,7 +4219,8 @@ class PrinterCard extends HTMLElement {
       out = this._scanLast(sc);
     }
     return `<div class="section scan"><div class="section-title"><ha-icon icon="mdi:scanner"></ha-icon>${this._t('sc_title')}</div>` +
-      row('source', 'sc_source') + row('format', 'sc_format') + row('resolution', 'sc_resolution') + actions + out + '</div>';
+      row('source', 'sc_source') + row('format', 'sc_format') + row('resolution', 'sc_resolution') + row('color', 'sc_color_mode') +
+      actions + out + '</div>';
   }
 
   // The last scan: when, its pages, and a download link per file in a media folder.

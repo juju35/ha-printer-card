@@ -1045,6 +1045,7 @@ function hpScanHass(lastScan = {}) {
   add("select.oj_scan_source", "scan_source", "flatbed", { options: ["flatbed", "feeder", "feeder_duplex"] });
   add("select.oj_scan_format", "scan_format", "pdf", { options: ["pdf", "jpeg", "png"] });
   add("select.oj_scan_resolution", "scan_resolution", "300", { options: ["75", "200", "300", "600"] });
+  add("select.oj_scan_color_mode", "scan_color_mode", "color", { options: ["color", "grayscale"] });
   add("sensor.oj_last_scan", "last_scan", lastScan.time || "unknown", { files: [], media_ids: [], ...lastScan.attributes });
   const calls = [];
   hass.callService = (domain, service, data) => calls.push({ domain, service, data });
@@ -1073,6 +1074,7 @@ test("ha-hp: the scan section offers source, format and resolution, and the scan
   assert.match(html, />Feeder, 2-sided</);
   assert.match(html, /data-scan-set="format" data-value="png"/);
   assert.match(html, />600 dpi</);
+  assert.match(html, /data-scan-set="color" data-value="grayscale" aria-pressed="false"[^>]*>Grayscale</);
   assert.match(html, /data-scan-go="new"/);
   assert.match(html, /data-scan-go="add"/);
   assert.doesNotMatch(render(hass, { show_scan: false }).shadowRoot.innerHTML, /data-scan-go/);
@@ -1082,8 +1084,10 @@ test("ha-hp: choosing a setting changes the integration's select", () => {
   const { hass, calls } = hpScanHass();
   const card = render(hass, {});
   click(card, { scanSet: "source", value: "feeder" });
+  click(card, { scanSet: "color", value: "grayscale" });
   assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
     { domain: "select", service: "select_option", data: { entity_id: "select.oj_scan_source", option: "feeder" } },
+    { domain: "select", service: "select_option", data: { entity_id: "select.oj_scan_color_mode", option: "grayscale" } },
   ]);
 });
 
