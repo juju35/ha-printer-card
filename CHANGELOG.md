@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.14.0 - 2026-11-12
+
+### Features
+- `show_title` option (also in the visual editor) hides the header's title, for a card placed under a section heading of its own (asked in juju35/ha-vehicle-card#72).
+
 ## 2.13.1 - 2026-11-12
 
 ### Fixes
