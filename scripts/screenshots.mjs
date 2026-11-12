@@ -185,6 +185,10 @@ const icons = {
   "printer-check": "M18 7H6V3H18V7M6 21V17H2V11C2 9.34 3.34 8 5 8H19C20.66 8 22 9.34 22 11V13.81C21.12 13.3 20.1 13 19 13C17.77 13 16.64 13.37 15.69 14H8V19H13C13 19.7 13.13 20.37 13.35 21H6M18 11C18 11.55 18.45 12 19 12S20 11.55 20 11 19.55 10 19 10 18 10.45 18 11M23.5 17L22 15.5L18.5 19L16.5 17L15 18.5L18.5 22L23.5 17",
   "printer-off": "M6,3V4.18L8.82,7H18V3H6M2.28,3L1,4.27L4.75,8C3.19,8.15 2,9.44 2,11V17H6V21H17.73L19.73,23L21,21.72L2.28,3M9.82,8L18.82,17H22V11A3,3 0 0,0 19,8H9.82M19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10M8,14H10.73L15.73,19H8V14Z",
   "scanner": "M4.2,10.7L19.8,5L20.5,6.9L6.4,12H19A2,2 0 0,1 21,14V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V12.5C3,11.7 3.5,10.9 4.2,10.7M17,17H19V15H17V17M5,17H15V15H5V17Z",
+  "download": "M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z",
+  "file-pdf-box": "M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M9.5 11.5C9.5 12.3 8.8 13 8 13H7V15H5.5V9H8C8.8 9 9.5 9.7 9.5 10.5V11.5M14.5 13.5C14.5 14.3 13.8 15 13 15H10.5V9H13C13.8 9 14.5 9.7 14.5 10.5V13.5M18.5 10.5H17V11.5H18.5V13H17V15H15.5V9H18.5V10.5M12 10.5H13V13.5H12V10.5M7 10.5H8V11.5H7V10.5Z",
+  "file-document-plus-outline": "M23 18H20V15H18V18H15V20H18V23H20V20H23M6 2C4.89 2 4 2.9 4 4V20C4 21.11 4.89 22 6 22H13.81C13.45 21.38 13.2 20.7 13.08 20H6V4H13V9H18V13.08C18.33 13.03 18.67 13 19 13C19.34 13 19.67 13.03 20 13.08V8L14 2M8 12V14H16V12M8 16V18H13V16Z",
+  "loading": "M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z",
   "water-alert": "M10 3.25C10 3.25 16 10 16 14C16 17.31 13.31 20 10 20S4 17.31 4 14C4 10 10 3.25 10 3.25M20 7V13H18V7H20M18 17H20V15H18V17Z"
 };
 
@@ -247,6 +251,32 @@ for (const [id, state, attributes] of [
   canon.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
 }
 
+// Mock ha-hp printer (domain hp, one device) that scans: scan buttons, settings selects and the last scan.
+const hpScan = { states: { ...states }, entities: { ...entities },
+  devices: { ...devices, hpl: { id: "hpl", name: "Office printer", manufacturer: "HP", model: "HP OfficeJet Pro 9010 series" } } };
+for (const [id, key, state, attributes] of [
+  ["sensor.office_printer_status", "status", "ready", { message: "Ready", options: ["ready", "processing", "off", "other"] }],
+  ["sensor.office_printer_printed_pages", "total_pages", "2149", { state_class: "total_increasing" }],
+  ...[["black", "64"], ["cyan", "48"], ["magenta", "71"], ["yellow", "35"]].map(([color, level]) => [
+    `sensor.office_printer_${color}_level`, `${color}_level`, level, { unit_of_measurement: "%", state: "ok", installed: true },
+  ]),
+  ["binary_sensor.office_printer_hp_cloud_services", "cloud_services", "on", {}],
+  ["button.office_printer_scan", "scan", "unknown", {}],
+  ["button.office_printer_scan_and_add_page", "scan_add_page", "unknown", {}],
+  ["select.office_printer_scan_source", "scan_source", "feeder", { options: ["flatbed", "feeder", "feeder_duplex"] }],
+  ["select.office_printer_scan_format", "scan_format", "pdf", { options: ["pdf", "jpeg", "png"] }],
+  ["select.office_printer_scan_resolution", "scan_resolution", "300", { options: ["75", "200", "300", "600"] }],
+  ["sensor.office_printer_last_scan", "last_scan", new Date(NOW - 120000).toISOString(), {
+    format: "pdf", pages: 3, files: ["/media/hp/scan_20261101_105800.pdf"],
+    media_ids: ["media-source://media_source/local/hp/scan_20261101_105800.pdf"] }],
+]) {
+  hpScan.entities[id] = { entity_id: id, device_id: "hpl", platform: "hp", translation_key: key };
+  hpScan.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
+}
+// The scan in progress, or failed, as the card shows it after a click on Scan.
+const scanState = (state) => (page) =>
+  page.evaluate((st) => document.querySelector("printer-card")._setScan(st), state);
+
 const hass = { states, entities, devices };
 const offline = structuredClone(states);
 offline["sensor.officejet_status"].state = "unavailable";
@@ -302,6 +332,12 @@ await render(
     { file: "mini-canon-dark", type: "printer-mini-card", theme: "dark", width: 380, config: { device_id: "canon" }, hass: canon },
     { file: "mini-zoom", type: "printer-mini-card", theme: "light", width: 460, config: {}, after: zoomIn },
     { file: "mini-zoom-dark", type: "printer-mini-card", theme: "dark", width: 460, config: {}, after: zoomIn },
+    { file: "scan", type: "printer-card", theme: "light", width: 460, config: { device_id: "hpl" }, hass: hpScan },
+    { file: "scan-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "hpl" }, hass: hpScan },
+    { file: "scan-error", type: "printer-card", theme: "light", width: 460, config: { device_id: "hpl" }, hass: hpScan,
+      after: scanState({ error: "The document feeder is empty." }) },
+    { file: "scan-error-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "hpl" }, hass: hpScan,
+      after: scanState({ error: "The document feeder is empty." }) },
   ],
   { icons, hass, extra: ws }
 );
@@ -320,6 +356,15 @@ const printers = [
   { prefix: "epson-", device: "epson", hass: printing(epson, "sensor.epson_et_2850", "printing") },
   { prefix: "canon-", device: "canon", hass: canon },
 ];
+
+// The scan in progress (its spinner) in both themes.
+for (const theme of ["light", "dark"]) {
+  await animate(
+    { file: `scan-busy${theme === "dark" ? "-dark" : ""}`, type: "printer-card", theme, width: 460, config: { device_id: "hpl" },
+      hass: hpScan, after: scanState({ busy: true }) },
+    { icons, hass, seconds: 1 }
+  );
+}
 
 // Every animation in both themes: each light GIF gets a `-dark` twin with the exact same setup.
 for (const { prefix, device, hass: mock } of printers) {

@@ -265,6 +265,19 @@ Mini card zoomed in with its detail button (top right, click it again or anywher
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom.png" alt="mini card full view" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom-dark.png" alt="mini card full view dark" width="400"> |
 
+Scanning with [HP Printer (ha-hp)](https://github.com/juju35/ha-hp): source, format and resolution, **Scan** / **Add a page**, then the last scan with its **Download** link:
+
+| Light | Dark |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan.png" alt="scan section" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-dark.png" alt="scan section dark" width="400"> |
+
+While it scans, the buttons wait and the Scan button turns to a spinner; an error from the integration (feeder empty, scanner busy…) shows in the section:
+
+| | Scanning | Error |
+|---|---|---|
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy.gif" alt="scan in progress" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error.png" alt="scan error" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy-dark.gif" alt="scan in progress dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error-dark.png" alt="scan error dark" width="400"> |
+
 Drawn HP ranges:
 
 <p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
