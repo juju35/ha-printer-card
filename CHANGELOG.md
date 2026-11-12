@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.13.0 - 2026-11-12
+
+### Features
+- Scan section: **color mode** (color, grayscale, black and white, as the scanner offers them), set on ha-hp's color mode select like the source, format and resolution.
+
 ## 2.12.1 - 2026-11-12
 
 ### Fixes

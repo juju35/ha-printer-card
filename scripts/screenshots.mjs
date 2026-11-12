@@ -266,6 +266,7 @@ for (const [id, key, state, attributes] of [
   ["select.office_printer_scan_source", "scan_source", "feeder", { options: ["flatbed", "feeder", "feeder_duplex"] }],
   ["select.office_printer_scan_format", "scan_format", "pdf", { options: ["pdf", "jpeg", "png"] }],
   ["select.office_printer_scan_resolution", "scan_resolution", "300", { options: ["75", "200", "300", "600"] }],
+  ["select.office_printer_scan_color_mode", "scan_color_mode", "color", { options: ["color", "grayscale", "black_and_white"] }],
   ["sensor.office_printer_last_scan", "last_scan", new Date(NOW - 120000).toISOString(), {
     format: "pdf", pages: 3, files: ["/media/hp/scan_20261101_105800.pdf"],
     media_ids: ["media-source://media_source/local/hp/scan_20261101_105800.pdf"] }],
