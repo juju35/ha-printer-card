@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.12.0 - 2026-11-12
+
+### Features
+- **Scan** section for [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) printers that scan: source (glass, feeder, double-sided feeder), format (PDF, JPEG, PNG) and resolution, set on the integration's select entities; **Scan** and **Add a page** (adds the page on the glass to the last PDF); progress and errors in the card; at the end, the file with a **Download** link (one per page in JPEG or PNG), signed when clicked (ha-hp 1.1 or later). `show_scan: false` hides it.
+
 ## 2.11.0 - 2026-11-12
 
 ### Features

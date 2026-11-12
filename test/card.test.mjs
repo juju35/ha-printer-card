@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { loadCard } from "./load.mjs";
 
-const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, hpBrandOf, hpDaysToEmpty, customElements, listeners } = loadCard("printer-card.js", [
+const { PrinterCard, PrinterCardEditor, PrinterMiniCard, PrinterMiniCardEditor, hpHpInks, hpEsc, hpFill, hpPictureFor, hpSubDevices, hpFindIppSensor, hpBrandOf, hpDaysToEmpty, document: sandboxDocument, customElements, listeners } = loadCard("printer-card.js", [
+  "document",
   "hpBrandOf",
   "PrinterCard",
   "PrinterCardEditor",
@@ -620,7 +621,7 @@ test("with reduced motion, the busy screen no longer pulses and nothing slides o
     // The screen still pulses for everyone else.
     assert.match(css, /\.pic\.busy \.screen \{ animation: hp-glow/);
     const rm = reducedMotion(css);
-    assert.match(rm, /\.pic\.busy \.screen \{ animation: none; \}/);
+    assert.match(rm, /\.pic\.busy \.screen, \.spin \{ animation: none; \}/);
     for (const sel of [".pic", ".level"]) assert.ok(rm.includes(sel), `${sel} transition kept with reduced motion`);
     assert.match(rm, /transition: none/);
   }
@@ -1030,4 +1031,101 @@ test("ha-hp: a very low cartridge is a level alert, not a cartridge problem", ()
   const alerts = card._alerts(card._resolve(), "ready");
   assert.equal(alerts.filter((a) => a.entity === "sensor.oj_cyan_level").length, 1);
   assert.equal(alerts[0].level, "error");
+});
+
+// ha-hp scanner: scan buttons, settings selects and last scan sensor on the printer's device.
+function hpScanHass(lastScan = {}) {
+  const hass = hpLocalHass();
+  const add = (id, key, state, attributes = {}) => {
+    hass.states[id] = st(state, attributes);
+    hass.entities[id] = { entity_id: id, device_id: "h", platform: "hp", translation_key: key };
+  };
+  add("button.oj_scan", "scan", "unknown");
+  add("button.oj_scan_and_add_page", "scan_add_page", "unknown");
+  add("select.oj_scan_source", "scan_source", "flatbed", { options: ["flatbed", "feeder", "feeder_duplex"] });
+  add("select.oj_scan_format", "scan_format", "pdf", { options: ["pdf", "jpeg", "png"] });
+  add("select.oj_scan_resolution", "scan_resolution", "300", { options: ["75", "200", "300", "600"] });
+  add("sensor.oj_last_scan", "last_scan", lastScan.time || "unknown", { files: [], media_ids: [], ...lastScan.attributes });
+  const calls = [];
+  hass.callService = (domain, service, data) => calls.push({ domain, service, data });
+  hass.callWS = async (msg) => {
+    // The forecast's statistics query is not what these tests look at.
+    if (msg.type === "recorder/statistics_during_period") return {};
+    calls.push(msg);
+    if (msg.type === "media_source/resolve_media") return { url: `/media/local/hp/${msg.media_content_id.split("/").pop()}?authSig=x`, mime_type: "application/pdf" };
+    if (hass.failScan && msg.type === "call_service") throw { code: "home_assistant_error", message: "The document feeder is empty." };
+    return { response: { files: ["/media/hp/scan.pdf"] } };
+  };
+  hass.hassUrl = (path) => `http://ha.local:8123${path}`;
+  return { hass, calls };
+}
+
+// The test DOM has no elements: a clicked control is its dataset, as the card reads it.
+const click = (card, dataset) => {
+  card._chipClick({ composedPath: () => [{ dataset, disabled: false }], stopPropagation() {} });
+};
+
+test("ha-hp: the scan section offers source, format and resolution, and the scan buttons", () => {
+  const { hass } = hpScanHass();
+  const html = render(hass, {}).shadowRoot.innerHTML;
+  assert.match(html, /data-scan-set="source" data-value="flatbed" aria-pressed="true"/);
+  assert.match(html, />Feeder, 2-sided</);
+  assert.match(html, /data-scan-set="format" data-value="png"/);
+  assert.match(html, />600 dpi</);
+  assert.match(html, /data-scan-go="new"/);
+  assert.match(html, /data-scan-go="add"/);
+  assert.doesNotMatch(render(hass, { show_scan: false }).shadowRoot.innerHTML, /data-scan-go/);
+});
+
+test("ha-hp: choosing a setting changes the integration's select", () => {
+  const { hass, calls } = hpScanHass();
+  const card = render(hass, {});
+  click(card, { scanSet: "source", value: "feeder" });
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
+    { domain: "select", service: "select_option", data: { entity_id: "select.oj_scan_source", option: "feeder" } },
+  ]);
+});
+
+test("ha-hp: Scan runs hp.scan on the printer and shows the progress, then the error if any", async () => {
+  const { hass, calls } = hpScanHass();
+  const card = render(hass, {});
+  click(card, { scanGo: "add" });
+  assert.match(card.shadowRoot.innerHTML, /Scanning…/);
+  assert.match(card.shadowRoot.innerHTML, /data-scan-go="new" disabled/);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), {
+    type: "call_service", domain: "hp", service: "scan", service_data: { device_id: "h", append: true }, return_response: true,
+  });
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /Scanning…/);
+
+  hass.failScan = true;
+  click(card, { scanGo: "new" });
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.match(card.shadowRoot.innerHTML, /Scan failed: The document feeder is empty\./);
+});
+
+test("ha-hp: the last scan gets a download link per file, resolved when clicked", async () => {
+  const { hass, calls } = hpScanHass({
+    time: new Date().toISOString(),
+    attributes: { files: ["/media/hp/scan_1.pdf"], media_ids: ["media-source://media_source/local/hp/scan_1.pdf"], pages: 3 },
+  });
+  const card = render(hass, {});
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /scan_1\.pdf/);
+  assert.match(html, /data-scan-dl="media-source:\/\/media_source\/local\/hp\/scan_1\.pdf" data-name="scan_1\.pdf"/);
+  assert.match(html, /3 pages/);
+  const clicked = [];
+  const doc = sandboxDocument;
+  const origCreate = doc.createElement;
+  doc.body = { appendChild() {} };
+  doc.createElement = (tag) => ({ tagName: tag, click() { clicked.push({ href: this.href, download: this.download }); }, remove() {} });
+  try {
+    click(card, { scanDl: "media-source://media_source/local/hp/scan_1.pdf", name: "scan_1.pdf" });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  } finally {
+    doc.createElement = origCreate;
+    delete doc.body;
+  }
+  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), { type: "media_source/resolve_media", media_content_id: "media-source://media_source/local/hp/scan_1.pdf" });
+  assert.deepEqual(clicked, [{ href: "http://ha.local:8123/media/local/hp/scan_1.pdf?authSig=x", download: "scan_1.pdf" }]);
 });
