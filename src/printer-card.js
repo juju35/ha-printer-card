@@ -70,6 +70,7 @@ var HpI18n = {
     ed_name: 'Nom',
     ed_name_helper: 'Laisser vide pour le nom de l\'appareil',
     ed_show_image: 'Image de l\'imprimante',
+    ed_show_title: 'Titre',
     ed_show_inks: 'Niveaux d\'encre',
     ed_show_parts: 'Pièces d\'usure',
     ed_show_alerts: 'Alertes',
@@ -202,6 +203,7 @@ var HpI18n = {
     ed_name: 'Name',
     ed_name_helper: 'Leave empty to use the device name',
     ed_show_image: 'Printer picture',
+    ed_show_title: 'Title',
     ed_show_inks: 'Ink levels',
     ed_show_parts: 'Parts',
     ed_show_alerts: 'Alerts',
@@ -334,6 +336,7 @@ var HpI18n = {
     ed_name: 'Name',
     ed_name_helper: 'Leer lassen, um den Gerätenamen zu verwenden',
     ed_show_image: 'Druckerbild',
+    ed_show_title: 'Titel',
     ed_show_inks: 'Tintenfüllstände',
     ed_show_parts: 'Verschleißteile',
     ed_show_alerts: 'Warnmeldungen',
@@ -466,6 +469,7 @@ var HpI18n = {
     ed_name: 'Nombre',
     ed_name_helper: 'Déjalo vacío para usar el nombre del dispositivo',
     ed_show_image: 'Imagen de la impresora',
+    ed_show_title: 'Título',
     ed_show_inks: 'Niveles de tinta',
     ed_show_parts: 'Piezas de desgaste',
     ed_show_alerts: 'Alertas',
@@ -605,6 +609,7 @@ var HpI18n = {
     ed_name: 'Назив',
     ed_name_helper: 'Оставите празно за назив уређаја',
     ed_show_image: 'Слика штампача',
+    ed_show_title: 'Наслов',
     ed_show_inks: 'Нивои мастила',
     ed_show_parts: 'Потрошни делови',
     ed_show_alerts: 'Упозорења',
@@ -744,6 +749,7 @@ var HpI18n = {
     ed_name: 'Naziv',
     ed_name_helper: 'Ostavite prazno za naziv uređaja',
     ed_show_image: 'Slika štampača',
+    ed_show_title: 'Naslov',
     ed_show_inks: 'Nivoi mastila',
     ed_show_parts: 'Potrošni delovi',
     ed_show_alerts: 'Upozorenja',
@@ -876,6 +882,7 @@ var HpI18n = {
     ed_name: 'Nome',
     ed_name_helper: 'Lasciare vuoto per usare il nome del dispositivo',
     ed_show_image: 'Immagine della stampante',
+    ed_show_title: 'Titolo',
     ed_show_inks: 'Livelli di inchiostro',
     ed_show_parts: 'Parti di usura',
     ed_show_alerts: 'Avvisi',
@@ -1008,6 +1015,7 @@ var HpI18n = {
     ed_name: 'Naam',
     ed_name_helper: 'Leeg laten om de apparaatnaam te gebruiken',
     ed_show_image: 'Afbeelding van de printer',
+    ed_show_title: 'Titel',
     ed_show_inks: 'Inktniveaus',
     ed_show_parts: 'Slijtdelen',
     ed_show_alerts: 'Meldingen',
@@ -1143,6 +1151,7 @@ var HpI18n = {
     ed_name: 'Nome',
     ed_name_helper: 'Deixar vazio para usar o nome do dispositivo',
     ed_show_image: 'Imagem da impressora',
+    ed_show_title: 'Título',
     ed_show_inks: 'Níveis de tinta',
     ed_show_parts: 'Peças de desgaste',
     ed_show_alerts: 'Alertas',
@@ -1278,6 +1287,7 @@ var HpI18n = {
     ed_name: 'Nazwa',
     ed_name_helper: 'Pozostaw puste, aby użyć nazwy urządzenia',
     ed_show_image: 'Obraz drukarki',
+    ed_show_title: 'Tytuł',
     ed_show_inks: 'Poziomy tuszu',
     ed_show_parts: 'Części eksploatacyjne',
     ed_show_alerts: 'Alerty',
@@ -1410,6 +1420,7 @@ var HpI18n = {
     ed_name: 'Nume',
     ed_name_helper: 'Lăsați gol pentru a folosi numele dispozitivului',
     ed_show_image: 'Imaginea imprimantei',
+    ed_show_title: 'Titlu',
     ed_show_inks: 'Nivel cerneală',
     ed_show_parts: 'Piese de uzură',
     ed_show_alerts: 'Alerte',
@@ -1546,6 +1557,7 @@ var HpI18n = {
     ed_name: 'Navn',
     ed_name_helper: 'Lad feltet være tomt for at bruge enhedens navn',
     ed_show_image: 'Billede af printeren',
+    ed_show_title: 'Titel',
     ed_show_inks: 'Blækniveauer',
     ed_show_parts: 'Sliddele',
     ed_show_alerts: 'Advarsler',
@@ -1684,6 +1696,7 @@ var HpI18n = {
     ed_name: 'Namn',
     ed_name_helper: 'Lämna tomt för att använda enhetens namn',
     ed_show_image: 'Bild av skrivaren',
+    ed_show_title: 'Rubrik',
     ed_show_inks: 'Bläcknivåer',
     ed_show_parts: 'Slitdelar',
     ed_show_alerts: 'Varningar',
@@ -1816,6 +1829,7 @@ var HpI18n = {
     ed_name: 'Име',
     ed_name_helper: 'Оставете празно, за да се използва името на устройството',
     ed_show_image: 'Изображение на принтера',
+    ed_show_title: 'Заглавие',
     ed_show_inks: 'Нива на мастилото',
     ed_show_parts: 'Консумативни части',
     ed_show_alerts: 'Известия',
@@ -1955,6 +1969,7 @@ var HpI18n = {
     ed_name: 'Название',
     ed_name_helper: 'Оставьте пустым, чтобы использовать название устройства',
     ed_show_image: 'Изображение принтера',
+    ed_show_title: 'Заголовок',
     ed_show_inks: 'Уровни чернил',
     ed_show_parts: 'Расходные детали',
     ed_show_alerts: 'Оповещения',
@@ -2095,6 +2110,7 @@ var HpI18n = {
     ed_name: 'Назва',
     ed_name_helper: 'Залиште порожнім, щоб використати назву пристрою',
     ed_show_image: 'Зображення принтера',
+    ed_show_title: 'Заголовок',
     ed_show_inks: 'Рівні чорнила',
     ed_show_parts: 'Витратні деталі',
     ed_show_alerts: 'Сповіщення',
@@ -2227,6 +2243,7 @@ var HpI18n = {
     ed_name: 'Név',
     ed_name_helper: 'Hagyja üresen az eszköz nevének használatához',
     ed_show_image: 'A nyomtató képe',
+    ed_show_title: 'Cím',
     ed_show_inks: 'Tintaszintek',
     ed_show_parts: 'Kopóalkatrészek',
     ed_show_alerts: 'Értesítések',
@@ -2359,6 +2376,7 @@ var HpI18n = {
     ed_name: 'Názov',
     ed_name_helper: 'Ponechajte prázdne pre názov zariadenia',
     ed_show_image: 'Obrázok tlačiarne',
+    ed_show_title: 'Názov',
     ed_show_inks: 'Hladiny atramentu',
     ed_show_parts: 'Spotrebné diely',
     ed_show_alerts: 'Upozornenia',
@@ -2491,6 +2509,7 @@ var HpI18n = {
     ed_name: 'Název',
     ed_name_helper: 'Ponechte prázdné pro název zařízení',
     ed_show_image: 'Obrázek tiskárny',
+    ed_show_title: 'Název',
     ed_show_inks: 'Hladiny inkoustu',
     ed_show_parts: 'Spotřební díly',
     ed_show_alerts: 'Upozornění',
@@ -2623,6 +2642,7 @@ var HpI18n = {
     ed_name: 'Ime',
     ed_name_helper: 'Pustite prazno za ime naprave',
     ed_show_image: 'Slika tiskalnika',
+    ed_show_title: 'Naslov',
     ed_show_inks: 'Ravni črnila',
     ed_show_parts: 'Obrabni deli',
     ed_show_alerts: 'Opozorila',
@@ -2755,6 +2775,7 @@ var HpI18n = {
     ed_name: 'Nosaukums',
     ed_name_helper: 'Atstājiet tukšu, lai izmantotu ierīces nosaukumu',
     ed_show_image: 'Printera attēls',
+    ed_show_title: 'Virsraksts',
     ed_show_inks: 'Tintes līmeņi',
     ed_show_parts: 'Nolietojamās daļas',
     ed_show_alerts: 'Brīdinājumi',
@@ -2887,6 +2908,7 @@ var HpI18n = {
     ed_name: 'Όνομα',
     ed_name_helper: 'Αφήστε κενό για να χρησιμοποιηθεί το όνομα της συσκευής',
     ed_show_image: 'Εικόνα εκτυπωτή',
+    ed_show_title: 'Τίτλος',
     ed_show_inks: 'Στάθμες μελανιού',
     ed_show_parts: 'Αναλώσιμα εξαρτήματα',
     ed_show_alerts: 'Ειδοποιήσεις',
@@ -3652,6 +3674,8 @@ class PrinterCard extends HTMLElement {
   setConfig(config) {
     if (!config) throw new Error('Invalid configuration');
     this._config = Object.assign({}, this.constructor.defaults, config);
+    // show_title: the header's title, hidden by the stylesheet
+    this.toggleAttribute?.("hide-title", config.show_title === false);
     // Not set, show_parts follows show_inks (so `show_inks: false` still hides the parts, as before 2.8.0).
     if (this._config.show_parts === undefined) this._config.show_parts = this._config.show_inks;
     if (!this.shadowRoot) {
@@ -4344,6 +4368,7 @@ class PrinterCard extends HTMLElement {
       // Basis 0: the name only gets what the pill leaves, so the pill is cut only when even 5ch of name do not fit
       // beside it (with a basis of auto both shrank in proportion, and "Ready" became "Re…" at 320px).
       '.titles { flex: 1 1 0; min-width: 5ch; }' +
+      ':host([hide-title]) .titles > .name { display: none; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; }' +
       // A printer in a round badge, tinted with the accent of the showcase site.
       '.logo.mark { position: relative; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, ' + HP_ACCENT + ' 16%, transparent); color: ' + HP_ACCENT + '; }' +
@@ -4610,6 +4635,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'name', selector: { text: {} } },
       {
         type: 'grid', name: '', schema: [
+          { name: 'show_title', selector: { boolean: {} } },
           { name: 'show_image', selector: { boolean: {} } },
           { name: 'show_inks', selector: { boolean: {} } },
           { name: 'show_parts', selector: { boolean: {} } },
