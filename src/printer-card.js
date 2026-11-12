@@ -3656,7 +3656,7 @@ function hpShortDuration(locale, days) {
 }
 
 var HP_DEFAULTS = {
-  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, show_scan: true, low_threshold: 15, picture: 'auto',
+  show_title: true, show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, show_scan: true, low_threshold: 15, picture: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
