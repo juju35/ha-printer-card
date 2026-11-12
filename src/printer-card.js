@@ -4139,6 +4139,8 @@ class PrinterCard extends HTMLElement {
     var a = s?.attributes || {};
     var files = a.files || [];
     if (!files.length) return '';
+    // ha-hp 1.2: its own download paths (the media view serves no PDF); before, media source IDs (images only).
+    var paths = a.download_paths || [];
     var ids = a.media_ids || [];
     var when = s.state && !Number.isNaN(new Date(s.state).getTime()) ? this._relative(new Date(s.state)) : '';
     var pages = Number(a.pages) > 1 ? ` · ${this._t('sc_pages', { n: a.pages })}` : '';
@@ -4147,7 +4149,9 @@ class PrinterCard extends HTMLElement {
         var name = String(file).split('/').pop();
         var icon = /\.pdf$/i.test(name) ? 'mdi:file-pdf-box' : 'mdi:file-image-outline';
         return `<div class="scan-file"><ha-icon icon="${icon}"></ha-icon><span class="scan-name" title="${hpEsc(file)}">${hpEsc(name)}</span>` +
-          (ids[i] ? `<button type="button" class="scan-dl" data-scan-dl="${hpEsc(ids[i])}" data-name="${hpEsc(name)}"><ha-icon icon="mdi:download"></ha-icon>${this._t('sc_download')}</button>` : '') +
+          (paths[i] || ids[i]
+            ? `<button type="button" class="scan-dl" data-scan-dl="${hpEsc(paths[i] || ids[i])}" data-name="${hpEsc(name)}"><ha-icon icon="mdi:download"></ha-icon>${this._t('sc_download')}</button>`
+            : '') +
           '</div>';
       }).join('') + '</div>';
   }
@@ -4190,12 +4194,15 @@ class PrinterCard extends HTMLElement {
     }
   }
 
-  // A media file's link is signed and short-lived: resolved on click, then downloaded.
-  async _download(mediaId, name) {
+  // The link is signed and short-lived, so it is made on click: an ha-hp download path is signed, a media source ID
+  // resolved (which only works for images: Home Assistant's media view serves no PDF).
+  async _download(target, name) {
     try {
-      var res = await this._hass.callWS({ type: 'media_source/resolve_media', media_content_id: mediaId });
+      var url = target.indexOf('media-source://') === 0
+        ? (await this._hass.callWS({ type: 'media_source/resolve_media', media_content_id: target })).url
+        : (await this._hass.callWS({ type: 'auth/sign_path', path: target, expires: 60 })).path;
       var a = document.createElement('a');
-      a.href = this._hass.hassUrl ? this._hass.hassUrl(res.url) : res.url;
+      a.href = this._hass.hassUrl ? this._hass.hassUrl(url) : url;
       a.download = name || '';
       a.rel = 'noopener';
       document.body.appendChild(a);
