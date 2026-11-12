@@ -56,15 +56,16 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 
 | Integration | Printers | What the card shows |
 |---|---|---|
-| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
+| [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status (kept while the printer is off), ink or toner levels, pages remaining, cartridge alerts (taken out, problem), the printer's own message when it stops (out of paper, jam, open door), HP cloud status, page counter |
+| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
 | [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
 | [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
 
-With HP Printer or Brother and IPP both set up for the same printer, the card uses HP Printer or Brother for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts. Epson and Canon printers have no dedicated Home Assistant integration: they go through IPP.
+With an HP Printer integration or Brother and IPP both set up for the same printer, the card uses HP Printer or Brother for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts. Epson and Canon printers have no dedicated Home Assistant integration: they go through IPP.
 
 ## Prerequisites
 
-- Home Assistant 2024.8 or later with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (recommended for HP printers) or the [IPP](https://www.home-assistant.io/integrations/ipp/) integration (any brand) set up
+- Home Assistant 2024.8 or later with [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (recommended for HP printers), elad-bar's [HP Printer](https://github.com/elad-bar/ha-hpprinter), [Brother](https://www.home-assistant.io/integrations/brother/) or the [IPP](https://www.home-assistant.io/integrations/ipp/) integration (any brand) set up
 - With both integrations set up for the same printer, the card uses HP Printer for status and inks and picks up the IPP printer sensor by itself for paper and cover alerts
 
 ## Installation

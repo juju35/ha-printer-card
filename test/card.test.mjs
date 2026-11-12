@@ -968,3 +968,66 @@ test("the forecast under each tank, from one daily statistics query", async () =
   };
   assert.doesNotMatch(render(off, { device_id: "p", show_forecast: false }).shadowRoot.innerHTML, /class="eta"/);
 });
+
+// ha-hp (domain "hp"): one device, entities found by platform and translation key.
+function hpLocalHass({ status = "ready", message = "Ready", black = {}, statusExtra = {} } = {}) {
+  const states = {
+    "sensor.oj_status": st(status, { message, options: ["ready", "processing", "off", "tray_empty", "other"] }, statusExtra),
+    "sensor.oj_printed_pages": st("1234", { state_class: "total_increasing" }),
+    "sensor.oj_black_level": st("42", { unit_of_measurement: "%", state: "ok", installed: true, cartridge: "963", ...black }),
+    "sensor.oj_cyan_level": st("4", { unit_of_measurement: "%", state: "very_low", installed: true }),
+    "sensor.oj_tri_color_level": st("60", { unit_of_measurement: "%" }),
+    "sensor.oj_black_pages_remaining": st("380", {}),
+    "binary_sensor.oj_hp_cloud_services": st("on", {}),
+    "binary_sensor.oj_hp_cloud_registered": st("on", {}),
+  };
+  const keys = {
+    "sensor.oj_status": "status",
+    "sensor.oj_printed_pages": "total_pages",
+    "sensor.oj_black_level": "black_level",
+    "sensor.oj_cyan_level": "cyan_level",
+    "sensor.oj_tri_color_level": "tri_color_level",
+    "sensor.oj_black_pages_remaining": "black_pages_remaining",
+    "binary_sensor.oj_hp_cloud_services": "cloud_services",
+    "binary_sensor.oj_hp_cloud_registered": "cloud_registered",
+  };
+  const entities = Object.fromEntries(
+    Object.entries(keys).map(([id, key]) => [id, { entity_id: id, device_id: "h", platform: "hp", translation_key: key }]),
+  );
+  return { language: "en", states, entities, devices: { h: { name: "HP OfficeJet Pro 9010 series", manufacturer: "HP", model: "HP OfficeJet Pro 9010 series" } } };
+}
+
+test("ha-hp printers are found and read from their own device", () => {
+  const card = render(hpLocalHass(), {});
+  const r = card._resolve();
+  assert.equal(r.kind, "hp_local");
+  assert.equal(r.status, "sensor.oj_status");
+  assert.equal(r.inks.map((i) => i.color).join(","), "black,cyan,tricolor");
+  assert.equal(r.inks[0].pages_left, "sensor.oj_black_pages_remaining");
+  assert.equal(r.total_pages, "sensor.oj_printed_pages");
+  assert.equal(r.eprint, "binary_sensor.oj_hp_cloud_services");
+  assert.equal(card._state(r), "ready");
+  assert.match(card.shadowRoot.innerHTML, /1,234 pages printed/);
+});
+
+test("ha-hp states map onto the card's, off being offline", () => {
+  const states = { processing: "processing", scan_processing: "scanprocessing", in_power_save: "inpowersave", tray_empty: "stopped", off: "offline", other: "unknown" };
+  for (const [status, expected] of Object.entries(states)) {
+    const card = render(hpLocalHass({ status }), {});
+    assert.equal(card._state(card._resolve()), expected, status);
+  }
+});
+
+test("ha-hp: a stopped printer shows its own message, a removed cartridge is an alert", () => {
+  const card = render(hpLocalHass({ status: "tray_empty", message: "Out of paper", black: { installed: false } }), {});
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /Out of paper/);
+  assert.match(html, /missing/i);
+});
+
+test("ha-hp: a very low cartridge is a level alert, not a cartridge problem", () => {
+  const card = render(hpLocalHass(), {});
+  const alerts = card._alerts(card._resolve(), "ready");
+  assert.equal(alerts.filter((a) => a.entity === "sensor.oj_cyan_level").length, 1);
+  assert.equal(alerts[0].level, "error");
+});
