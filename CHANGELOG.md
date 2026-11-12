@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.11.0 - 2026-11-12
+
+### Features
+- **[HP Printer (ha-hp)](https://github.com/juju35/ha-hp)** supported (domain `hp`), and found first: status (`off` shows the printer as offline with its last values), ink or toner levels with pages remaining, a cartridge taken out or in trouble as an alert (from the level sensor's attributes), the printer's own message when it stops (out of paper, jam, open door), HP cloud chip and page counter. Its printers are offered in the editor's device picker.
+
 ## 2.10.2 - 2026-11-09
 
 ### Improvements

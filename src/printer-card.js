@@ -2758,6 +2758,36 @@ function hpBrotherInks(list) {
     return m && { name: e.entity_id, color: m[1], level: e.entity_id, toner: m[2] === 'toner' };
   }).filter(Boolean).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
 }
+// HP Printer of ha-hp (domain "hp", one device per printer): its status sensor, and its ink / toner level sensors
+// (black_level, tri_color_level…) carrying the cartridge state, installation and number as attributes.
+// Its status keeps the values of the core hp_printer integration; those that stop the printer turn "stopped".
+var HP_LOCAL_STATES = {
+  ready: 'ready', processing: 'processing', copying: 'copying', scan_processing: 'scanprocessing', cancel_job: 'canceljob',
+  in_power_save: 'inpowersave', initializing: 'processing', shutting_down: 'processing',
+  tray_empty: 'stopped', paper_jam: 'stopped', close_door_or_cover: 'stopped',
+};
+function hpIsLocalStatus(e) {
+  return e?.platform === 'hp' && e.translation_key === 'status';
+}
+function hpLocalInks(list) {
+  var byKey = (key) => list.find((e) => e.translation_key === key)?.entity_id;
+  return list.map((e) => {
+    var m = /^(black|cyan|magenta|yellow|tri_color)_level$/.exec(e.platform === 'hp' ? e.translation_key || '' : '');
+    if (!m) return null;
+    var color = m[1] === 'tri_color' ? 'tricolor' : m[1];
+    return { name: e.entity_id, color: color, level: e.entity_id, local: true, pages_left: byKey(`${m[1]}_pages_remaining`) };
+  }).filter(Boolean).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
+}
+// Problem of a cartridge of ha-hp, from its level sensor's attributes: taken out, or a state other than ok / low
+// (a low level is told by the level itself). Null when fine.
+function hpLocalCartridgeProblem(attributes) {
+  var a = attributes || {};
+  if (a.installed === false) return 'cs_missing';
+  var s = String(a.state || '').toLowerCase().replace(/_/g, '');
+  if (!s || /^(ok|low|verylow)$/.test(s) || hpCartridgeOk(s)) return null;
+  return hpCartridgeProblem(s);
+}
+
 // Its parts that wear out, by remaining life (%): drum (or one per color), belt unit, fuser, paper feed kits.
 var HP_PART_ORDER = { drum: 0, belt: 1, fuser: 2, pf_kit: 3 };
 function hpBrotherParts(list) {
@@ -2872,11 +2902,11 @@ function hpFindPrinters(hass) {
   var out = [];
   hpDeviceSensors(hass.entities).forEach((e) => {
     var s = hass.states[e.entity_id];
-    var kind = hpIsHpStatus(s) ? 'hp' : hpIsBrotherStatus(e) ? 'brother' : (hpIsIppStatus(s) ? 'ipp' : null);
+    var kind = hpIsLocalStatus(e) ? 'hp_local' : hpIsHpStatus(s) ? 'hp' : hpIsBrotherStatus(e) ? 'brother' : (hpIsIppStatus(s) ? 'ipp' : null);
     if (kind && !out.some((p) => p.id === e.device_id)) out.push({ id: e.device_id, kind: kind });
   });
-  // HP Printer, then Brother, first: they carry richer data than IPP.
-  var rank = { hp: 0, brother: 1, ipp: 2 };
+  // HP Printer (ha-hp, then elad-bar's HP Printer), then Brother, first: they carry richer data than IPP.
+  var rank = { hp_local: 0, hp: 0, brother: 1, ipp: 2 };
   return out.sort((a, b) => rank[a.kind] - rank[b.kind]);
 }
 
@@ -2905,7 +2935,7 @@ function hpIsPrinterDevice(hass, id) {
   return hpDeviceSensors(hass.entities).some((e) => {
     if (e.device_id !== id) return false;
     var s = hass.states[e.entity_id];
-    return hpIsHpStatus(s) || hpIsIppStatus(s);
+    return hpIsLocalStatus(e) || hpIsHpStatus(s) || hpIsIppStatus(s);
   });
 }
 
@@ -3244,7 +3274,7 @@ class PrinterCard extends HTMLElement {
     var hass = this._hass, m = this._memo;
     if (m && m.entities === hass.entities && m.devices === hass.devices && m.config === this._config &&
       m.avail === this._availSig(m.devs)) {
-      if ((m.r.kind === 'hp' || m.r.kind === 'brother') && !m.r.ipp) {
+      if ((m.r.kind === 'hp' || m.r.kind === 'hp_local' || m.r.kind === 'brother') && !m.r.ipp) {
         var ipp = hpFindIppSensor(hass, m.r.deviceId);
         if (ipp) m.r = Object.assign({}, m.r, { ipp: ipp });
       }
@@ -3275,7 +3305,19 @@ class PrinterCard extends HTMLElement {
     var r = { deviceId: deviceId, kind: 'hp', isHp: true, status: status, inks: [], ipp: over.ipp, total_pages: over.total_pages,
       eprint: over.eprint, eprint_registration: over.eprint_registration };
 
-    if (status && hpIsHpStatus(hass.states[status])) {
+    var local = main.find(hpIsLocalStatus);
+    if (local && (!over.status || over.status === local.entity_id)) {
+      // ha-hp: everything on the printer's device, cartridge details as attributes of the level sensors.
+      var hp = main.filter((e) => e.platform === 'hp');
+      var key = (k) => hp.find((e) => e.translation_key === k)?.entity_id;
+      r.kind = 'hp_local';
+      r.status = local.entity_id;
+      r.inks = hpLocalInks(hp);
+      if (!r.eprint) r.eprint = key('cloud_services');
+      if (!r.eprint_registration) r.eprint_registration = key('cloud_registered');
+      if (!r.total_pages) r.total_pages = key('total_pages');
+      if (!r.ipp) r.ipp = hpFindIppSensor(hass, deviceId);
+    } else if (status && hpIsHpStatus(hass.states[status])) {
       var subs = hpSubDevices(hass, deviceId);
       r.subs = subs;
       r.inks = hpHpInks(hass, subs);
@@ -3348,7 +3390,7 @@ class PrinterCard extends HTMLElement {
     var hass = this._hass;
     var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._timeSig(r), this._ids(r).map((id) => {
       var s = hass.states[id];
-      return s ? [id, s.state, s.attributes.state, s.attributes.state_reason, s.attributes.state_message] : null;
+      return s ? [id, s.state, s.attributes.state, s.attributes.state_reason, s.attributes.state_message, s.attributes.message, s.attributes.installed] : null;
     })]);
     if (sig === this._sig) return;
     this._sig = sig;
@@ -3365,6 +3407,7 @@ class PrinterCard extends HTMLElement {
     var v = this._val(r.status);
     if (v === undefined || v === 'unavailable' || v === 'off') return 'offline';
     if (r.kind === 'ipp') return HP_IPP_STATES[v] || 'unknown';
+    if (r.kind === 'hp_local') return HP_LOCAL_STATES[v] || 'unknown';
     if (r.kind === 'brother') return hpBrotherState(r.raw === r.status ? undefined : v, this._val(r.raw));
     return HP_STATE_COLORS[v] ? v : 'unknown';
   }
@@ -3414,6 +3457,10 @@ class PrinterCard extends HTMLElement {
         out.push({ level: 'error', icon: ink.printhead ? 'mdi:printer-alert' : 'mdi:alert-circle', entity: ink.status,
           text: ink.printhead ? this._t('al_printhead', { s: problem }) : this._t('al_cartridge', { c: label, s: problem }) });
       }
+      var localProblem = ink.local && this._avail(ink.level) && hpLocalCartridgeProblem(this._hass.states[ink.level]?.attributes);
+      if (localProblem) {
+        out.push({ level: 'error', icon: 'mdi:alert-circle', entity: ink.level, text: this._t('al_cartridge', { c: label, s: this._t(localProblem) }) });
+      }
       if (c.show_expired && ink.expiry && this._avail(ink.expiry)) {
         var d = new Date(this._val(ink.expiry));
         if (!Number.isNaN(d.getTime()) && d.getTime() < Date.now()) {
@@ -3431,7 +3478,9 @@ class PrinterCard extends HTMLElement {
     if (state === 'stopped') {
       // Brother: the printer's own words ("paper jam", "cover is open"…) rather than a bare "stopped".
       var raw = r.kind === 'brother' && hpBrotherText(this._val(r.raw)) === 'stopped' ? this._val(r.raw) : '';
-      out.push({ level: 'error', icon: 'mdi:printer-alert', entity: raw ? r.raw : r.status, text: raw || this._t('al_stopped') });
+      // ha-hp: the message the printer shows ("Out of paper"…), else the generic text.
+      if (r.kind === 'hp_local') raw = String(this._hass.states[r.status]?.attributes.message || '');
+      out.push({ level: 'error', icon: 'mdi:printer-alert', entity: raw && r.kind === 'brother' ? r.raw : r.status, text: raw || this._t('al_stopped') });
     }
     out = out.concat(this._ippAlerts(r));
     var rank = { error: 0, warn: 1, info: 2 };
@@ -3592,7 +3641,8 @@ class PrinterCard extends HTMLElement {
       pct: known ? Math.max(0, Math.min(100, p)) : 0,
       low: known && p <= low,
       crit: known && p <= Math.min(low, 5),
-      bad: !!ink.status && this._val(ink.status) === 'off' && !hpCartridgeOk(this._hass.states[ink.status]?.attributes.state),
+      bad: (!!ink.status && this._val(ink.status) === 'off' && !hpCartridgeOk(this._hass.states[ink.status]?.attributes.state)) ||
+        (!!ink.local && !!hpLocalCartridgeProblem(this._hass.states[ink.level]?.attributes)),
       title: (label || this._inkLabel(ink)) + (known ? ` · ${Math.round(p)} %` : '') +
         (this._avail(ink.pages_left) && !Number.isNaN(left) ? ` · ${this._t('pages_left', { n: left })}` : '') +
         (when ? ` · ${this._t('empty_in', { when: when })}` : ''),
@@ -3965,7 +4015,7 @@ class PrinterCardEditor extends HTMLElement {
   _schema() {
     var t = (k) => hpT(this._lang(), k);
     return [
-      { name: 'device_id', selector: { device: { filter: [{ integration: 'hpprinter' }, { integration: 'brother' }, { integration: 'ipp' }] } } },
+      { name: 'device_id', selector: { device: { filter: [{ integration: 'hp' }, { integration: 'hpprinter' }, { integration: 'brother' }, { integration: 'ipp' }] } } },
       { name: 'name', selector: { text: {} } },
       {
         type: 'grid', name: '', schema: [
