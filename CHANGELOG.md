@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.12.1 - 2026-11-12
+
+### Fixes
+- **Download** of a PDF scan gave a 14-byte file (`404: Not Found`): Home Assistant's media view only serves audio, video and images. The card downloads through ha-hp's own download paths (ha-hp 1.2 or later), signed when clicked; ha-hp then deletes the file, which leaves the card. With an older ha-hp, images still download through the media source.
+
 ## 2.12.0 - 2026-11-12
 
 ### Features

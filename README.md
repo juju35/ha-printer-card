@@ -59,7 +59,7 @@ With [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) and a printer that sc
 - **Source**: glass, document feeder or double-sided feeder; **Format**: PDF, JPEG or PNG; **Resolution**: those the scanner offers. They are the integration's select entities, so its own Scan button uses the same settings
 - **Scan** starts a new file; **Add a page** (PDF) scans the page on the glass and adds it to the last PDF, for a document scanned page by page
 - While it scans, the buttons wait and show the progress; an error (feeder empty, scanner busy…) is shown in the card
-- At the end, the file appears with a **Download** link (one per page in JPEG or PNG), signed when clicked. The download needs ha-hp 1.1 or later and the default scan folder (the local media)
+- At the end, the file appears with a **Download** link (one per page in JPEG or PNG), signed when clicked; once downloaded, ha-hp deletes the file and it leaves the card. The download needs ha-hp 1.2 or later (Home Assistant's media view does not serve PDFs)
 
 `show_scan: false` hides the section.
 

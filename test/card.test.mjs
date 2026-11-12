@@ -1052,7 +1052,8 @@ function hpScanHass(lastScan = {}) {
     // The forecast's statistics query is not what these tests look at.
     if (msg.type === "recorder/statistics_during_period") return {};
     calls.push(msg);
-    if (msg.type === "media_source/resolve_media") return { url: `/media/local/hp/${msg.media_content_id.split("/").pop()}?authSig=x`, mime_type: "application/pdf" };
+    if (msg.type === "media_source/resolve_media") return { url: `/media/local/hp/${msg.media_content_id.split("/").pop()}?authSig=x`, mime_type: "image/jpeg" };
+    if (msg.type === "auth/sign_path") return { path: `${msg.path}?authSig=y` };
     if (hass.failScan && msg.type === "call_service") throw { code: "home_assistant_error", message: "The document feeder is empty." };
     return { response: { files: ["/media/hp/scan.pdf"] } };
   };
@@ -1104,28 +1105,51 @@ test("ha-hp: Scan runs hp.scan on the printer and shows the progress, then the e
   assert.match(card.shadowRoot.innerHTML, /Scan failed: The document feeder is empty\./);
 });
 
-test("ha-hp: the last scan gets a download link per file, resolved when clicked", async () => {
-  const { hass, calls } = hpScanHass({
-    time: new Date().toISOString(),
-    attributes: { files: ["/media/hp/scan_1.pdf"], media_ids: ["media-source://media_source/local/hp/scan_1.pdf"], pages: 3 },
-  });
-  const card = render(hass, {});
-  const html = card.shadowRoot.innerHTML;
-  assert.match(html, /scan_1\.pdf/);
-  assert.match(html, /data-scan-dl="media-source:\/\/media_source\/local\/hp\/scan_1\.pdf" data-name="scan_1\.pdf"/);
-  assert.match(html, /3 pages/);
+// Clicks the download button of a scan file and returns the links the card opened.
+async function download(card, target, name) {
   const clicked = [];
   const doc = sandboxDocument;
   const origCreate = doc.createElement;
   doc.body = { appendChild() {} };
   doc.createElement = (tag) => ({ tagName: tag, click() { clicked.push({ href: this.href, download: this.download }); }, remove() {} });
   try {
-    click(card, { scanDl: "media-source://media_source/local/hp/scan_1.pdf", name: "scan_1.pdf" });
+    click(card, { scanDl: target, name });
     await new Promise((resolve) => setTimeout(resolve, 0));
   } finally {
     doc.createElement = origCreate;
     delete doc.body;
   }
-  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), { type: "media_source/resolve_media", media_content_id: "media-source://media_source/local/hp/scan_1.pdf" });
-  assert.deepEqual(clicked, [{ href: "http://ha.local:8123/media/local/hp/scan_1.pdf?authSig=x", download: "scan_1.pdf" }]);
+  return clicked;
+}
+
+test("ha-hp: the last scan gets a download link per file, through the integration, signed when clicked", async () => {
+  const { hass, calls } = hpScanHass({
+    time: new Date().toISOString(),
+    attributes: {
+      files: ["/media/hp/scan_1.pdf"],
+      media_ids: ["media-source://media_source/local/hp/scan_1.pdf"],
+      download_paths: ["/api/hp/scans/e1/0"],
+      pages: 3,
+    },
+  });
+  const card = render(hass, {});
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /scan_1\.pdf/);
+  assert.match(html, /3 pages/);
+  assert.match(html, /data-scan-dl="\/api\/hp\/scans\/e1\/0" data-name="scan_1\.pdf"/);
+  const clicked = await download(card, "/api/hp/scans/e1/0", "scan_1.pdf");
+  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), { type: "auth/sign_path", path: "/api/hp/scans/e1/0", expires: 60 });
+  assert.deepEqual(clicked, [{ href: "http://ha.local:8123/api/hp/scans/e1/0?authSig=y", download: "scan_1.pdf" }]);
+});
+
+test("ha-hp before 1.2: an image is still downloaded through its media source ID", async () => {
+  const { hass, calls } = hpScanHass({
+    time: new Date().toISOString(),
+    attributes: { files: ["/media/hp/scan_1.jpg"], media_ids: ["media-source://media_source/local/hp/scan_1.jpg"], pages: 1 },
+  });
+  const card = render(hass, {});
+  assert.match(card.shadowRoot.innerHTML, /data-scan-dl="media-source:\/\/media_source\/local\/hp\/scan_1\.jpg"/);
+  const clicked = await download(card, "media-source://media_source/local/hp/scan_1.jpg", "scan_1.jpg");
+  assert.equal(calls[0].type, "media_source/resolve_media");
+  assert.deepEqual(clicked, [{ href: "http://ha.local:8123/media/local/hp/scan_1.jpg?authSig=x", download: "scan_1.jpg" }]);
 });
