@@ -52,6 +52,17 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - Light and dark theme compatible
 - Single file, no dependencies, ready for the Marketplace
 
+## Scanning
+
+With [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) and a printer that scans, the card has a **Scan** section:
+
+- **Source**: glass, document feeder or double-sided feeder; **Format**: PDF, JPEG or PNG; **Resolution**: those the scanner offers. They are the integration's select entities, so its own Scan button uses the same settings
+- **Scan** starts a new file; **Add a page** (PDF) scans the page on the glass and adds it to the last PDF, for a document scanned page by page
+- While it scans, the buttons wait and show the progress; an error (feeder empty, scanner busy…) is shown in the card
+- At the end, the file appears with a **Download** link (one per page in JPEG or PNG), signed when clicked. The download needs ha-hp 1.1 or later and the default scan folder (the local media)
+
+`show_scan: false` hides the section.
+
 ## Supported integrations
 
 | Integration | Printers | What the card shows |
@@ -159,6 +170,7 @@ entities:
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |
 | `show_forecast` | ❌ | `true` | Show under each tank when it is forecast to be empty: the drop per day since the last refill (a rise of 20 points or more), over at least a week of the last 90 days of the recorder's daily statistics; nothing for a level that doesn't go down |
+| `show_scan` | ❌ | `true` | Scan section (ha-hp printers that scan): source, format, resolution, Scan / Add a page, download link of the last scan |
 | `show_expired` | ❌ | `false` | Also alert when a cartridge's warranty date has passed |
 | `low_threshold` | ❌ | `15` | Ink level (%) at or below which a cartridge is flagged as low; at 5 % or less it is nearly empty. Also the remaining life (%) at which a Brother part (drum, belt, fuser, paper feed kit) raises an alert |
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
@@ -252,6 +264,19 @@ Mini card zoomed in with its detail button (top right, click it again or anywher
 | Light | Dark |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom.png" alt="mini card full view" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom-dark.png" alt="mini card full view dark" width="400"> |
+
+Scanning with [HP Printer (ha-hp)](https://github.com/juju35/ha-hp): source, format and resolution, **Scan** / **Add a page**, then the last scan with its **Download** link:
+
+| Light | Dark |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan.png" alt="scan section" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-dark.png" alt="scan section dark" width="400"> |
+
+While it scans, the buttons wait and the Scan button turns to a spinner; an error from the integration (feeder empty, scanner busy…) shows in the section:
+
+| | Scanning | Error |
+|---|---|---|
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy.gif" alt="scan in progress" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error.png" alt="scan error" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy-dark.gif" alt="scan in progress dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error-dark.png" alt="scan error dark" width="400"> |
 
 Drawn HP ranges:
 

@@ -114,6 +114,22 @@ var HpI18n = {
     ed_zoom_helper: 'En haut à droite : affiche la carte complète, un clic ailleurs revient à la vue compacte',
     zoom_in: 'Afficher la carte complète',
     zoom_out: 'Revenir à la vue compacte',
+    sc_title: 'Numérisation',
+    sc_scan: 'Numériser',
+    sc_add: 'Ajouter une page',
+    sc_scanning: 'Numérisation…',
+    sc_source: 'Source',
+    sc_format: 'Format',
+    sc_resolution: 'Résolution',
+    sc_glass: 'Vitre',
+    sc_feeder: 'Chargeur',
+    sc_duplex: 'Chargeur recto verso',
+    sc_download: 'Télécharger',
+    sc_last: 'Dernier scan',
+    sc_pages: '{n} pages',
+    sc_failed: 'Échec du scan : {e}',
+    sc_add_hint: 'Ajoute la page posée sur la vitre au dernier PDF',
+    ed_show_scan: 'Numérisation',
   },
   en: {
     printer: 'Printer',
@@ -226,6 +242,22 @@ var HpI18n = {
     ed_zoom_helper: 'Top right: shows the full card, a click anywhere else goes back to the compact view',
     zoom_in: 'Show the full card',
     zoom_out: 'Back to the compact view',
+    sc_title: 'Scan',
+    sc_scan: 'Scan',
+    sc_add: 'Add a page',
+    sc_scanning: 'Scanning…',
+    sc_source: 'Source',
+    sc_format: 'Format',
+    sc_resolution: 'Resolution',
+    sc_glass: 'Glass',
+    sc_feeder: 'Feeder',
+    sc_duplex: 'Feeder, 2-sided',
+    sc_download: 'Download',
+    sc_last: 'Last scan',
+    sc_pages: '{n} pages',
+    sc_failed: 'Scan failed: {e}',
+    sc_add_hint: 'Adds the page on the glass to the last PDF',
+    ed_show_scan: 'Scan',
   },
   de: {
     printer: 'Drucker',
@@ -338,6 +370,22 @@ var HpI18n = {
     ed_zoom_helper: 'Oben rechts: zeigt die vollständige Karte an. Ein Klick an eine andere Stelle führt zurück zur kompakten Ansicht.',
     zoom_in: 'Vollständige Karte anzeigen',
     zoom_out: 'Zur kompakten Ansicht zurückkehren',
+    sc_title: 'Scannen',
+    sc_scan: 'Scannen',
+    sc_add: 'Seite hinzufügen',
+    sc_scanning: 'Wird gescannt…',
+    sc_source: 'Quelle',
+    sc_format: 'Format',
+    sc_resolution: 'Auflösung',
+    sc_glass: 'Vorlagenglas',
+    sc_feeder: 'Einzug',
+    sc_duplex: 'Einzug, beidseitig',
+    sc_download: 'Herunterladen',
+    sc_last: 'Letzter Scan',
+    sc_pages: '{n} Seiten',
+    sc_failed: 'Scan fehlgeschlagen: {e}',
+    sc_add_hint: 'Fügt die Seite auf dem Vorlagenglas dem letzten PDF hinzu',
+    ed_show_scan: 'Scannen',
   },
   es: {
     printer: 'Impresora',
@@ -450,6 +498,22 @@ var HpI18n = {
     ed_zoom_helper: 'Arriba a la derecha: muestra la tarjeta completa; un clic en cualquier otro lugar vuelve a la vista compacta',
     zoom_in: 'Mostrar la tarjeta completa',
     zoom_out: 'Volver a la vista compacta',
+    sc_title: 'Escaneo',
+    sc_scan: 'Escanear',
+    sc_add: 'Añadir una página',
+    sc_scanning: 'Escaneando…',
+    sc_source: 'Origen',
+    sc_format: 'Formato',
+    sc_resolution: 'Resolución',
+    sc_glass: 'Cristal',
+    sc_feeder: 'Alimentador',
+    sc_duplex: 'Alimentador, doble cara',
+    sc_download: 'Descargar',
+    sc_last: 'Último escaneo',
+    sc_pages: '{n} páginas',
+    sc_failed: 'Error al escanear: {e}',
+    sc_add_hint: 'Añade la página del cristal al último PDF',
+    ed_show_scan: 'Escaneo',
   },
   sr: {
     printer: 'Штампач',
@@ -569,6 +633,22 @@ var HpI18n = {
     ed_zoom_helper: 'Горе десно: приказује целу картицу, клик било где другде враћа на компактни приказ',
     zoom_in: 'Прикажи целу картицу',
     zoom_out: 'Назад на компактни приказ',
+    sc_title: 'Скенирање',
+    sc_scan: 'Скенирај',
+    sc_add: 'Додај страницу',
+    sc_scanning: 'Скенирање…',
+    sc_source: 'Извор',
+    sc_format: 'Формат',
+    sc_resolution: 'Резолуција',
+    sc_glass: 'Стакло',
+    sc_feeder: 'Улагач',
+    sc_duplex: 'Улагач, двострано',
+    sc_download: 'Преузми',
+    sc_last: 'Последње скенирање',
+    sc_pages: '{n} страница',
+    sc_failed: 'Скенирање није успело: {e}',
+    sc_add_hint: 'Додаје страницу са стакла у последњи PDF',
+    ed_show_scan: 'Скенирање',
   },
   'sr-Latn': {
     printer: 'Štampač',
@@ -688,6 +768,22 @@ var HpI18n = {
     ed_zoom_helper: 'Gore desno: prikazuje celu karticu, klik bilo gde drugde vraća na kompaktni prikaz',
     zoom_in: 'Prikaži celu karticu',
     zoom_out: 'Nazad na kompaktni prikaz',
+    sc_title: 'Skeniranje',
+    sc_scan: 'Skeniraj',
+    sc_add: 'Dodaj stranicu',
+    sc_scanning: 'Skeniranje…',
+    sc_source: 'Izvor',
+    sc_format: 'Format',
+    sc_resolution: 'Rezolucija',
+    sc_glass: 'Staklo',
+    sc_feeder: 'Ulagač',
+    sc_duplex: 'Ulagač, dvostrano',
+    sc_download: 'Preuzmi',
+    sc_last: 'Poslednje skeniranje',
+    sc_pages: '{n} stranica',
+    sc_failed: 'Skeniranje nije uspelo: {e}',
+    sc_add_hint: 'Dodaje stranicu sa stakla u poslednji PDF',
+    ed_show_scan: 'Skeniranje',
   },
   it: {
     printer: 'Stampante',
@@ -800,6 +896,22 @@ var HpI18n = {
     ed_zoom_helper: 'In alto a destra: mostra la scheda completa, un clic altrove torna alla vista compatta',
     zoom_in: 'Mostra la scheda completa',
     zoom_out: 'Torna alla vista compatta',
+    sc_title: 'Scansione',
+    sc_scan: 'Scansiona',
+    sc_add: 'Aggiungi una pagina',
+    sc_scanning: 'Scansione in corso…',
+    sc_source: 'Origine',
+    sc_format: 'Formato',
+    sc_resolution: 'Risoluzione',
+    sc_glass: 'Vetro',
+    sc_feeder: 'Alimentatore',
+    sc_duplex: 'Alimentatore, fronte-retro',
+    sc_download: 'Scarica',
+    sc_last: 'Ultima scansione',
+    sc_pages: '{n} pagine',
+    sc_failed: 'Scansione non riuscita: {e}',
+    sc_add_hint: 'Aggiunge la pagina sul vetro all\'ultimo PDF',
+    ed_show_scan: 'Scansione',
   },
   nl: {
     printer: 'Printer',
@@ -912,6 +1024,22 @@ var HpI18n = {
     ed_zoom_helper: 'Rechtsboven: toont de volledige kaart, een klik ergens anders gaat terug naar de compacte weergave',
     zoom_in: 'Volledige kaart tonen',
     zoom_out: 'Terug naar de compacte weergave',
+    sc_title: 'Scannen',
+    sc_scan: 'Scannen',
+    sc_add: 'Pagina toevoegen',
+    sc_scanning: 'Bezig met scannen…',
+    sc_source: 'Bron',
+    sc_format: 'Formaat',
+    sc_resolution: 'Resolutie',
+    sc_glass: 'Glasplaat',
+    sc_feeder: 'Invoer',
+    sc_duplex: 'Invoer, dubbelzijdig',
+    sc_download: 'Downloaden',
+    sc_last: 'Laatste scan',
+    sc_pages: '{n} pagina\'s',
+    sc_failed: 'Scannen mislukt: {e}',
+    sc_add_hint: 'Voegt de pagina op de glasplaat toe aan de laatste PDF',
+    ed_show_scan: 'Scannen',
   },
   pt: {
     printer: 'Impressora',
@@ -1027,6 +1155,22 @@ var HpI18n = {
     ed_zoom_helper: 'Canto superior direito: mostra o cartão completo; um clique noutro sítio volta à vista compacta',
     zoom_in: 'Mostrar o cartão completo',
     zoom_out: 'Voltar à vista compacta',
+    sc_title: 'Digitalização',
+    sc_scan: 'Digitalizar',
+    sc_add: 'Adicionar página',
+    sc_scanning: 'A digitalizar…',
+    sc_source: 'Origem',
+    sc_format: 'Formato',
+    sc_resolution: 'Resolução',
+    sc_glass: 'Vidro',
+    sc_feeder: 'Alimentador',
+    sc_duplex: 'Alimentador, frente e verso',
+    sc_download: 'Transferir',
+    sc_last: 'Última digitalização',
+    sc_pages: '{n} páginas',
+    sc_failed: 'A digitalização falhou: {e}',
+    sc_add_hint: 'Adiciona a página do vidro ao último PDF',
+    ed_show_scan: 'Digitalização',
   },
   pl: {
     printer: 'Drukarka',
@@ -1142,6 +1286,22 @@ var HpI18n = {
     ed_zoom_helper: 'W prawym górnym rogu: pokazuje pełną kartę, kliknięcie w innym miejscu przywraca widok kompaktowy',
     zoom_in: 'Pokaż pełną kartę',
     zoom_out: 'Wróć do widoku kompaktowego',
+    sc_title: 'Skanowanie',
+    sc_scan: 'Skanuj',
+    sc_add: 'Dodaj stronę',
+    sc_scanning: 'Skanowanie…',
+    sc_source: 'Źródło',
+    sc_format: 'Format',
+    sc_resolution: 'Rozdzielczość',
+    sc_glass: 'Szyba',
+    sc_feeder: 'Podajnik',
+    sc_duplex: 'Podajnik, dwustronnie',
+    sc_download: 'Pobierz',
+    sc_last: 'Ostatni skan',
+    sc_pages: '{n} stron',
+    sc_failed: 'Skanowanie nie powiodło się: {e}',
+    sc_add_hint: 'Dodaje stronę z szyby do ostatniego PDF',
+    ed_show_scan: 'Skanowanie',
   },
   ro: {
     printer: 'Imprimantă',
@@ -1254,6 +1414,22 @@ var HpI18n = {
     ed_zoom_helper: 'Dreapta sus: afișează cardul complet, un clic în altă parte revine la vizualizarea compactă',
     zoom_in: 'Afișează cardul complet',
     zoom_out: 'Înapoi la vizualizarea compactă',
+    sc_title: 'Scanare',
+    sc_scan: 'Scanează',
+    sc_add: 'Adaugă o pagină',
+    sc_scanning: 'Se scanează…',
+    sc_source: 'Sursă',
+    sc_format: 'Format',
+    sc_resolution: 'Rezoluție',
+    sc_glass: 'Geam',
+    sc_feeder: 'Alimentator',
+    sc_duplex: 'Alimentator, față-verso',
+    sc_download: 'Descarcă',
+    sc_last: 'Ultima scanare',
+    sc_pages: '{n} pagini',
+    sc_failed: 'Scanarea a eșuat: {e}',
+    sc_add_hint: 'Adaugă pagina de pe geam la ultimul PDF',
+    ed_show_scan: 'Scanare',
   },
   da: {
     printer: 'Printer',
@@ -1370,6 +1546,22 @@ var HpI18n = {
     ed_zoom_helper: 'Øverst til højre: viser hele kortet, et klik et andet sted vender tilbage til den kompakte visning',
     zoom_in: 'Vis hele kortet',
     zoom_out: 'Tilbage til den kompakte visning',
+    sc_title: 'Scanning',
+    sc_scan: 'Scan',
+    sc_add: 'Tilføj en side',
+    sc_scanning: 'Scanner…',
+    sc_source: 'Kilde',
+    sc_format: 'Format',
+    sc_resolution: 'Opløsning',
+    sc_glass: 'Glasplade',
+    sc_feeder: 'Fører',
+    sc_duplex: 'Fører, dobbeltsidet',
+    sc_download: 'Download',
+    sc_last: 'Seneste scanning',
+    sc_pages: '{n} sider',
+    sc_failed: 'Scanningen mislykkedes: {e}',
+    sc_add_hint: 'Tilføjer siden på glaspladen til den seneste PDF',
+    ed_show_scan: 'Scanning',
   },
   sv: {
     printer: 'Skrivare',
@@ -1488,6 +1680,22 @@ var HpI18n = {
     ed_zoom_helper: 'Uppe till höger: visar hela kortet, ett klick någon annanstans går tillbaka till den kompakta vyn',
     zoom_in: 'Visa hela kortet',
     zoom_out: 'Tillbaka till den kompakta vyn',
+    sc_title: 'Skanning',
+    sc_scan: 'Skanna',
+    sc_add: 'Lägg till en sida',
+    sc_scanning: 'Skannar…',
+    sc_source: 'Källa',
+    sc_format: 'Format',
+    sc_resolution: 'Upplösning',
+    sc_glass: 'Glas',
+    sc_feeder: 'Matare',
+    sc_duplex: 'Matare, dubbelsidigt',
+    sc_download: 'Ladda ner',
+    sc_last: 'Senaste skanning',
+    sc_pages: '{n} sidor',
+    sc_failed: 'Skanningen misslyckades: {e}',
+    sc_add_hint: 'Lägger till sidan på glaset i den senaste PDF:en',
+    ed_show_scan: 'Skanning',
   },
   bg: {
     printer: 'Принтер',
@@ -1600,6 +1808,22 @@ var HpI18n = {
     ed_zoom_helper: 'Горе вдясно: показва цялата карта, щракване другаде връща към компактния изглед',
     zoom_in: 'Показване на цялата карта',
     zoom_out: 'Обратно към компактния изглед',
+    sc_title: 'Сканиране',
+    sc_scan: 'Сканирай',
+    sc_add: 'Добави страница',
+    sc_scanning: 'Сканиране…',
+    sc_source: 'Източник',
+    sc_format: 'Формат',
+    sc_resolution: 'Резолюция',
+    sc_glass: 'Стъкло',
+    sc_feeder: 'Подаващо устройство',
+    sc_duplex: 'Подаващо устройство, двустранно',
+    sc_download: 'Изтегли',
+    sc_last: 'Последно сканиране',
+    sc_pages: '{n} страници',
+    sc_failed: 'Сканирането не успя: {e}',
+    sc_add_hint: 'Добавя страницата от стъклото към последния PDF',
+    ed_show_scan: 'Сканиране',
   },
   ru: {
     printer: 'Принтер',
@@ -1719,6 +1943,22 @@ var HpI18n = {
     ed_zoom_helper: 'Справа вверху: показывает полную карточку, нажатие в любом другом месте возвращает компактный вид',
     zoom_in: 'Показать полную карточку',
     zoom_out: 'Вернуться к компактному виду',
+    sc_title: 'Сканирование',
+    sc_scan: 'Сканировать',
+    sc_add: 'Добавить страницу',
+    sc_scanning: 'Сканирование…',
+    sc_source: 'Источник',
+    sc_format: 'Формат',
+    sc_resolution: 'Разрешение',
+    sc_glass: 'Стекло',
+    sc_feeder: 'Автоподатчик',
+    sc_duplex: 'Автоподатчик, двусторонний',
+    sc_download: 'Скачать',
+    sc_last: 'Последнее сканирование',
+    sc_pages: 'Страниц: {n}',
+    sc_failed: 'Сканирование не удалось: {e}',
+    sc_add_hint: 'Добавляет страницу со стекла в последний PDF',
+    ed_show_scan: 'Сканирование',
   },
   uk: {
     printer: 'Принтер',
@@ -1839,6 +2079,22 @@ var HpI18n = {
     ed_zoom_helper: 'Праворуч угорі: показує повну картку, натискання деінде повертає до компактного вигляду',
     zoom_in: 'Показати повну картку',
     zoom_out: 'Повернутися до компактного вигляду',
+    sc_title: 'Сканування',
+    sc_scan: 'Сканувати',
+    sc_add: 'Додати сторінку',
+    sc_scanning: 'Сканування…',
+    sc_source: 'Джерело',
+    sc_format: 'Формат',
+    sc_resolution: 'Роздільна здатність',
+    sc_glass: 'Скло',
+    sc_feeder: 'Автоподавач',
+    sc_duplex: 'Автоподавач, двобічний',
+    sc_download: 'Завантажити',
+    sc_last: 'Останнє сканування',
+    sc_pages: 'Сторінок: {n}',
+    sc_failed: 'Сканування не вдалося: {e}',
+    sc_add_hint: 'Додає сторінку зі скла до останнього PDF',
+    ed_show_scan: 'Сканування',
   },
   hu: {
     printer: 'Nyomtató',
@@ -1951,6 +2207,22 @@ var HpI18n = {
     ed_zoom_helper: 'Jobbra fent: a teljes kártyát mutatja, máshová kattintva visszatér a kompakt nézethez',
     zoom_in: 'Teljes kártya megjelenítése',
     zoom_out: 'Vissza a kompakt nézethez',
+    sc_title: 'Szkennelés',
+    sc_scan: 'Szkennelés',
+    sc_add: 'Oldal hozzáadása',
+    sc_scanning: 'Szkennelés…',
+    sc_source: 'Forrás',
+    sc_format: 'Formátum',
+    sc_resolution: 'Felbontás',
+    sc_glass: 'Üveglap',
+    sc_feeder: 'Lapadagoló',
+    sc_duplex: 'Lapadagoló, kétoldalas',
+    sc_download: 'Letöltés',
+    sc_last: 'Utolsó szkennelés',
+    sc_pages: '{n} oldal',
+    sc_failed: 'A szkennelés nem sikerült: {e}',
+    sc_add_hint: 'Az üveglapon lévő oldalt az utolsó PDF-hez adja',
+    ed_show_scan: 'Szkennelés',
   },
   sk: {
     printer: 'Tlačiareň',
@@ -2063,6 +2335,22 @@ var HpI18n = {
     ed_zoom_helper: 'Vpravo hore: zobrazí celú kartu, kliknutie kdekoľvek inde vráti kompaktné zobrazenie',
     zoom_in: 'Zobraziť celú kartu',
     zoom_out: 'Späť na kompaktné zobrazenie',
+    sc_title: 'Skenovanie',
+    sc_scan: 'Skenovať',
+    sc_add: 'Pridať stranu',
+    sc_scanning: 'Skenuje sa…',
+    sc_source: 'Zdroj',
+    sc_format: 'Formát',
+    sc_resolution: 'Rozlíšenie',
+    sc_glass: 'Sklo',
+    sc_feeder: 'Podávač',
+    sc_duplex: 'Podávač, obojstranne',
+    sc_download: 'Stiahnuť',
+    sc_last: 'Posledný sken',
+    sc_pages: 'Strán: {n}',
+    sc_failed: 'Skenovanie zlyhalo: {e}',
+    sc_add_hint: 'Pridá stranu zo skla do posledného PDF',
+    ed_show_scan: 'Skenovanie',
   },
   cs: {
     printer: 'Tiskárna',
@@ -2175,6 +2463,22 @@ var HpI18n = {
     ed_zoom_helper: 'Vpravo nahoře: zobrazí celou kartu, kliknutí kamkoli jinam vrátí kompaktní zobrazení',
     zoom_in: 'Zobrazit celou kartu',
     zoom_out: 'Zpět na kompaktní zobrazení',
+    sc_title: 'Skenování',
+    sc_scan: 'Skenovat',
+    sc_add: 'Přidat stránku',
+    sc_scanning: 'Skenuje se…',
+    sc_source: 'Zdroj',
+    sc_format: 'Formát',
+    sc_resolution: 'Rozlišení',
+    sc_glass: 'Sklo',
+    sc_feeder: 'Podavač',
+    sc_duplex: 'Podavač, oboustranně',
+    sc_download: 'Stáhnout',
+    sc_last: 'Poslední sken',
+    sc_pages: 'Stránek: {n}',
+    sc_failed: 'Skenování selhalo: {e}',
+    sc_add_hint: 'Přidá stránku ze skla do posledního PDF',
+    ed_show_scan: 'Skenování',
   },
   sl: {
     printer: 'Tiskalnik',
@@ -2287,6 +2591,22 @@ var HpI18n = {
     ed_zoom_helper: 'Zgoraj desno: prikaže celotno kartico, klik kjer koli drugje vrne kompaktni pogled',
     zoom_in: 'Prikaži celotno kartico',
     zoom_out: 'Nazaj na kompaktni pogled',
+    sc_title: 'Optično branje',
+    sc_scan: 'Optično preberi',
+    sc_add: 'Dodaj stran',
+    sc_scanning: 'Optično branje…',
+    sc_source: 'Vir',
+    sc_format: 'Oblika',
+    sc_resolution: 'Ločljivost',
+    sc_glass: 'Steklo',
+    sc_feeder: 'Podajalnik',
+    sc_duplex: 'Podajalnik, obojestransko',
+    sc_download: 'Prenesi',
+    sc_last: 'Zadnje optično branje',
+    sc_pages: 'Strani: {n}',
+    sc_failed: 'Optično branje ni uspelo: {e}',
+    sc_add_hint: 'Doda stran s stekla v zadnji PDF',
+    ed_show_scan: 'Optično branje',
   },
   lv: {
     printer: 'Printeris',
@@ -2399,6 +2719,22 @@ var HpI18n = {
     ed_zoom_helper: 'Augšā pa labi: parāda pilno kartīti, klikšķis jebkur citur atgriež kompakto skatu',
     zoom_in: 'Rādīt pilno kartīti',
     zoom_out: 'Atpakaļ uz kompakto skatu',
+    sc_title: 'Skenēšana',
+    sc_scan: 'Skenēt',
+    sc_add: 'Pievienot lapu',
+    sc_scanning: 'Skenē…',
+    sc_source: 'Avots',
+    sc_format: 'Formāts',
+    sc_resolution: 'Izšķirtspēja',
+    sc_glass: 'Stikls',
+    sc_feeder: 'Padevējs',
+    sc_duplex: 'Padevējs, abpusēji',
+    sc_download: 'Lejupielādēt',
+    sc_last: 'Pēdējā skenēšana',
+    sc_pages: 'Lapas: {n}',
+    sc_failed: 'Skenēšana neizdevās: {e}',
+    sc_add_hint: 'Pievieno lapu no stikla pēdējam PDF',
+    ed_show_scan: 'Skenēšana',
   },
   el: {
     printer: 'Εκτυπωτής',
@@ -2511,6 +2847,22 @@ var HpI18n = {
     ed_zoom_helper: 'Πάνω δεξιά: εμφανίζει την πλήρη κάρτα, ένα κλικ οπουδήποτε αλλού επιστρέφει στη συμπτυγμένη προβολή',
     zoom_in: 'Εμφάνιση της πλήρους κάρτας',
     zoom_out: 'Επιστροφή στη συμπτυγμένη προβολή',
+    sc_title: 'Σάρωση',
+    sc_scan: 'Σάρωση',
+    sc_add: 'Προσθήκη σελίδας',
+    sc_scanning: 'Σάρωση…',
+    sc_source: 'Πηγή',
+    sc_format: 'Μορφή',
+    sc_resolution: 'Ανάλυση',
+    sc_glass: 'Γυαλί',
+    sc_feeder: 'Τροφοδότης',
+    sc_duplex: 'Τροφοδότης, διπλής όψης',
+    sc_download: 'Λήψη',
+    sc_last: 'Τελευταία σάρωση',
+    sc_pages: '{n} σελίδες',
+    sc_failed: 'Η σάρωση απέτυχε: {e}',
+    sc_add_hint: 'Προσθέτει τη σελίδα από το γυαλί στο τελευταίο PDF',
+    ed_show_scan: 'Σάρωση',
   },
 };
 
@@ -3194,7 +3546,7 @@ function hpShortDuration(locale, days) {
 }
 
 var HP_DEFAULTS = {
-  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, low_threshold: 15, picture: 'auto',
+  show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, show_scan: true, low_threshold: 15, picture: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
@@ -3249,6 +3601,7 @@ class PrinterCard extends HTMLElement {
   getCardSize() { return 5; }
 
   _chipClick(ev) {
+    if (this._scanClick(ev)) return;
     var chip = ev.composedPath().find((n) => n.dataset?.entity);
     if (!chip) return;
     ev.stopPropagation();
@@ -3317,6 +3670,11 @@ class PrinterCard extends HTMLElement {
       if (!r.eprint_registration) r.eprint_registration = key('cloud_registered');
       if (!r.total_pages) r.total_pages = key('total_pages');
       if (!r.ipp) r.ipp = hpFindIppSensor(hass, deviceId);
+      // Its scanner: the Scan buttons, the settings shared with them, and the last scan with its files.
+      if (key('scan')) {
+        r.scan = { button: key('scan'), source: key('scan_source'), format: key('scan_format'),
+          resolution: key('scan_resolution'), last: key('last_scan') };
+      }
     } else if (status && hpIsHpStatus(hass.states[status])) {
       var subs = hpSubDevices(hass, deviceId);
       r.subs = subs;
@@ -3362,6 +3720,7 @@ class PrinterCard extends HTMLElement {
 
   _ids(r) {
     var ids = [r.status, r.raw, r.ipp, r.total_pages, r.eprint, r.eprint_registration];
+    if (r.scan) ids.push(r.scan.source, r.scan.format, r.scan.resolution, r.scan.last);
     r.inks.forEach((i) => { ids.push(i.level, i.status, i.expiry, i.pages_left); });
     (r.parts || []).forEach((p) => { ids.push(p.level); });
     return ids.filter(Boolean);
@@ -3388,7 +3747,7 @@ class PrinterCard extends HTMLElement {
     if (!this._config || !this._hass || !this.shadowRoot) return;
     var r = this._resolve();
     var hass = this._hass;
-    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._timeSig(r), this._ids(r).map((id) => {
+    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._timeSig(r), this._scanState || null, this._ids(r).map((id) => {
       var s = hass.states[id];
       return s ? [id, s.state, s.attributes.state, s.attributes.state_reason, s.attributes.state_message, s.attributes.message, s.attributes.installed] : null;
     })]);
@@ -3734,7 +4093,117 @@ class PrinterCard extends HTMLElement {
       '</div>';
     }
 
-    return head + inksHtml + alertsHtml;
+    return head + inksHtml + this._scanHtml(r, offline) + alertsHtml;
+  }
+
+  // ── Scan (ha-hp) ─────────────────────────────────────────────────────────
+  // Source, format and resolution (the integration's select entities, shared with its Scan button), the Scan and
+  // Add a page buttons, then the scan in progress, its error, or the last scan with a download link per file.
+  _scanHtml(r, offline) {
+    var sc = r.scan;
+    if (!sc || offline || this._config.show_scan === false) return '';
+    var hass = this._hass, st = this._scanState || {};
+    var busy = !!st.busy || this._val(r.status) === 'scan_processing';
+    var dis = busy ? ' disabled' : '';
+    var label = (kind, o) => {
+      if (kind === 'source') return this._t({ flatbed: 'sc_glass', feeder: 'sc_feeder', feeder_duplex: 'sc_duplex' }[o] || o);
+      if (kind === 'resolution') return `${o} dpi`;
+      return String(o).toUpperCase();
+    };
+    var row = (kind, title) => {
+      var s = hass.states[sc[kind]];
+      var options = s?.attributes.options || [];
+      if (options.length < 2) return '';
+      return `<div class="scan-row"><span class="scan-lbl">${this._t(title)}</span><div class="seg">` +
+        options.map((o) => `<button type="button" class="seg-b${o === s.state ? ' on' : ''}" data-scan-set="${kind}" data-value="${hpEsc(o)}"` +
+          ` aria-pressed="${o === s.state}"${dis}>${hpEsc(label(kind, o))}</button>`).join('') + '</div></div>';
+    };
+    var pdf = this._val(sc.format) === 'pdf';
+    var actions = '<div class="scan-actions">' +
+      `<button type="button" class="scan-btn primary" data-scan-go="new"${dis}><ha-icon icon="${busy ? 'mdi:loading' : 'mdi:scanner'}"${busy ? ' class="spin"' : ''}></ha-icon>${this._t(busy ? 'sc_scanning' : 'sc_scan')}</button>` +
+      (pdf ? `<button type="button" class="scan-btn" data-scan-go="add" title="${hpEsc(this._t('sc_add_hint'))}"${dis}><ha-icon icon="mdi:file-document-plus-outline"></ha-icon>${this._t('sc_add')}</button>` : '') +
+      '</div>';
+    var out = '';
+    if (st.error) {
+      out = `<div class="alert error"><ha-icon icon="mdi:alert-circle"></ha-icon><span>${hpEsc(this._t('sc_failed', { e: st.error }))}</span></div>`;
+    } else if (!busy) {
+      out = this._scanLast(sc);
+    }
+    return `<div class="section scan"><div class="section-title"><ha-icon icon="mdi:scanner"></ha-icon>${this._t('sc_title')}</div>` +
+      row('source', 'sc_source') + row('format', 'sc_format') + row('resolution', 'sc_resolution') + actions + out + '</div>';
+  }
+
+  // The last scan: when, its pages, and a download link per file in a media folder.
+  _scanLast(sc) {
+    var s = this._hass.states[sc.last];
+    var a = s?.attributes || {};
+    var files = a.files || [];
+    if (!files.length) return '';
+    var ids = a.media_ids || [];
+    var when = s.state && !Number.isNaN(new Date(s.state).getTime()) ? this._relative(new Date(s.state)) : '';
+    var pages = Number(a.pages) > 1 ? ` · ${this._t('sc_pages', { n: a.pages })}` : '';
+    return `<div class="scan-last"><div class="scan-meta muted">${this._t('sc_last')}${when ? ` · ${hpEsc(when)}` : ''}${pages}</div>` +
+      files.map((file, i) => {
+        var name = String(file).split('/').pop();
+        var icon = /\.pdf$/i.test(name) ? 'mdi:file-pdf-box' : 'mdi:file-image-outline';
+        return `<div class="scan-file"><ha-icon icon="${icon}"></ha-icon><span class="scan-name" title="${hpEsc(file)}">${hpEsc(name)}</span>` +
+          (ids[i] ? `<button type="button" class="scan-dl" data-scan-dl="${hpEsc(ids[i])}" data-name="${hpEsc(name)}"><ha-icon icon="mdi:download"></ha-icon>${this._t('sc_download')}</button>` : '') +
+          '</div>';
+      }).join('') + '</div>';
+  }
+
+  // A click in the scan section; true when it was one.
+  _scanClick(ev) {
+    var el = ev.composedPath().find((n) => n.dataset && (n.dataset.scanSet || n.dataset.scanGo || n.dataset.scanDl));
+    if (!el) return false;
+    ev.stopPropagation();
+    if (el.disabled) return true;
+    var r = this._resolve();
+    if (!r.scan) return true;
+    if (el.dataset.scanSet) {
+      if (this._scanState?.error) this._setScan(null);
+      this._hass.callService('select', 'select_option', { entity_id: r.scan[el.dataset.scanSet], option: el.dataset.value });
+    } else if (el.dataset.scanGo) {
+      this._scan(r, el.dataset.scanGo === 'add');
+    } else {
+      this._download(el.dataset.scanDl, el.dataset.name);
+    }
+    return true;
+  }
+
+  _setScan(state) {
+    this._scanState = state;
+    this._update();
+  }
+
+  // Runs hp.scan on this printer (its settings come from the select entities); the files then come with the
+  // Last scan sensor, shown with their download links.
+  async _scan(r, append) {
+    if (this._scanState?.busy) return;
+    this._setScan({ busy: true });
+    try {
+      await this._hass.callWS({ type: 'call_service', domain: 'hp', service: 'scan',
+        service_data: { device_id: r.deviceId, append: append }, return_response: true });
+      this._setScan(null);
+    } catch (err) {
+      this._setScan({ error: String(err?.message || err?.code || err || '') });
+    }
+  }
+
+  // A media file's link is signed and short-lived: resolved on click, then downloaded.
+  async _download(mediaId, name) {
+    try {
+      var res = await this._hass.callWS({ type: 'media_source/resolve_media', media_content_id: mediaId });
+      var a = document.createElement('a');
+      a.href = this._hass.hassUrl ? this._hass.hassUrl(res.url) : res.url;
+      a.download = name || '';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      this._setScan({ error: String(err?.message || err || '') });
+    }
   }
 
   // A section of level tanks (cartridges, parts): icon and title, then the tanks.
@@ -3844,8 +4313,28 @@ class PrinterCard extends HTMLElement {
       '.alert.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 12%, transparent); } .alert.warn ha-icon { color: var(--warning-color, #ffa600); }' +
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
       '.alert.ok { color: var(--secondary-text-color); } .alert.ok ha-icon { color: var(--success-color, #43a047); }' +
+      // Scan section: segmented choices and buttons tinted, never filled (like the other ha-* cards).
+      '.scan-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; flex-wrap: wrap; }' +
+      '.scan-lbl { font-size: 12px; color: var(--secondary-text-color); min-width: 72px; }' +
+      '.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; }' +
+      '.seg-b, .scan-btn, .scan-dl { font: inherit; font-size: 12px; cursor: pointer; border-radius: 14px; padding: 3px 10px; color: var(--primary-text-color);' +
+        ' border: 1px solid var(--divider-color, rgba(128,128,128,0.3)); background: transparent; display: inline-flex; align-items: center; gap: 4px; }' +
+      '.seg-b.on { border-color: transparent; background: color-mix(in srgb, var(--primary-color, #03a9f4) 18%, transparent);' +
+        ' color: var(--primary-color, #03a9f4); font-weight: 500; }' +
+      '.seg-b:disabled, .scan-btn:disabled { opacity: .5; cursor: default; }' +
+      '.scan-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }' +
+      '.scan-btn { padding: 5px 12px; font-weight: 500; }' +
+      '.scan-btn.primary { border-color: transparent; background: color-mix(in srgb, var(--primary-color, #03a9f4) 15%, transparent); color: var(--primary-color, #03a9f4); }' +
+      '.scan-btn ha-icon, .scan-dl ha-icon { --mdc-icon-size: 16px; }' +
+      '.spin { animation: hp-spin 1s linear infinite; } @keyframes hp-spin { to { transform: rotate(360deg); } }' +
+      '.scan-last { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }' +
+      '.scan-meta { font-size: 12px; }' +
+      '.scan-file { display: flex; align-items: center; gap: 6px; font-size: 13px; min-width: 0; }' +
+      '.scan-file > ha-icon { --mdc-icon-size: 18px; color: var(--secondary-text-color); flex: none; }' +
+      '.scan-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }' +
+      '.scan-dl { flex: none; color: var(--primary-color, #03a9f4); border-color: transparent; background: color-mix(in srgb, var(--primary-color, #03a9f4) 12%, transparent); }' +
       // The screen keeps the status color but stops pulsing; levels and hovers change without motion.
-      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen { animation: none; } .pic, .level { transition: none; } }' +
+      '@media (prefers-reduced-motion: reduce) { .pic.busy .screen, .spin { animation: none; } .pic, .level { transition: none; } }' +
     '</style>';
   }
 }
@@ -4026,6 +4515,7 @@ class PrinterCardEditor extends HTMLElement {
           { name: 'show_stats', selector: { boolean: {} } },
           { name: 'show_eprint', selector: { boolean: {} } },
           { name: 'show_forecast', selector: { boolean: {} } },
+          { name: 'show_scan', selector: { boolean: {} } },
         ],
       },
       { name: 'low_threshold', selector: { number: { min: 0, max: 50, step: 1, mode: 'slider', unit_of_measurement: '%' } } },
