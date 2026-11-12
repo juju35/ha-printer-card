@@ -493,11 +493,25 @@ test("chips work from the keyboard: Enter or Space opens the more-info dialog, o
   assert.deepEqual(fired.map((e) => e.detail.entityId), ["sensor.yellow_level", "sensor.ipp_printer"]);
 });
 
-test("the mini card says offline, without chips, when the printer is off", () => {
-  const html = mini(mockHass({ status: "unavailable" })).shadowRoot.innerHTML;
+test("the mini card says offline and keeps the known ink levels when the printer is off", () => {
+  const hass = mockHass({ status: "unavailable" });
+  let html = mini(hass).shadowRoot.innerHTML;
   assert.match(html, /<ha-card class="offline mini">/);
   assert.match(html, /Offline/);
+  assert.equal((html.match(/class="mt"/g) || []).length, 4);
+  for (const color of ["yellow", "black", "cyan", "magenta"]) hass.states[`sensor.${color}_level`].state = "unavailable";
+  html = mini(hass).shadowRoot.innerHTML;
   assert.doesNotMatch(html, /class="mt"/);
+});
+
+test("offline, the full card shows only the cartridges whose level is known, without alerts", () => {
+  const hass = hpLocalHass({ status: "off" });
+  hass.states["sensor.oj_tri_color_level"].state = "unknown";
+  const html = render(hass, {}).shadowRoot.innerHTML;
+  assert.match(html, /<ha-card class="offline">/);
+  assert.equal((html.match(/class="tank"/g) || []).length, 2);
+  assert.match(html, /42<small>%<\/small>/);
+  assert.doesNotMatch(html, /class="alerts"|class="alert ok"/);
 });
 
 test("the mini card shows the same printer icon as the full card", () => {

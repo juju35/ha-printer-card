@@ -4158,16 +4158,17 @@ class PrinterCard extends HTMLElement {
       '</div></div>';
 
     var inksHtml = '';
-    var cartridges = r.inks.filter((i) => !i.printhead && i.level);
-    if (!offline) this._fetchLevels([...cartridges, ...(r.parts || [])].map((i) => i.level).filter(Boolean));
-    if (!offline && c.show_inks && cartridges.length) {
+    // Offline, the levels the integration kept (ha-hp keeps them while the printer is off) are still shown.
+    var cartridges = this._shownLevels(r.inks.filter((i) => !i.printhead && i.level), offline);
+    var parts = this._shownLevels(r.parts || [], offline);
+    this._fetchLevels([...cartridges, ...parts].map((i) => i.level).filter(Boolean));
+    if (c.show_inks && cartridges.length) {
       var toner = cartridges.every((i) => i.toner);
       inksHtml = this._tanks(toner ? 'mdi:invert-colors' : 'mdi:water-outline', this._t(toner ? 'toner' : 'inks'),
         cartridges.map((ink) => this._tank(this._inkInfo(ink), HP_INK_COLORS[ink.color], this._inkLabel(ink))));
     }
     // Brother: drum, belt unit, fuser and paper feed kits, by remaining life, drawn like the cartridges.
-    var parts = r.parts || [];
-    if (!offline && c.show_parts && parts.length) {
+    if (c.show_parts && parts.length) {
       inksHtml += this._tanks('mdi:cog-outline', this._t('parts'),
         parts.map((part) => this._tank(this._inkInfo(part, this._partLabel(part)), HP_INK_COLORS[part.color || 'ink'], this._partLabel(part, true))));
     }
@@ -4182,6 +4183,11 @@ class PrinterCard extends HTMLElement {
     }
 
     return head + inksHtml + this._scanHtml(r, offline) + alertsHtml;
+  }
+
+  // Cartridges or parts to show: all of them online, offline only those whose level is still known.
+  _shownLevels(list, offline) {
+    return offline ? list.filter((i) => !Number.isNaN(this._num(i.level))) : list;
   }
 
   // ── Scan (ha-hp) ─────────────────────────────────────────────────────────
@@ -4556,10 +4562,9 @@ class PrinterMiniCard extends PrinterCard {
   // One chip per cartridge (dot in its color and level), then one per alert the cartridges do not already show.
   _chips(r, v) {
     var c = this._config;
-    if (v.offline) return '';
     var out = [];
     if (c.show_inks) {
-      r.inks.filter((i) => !i.printhead && i.level).forEach((ink) => {
+      this._shownLevels(r.inks.filter((i) => !i.printhead && i.level), v.offline).forEach((ink) => {
         var k = this._inkInfo(ink);
         out.push('<span class="r' + (k.crit || k.bad ? ' error' : (k.low ? ' warn' : '')) + '" title="' + hpEsc(k.title) + '"' + this._ent(ink.level) + '>' +
           '<span class="mt"><span style="height:' + k.pct + '%;' + (k.pct > 0 ? 'min-height:2px;' : '') + 'background:' + HP_INK_COLORS[ink.color] + '"></span></span>' + (Number.isNaN(k.p) ? '—' : `${Math.round(k.p)} %`) + '</span>');

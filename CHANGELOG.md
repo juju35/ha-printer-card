@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.13.1 - 2026-11-12
+
+### Fixes
+- **Offline**, the card keeps showing the ink or toner levels (and Brother parts) that are still known, as ha-hp keeps them while the printer is off; the full card and the mini card. Alerts and the scan section stay hidden.
+
 ## 2.13.0 - 2026-11-12
 
 ### Features

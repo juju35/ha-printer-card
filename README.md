@@ -19,7 +19,7 @@ Custom Lovelace card for printers in Home Assistant: **HP** printers with the [H
 
 > Formerly `ha-hp-printer-card`: since 2.0.1, cards must use `type: custom:printer-card` (`custom:hp-printer-card` is no longer registered).
 
-When the printer is off, the card simply says it's **offline**. Otherwise it shows the **status**, the **ink or toner levels** and the **alerts**.
+When the printer is off, the card says it's **offline** and keeps showing the ink or toner levels that are still known (ha-hp keeps them). Otherwise it shows the **status**, the **ink or toner levels** and the **alerts**.
 
 Pick the printer, the card finds all its entities by itself. A compact **Printer Mini Card** shows the same printer on two lines, and its detail button opens the full card in place.
 
@@ -32,7 +32,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 
 ## Features
 
-- **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card only shows *Offline* with the last time it was seen
+- **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card shows *Offline* with the last time it was seen, and the ink or toner levels when they are still known
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
 - **Empty forecast**: under each cartridge and part, about how long it lasts at the pace of the last 90 days (*≈ 7 weeks*; *Empty in 7 weeks (12 Mar)* on hover, with the date it runs out), from the recorder's daily statistics, a refill starting the count over
@@ -252,7 +252,7 @@ OfficeJet Pro 9010, set up with the HP Printer integration (and IPP for the pape
 | Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png" alt="card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png" alt="mini card" width="400"> |
 | Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card-dark.png" alt="card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card-dark.png" alt="mini card dark" width="400"> |
 
-Printer turned off: the picture turns grey and the card only says *Offline* with the last time it was seen:
+Printer turned off: the picture turns grey and the card says *Offline* with the last time it was seen, with the ink levels still known:
 
 | | Card | Mini card |
 |---|---|---|
