@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.14.1 - 2026-11-14
+
+### Fixes
+- **Visual editor**: the printer field showed its raw key (`device_id`) instead of its label, and had no helper: its texts were stored under another key. It is labelled again in all 22 languages, on both cards.
+- **README**: `entity`, the alternative to `device_id`, is marked as YAML only (the visual editor keeps it).
+
 ## 2.14.0 - 2026-11-12
 
 ### Features
