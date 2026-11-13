@@ -163,7 +163,7 @@ entities:
 | Option | Required | Default | Description |
 |---|---|---|---|
 | `device_id` | ❌* | Auto | Printer device (*or `entity`; the first printer found is used if both are missing) |
-| `entity` | ❌ | — | Any entity of the printer's main device, used to find the device |
+| `entity` | ❌ | — | Any entity of the printer's main device, used to find the device. YAML only (the visual editor keeps it) |
 | `name` | ❌ | Device name | Card title |
 | `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_image` | ❌ | `true` | Show the printer picture |

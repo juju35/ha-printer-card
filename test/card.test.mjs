@@ -598,6 +598,25 @@ test("the mini card editor offers zoom and keeps it out of the YAML at its defau
   assert.ok(!new PrinterCardEditor()._schema.call({ _lang: () => "en" }).some((s) => s.name === "zoom"));
 });
 
+test("every editor field has a label in every language, the printer field its helper", () => {
+  const names = (schema) => schema.flatMap((s) => (s.schema ? names(s.schema) : [s.name]));
+  for (const Editor of [PrinterCardEditor, PrinterMiniCardEditor]) {
+    const ed = new Editor();
+    ed.setConfig({});
+    ed.hass = { language: "en" };
+    const languages = ed._form.schema.find((s) => s.name === "language").selector.select.options.map((o) => o.value).filter(Boolean);
+    assert.equal(languages.length, 22);
+    for (const language of languages) {
+      ed.setConfig({ language });
+      for (const name of names(ed._form.schema).filter(Boolean)) {
+        const label = ed._form.computeLabel({ name });
+        assert.ok(label && !/^(ed|en)_/.test(label), `${language}: no label for ${name}`);
+      }
+      assert.ok(ed._form.computeHelper({ name: "device_id" }), `${language}: no helper for device_id`);
+    }
+  }
+});
+
 test("the editor offers show_parts and an Automatic language, both kept out of the YAML", () => {
   const ed = new PrinterCardEditor();
   ed.setConfig({ type: "custom:printer-card" });
