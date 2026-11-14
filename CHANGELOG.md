@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.15.0 - 2026-11-14
+
+### Features
+- **Every ink type** (#86): photo black, matte black, gray, light gray, photo / light cyan, photo / light magenta, red, orange, green, blue, violet and chroma optimizer join black, cyan, magenta, yellow and tri-color, named in all 22 languages and drawn in their own color: a photo ink is paler than its plain counterpart, grays follow the theme like black. Read from the IPP marker names (*Photo Cyan(PC)*, Epson's *Light Light Black*, Canon's short codes), HP Printer cartridge names and ha-hp level sensors; a model name (*Photosmart*, *ENVY Photo*) no longer counts.
+- Two cartridges of the same color (Canon's PGBK and BK blacks) are told apart by their code: *Black PGBK*, *Black BK*.
+- More than 6 cartridges go on **two rows** (8 inks: two rows of 4).
 ## 2.14.1 - 2026-11-14
 
 ### Fixes

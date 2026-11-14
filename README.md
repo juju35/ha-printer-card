@@ -37,6 +37,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **Offline state**: when the printer is turned off or unreachable, the picture turns grey and the card shows *Offline* with the last time it was seen, and the ink or toner levels when they are still known
 - **Status** with color: ready, sleeping, printing, scanning, copying, cancelling, stopped. The printer's control panel lights up in the status color and pulses while it works (steady when the system asks for reduced motion)
 - **Ink or toner levels**: one tank per cartridge, in the printer's slot order, with a warning below a configurable threshold
+- **Every ink type**: black, photo black, matte black, gray, light gray, cyan, photo / light cyan, magenta, photo / light magenta, yellow, red, orange, green, blue, violet, tri-color and chroma optimizer, each named and drawn in its own color (a photo ink is paler than its plain counterpart); two cartridges of the same color (Canon's PGBK and BK blacks) are told apart by their code. More than 6 cartridges go on two rows (8 inks: two rows of 4)
 - **Empty forecast**: under each cartridge and part, about how long it lasts at the pace of the last 90 days (*≈ 7 weeks*; *Empty in 7 weeks (12 Mar)* on hover, with the date it runs out), from the recorder's daily statistics, a refill starting the count over
 - **Brother parts** (Brother integration): drum (or one per color), belt unit, fuser and paper feed kits by remaining life, in a *Parts* section, with an alert at the low threshold
 - **Any IPP printer**: status, ink or toner levels and paper / cover alerts for printers of any brand through the IPP integration
@@ -334,6 +335,12 @@ PIXMA G650 MegaTank printer, set up with the IPP integration:
 | Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png" alt="canon card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png" alt="canon mini card" width="400"> |
 | Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-dark.png" alt="canon card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon-dark.png" alt="canon mini card dark" width="400"> |
 
+PRO-100 photo printer and its eight inks (two photo inks, two grays), on two rows:
+
+| Light | Dark |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/photo.png" alt="canon photo printer card with eight inks" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/photo-dark.png" alt="canon photo printer card with eight inks dark" width="400"> |
+
 Drawn Canon ranges:
 
 <p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
@@ -351,7 +358,7 @@ The HP Printer integration creates one device per part of the printer (each cart
 
 With the Brother integration, the card reads its *Printer status* sensor, and its *Status* text for the errors (paper jam, no paper, cover open, toner empty, "unable to print"…): the printer is then shown as stopped with that text as an alert. Its toner or ink levels are the cartridges, and the remaining life of the drum, belt unit, fuser and paper feed kits fills the *Parts* section.
 
-With the IPP integration only (any brand), the card reads the printer sensor of the IPP device for the status and the `printer-state-reasons` alerts, and its marker sensors for the ink or toner levels. The ePrint chip is only shown for HP printers.
+With the IPP integration only (any brand), the card reads the printer sensor of the IPP device for the status and the `printer-state-reasons` alerts, and its marker sensors for the ink or toner levels. A cartridge's color comes from its marker name (*Photo Cyan(PC)*, *Light Light Black*, *tri-color ink*, or a short code such as *LGY*), the printer's own name left out. The ePrint chip is only shown for HP printers.
 
 Set `image` to use a photo of your own model (the lit control panel is only drawn on the bundled drawings).
 

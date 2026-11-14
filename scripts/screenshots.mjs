@@ -251,6 +251,21 @@ for (const [id, state, attributes] of [
   canon.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
 }
 
+// Mock IPP-only Canon photo printer (eight inks, two photo ones and two grays: juju35/ha-printer-card#86), on two
+// rows of four tanks.
+const photo = { states: { ...states }, entities: { ...entities },
+  devices: { ...devices, pro: { id: "pro", name: "Canon PRO-100 series", manufacturer: "Canon", model: "PRO-100 series" } } };
+for (const [id, state, attributes] of [
+  ["sensor.canon_pro_100_series", "idle", { uri_supported: "ipp://192.168.1.34/ipp/print", options: ["idle", "printing", "stopped"], state_reason: "none" }],
+  ...[["black_bk", "Black(BK)", "72"], ["gray", "Gray(GY)", "58"], ["light_gray", "Light Gray(LGY)", "81"], ["cyan", "Cyan(C)", "44"],
+    ["photo_cyan", "Photo Cyan(PC)", "66"], ["magenta", "Magenta(M)", "37"], ["photo_magenta", "Photo Magenta(PM)", "12"], ["yellow", "Yellow(Y)", "53"]]
+    .map(([key, name, level]) => [`sensor.canon_pro_100_series_${key}`, level,
+      { unit_of_measurement: "%", marker_type: "ink-cartridge", marker_low_level: 15, friendly_name: `Canon PRO-100 series ${name}` }]),
+]) {
+  photo.entities[id] = { entity_id: id, device_id: "pro" };
+  photo.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
+}
+
 // Mock ha-hp printer (domain hp, one device) that scans: scan buttons, settings selects and the last scan.
 const hpScan = { states: { ...states }, entities: { ...entities },
   devices: { ...devices, hpl: { id: "hpl", name: "Office printer", manufacturer: "HP", model: "HP OfficeJet Pro 9010 series" } } };
@@ -321,6 +336,8 @@ await render(
     { file: "epson-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "epson" }, hass: epson },
     { file: "canon", type: "printer-card", theme: "light", width: 460, config: { device_id: "canon" }, hass: canon },
     { file: "canon-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "canon" }, hass: canon },
+    { file: "photo", type: "printer-card", theme: "light", width: 460, config: { device_id: "pro" }, hass: photo },
+    { file: "photo-dark", type: "printer-card", theme: "dark", width: 460, config: { device_id: "pro" }, hass: photo },
     { file: "mini-card", type: "printer-mini-card", theme: "light", width: 380, config: {} },
     { file: "mini-card-dark", type: "printer-mini-card", theme: "dark", width: 380, config: {} },
     { file: "mini-offline", type: "printer-mini-card", theme: "light", width: 380, config: {}, hass: { states: offline } },
