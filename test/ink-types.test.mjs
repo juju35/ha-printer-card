@@ -116,3 +116,21 @@ test("two blacks of a Canon PIXMA (PGBK and BK) are told apart by their code, al
   hass.language = "fr";
   assert.match(render(hass), /noire BK/);
 });
+
+test("grays keep the same fixed color on every theme, light gray paler than gray; only the blacks follow the theme", () => {
+  const lum = (hex) => Number.parseInt(hex.slice(1, 3), 16);
+  for (const k of ["gray", "light_gray"]) assert.match(HP_INK_COLORS[k], /^#[0-9a-f]{6}$/i, k);
+  assert.ok(lum(HP_INK_COLORS.light_gray) > lum(HP_INK_COLORS.gray));
+  for (const k of ["black", "photo_black", "matte_black"]) assert.match(HP_INK_COLORS[k], /--primary-text-color/, k);
+});
+
+test("an optimizer alert does not call it ink, in French and English", () => {
+  const hass = canonHass([["chroma_optimizer", "Chroma Optimizer(CO)", "10"], ["black", "Black(BK)", "80"]]);
+  let html = render(hass);
+  assert.match(html, /Optimizer low \(10 %\)/);
+  assert.doesNotMatch(html, /Optimizer ink/i);
+  hass.language = "fr";
+  html = render(hass);
+  assert.match(html, /Optimiseur faible \(10 %\)/);
+  assert.doesNotMatch(html, /Encre optimiseur/i);
+});
