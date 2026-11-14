@@ -30,10 +30,32 @@ var HpI18n = {
     c_yellow: 'Jaune',
     c_tricolor: 'Couleur',
     c_ink: 'Encre',
+    c_photo_black: 'Noir photo',
+    c_matte_black: 'Noir mat',
+    c_gray: 'Gris',
+    c_light_gray: 'Gris clair',
+    c_photo_cyan: 'Cyan photo',
+    c_light_cyan: 'Cyan clair',
+    c_photo_magenta: 'Magenta photo',
+    c_light_magenta: 'Magenta clair',
+    c_red: 'Rouge',
+    c_green: 'Vert',
+    c_blue: 'Bleu',
+    c_orange: 'Orange',
+    c_violet: 'Violet',
+    c_optimizer: 'Optimiseur',
     cw_black: 'noire',
+    cw_photo_black: 'noire photo',
+    cw_matte_black: 'noire mate',
+    cw_gray: 'grise',
+    cw_green: 'verte',
+    cw_blue: 'bleue',
+    cw_violet: 'violette',
     printhead: 'Tête d\'impression',
     al_low: 'Encre {c} faible ({p} %)',
     al_empty: 'Encre {c} presque épuisée ({p} %)',
+    al_opt_low: '{c} faible ({p} %)',
+    al_opt_empty: '{c} presque épuisé ({p} %)',
     al_cartridge: 'Cartouche {c} : {s}',
     al_printhead: 'Tête d\'impression : {s}',
     al_expired: 'Garantie de la cartouche {c} expirée',
@@ -164,9 +186,25 @@ var HpI18n = {
     c_yellow: 'Yellow',
     c_tricolor: 'Tri-color',
     c_ink: 'Ink',
+    c_photo_black: 'Photo black',
+    c_matte_black: 'Matte black',
+    c_gray: 'Gray',
+    c_light_gray: 'Light gray',
+    c_photo_cyan: 'Photo cyan',
+    c_light_cyan: 'Light cyan',
+    c_photo_magenta: 'Photo magenta',
+    c_light_magenta: 'Light magenta',
+    c_red: 'Red',
+    c_green: 'Green',
+    c_blue: 'Blue',
+    c_orange: 'Orange',
+    c_violet: 'Violet',
+    c_optimizer: 'Optimizer',
     printhead: 'Printhead',
     al_low: '{c} ink low ({p} %)',
     al_empty: '{c} ink nearly empty ({p} %)',
+    al_opt_low: '{c} low ({p} %)',
+    al_opt_empty: '{c} nearly empty ({p} %)',
     al_cartridge: '{c} cartridge: {s}',
     al_printhead: 'Printhead: {s}',
     al_expired: '{c} cartridge warranty expired',
@@ -297,9 +335,25 @@ var HpI18n = {
     c_yellow: 'Gelb',
     c_tricolor: 'Farbe',
     c_ink: 'Tinte',
+    c_photo_black: 'Fotoschwarz',
+    c_matte_black: 'Mattschwarz',
+    c_gray: 'Grau',
+    c_light_gray: 'Hellgrau',
+    c_photo_cyan: 'Fotocyan',
+    c_light_cyan: 'Hellcyan',
+    c_photo_magenta: 'Fotomagenta',
+    c_light_magenta: 'Hellmagenta',
+    c_red: 'Rot',
+    c_green: 'Grün',
+    c_blue: 'Blau',
+    c_orange: 'Orange',
+    c_violet: 'Violett',
+    c_optimizer: 'Optimierer',
     printhead: 'Druckkopf',
     al_low: 'Wenig Tinte: {c} ({p} %)',
     al_empty: 'Tinte fast leer: {c} ({p} %)',
+    al_opt_low: 'Wenig {c} ({p} %)',
+    al_opt_empty: '{c} fast leer ({p} %)',
     al_cartridge: 'Patrone {c}: {s}',
     al_printhead: 'Druckkopf: {s}',
     al_expired: 'Garantie der Patrone {c} abgelaufen',
@@ -430,9 +484,25 @@ var HpI18n = {
     c_yellow: 'Amarillo',
     c_tricolor: 'Tricolor',
     c_ink: 'Tinta',
+    c_photo_black: 'Negro foto',
+    c_matte_black: 'Negro mate',
+    c_gray: 'Gris',
+    c_light_gray: 'Gris claro',
+    c_photo_cyan: 'Cian foto',
+    c_light_cyan: 'Cian claro',
+    c_photo_magenta: 'Magenta foto',
+    c_light_magenta: 'Magenta claro',
+    c_red: 'Rojo',
+    c_green: 'Verde',
+    c_blue: 'Azul',
+    c_orange: 'Naranja',
+    c_violet: 'Violeta',
+    c_optimizer: 'Optimizador',
     printhead: 'Cabezal de impresión',
     al_low: 'Tinta baja: {c} ({p} %)',
     al_empty: 'Tinta casi agotada: {c} ({p} %)',
+    al_opt_low: '{c} bajo ({p} %)',
+    al_opt_empty: '{c} casi agotado ({p} %)',
     al_cartridge: 'Cartucho {c}: {s}',
     al_printhead: 'Cabezal de impresión: {s}',
     al_expired: 'Garantía del cartucho {c} caducada',
@@ -563,9 +633,25 @@ var HpI18n = {
     c_yellow: 'Жута',
     c_tricolor: 'Тробојна',
     c_ink: 'Мастило',
+    c_photo_black: 'Фото црна',
+    c_matte_black: 'Мат црна',
+    c_gray: 'Сива',
+    c_light_gray: 'Светлосива',
+    c_photo_cyan: 'Фото цијан',
+    c_light_cyan: 'Светли цијан',
+    c_photo_magenta: 'Фото магента',
+    c_light_magenta: 'Светла магента',
+    c_red: 'Црвена',
+    c_green: 'Зелена',
+    c_blue: 'Плава',
+    c_orange: 'Наранџаста',
+    c_violet: 'Љубичаста',
+    c_optimizer: 'Оптимизатор',
     printhead: 'Глава за штампање',
     al_low: 'Низак ниво мастила: {c} ({p} %)',
     al_empty: 'Мастило је скоро потрошено: {c} ({p} %)',
+    al_opt_low: 'Мало: {c} ({p} %)',
+    al_opt_empty: 'Скоро празно: {c} ({p} %)',
     al_cartridge: 'Кертриџ ({c}): {s}',
     al_printhead: 'Глава за штампање: {s}',
     al_expired: 'Истекла је гаранција кертриџа ({c})',
@@ -703,9 +789,25 @@ var HpI18n = {
     c_yellow: 'Žuta',
     c_tricolor: 'Trobojna',
     c_ink: 'Mastilo',
+    c_photo_black: 'Foto crna',
+    c_matte_black: 'Mat crna',
+    c_gray: 'Siva',
+    c_light_gray: 'Svetlosiva',
+    c_photo_cyan: 'Foto cijan',
+    c_light_cyan: 'Svetli cijan',
+    c_photo_magenta: 'Foto magenta',
+    c_light_magenta: 'Svetla magenta',
+    c_red: 'Crvena',
+    c_green: 'Zelena',
+    c_blue: 'Plava',
+    c_orange: 'Narandžasta',
+    c_violet: 'Ljubičasta',
+    c_optimizer: 'Optimizator',
     printhead: 'Glava za štampanje',
     al_low: 'Nizak nivo mastila: {c} ({p} %)',
     al_empty: 'Mastilo je skoro potrošeno: {c} ({p} %)',
+    al_opt_low: 'Malo: {c} ({p} %)',
+    al_opt_empty: 'Skoro prazno: {c} ({p} %)',
     al_cartridge: 'Kertridž ({c}): {s}',
     al_printhead: 'Glava za štampanje: {s}',
     al_expired: 'Istekla je garancija kertridža ({c})',
@@ -843,9 +945,25 @@ var HpI18n = {
     c_yellow: 'Giallo',
     c_tricolor: 'Tricolore',
     c_ink: 'Inchiostro',
+    c_photo_black: 'Nero foto',
+    c_matte_black: 'Nero opaco',
+    c_gray: 'Grigio',
+    c_light_gray: 'Grigio chiaro',
+    c_photo_cyan: 'Ciano foto',
+    c_light_cyan: 'Ciano chiaro',
+    c_photo_magenta: 'Magenta foto',
+    c_light_magenta: 'Magenta chiaro',
+    c_red: 'Rosso',
+    c_green: 'Verde',
+    c_blue: 'Blu',
+    c_orange: 'Arancione',
+    c_violet: 'Viola',
+    c_optimizer: 'Ottimizzatore',
     printhead: 'Testina di stampa',
     al_low: 'Inchiostro scarso: {c} ({p} %)',
     al_empty: 'Inchiostro quasi esaurito: {c} ({p} %)',
+    al_opt_low: '{c} in esaurimento ({p} %)',
+    al_opt_empty: '{c} quasi esaurito ({p} %)',
     al_cartridge: 'Cartuccia ({c}): {s}',
     al_printhead: 'Testina di stampa: {s}',
     al_expired: 'Garanzia della cartuccia ({c}) scaduta',
@@ -976,9 +1094,25 @@ var HpI18n = {
     c_yellow: 'Geel',
     c_tricolor: 'Driekleur',
     c_ink: 'Inkt',
+    c_photo_black: 'Fotozwart',
+    c_matte_black: 'Matzwart',
+    c_gray: 'Grijs',
+    c_light_gray: 'Lichtgrijs',
+    c_photo_cyan: 'Fotocyaan',
+    c_light_cyan: 'Lichtcyaan',
+    c_photo_magenta: 'Fotomagenta',
+    c_light_magenta: 'Lichtmagenta',
+    c_red: 'Rood',
+    c_green: 'Groen',
+    c_blue: 'Blauw',
+    c_orange: 'Oranje',
+    c_violet: 'Violet',
+    c_optimizer: 'Optimizer',
     printhead: 'Printkop',
     al_low: 'Inktniveau laag: {c} ({p} %)',
     al_empty: 'Inkt bijna op: {c} ({p} %)',
+    al_opt_low: '{c} laag ({p} %)',
+    al_opt_empty: '{c} bijna leeg ({p} %)',
     al_cartridge: 'Cartridge ({c}): {s}',
     al_printhead: 'Printkop: {s}',
     al_expired: 'Garantie van cartridge ({c}) verlopen',
@@ -1109,9 +1243,25 @@ var HpI18n = {
     c_yellow: 'Amarelo',
     c_tricolor: 'Tricolor',
     c_ink: 'Tinta',
+    c_photo_black: 'Preto foto',
+    c_matte_black: 'Preto mate',
+    c_gray: 'Cinzento',
+    c_light_gray: 'Cinzento claro',
+    c_photo_cyan: 'Ciano foto',
+    c_light_cyan: 'Ciano claro',
+    c_photo_magenta: 'Magenta foto',
+    c_light_magenta: 'Magenta claro',
+    c_red: 'Vermelho',
+    c_green: 'Verde',
+    c_blue: 'Azul',
+    c_orange: 'Laranja',
+    c_violet: 'Violeta',
+    c_optimizer: 'Otimizador',
     printhead: 'Cabeça de impressão',
     al_low: 'Pouca tinta: {c} ({p} %)',
     al_empty: 'Tinta quase esgotada: {c} ({p} %)',
+    al_opt_low: '{c} baixo ({p} %)',
+    al_opt_empty: '{c} quase vazio ({p} %)',
     al_cartridge: 'Tinteiro ({c}): {s}',
     al_printhead: 'Cabeça de impressão: {s}',
     al_expired: 'Garantia do tinteiro ({c}) expirada',
@@ -1245,9 +1395,25 @@ var HpI18n = {
     c_yellow: 'Żółty',
     c_tricolor: 'Trójkolorowy',
     c_ink: 'Tusz',
+    c_photo_black: 'Czarny foto',
+    c_matte_black: 'Czarny matowy',
+    c_gray: 'Szary',
+    c_light_gray: 'Jasnoszary',
+    c_photo_cyan: 'Cyjan foto',
+    c_light_cyan: 'Jasny cyjan',
+    c_photo_magenta: 'Magenta foto',
+    c_light_magenta: 'Jasna magenta',
+    c_red: 'Czerwony',
+    c_green: 'Zielony',
+    c_blue: 'Niebieski',
+    c_orange: 'Pomarańczowy',
+    c_violet: 'Fioletowy',
+    c_optimizer: 'Optymalizator',
     printhead: 'Głowica drukująca',
     al_low: 'Niski poziom tuszu: {c} ({p} %)',
     al_empty: 'Tusz prawie wyczerpany: {c} ({p} %)',
+    al_opt_low: '{c}: niski poziom ({p} %)',
+    al_opt_empty: '{c}: prawie pusty ({p} %)',
     al_cartridge: 'Wkład ({c}): {s}',
     al_printhead: 'Głowica drukująca: {s}',
     al_expired: 'Gwarancja wkładu ({c}) wygasła',
@@ -1381,9 +1547,25 @@ var HpI18n = {
     c_yellow: 'Galben',
     c_tricolor: 'Tricolor',
     c_ink: 'Cerneală',
+    c_photo_black: 'Negru foto',
+    c_matte_black: 'Negru mat',
+    c_gray: 'Gri',
+    c_light_gray: 'Gri deschis',
+    c_photo_cyan: 'Cyan foto',
+    c_light_cyan: 'Cyan deschis',
+    c_photo_magenta: 'Magenta foto',
+    c_light_magenta: 'Magenta deschis',
+    c_red: 'Roșu',
+    c_green: 'Verde',
+    c_blue: 'Albastru',
+    c_orange: 'Portocaliu',
+    c_violet: 'Violet',
+    c_optimizer: 'Optimizator',
     printhead: 'Cap de imprimare',
     al_low: 'Cerneală puțină: {c} ({p} %)',
     al_empty: 'Cerneală aproape epuizată: {c} ({p} %)',
+    al_opt_low: '{c} scăzut ({p} %)',
+    al_opt_empty: '{c} aproape gol ({p} %)',
     al_cartridge: 'Cartuș ({c}): {s}',
     al_printhead: 'Cap de imprimare: {s}',
     al_expired: 'Garanția cartușului ({c}) a expirat',
@@ -1514,9 +1696,25 @@ var HpI18n = {
     c_yellow: 'Gul',
     c_tricolor: 'Trefarvet',
     c_ink: 'Blæk',
+    c_photo_black: 'Fotosort',
+    c_matte_black: 'Matsort',
+    c_gray: 'Grå',
+    c_light_gray: 'Lysegrå',
+    c_photo_cyan: 'Fotocyan',
+    c_light_cyan: 'Lys cyan',
+    c_photo_magenta: 'Fotomagenta',
+    c_light_magenta: 'Lys magenta',
+    c_red: 'Rød',
+    c_green: 'Grøn',
+    c_blue: 'Blå',
+    c_orange: 'Orange',
+    c_violet: 'Violet',
+    c_optimizer: 'Optimering',
     printhead: 'Skrivehoved',
     al_low: 'Lavt blækniveau: {c} ({p} %)',
     al_empty: 'Blækket er næsten opbrugt: {c} ({p} %)',
+    al_opt_low: '{c} lav ({p} %)',
+    al_opt_empty: '{c} næsten tom ({p} %)',
     al_cartridge: 'Patron ({c}): {s}',
     al_printhead: 'Skrivehoved: {s}',
     al_expired: 'Garantien for patronen ({c}) er udløbet',
@@ -1651,9 +1849,25 @@ var HpI18n = {
     c_yellow: 'Gul',
     c_tricolor: 'Trefärg',
     c_ink: 'Bläck',
+    c_photo_black: 'Fotosvart',
+    c_matte_black: 'Mattsvart',
+    c_gray: 'Grå',
+    c_light_gray: 'Ljusgrå',
+    c_photo_cyan: 'Fotocyan',
+    c_light_cyan: 'Ljus cyan',
+    c_photo_magenta: 'Fotomagenta',
+    c_light_magenta: 'Ljus magenta',
+    c_red: 'Röd',
+    c_green: 'Grön',
+    c_blue: 'Blå',
+    c_orange: 'Orange',
+    c_violet: 'Violett',
+    c_optimizer: 'Optimerare',
     printhead: 'Skrivhuvud',
     al_low: 'Låg bläcknivå: {c} ({p} %)',
     al_empty: 'Bläcket är nästan slut: {c} ({p} %)',
+    al_opt_low: '{c} låg ({p} %)',
+    al_opt_empty: '{c} nästan tom ({p} %)',
     al_cartridge: 'Bläckpatron ({c}): {s}',
     al_printhead: 'Skrivhuvud: {s}',
     al_expired: 'Garantin för bläckpatronen ({c}) har gått ut',
@@ -1790,9 +2004,25 @@ var HpI18n = {
     c_yellow: 'Жълта',
     c_tricolor: 'Трицветна',
     c_ink: 'Мастило',
+    c_photo_black: 'Фото черна',
+    c_matte_black: 'Матова черна',
+    c_gray: 'Сива',
+    c_light_gray: 'Светлосива',
+    c_photo_cyan: 'Фото циан',
+    c_light_cyan: 'Светъл циан',
+    c_photo_magenta: 'Фото магента',
+    c_light_magenta: 'Светла магента',
+    c_red: 'Червена',
+    c_green: 'Зелена',
+    c_blue: 'Синя',
+    c_orange: 'Оранжева',
+    c_violet: 'Виолетова',
+    c_optimizer: 'Оптимизатор',
     printhead: 'Печатаща глава',
     al_low: 'Ниско ниво на мастилото: {c} ({p} %)',
     al_empty: 'Мастилото е почти изчерпано: {c} ({p} %)',
+    al_opt_low: '{c}: ниско ниво ({p} %)',
+    al_opt_empty: '{c}: почти празен ({p} %)',
     al_cartridge: 'Касета ({c}): {s}',
     al_printhead: 'Печатаща глава: {s}',
     al_expired: 'Гаранцията на касетата ({c}) е изтекла',
@@ -1923,9 +2153,25 @@ var HpI18n = {
     c_yellow: 'Жёлтый',
     c_tricolor: 'Трёхцветный',
     c_ink: 'Чернила',
+    c_photo_black: 'Фоточёрный',
+    c_matte_black: 'Матовый чёрный',
+    c_gray: 'Серый',
+    c_light_gray: 'Светло-серый',
+    c_photo_cyan: 'Фотоголубой',
+    c_light_cyan: 'Светло-голубой',
+    c_photo_magenta: 'Фотопурпурный',
+    c_light_magenta: 'Светло-пурпурный',
+    c_red: 'Красный',
+    c_green: 'Зелёный',
+    c_blue: 'Синий',
+    c_orange: 'Оранжевый',
+    c_violet: 'Фиолетовый',
+    c_optimizer: 'Оптимизатор',
     printhead: 'Печатающая головка',
     al_low: 'Низкий уровень чернил: {c} ({p} %)',
     al_empty: 'Чернила почти закончились: {c} ({p} %)',
+    al_opt_low: '{c}: низкий уровень ({p} %)',
+    al_opt_empty: '{c}: почти пуст ({p} %)',
     al_cartridge: 'Картридж ({c}): {s}',
     al_printhead: 'Печатающая головка: {s}',
     al_expired: 'Истёк срок гарантии картриджа ({c})',
@@ -2063,9 +2309,25 @@ var HpI18n = {
     c_yellow: 'Жовтий',
     c_tricolor: 'Триколірний',
     c_ink: 'Чорнило',
+    c_photo_black: 'Фоточорний',
+    c_matte_black: 'Матовий чорний',
+    c_gray: 'Сірий',
+    c_light_gray: 'Світло-сірий',
+    c_photo_cyan: 'Фотоблакитний',
+    c_light_cyan: 'Світло-блакитний',
+    c_photo_magenta: 'Фотопурпуровий',
+    c_light_magenta: 'Світло-пурпуровий',
+    c_red: 'Червоний',
+    c_green: 'Зелений',
+    c_blue: 'Синій',
+    c_orange: 'Помаранчевий',
+    c_violet: 'Фіолетовий',
+    c_optimizer: 'Оптимізатор',
     printhead: 'Друкувальна головка',
     al_low: 'Низький рівень чорнила: {c} ({p} %)',
     al_empty: 'Чорнило майже закінчилося: {c} ({p} %)',
+    al_opt_low: '{c}: низький рівень ({p} %)',
+    al_opt_empty: '{c}: майже порожній ({p} %)',
     al_cartridge: 'Картридж ({c}): {s}',
     al_printhead: 'Друкувальна головка: {s}',
     al_expired: 'Гарантія на картридж ({c}) закінчилася',
@@ -2204,9 +2466,25 @@ var HpI18n = {
     c_yellow: 'Sárga',
     c_tricolor: 'Háromszínű',
     c_ink: 'Tinta',
+    c_photo_black: 'Fotó fekete',
+    c_matte_black: 'Matt fekete',
+    c_gray: 'Szürke',
+    c_light_gray: 'Világosszürke',
+    c_photo_cyan: 'Fotó cián',
+    c_light_cyan: 'Világos cián',
+    c_photo_magenta: 'Fotó bíbor',
+    c_light_magenta: 'Világos bíbor',
+    c_red: 'Piros',
+    c_green: 'Zöld',
+    c_blue: 'Kék',
+    c_orange: 'Narancs',
+    c_violet: 'Ibolya',
+    c_optimizer: 'Optimalizáló',
     printhead: 'Nyomtatófej',
     al_low: 'Alacsony tintaszint: {c} ({p} %)',
     al_empty: 'A tinta majdnem kifogyott: {c} ({p} %)',
+    al_opt_low: '{c} alacsony ({p} %)',
+    al_opt_empty: '{c} majdnem üres ({p} %)',
     al_cartridge: 'Patron ({c}): {s}',
     al_printhead: 'Nyomtatófej: {s}',
     al_expired: 'A patron ({c}) garanciája lejárt',
@@ -2337,9 +2615,25 @@ var HpI18n = {
     c_yellow: 'Žltá',
     c_tricolor: 'Trojfarebná',
     c_ink: 'Atrament',
+    c_photo_black: 'Foto čierna',
+    c_matte_black: 'Matná čierna',
+    c_gray: 'Sivá',
+    c_light_gray: 'Svetlosivá',
+    c_photo_cyan: 'Foto azúrová',
+    c_light_cyan: 'Svetlá azúrová',
+    c_photo_magenta: 'Foto purpurová',
+    c_light_magenta: 'Svetlá purpurová',
+    c_red: 'Červená',
+    c_green: 'Zelená',
+    c_blue: 'Modrá',
+    c_orange: 'Oranžová',
+    c_violet: 'Fialová',
+    c_optimizer: 'Optimalizátor',
     printhead: 'Tlačová hlava',
     al_low: 'Nízka hladina atramentu: {c} ({p} %)',
     al_empty: 'Atrament je takmer minutý: {c} ({p} %)',
+    al_opt_low: '{c}: nízka hladina ({p} %)',
+    al_opt_empty: '{c}: takmer prázdny ({p} %)',
     al_cartridge: 'Kazeta ({c}): {s}',
     al_printhead: 'Tlačová hlava: {s}',
     al_expired: 'Záruka kazety ({c}) vypršala',
@@ -2470,9 +2764,25 @@ var HpI18n = {
     c_yellow: 'Žlutá',
     c_tricolor: 'Tříbarevná',
     c_ink: 'Inkoust',
+    c_photo_black: 'Foto černá',
+    c_matte_black: 'Matná černá',
+    c_gray: 'Šedá',
+    c_light_gray: 'Světle šedá',
+    c_photo_cyan: 'Foto azurová',
+    c_light_cyan: 'Světlá azurová',
+    c_photo_magenta: 'Foto purpurová',
+    c_light_magenta: 'Světlá purpurová',
+    c_red: 'Červená',
+    c_green: 'Zelená',
+    c_blue: 'Modrá',
+    c_orange: 'Oranžová',
+    c_violet: 'Fialová',
+    c_optimizer: 'Optimalizátor',
     printhead: 'Tisková hlava',
     al_low: 'Nízká hladina inkoustu: {c} ({p} %)',
     al_empty: 'Inkoust téměř došel: {c} ({p} %)',
+    al_opt_low: '{c}: nízká hladina ({p} %)',
+    al_opt_empty: '{c}: téměř prázdný ({p} %)',
     al_cartridge: 'Kazeta ({c}): {s}',
     al_printhead: 'Tisková hlava: {s}',
     al_expired: 'Záruka kazety ({c}) vypršela',
@@ -2603,9 +2913,25 @@ var HpI18n = {
     c_yellow: 'Rumena',
     c_tricolor: 'Tribarvna',
     c_ink: 'Črnilo',
+    c_photo_black: 'Foto črna',
+    c_matte_black: 'Mat črna',
+    c_gray: 'Siva',
+    c_light_gray: 'Svetlo siva',
+    c_photo_cyan: 'Foto cian',
+    c_light_cyan: 'Svetla cian',
+    c_photo_magenta: 'Foto magenta',
+    c_light_magenta: 'Svetla magenta',
+    c_red: 'Rdeča',
+    c_green: 'Zelena',
+    c_blue: 'Modra',
+    c_orange: 'Oranžna',
+    c_violet: 'Vijolična',
+    c_optimizer: 'Optimizator',
     printhead: 'Tiskalna glava',
     al_low: 'Malo črnila: {c} ({p} %)',
     al_empty: 'Črnila skoraj ni več: {c} ({p} %)',
+    al_opt_low: '{c}: nizka raven ({p} %)',
+    al_opt_empty: '{c}: skoraj prazen ({p} %)',
     al_cartridge: 'Kartuša ({c}): {s}',
     al_printhead: 'Tiskalna glava: {s}',
     al_expired: 'Garancija kartuše ({c}) je potekla',
@@ -2736,9 +3062,25 @@ var HpI18n = {
     c_yellow: 'Dzeltena',
     c_tricolor: 'Trīskrāsu',
     c_ink: 'Tinte',
+    c_photo_black: 'Foto melna',
+    c_matte_black: 'Matēta melna',
+    c_gray: 'Pelēka',
+    c_light_gray: 'Gaiši pelēka',
+    c_photo_cyan: 'Foto ciāna',
+    c_light_cyan: 'Gaiši ciāna',
+    c_photo_magenta: 'Foto fuksīna',
+    c_light_magenta: 'Gaiši fuksīna',
+    c_red: 'Sarkana',
+    c_green: 'Zaļa',
+    c_blue: 'Zila',
+    c_orange: 'Oranža',
+    c_violet: 'Violeta',
+    c_optimizer: 'Optimizators',
     printhead: 'Drukas galviņa',
     al_low: 'Zems tintes līmenis: {c} ({p} %)',
     al_empty: 'Tinte gandrīz beigusies: {c} ({p} %)',
+    al_opt_low: '{c}: zems līmenis ({p} %)',
+    al_opt_empty: '{c}: gandrīz tukšs ({p} %)',
     al_cartridge: 'Kasetne ({c}): {s}',
     al_printhead: 'Drukas galviņa: {s}',
     al_expired: 'Kasetnes ({c}) garantija ir beigusies',
@@ -2869,9 +3211,25 @@ var HpI18n = {
     c_yellow: 'Κίτρινη',
     c_tricolor: 'Τριών χρωμάτων',
     c_ink: 'Μελάνι',
+    c_photo_black: 'Φωτογραφική μαύρη',
+    c_matte_black: 'Ματ μαύρη',
+    c_gray: 'Γκρι',
+    c_light_gray: 'Ανοιχτή γκρι',
+    c_photo_cyan: 'Φωτογραφική κυανή',
+    c_light_cyan: 'Ανοιχτή κυανή',
+    c_photo_magenta: 'Φωτογραφική ματζέντα',
+    c_light_magenta: 'Ανοιχτή ματζέντα',
+    c_red: 'Κόκκινη',
+    c_green: 'Πράσινη',
+    c_blue: 'Μπλε',
+    c_orange: 'Πορτοκαλί',
+    c_violet: 'Βιολετί',
+    c_optimizer: 'Βελτιστοποιητής',
     printhead: 'Κεφαλή εκτύπωσης',
     al_low: 'Χαμηλή στάθμη μελανιού: {c} ({p} %)',
     al_empty: 'Το μελάνι σχεδόν τελείωσε: {c} ({p} %)',
+    al_opt_low: '{c}: χαμηλή στάθμη ({p} %)',
+    al_opt_empty: '{c}: σχεδόν άδειος ({p} %)',
     al_cartridge: 'Κασέτα ({c}): {s}',
     al_printhead: 'Κεφαλή εκτύπωσης: {s}',
     al_expired: 'Η εγγύηση της κασέτας ({c}) έληξε',
@@ -3234,9 +3592,10 @@ function hpIsLocalStatus(e) {
 function hpLocalInks(list) {
   var byKey = (key) => list.find((e) => e.translation_key === key)?.entity_id;
   return list.map((e) => {
-    var m = /^(black|cyan|magenta|yellow|tri_color)_level$/.exec(e.platform === 'hp' ? e.translation_key || '' : '');
-    if (!m) return null;
-    var color = m[1] === 'tri_color' ? 'tricolor' : m[1];
+    // Any cartridge color of the card (photo_black_level, light_cyan_level…), tri_color being its tricolor.
+    var m = /^([a-z_]+)_level$/.exec(e.platform === 'hp' ? e.translation_key || '' : '');
+    var color = m && (m[1] === 'tri_color' ? 'tricolor' : m[1]);
+    if (!color || color === 'ink' || !(color in HP_INK_COLORS)) return null;
     return { name: e.entity_id, color: color, level: e.entity_id, local: true, pages_left: byKey(`${m[1]}_pages_remaining`) };
   }).filter(Boolean).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
 }
@@ -3263,27 +3622,84 @@ function hpBrotherParts(list) {
 var HP_BUSY = ['processing', 'scanprocessing', 'copying'];
 
 // ── Inks ─────────────────────────────────────────────────────────────────────
+// Theme black: near black on light themes, light on dark ones.
+var HP_BLACK = 'color-mix(in srgb, var(--primary-text-color, #212121) 88%, transparent)';
 var HP_INK_COLORS = {
+  black: HP_BLACK,
+  // Photo black shines (a light streak), matte black is duller: both stay apart from the plain black.
+  photo_black: `linear-gradient(135deg, ${HP_BLACK} 0 55%, color-mix(in srgb, var(--primary-text-color, #212121) 55%, transparent) 75%, ${HP_BLACK})`,
+  matte_black: 'color-mix(in srgb, var(--primary-text-color, #212121) 82%, transparent)',
+  // Grays keep the same tone on every theme (only black follows it), light gray always paler than gray: on a light
+  // theme between black and the empty tank, on a dark one between the empty tank and the light-drawn black.
+  gray: '#6b6b6b',
+  light_gray: '#a6a6a6',
   cyan: '#00a6d6',
+  // Photo and light inks: the paler tone of their color (a printer has one or the other).
+  photo_cyan: '#7fd8f2',
+  light_cyan: '#7fd8f2',
   magenta: '#d6197c',
+  photo_magenta: '#f08cc2',
+  light_magenta: '#f08cc2',
   yellow: '#f5c400',
-  // Follows the theme text color: near black on light themes, light on dark ones.
-  black: 'color-mix(in srgb, var(--primary-text-color, #212121) 88%, transparent)',
+  red: '#e53935',
+  orange: '#fb8c00',
+  green: '#2e9d4a',
+  blue: '#1e5fd6',
+  violet: '#8e44ad',
   tricolor: 'linear-gradient(90deg, #00a6d6 0 33%, #d6197c 33% 66%, #f5c400 66%)',
+  // Chroma / gloss optimizer: a clear liquid.
+  optimizer: 'linear-gradient(135deg, #cfd8dc, #eceff1 50%, #cfd8dc)',
   ink: '#9e9e9e',
 };
 
 // Display order of the cartridges, when the printer does not report their station.
-var HP_INK_ORDER = { black: 0, cyan: 1, magenta: 2, yellow: 3, tricolor: 4, ink: 5 };
+var HP_INK_ORDER = Object.fromEntries(Object.keys(HP_INK_COLORS).map((k, i) => [k, i]));
 
-function hpInkColor(text) {
-  var t = String(text || '').toLowerCase().replace(/[^a-z]/g, '');
-  if (/cyanmagentayellow|tricolor|tricolour|couleur/.test(t)) return 'tricolor';
-  if (/cyan/.test(t)) return 'cyan';
-  if (/magenta/.test(t)) return 'magenta';
-  if (/yellow|jaune/.test(t)) return 'yellow';
-  if (/black|noir|photoblack/.test(t)) return 'black';
-  return null;
+// Color of a cartridge from its name ("Photo Cyan(PC)", "Light Light Black", "magenta ink", "tri-color", "Gray"…),
+// null when the name tells none. Words are matched whole, so "Photosmart" in a model name is not "photo".
+// `codes`: the name is the cartridge's own (no model in it), so its short codes count too ("BK", "PGBK", "LGY").
+var HP_INK_CODES = {
+  k: 'black', bk: 'black', pgbk: 'black', pbk: 'photo_black', pk: 'photo_black', mbk: 'matte_black', mk: 'matte_black',
+  gy: 'gray', dgy: 'gray', lk: 'gray', lgy: 'light_gray', llk: 'light_gray',
+  c: 'cyan', pc: 'photo_cyan', lc: 'light_cyan', m: 'magenta', vm: 'magenta', pm: 'photo_magenta', lm: 'light_magenta', vlm: 'light_magenta',
+  y: 'yellow', r: 'red', o: 'orange', or: 'orange', g: 'green', b: 'blue', pb: 'blue', v: 'violet', co: 'optimizer', go: 'optimizer',
+};
+function hpInkColor(text, codes) {
+  var w = ` ${String(text || '').replace(/([a-z])([A-Z])/g, '$1 $2').normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()} `;
+  var t = w.replace(/ /g, '');
+  var word = (re) => new RegExp(` (${re}) `).test(w);
+  if (/cyanmagentayellow|tricolou?r|couleur/.test(t)) return 'tricolor';
+  if (/(chroma|gloss)optimi|optimi[sz]er/.test(t)) return 'optimizer';
+  // Qualifiers, as a word or glued to the color ("PhotoBlack", "lightcyan").
+  var hue = '(black|noir|schwarz|cyan|magenta|gr[ae]y|gris)';
+  var photo = word('photo|foto') || new RegExp(`(photo|foto)${hue}`).test(t);
+  var light = word('light|lt|clair|claire|hell|claro|chiaro') || new RegExp(`(light|hell)${hue}`).test(t);
+  if (word('gr[ae]y|gris|grise|grau|grijs|grigio')) return light ? 'light_gray' : 'gray';
+  if (/cyan/.test(t)) return photo ? 'photo_cyan' : light ? 'light_cyan' : 'cyan';
+  if (/magenta/.test(t)) return photo ? 'photo_magenta' : light ? 'light_magenta' : 'magenta';
+  if (/yellow|jaune|gelb/.test(t)) return 'yellow';
+  if (/black|noir|schwarz/.test(t)) {
+    // Epson: light black is its gray, light light black its light gray.
+    if (/light ?light ?black|lightlightblack/.test(w)) return 'light_gray';
+    if (light) return 'gray';
+    if (word('matte?|mat|matt')) return 'matte_black';
+    return photo ? 'photo_black' : 'black';
+  }
+  if (word('red|rouge|rot')) return 'red';
+  if (word('orange')) return 'orange';
+  if (word('green|vert|verte|grun')) return 'green';
+  if (word('blue|bleu|bleue|blau')) return 'blue';
+  if (word('violet|purple|violett')) return 'violet';
+  if (!codes) return null;
+  var hit = w.trim().split(' ').find((tok) => HP_INK_CODES[tok]);
+  return hit ? HP_INK_CODES[hit] : null;
+}
+
+// Name `name` without the leading `prefix` (a device name), when it starts with it.
+function hpStripPrefix(name, prefix) {
+  var n = String(name || ''), p = String(prefix || '').trim();
+  return p && n.toLowerCase().startsWith(p.toLowerCase()) && n.length > p.length ? n.slice(p.length).trim() : n;
 }
 
 // Cartridge states that are fine: ok, newGenuineHP, usedGenuineHP, genuineHP…
@@ -3422,11 +3838,13 @@ function hpHpInks(hass, subIds) {
     var status = hpPick(list, hass, (eid, s) => eid.indexOf('binary_sensor.') === 0 && s.attributes.state !== undefined && /(statut|status|state|etat)$/.test(eid));
     if (!level && type !== 'printhead' && !(status && /printhead|tete/i.test(status))) return;
     var name = hpDeviceName(hass, id);
+    // The cartridge's own words, without the printer's name ("ENVY Photo 7830 black cartridge" is not photo black).
+    var own = hpStripPrefix(name, hpDeviceName(hass, hass.devices?.[id]?.via_device_id));
     inks.push({
       device: id,
       name: name,
       printhead: type === 'printhead' || (!level && /printhead|tete/i.test(name)),
-      color: hpInkColor(name) || hpInkColor(level) || 'ink',
+      color: hpInkColor(own) || hpInkColor(level) || 'ink',
       level: level,
       status: status,
       station: hpPick(list, hass, (eid) => /(_emplacement|_station|_slot)$/.test(eid)),
@@ -3442,16 +3860,27 @@ function hpHpInks(hass, subIds) {
   });
 }
 
-// IPP integration: one "<color> cartridge" sensor per marker, on the same device.
+// IPP integration: one sensor per marker, on the same device, named after the marker ("Photo Cyan(PC)", "black ink"…).
+// Its color comes from the marker's own name (the friendly name without the device's), else from the entity ID.
+// Two cartridges of the same color (Canon's pigment and dye blacks, PGBK and BK) are told apart by their code.
 function hpIppInks(hass, list) {
-  return list.filter((e) => {
+  var inks = list.filter((e) => {
     var s = hass.states[e.entity_id];
     return e.entity_id.indexOf('sensor.') === 0 && s.attributes.marker_type !== undefined;
   }).map((e) => {
     var s = hass.states[e.entity_id];
-    return { name: s.attributes.friendly_name, color: hpInkColor(e.entity_id) || hpInkColor(s.attributes.friendly_name) || 'ink',
+    var device = hpDeviceName(hass, e.device_id);
+    var own = hpStripPrefix(s.attributes.friendly_name, device);
+    var slug = String(device || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+    var objectId = hpStripPrefix(e.entity_id.slice(e.entity_id.indexOf('.') + 1), slug ? `${slug}_` : '');
+    var code = /\(\s*([A-Za-z]{1,5})\s*\)/.exec(own)?.[1];
+    return { name: s.attributes.friendly_name, color: hpInkColor(own, true) || hpInkColor(objectId) || 'ink', code: code?.toUpperCase(),
       level: e.entity_id, low: s.attributes.marker_low_level, toner: /toner/i.test(String(s.attributes.marker_type || '')) };
   }).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
+  inks.forEach((ink) => {
+    if (ink.code && inks.some((o) => o !== ink && o.color === ink.color)) ink.tag = ink.code;
+  });
+  return inks;
 }
 
 // IPP printer sensor matching a HP Printer device (same model), for paper/cover alerts.
@@ -3883,8 +4312,9 @@ class PrinterCard extends HTMLElement {
     return HP_STATE_COLORS[v] ? v : 'unknown';
   }
 
+  // Color name of a cartridge, with its code when another cartridge has the same color ("Black PGBK").
   _inkLabel(ink) {
-    return this._t(`c_${ink.color}`);
+    return this._t(`c_${ink.color}`) + (ink.tag ? ` ${ink.tag}` : '');
   }
 
   // Name of a wearing part: "Drum (Cyan)", "Belt unit", "Paper feed kit MP"; `short` leaves out the color.
@@ -3896,13 +4326,15 @@ class PrinterCard extends HTMLElement {
 
   // Label used inside a sentence: lower case in every language but English and German, whose colors keep their
   // capital as nouns ("encre jaune", "cartucho negro", "црна", "zwart", "чёрный", "μαύρη").
+  // A cartridge's code stays as written ("noir PGBK").
   _inkWord(ink) {
-    var l = ink.printhead ? this._t('printhead') : this._inkLabel(ink);
-    if (['es', 'sr', 'sr-Latn', 'it', 'nl', 'pt', 'pl', 'ro', 'da', 'sv', 'bg', 'ru', 'uk', 'hu', 'sk', 'cs', 'sl', 'lv', 'el'].indexOf(this._lang()) >= 0) return l.toLowerCase();
-    if (this._lang() !== 'fr') return l;
+    var l = ink.printhead ? this._t('printhead') : this._t(`c_${ink.color}`);
+    var tag = !ink.printhead && ink.tag ? ` ${ink.tag}` : '';
+    if (['es', 'sr', 'sr-Latn', 'it', 'nl', 'pt', 'pl', 'ro', 'da', 'sv', 'bg', 'ru', 'uk', 'hu', 'sk', 'cs', 'sl', 'lv', 'el'].indexOf(this._lang()) >= 0) return l.toLowerCase() + tag;
+    if (this._lang() !== 'fr') return l + tag;
     // "encre noire", "cartouche noire": the adjective agrees with the feminine noun.
     var w = hpT('fr', `cw_${ink.color}`);
-    return w === `cw_${ink.color}` ? l.toLowerCase() : w;
+    return (w === `cw_${ink.color}` || ink.printhead ? l.toLowerCase() : w) + tag;
   }
 
   _alerts(r, state) {
@@ -3917,7 +4349,8 @@ class PrinterCard extends HTMLElement {
         if (!Number.isNaN(p) && p <= low) {
           // `ink`: shown by the cartridge itself (tank or chip), not repeated as a chip in the mini card.
           out.push({ level: p <= critical ? 'error' : 'warn', icon: 'mdi:water-alert', ink: true, entity: ink.level,
-            text: this._t(p <= critical ? 'al_empty' : 'al_low', { c: label, p: Math.round(p) }) });
+            // An optimizer is no ink: "Optimizer low", not "Optimizer ink low".
+            text: this._t(`al_${ink.color === 'optimizer' ? 'opt_' : ''}${p <= critical ? 'empty' : 'low'}`, { c: label, p: Math.round(p) }) });
         }
       }
       var st = ink.status && this._hass.states[ink.status];
@@ -4335,7 +4768,9 @@ class PrinterCard extends HTMLElement {
 
   // A section of level tanks (cartridges, parts): icon and title, then the tanks.
   _tanks(icon, title, tanks) {
-    return `<div class="section"><div class="section-title"><ha-icon icon="${icon}"></ha-icon>${title}</div><div class="inks" style="--n:${tanks.length}">${
+    // Up to 6 tanks on one row, more on two rows (8 cartridges: two rows of 4).
+    var cols = tanks.length > 6 ? Math.ceil(tanks.length / 2) : tanks.length;
+    return `<div class="section"><div class="section-title"><ha-icon icon="${icon}"></ha-icon>${title}</div><div class="inks" style="--n:${cols}">${
       tanks.join('')}</div></div>`;
   }
 
