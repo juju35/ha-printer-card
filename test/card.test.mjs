@@ -422,7 +422,7 @@ const documentClick = (path) => {
 };
 
 test("the mini card is laid out like the Home Connect mini cards, with one small tank per cartridge, tinted when low", () => {
-  const html = mini(levels(mockHass(), { yellow: 3, cyan: 12 })).shadowRoot.innerHTML;
+  const html = mini(levels(mockHass(), { yellow: 3, cyan: 12 }), { illustration: false }).shadowRoot.innerHTML;
   assert.match(html, /<ha-card class="mini">/);
   assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span>/);
   assert.match(html, /<div class="content">.*<div class="info">/);
@@ -547,7 +547,8 @@ test("the full view is the same markup as the full card, plus the button", () =>
   const hass = mockHass();
   const card = mini(hass);
   clickZoom(card);
-  const strip = (html) => html.replace(/<button class="zoom"[\s\S]*?<\/button>/, "").replace(/<style>[\s\S]*<\/style>/, "");
+  // The drawing's gradient ids carry each card's own number.
+  const strip = (html) => html.replace(/<button class="zoom"[\s\S]*?<\/button>/, "").replace(/<style>[\s\S]*<\/style>/, "").replace(/pc-(body|dark|paper)-\d+/g, "pc-$1");
   assert.equal(strip(card.shadowRoot.innerHTML), strip(render(hass).shadowRoot.innerHTML));
 });
 
@@ -782,8 +783,9 @@ test("narrow header: the title shrinks with an ellipsis but keeps a few characte
 });
 
 test("narrow header: the status pill shrinks and truncates, then shows only its dot or icon", () => {
-  const full = styleOf(render(mockHass()));
-  const small = styleOf(mini(mockHass()));
+  const classic = { device_id: "p", illustration: false };
+  const full = styleOf(render(mockHass(), classic));
+  const small = styleOf(mini(mockHass(), classic));
   for (const [css, sel, text] of [[full, ".status", ".status span"], [small, ".st", ".st .tx"]]) {
     const r = rule(css, sel);
     assert.match(r, /flex: 0 1 auto;/, `${sel} flex`);
@@ -797,7 +799,7 @@ test("narrow header: the status pill shrinks and truncates, then shows only its 
   // width, so ha-card itself as container collapsed to its padding in a max-content parent (layout-card).
   assert.doesNotMatch(rule(full, "ha-card"), /container/);
   for (const css of [full, small]) assert.match(rule(css, ".hd"), /container: printer-card \/ inline-size;/);
-  for (const card of [render(mockHass()), mini(mockHass())]) assert.match(card.shadowRoot.innerHTML, /<ha-card[^>]*><div class="hd"><div class="header">/);
+  for (const card of [render(mockHass(), classic), mini(mockHass(), classic)]) assert.match(card.shadowRoot.innerHTML, /<ha-card[^>]*><div class="hd"><div class="header">/);
   assert.match(rule(full, ".status ha-icon"), /flex: none;/);
   assert.match(rule(small, ".st .dot"), /flex: none;/);
   assert.match(rule(small, ".zoom"), /flex: none;/);
@@ -837,9 +839,9 @@ test("intrinsic width: the card keeps a natural width but asks for no minimum", 
 });
 
 test("narrow header: the status text stays available as the pill's title and label", () => {
-  const html = render(mockHass({ status: "canceljob" }), { device_id: "p", language: "pl" }).shadowRoot.innerHTML;
+  const html = render(mockHass({ status: "canceljob" }), { device_id: "p", language: "pl", illustration: false }).shadowRoot.innerHTML;
   assert.match(html, /<div class="status" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><ha-icon/);
-  const small = mini(mockHass({ status: "canceljob" }), { language: "pl" }).shadowRoot.innerHTML;
+  const small = mini(mockHass({ status: "canceljob" }), { language: "pl", illustration: false }).shadowRoot.innerHTML;
   assert.match(small, /<span class="st" role="img" title="Anulowanie zadania" aria-label="Anulowanie zadania"><span class="dot"><\/span><span class="tx">Anulowanie zadania<\/span><\/span>/);
 });
 
@@ -900,29 +902,29 @@ test("Brother integration: the raw status text when the printer status sensor is
 
 test("Brother integration: an error in the status text stops the printer, with that text as an error alert", () => {
   for (const text of ["paper jam", "cover is open", "no paper", "replace toner", "error 46", "unable to print 2a", "bourrage papier"]) {
-    const html = render(brotherHass({ status: "idle", text }), {}).shadowRoot.innerHTML;
+    const html = render(brotherHass({ status: "idle", text }), { illustration: false }).shadowRoot.innerHTML;
     assert.match(html, /aria-label="Stopped"/, text);
     const cap = text[0].toUpperCase() + text.slice(1);
     assert.ok(html.includes(`<div class="alert error"><ha-icon icon="mdi:printer-alert"></ha-icon><span>${cap}</span></div>`), text);
     assert.doesNotMatch(html, /The printer is stopped/);
   }
   // A text without an error: the printer status rules, and "toner low" is not a stop.
-  assert.match(render(brotherHass({ status: "idle", text: "toner low" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
-  assert.match(render(brotherHass({ status: "printing", text: "printing" }), {}).shadowRoot.innerHTML, /aria-label="Printing"/);
+  assert.match(render(brotherHass({ status: "idle", text: "toner low" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Ready"/);
+  assert.match(render(brotherHass({ status: "printing", text: "printing" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Printing"/);
   // The drum at its end stops the printer; "Drum End Soon" is only a warning.
   for (const text of ["Replace Drum", "Drum Stop", "Trommel ersetzen", "Remplacer tambour", "Sostituire tamburo"]) {
-    assert.match(render(brotherHass({ status: "idle", text }), {}).shadowRoot.innerHTML, /aria-label="Stopped"/, text);
+    assert.match(render(brotherHass({ status: "idle", text }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Stopped"/, text);
   }
-  assert.match(render(brotherHass({ status: "idle", text: "Drum End Soon" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
+  assert.match(render(brotherHass({ status: "idle", text: "Drum End Soon" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Ready"/);
   // Only the status text sensor: the error is read there too.
-  assert.match(render(brotherHass({ key: "status", status: "paper jam" }), {}).shadowRoot.innerHTML, /aria-label="Stopped"[\s\S]*Paper jam/);
+  assert.match(render(brotherHass({ key: "status", status: "paper jam" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Stopped"[\s\S]*Paper jam/);
 });
 
 test("Brother integration: `other` takes the state of the status text, else is unknown", () => {
-  assert.match(render(brotherHass({ status: "other" }), {}).shadowRoot.innerHTML, /aria-label="Unknown state"/);
-  assert.match(render(brotherHass({ status: "other", text: "something odd" }), {}).shadowRoot.innerHTML, /aria-label="Unknown state"/);
-  assert.match(render(brotherHass({ status: "other", text: "sleep" }), {}).shadowRoot.innerHTML, /aria-label="Sleeping|aria-label="Power save/);
-  assert.match(render(brotherHass({ status: "other", text: "ready" }), {}).shadowRoot.innerHTML, /aria-label="Ready"/);
+  assert.match(render(brotherHass({ status: "other" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Unknown state"/);
+  assert.match(render(brotherHass({ status: "other", text: "something odd" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Unknown state"/);
+  assert.match(render(brotherHass({ status: "other", text: "sleep" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Sleeping|aria-label="Power save/);
+  assert.match(render(brotherHass({ status: "other", text: "ready" }), { illustration: false }).shadowRoot.innerHTML, /aria-label="Ready"/);
 });
 
 test("Brother integration: drum, belt, fuser and paper feed kits are parts, with alerts at the low threshold", () => {
@@ -1189,4 +1191,67 @@ test("ha-hp before 1.2: an image is still downloaded through its media source ID
   const clicked = await download(card, "media-source://media_source/local/hp/scan_1.jpg", "scan_1.jpg");
   assert.equal(calls[0].type, "media_source/resolve_media");
   assert.deepEqual(clicked, [{ href: "http://ha.local:8123/media/local/hp/scan_1.jpg?authSig=x", download: "scan_1.jpg" }]);
+});
+
+// ── Illustrated header ──────────────────────────────────────────────────────
+test("the illustrated header: office wall, the printer's own drawing on the desk, name and status with the lowest ink", () => {
+  for (const card of [render(mockHass()), mini(mockHass())]) {
+    const html = card.shadowRoot.innerHTML;
+    assert.match(html, /<div class="hd banner"><svg class="scene" viewBox="0 0 200 80"/);
+    assert.match(html, /<div class="pic"><svg class="art art-officejet"/);
+    assert.match(html, /<div class="name">OfficeJet<\/div><div class="hsub">Ready · ink 50 %<\/div>/);
+    assert.match(html, /<div class="ground"><\/div><\/div>/);
+    assert.match(html, /class="hp-badge hp"/);
+    const css = styleOf(card);
+    assert.match(rule(css, ".hd.banner"), /height: 90px;/);
+    assert.match(rule(css, ".banner .ground"), /height: 10px;/);
+  }
+  // Toner printers say toner; offline, no level.
+  assert.match(render(ippHass(), { device_id: "b" }).shadowRoot.innerHTML, /<div class="hsub">Ready · toner 42 %<\/div>/);
+  assert.match(render(mockHass({ status: "unavailable" })).shadowRoot.innerHTML, /<div class="hsub">Offline<\/div>/);
+});
+
+test("illustration: false keeps the classic header", () => {
+  const html = render(mockHass(), { device_id: "p", illustration: false }).shadowRoot.innerHTML;
+  assert.doesNotMatch(html, /banner|class="scene"/);
+  assert.match(html, /<div class="hd"><div class="header">/);
+});
+
+test("night follows illustration_theme, else the sun, else the dark theme", () => {
+  const night = (hass, config = {}) => /class="hd banner night"/.test(render(hass, { device_id: "p", ...config }).shadowRoot.innerHTML);
+  const withSun = (state, dark) => ({ ...mockHass(), states: { ...mockHass().states, "sun.sun": st(state) }, themes: { darkMode: dark } });
+  assert.equal(night(withSun("below_horizon", false)), true);
+  assert.equal(night(withSun("above_horizon", true)), false);
+  assert.equal(night({ ...mockHass(), themes: { darkMode: true } }), true);
+  assert.equal(night(withSun("below_horizon", false), { illustration_theme: "day" }), false);
+  assert.equal(night(withSun("above_horizon", false), { illustration_theme: "night" }), true);
+});
+
+test("each card's drawing has its own gradient ids", () => {
+  const a = render(mockHass()).shadowRoot.innerHTML.match(/id="pc-body-(\d+)"/)[1];
+  const b = render(mockHass()).shadowRoot.innerHTML.match(/id="pc-body-(\d+)"/)[1];
+  assert.notEqual(a, b);
+  assert.match(render(mockHass()).shadowRoot.innerHTML, /url\(#pc-body-\d+\)/);
+});
+
+test("the header icon's colour follows the status", () => {
+  const icon = (hass, config) => styleOf(render(hass, { device_id: "p", ...config })).match(/--hp-icon: ([^;]+);/)[1];
+  assert.equal(icon(mockHass()), "var(--success-color, #43a047)");
+  assert.equal(icon(mockHass({ status: "processing" })), "var(--info-color, #039be5)");
+  assert.match(icon(mockHass({ status: "inpowersave" })), /#9e9e9e/);
+  assert.match(icon(mockHass({ status: "unavailable" })), /#9e9e9e/);
+  assert.match(icon(mockHass({ status: "canceljob" })), /warning-color/);
+  assert.match(icon(mockHass({ status: "stopped" })), /error-color/);
+  assert.match(icon(levels(mockHass(), { yellow: 10 })), /warning-color/);
+  assert.match(icon(levels(mockHass(), { yellow: 2 })), /error-color/);
+  // The classic header too.
+  assert.match(icon(mockHass({ status: "stopped" }), { illustration: false }), /error-color/);
+});
+
+test("the editors offer the illustration and its theme, the mini card's too", () => {
+  for (const Ed of [PrinterCardEditor, PrinterMiniCardEditor]) {
+    const names = JSON.stringify(new Ed()._schema.call(Object.assign(new Ed(), { _config: {}, _hass: { language: "en" } })));
+    assert.match(names, /"name":"illustration"/);
+    assert.match(names, /"name":"illustration_theme"/);
+  }
 });

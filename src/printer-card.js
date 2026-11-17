@@ -93,6 +93,13 @@ var HpI18n = {
     ed_name_helper: 'Laisser vide pour le nom de l\'appareil',
     ed_show_image: 'Image de l\'imprimante',
     ed_show_title: 'Titre',
+    ed_illustration: 'Illustration animée',
+    ed_illustration_theme: 'Thème de l’illustration',
+    theme_auto: 'Automatique (soleil)',
+    theme_day: 'Jour',
+    theme_night: 'Nuit',
+    hd_ink: 'encre {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Niveaux d\'encre',
     ed_show_parts: 'Pièces d\'usure',
     ed_show_alerts: 'Alertes',
@@ -242,6 +249,13 @@ var HpI18n = {
     ed_name_helper: 'Leave empty to use the device name',
     ed_show_image: 'Printer picture',
     ed_show_title: 'Title',
+    ed_illustration: 'Animated illustration',
+    ed_illustration_theme: 'Illustration theme',
+    theme_auto: 'Automatic (sun)',
+    theme_day: 'Day',
+    theme_night: 'Night',
+    hd_ink: 'ink {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Ink levels',
     ed_show_parts: 'Parts',
     ed_show_alerts: 'Alerts',
@@ -391,6 +405,13 @@ var HpI18n = {
     ed_name_helper: 'Leer lassen, um den Gerätenamen zu verwenden',
     ed_show_image: 'Druckerbild',
     ed_show_title: 'Titel',
+    ed_illustration: 'Animierte Illustration',
+    ed_illustration_theme: 'Illustrationsthema',
+    theme_auto: 'Automatisch (Sonne)',
+    theme_day: 'Tag',
+    theme_night: 'Nacht',
+    hd_ink: 'Tinte {p} %',
+    hd_toner: 'Toner {p} %',
     ed_show_inks: 'Tintenfüllstände',
     ed_show_parts: 'Verschleißteile',
     ed_show_alerts: 'Warnmeldungen',
@@ -540,6 +561,13 @@ var HpI18n = {
     ed_name_helper: 'Déjalo vacío para usar el nombre del dispositivo',
     ed_show_image: 'Imagen de la impresora',
     ed_show_title: 'Título',
+    ed_illustration: 'Ilustración animada',
+    ed_illustration_theme: 'Tema de la ilustración',
+    theme_auto: 'Automático (sol)',
+    theme_day: 'Día',
+    theme_night: 'Noche',
+    hd_ink: 'tinta {p} %',
+    hd_toner: 'tóner {p} %',
     ed_show_inks: 'Niveles de tinta',
     ed_show_parts: 'Piezas de desgaste',
     ed_show_alerts: 'Alertas',
@@ -696,6 +724,13 @@ var HpI18n = {
     ed_name_helper: 'Оставите празно за назив уређаја',
     ed_show_image: 'Слика штампача',
     ed_show_title: 'Наслов',
+    ed_illustration: 'Анимирана илустрација',
+    ed_illustration_theme: 'Тема илустрације',
+    theme_auto: 'Аутоматски (сунце)',
+    theme_day: 'Дан',
+    theme_night: 'Ноћ',
+    hd_ink: 'мастило {p} %',
+    hd_toner: 'тонер {p} %',
     ed_show_inks: 'Нивои мастила',
     ed_show_parts: 'Потрошни делови',
     ed_show_alerts: 'Упозорења',
@@ -852,6 +887,13 @@ var HpI18n = {
     ed_name_helper: 'Ostavite prazno za naziv uređaja',
     ed_show_image: 'Slika štampača',
     ed_show_title: 'Naslov',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    theme_auto: 'Automatski (sunce)',
+    theme_day: 'Dan',
+    theme_night: 'Noć',
+    hd_ink: 'mastilo {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Nivoi mastila',
     ed_show_parts: 'Potrošni delovi',
     ed_show_alerts: 'Upozorenja',
@@ -1001,6 +1043,13 @@ var HpI18n = {
     ed_name_helper: 'Lasciare vuoto per usare il nome del dispositivo',
     ed_show_image: 'Immagine della stampante',
     ed_show_title: 'Titolo',
+    ed_illustration: 'Illustrazione animata',
+    ed_illustration_theme: 'Tema dell’illustrazione',
+    theme_auto: 'Automatico (sole)',
+    theme_day: 'Giorno',
+    theme_night: 'Notte',
+    hd_ink: 'inchiostro {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Livelli di inchiostro',
     ed_show_parts: 'Parti di usura',
     ed_show_alerts: 'Avvisi',
@@ -1150,6 +1199,13 @@ var HpI18n = {
     ed_name_helper: 'Leeg laten om de apparaatnaam te gebruiken',
     ed_show_image: 'Afbeelding van de printer',
     ed_show_title: 'Titel',
+    ed_illustration: 'Geanimeerde illustratie',
+    ed_illustration_theme: 'Thema van de illustratie',
+    theme_auto: 'Automatisch (zon)',
+    theme_day: 'Dag',
+    theme_night: 'Nacht',
+    hd_ink: 'inkt {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Inktniveaus',
     ed_show_parts: 'Slijtdelen',
     ed_show_alerts: 'Meldingen',
@@ -1302,6 +1358,13 @@ var HpI18n = {
     ed_name_helper: 'Deixar vazio para usar o nome do dispositivo',
     ed_show_image: 'Imagem da impressora',
     ed_show_title: 'Título',
+    ed_illustration: 'Ilustração animada',
+    ed_illustration_theme: 'Tema da ilustração',
+    theme_auto: 'Automático (sol)',
+    theme_day: 'Dia',
+    theme_night: 'Noite',
+    hd_ink: 'tinta {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Níveis de tinta',
     ed_show_parts: 'Peças de desgaste',
     ed_show_alerts: 'Alertas',
@@ -1454,6 +1517,13 @@ var HpI18n = {
     ed_name_helper: 'Pozostaw puste, aby użyć nazwy urządzenia',
     ed_show_image: 'Obraz drukarki',
     ed_show_title: 'Tytuł',
+    ed_illustration: 'Animowana ilustracja',
+    ed_illustration_theme: 'Motyw ilustracji',
+    theme_auto: 'Automatyczny (słońce)',
+    theme_day: 'Dzień',
+    theme_night: 'Noc',
+    hd_ink: 'tusz {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Poziomy tuszu',
     ed_show_parts: 'Części eksploatacyjne',
     ed_show_alerts: 'Alerty',
@@ -1603,6 +1673,13 @@ var HpI18n = {
     ed_name_helper: 'Lăsați gol pentru a folosi numele dispozitivului',
     ed_show_image: 'Imaginea imprimantei',
     ed_show_title: 'Titlu',
+    ed_illustration: 'Ilustrație animată',
+    ed_illustration_theme: 'Tema ilustrației',
+    theme_auto: 'Automat (soare)',
+    theme_day: 'Zi',
+    theme_night: 'Noapte',
+    hd_ink: 'cerneală {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Nivel cerneală',
     ed_show_parts: 'Piese de uzură',
     ed_show_alerts: 'Alerte',
@@ -1756,6 +1833,13 @@ var HpI18n = {
     ed_name_helper: 'Lad feltet være tomt for at bruge enhedens navn',
     ed_show_image: 'Billede af printeren',
     ed_show_title: 'Titel',
+    ed_illustration: 'Animeret illustration',
+    ed_illustration_theme: 'Illustrationstema',
+    theme_auto: 'Automatisk (sol)',
+    theme_day: 'Dag',
+    theme_night: 'Nat',
+    hd_ink: 'blæk {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Blækniveauer',
     ed_show_parts: 'Sliddele',
     ed_show_alerts: 'Advarsler',
@@ -1911,6 +1995,13 @@ var HpI18n = {
     ed_name_helper: 'Lämna tomt för att använda enhetens namn',
     ed_show_image: 'Bild av skrivaren',
     ed_show_title: 'Rubrik',
+    ed_illustration: 'Animerad illustration',
+    ed_illustration_theme: 'Illustrationstema',
+    theme_auto: 'Automatiskt (sol)',
+    theme_day: 'Dag',
+    theme_night: 'Natt',
+    hd_ink: 'bläck {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Bläcknivåer',
     ed_show_parts: 'Slitdelar',
     ed_show_alerts: 'Varningar',
@@ -2060,6 +2151,13 @@ var HpI18n = {
     ed_name_helper: 'Оставете празно, за да се използва името на устройството',
     ed_show_image: 'Изображение на принтера',
     ed_show_title: 'Заглавие',
+    ed_illustration: 'Анимирана илюстрация',
+    ed_illustration_theme: 'Тема на илюстрацията',
+    theme_auto: 'Автоматично (слънце)',
+    theme_day: 'Ден',
+    theme_night: 'Нощ',
+    hd_ink: 'мастило {p} %',
+    hd_toner: 'тонер {p} %',
     ed_show_inks: 'Нива на мастилото',
     ed_show_parts: 'Консумативни части',
     ed_show_alerts: 'Известия',
@@ -2216,6 +2314,13 @@ var HpI18n = {
     ed_name_helper: 'Оставьте пустым, чтобы использовать название устройства',
     ed_show_image: 'Изображение принтера',
     ed_show_title: 'Заголовок',
+    ed_illustration: 'Анимированная иллюстрация',
+    ed_illustration_theme: 'Тема иллюстрации',
+    theme_auto: 'Автоматически (солнце)',
+    theme_day: 'День',
+    theme_night: 'Ночь',
+    hd_ink: 'чернила {p} %',
+    hd_toner: 'тонер {p} %',
     ed_show_inks: 'Уровни чернил',
     ed_show_parts: 'Расходные детали',
     ed_show_alerts: 'Оповещения',
@@ -2373,6 +2478,13 @@ var HpI18n = {
     ed_name_helper: 'Залиште порожнім, щоб використати назву пристрою',
     ed_show_image: 'Зображення принтера',
     ed_show_title: 'Заголовок',
+    ed_illustration: 'Анімована ілюстрація',
+    ed_illustration_theme: 'Тема ілюстрації',
+    theme_auto: 'Автоматично (сонце)',
+    theme_day: 'День',
+    theme_night: 'Ніч',
+    hd_ink: 'чорнило {p} %',
+    hd_toner: 'тонер {p} %',
     ed_show_inks: 'Рівні чорнила',
     ed_show_parts: 'Витратні деталі',
     ed_show_alerts: 'Сповіщення',
@@ -2522,6 +2634,13 @@ var HpI18n = {
     ed_name_helper: 'Hagyja üresen az eszköz nevének használatához',
     ed_show_image: 'A nyomtató képe',
     ed_show_title: 'Cím',
+    ed_illustration: 'Animált illusztráció',
+    ed_illustration_theme: 'Illusztráció témája',
+    theme_auto: 'Automatikus (nap)',
+    theme_day: 'Nappal',
+    theme_night: 'Éjszaka',
+    hd_ink: 'tinta {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Tintaszintek',
     ed_show_parts: 'Kopóalkatrészek',
     ed_show_alerts: 'Értesítések',
@@ -2671,6 +2790,13 @@ var HpI18n = {
     ed_name_helper: 'Ponechajte prázdne pre názov zariadenia',
     ed_show_image: 'Obrázok tlačiarne',
     ed_show_title: 'Názov',
+    ed_illustration: 'Animovaná ilustrácia',
+    ed_illustration_theme: 'Téma ilustrácie',
+    theme_auto: 'Automaticky (slnko)',
+    theme_day: 'Deň',
+    theme_night: 'Noc',
+    hd_ink: 'atrament {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Hladiny atramentu',
     ed_show_parts: 'Spotrebné diely',
     ed_show_alerts: 'Upozornenia',
@@ -2820,6 +2946,13 @@ var HpI18n = {
     ed_name_helper: 'Ponechte prázdné pro název zařízení',
     ed_show_image: 'Obrázek tiskárny',
     ed_show_title: 'Název',
+    ed_illustration: 'Animovaná ilustrace',
+    ed_illustration_theme: 'Motiv ilustrace',
+    theme_auto: 'Automaticky (slunce)',
+    theme_day: 'Den',
+    theme_night: 'Noc',
+    hd_ink: 'inkoust {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Hladiny inkoustu',
     ed_show_parts: 'Spotřební díly',
     ed_show_alerts: 'Upozornění',
@@ -2969,6 +3102,13 @@ var HpI18n = {
     ed_name_helper: 'Pustite prazno za ime naprave',
     ed_show_image: 'Slika tiskalnika',
     ed_show_title: 'Naslov',
+    ed_illustration: 'Animirana ilustracija',
+    ed_illustration_theme: 'Tema ilustracije',
+    theme_auto: 'Samodejno (sonce)',
+    theme_day: 'Dan',
+    theme_night: 'Noč',
+    hd_ink: 'črnilo {p} %',
+    hd_toner: 'toner {p} %',
     ed_show_inks: 'Ravni črnila',
     ed_show_parts: 'Obrabni deli',
     ed_show_alerts: 'Opozorila',
@@ -3118,6 +3258,13 @@ var HpI18n = {
     ed_name_helper: 'Atstājiet tukšu, lai izmantotu ierīces nosaukumu',
     ed_show_image: 'Printera attēls',
     ed_show_title: 'Virsraksts',
+    ed_illustration: 'Animēta ilustrācija',
+    ed_illustration_theme: 'Ilustrācijas tēma',
+    theme_auto: 'Automātiski (saule)',
+    theme_day: 'Diena',
+    theme_night: 'Nakts',
+    hd_ink: 'tinte {p} %',
+    hd_toner: 'toneris {p} %',
     ed_show_inks: 'Tintes līmeņi',
     ed_show_parts: 'Nolietojamās daļas',
     ed_show_alerts: 'Brīdinājumi',
@@ -3267,6 +3414,13 @@ var HpI18n = {
     ed_name_helper: 'Αφήστε κενό για να χρησιμοποιηθεί το όνομα της συσκευής',
     ed_show_image: 'Εικόνα εκτυπωτή',
     ed_show_title: 'Τίτλος',
+    ed_illustration: 'Κινούμενη εικονογράφηση',
+    ed_illustration_theme: 'Θέμα εικονογράφησης',
+    theme_auto: 'Αυτόματο (ήλιος)',
+    theme_day: 'Ημέρα',
+    theme_night: 'Νύχτα',
+    hd_ink: 'μελάνι {p} %',
+    hd_toner: 'τόνερ {p} %',
     ed_show_inks: 'Στάθμες μελανιού',
     ed_show_parts: 'Αναλώσιμα εξαρτήματα',
     ed_show_alerts: 'Ειδοποιήσεις',
@@ -4037,6 +4191,80 @@ function hpBrandOf(device) {
 var hpBrandBadge = (brand) => (HP_BRAND_LOGOS[brand] ? `<span class="hp-badge ${brand}">${HP_BRAND_LOGOS[brand]}</span>` : '');
 var HP_ACCENT = '#0096d6';
 
+// ── Illustrated header ───────────────────────────────────────────────────────
+// A 90px banner: an office wall (window, shelf with books and a plant, floor lamp) at the right, the printer's own
+// drawing standing on a 10px desk strip edge to edge at the bottom, the title and the status on the wall at the left.
+// Day or night: illustration_theme, else the sun (sun.sun), else Home Assistant's dark mode.
+var hpUid = 0;
+function hpIsNight(hass, config) {
+  var theme = config?.illustration_theme;
+  if (theme === 'night') return true;
+  if (theme === 'day') return false;
+  var sun = hass?.states?.['sun.sun'];
+  if (sun && sun.state !== 'unavailable' && sun.state !== 'unknown') return sun.state === 'below_horizon';
+  return !!hass?.themes?.darkMode;
+}
+// The wall (200 × 80, drawn to the right edge, 1.1× from its bottom right): window with the sun or the moon, shelf, lamp.
+function hpOfficeScene(night) {
+  var n = !!night;
+  var win = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1.5" fill="${n ? '#1b2f52' : '#bfe0f7'}" stroke="${n ? '#4a5568' : '#fff'}" stroke-width="1.6"/>` +
+    (n ? `<circle cx="${x + w * 0.7}" cy="${y + h * 0.3}" r="2.4" fill="#f3eed2"/>` : `<circle cx="${x + w * 0.7}" cy="${y + h * 0.35}" r="3" fill="#ffd65a"/>`) +
+    `<line x1="${x + w / 2}" y1="${y}" x2="${x + w / 2}" y2="${y + h}" stroke="${n ? '#4a5568' : '#fff'}" stroke-width="1.2"/>`;
+  return '<svg class="scene" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">' +
+    '<g transform="translate(200 80) scale(1.1) translate(-200 -80)">' +
+    `<rect width="200" height="80" fill="${n ? '#262c3a' : '#eef1f6'}"/>${win(14, 10, 34, 28)}` +
+    `<rect x="60" y="26" width="60" height="2.4" fill="${n ? '#3c4558' : '#c9b79c'}"/>` +
+    '<rect x="64" y="14" width="5" height="12" fill="#e57373"/><rect x="70" y="16" width="4" height="10" fill="#64b5f6"/><rect x="75" y="13" width="5" height="13" fill="#81c784"/>' +
+    `<circle cx="100" cy="20" r="5" fill="${n ? '#5c8a5a' : '#7cb87a'}"/><rect x="97" y="20" width="6" height="6" fill="#b0855a"/>` +
+    (n ? '<circle class="halo" cx="150" cy="30" r="16" fill="#ffcf6e" opacity=".12"/>' : '') +
+    `<rect x="148" y="30" width="2" height="38" fill="#777"/><path d="M144 30 h10 l-2 -6 h-6z" fill="${n ? '#ffcf6e' : '#ddd'}"/>` +
+    '</g></svg>';
+}
+// The header icon's colour follows the status: running (ready, printing, scanning, copying) in the state colour,
+// asleep or offline grey, a warning amber, an error red.
+var HP_ICON_GREY = 'var(--state-inactive-color, #9e9e9e)';
+var HP_ICON_WARN = 'var(--warning-color, #ffa600)';
+var HP_ICON_ERROR = 'var(--error-color, #db4437)';
+function hpIconColor(state, alerts, color) {
+  if (state === 'offline' || state === 'unknown' || state === 'inpowersave') return HP_ICON_GREY;
+  if (state === 'stopped' || alerts.some((a) => a.level === 'error')) return HP_ICON_ERROR;
+  if (state === 'canceljob' || alerts.some((a) => a.level === 'warn')) return HP_ICON_WARN;
+  return color;
+}
+var HP_BANNER_STYLES =
+  // Edge to edge at the top of the card (and at its bottom when nothing follows), 90px on both cards.
+  '.hd.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; --scene-w: min(200px, 54cqw);' +
+    ' border-radius: var(--ha-card-border-radius, 12px) var(--ha-card-border-radius, 12px) 0 0;' +
+    ' background: #eef1f6; --sky-text: #0d2a45; --sky-muted: #3b5b78; }' +
+  '.hd.banner.night { background: #262c3a; --sky-text: #fff; --sky-muted: rgba(255,255,255,.78); }' +
+  '.hd.banner:last-child { margin-bottom: -12px; border-radius: var(--ha-card-border-radius, 12px); }' +
+  '.banner .scene { position: absolute; right: 0; bottom: 10px; height: 80px; width: var(--scene-w); }' +
+  '.banner .header { position: absolute; z-index: 1; left: 0; top: 0; bottom: 10px; right: var(--scene-w); padding: 8px 8px 8px 14px; color: var(--sky-text); }' +
+  '.banner .titles { display: flex; flex-direction: column; gap: 1px; }' +
+  '.banner .name { color: var(--sky-text); }' +
+  '.banner .hsub { font-size: 13px; line-height: 1.3; color: var(--sky-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }' +
+  '.banner .logo.mark { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hp-icon, ' + HP_ACCENT + ') 22%, transparent); }' +
+  '.banner.night .logo.mark { background: rgba(255,255,255,.12); }' +
+  // Brand logo on a small white tile, readable on the day and the night wall.
+  '.banner .hp-badge { width: 18px; height: 18px; left: auto; right: -4px; bottom: -4px; transform: none; padding: 2px; box-sizing: border-box;' +
+    ' border-radius: 5px; background: #fff; box-shadow: 0 0 0 1px rgba(13,42,69,.16), 0 1px 3px rgba(13,42,69,.18); }' +
+  '.banner .hp-badge.hp { padding: 0; border-radius: 50%; box-shadow: 0 0 0 1.5px #fff, 0 1px 3px rgba(13,42,69,.25); }' +
+  // The printer stands on the desk, at the right of the wall (its box in the 200 × 80 scene: x 103.9-196, y 8-80).
+  '.hd.banner .pic { position: absolute; z-index: 0; bottom: 10px; right: calc(var(--scene-w) * 0.02); width: calc(var(--scene-w) * 0.4605);' +
+    ' max-width: none; aspect-ratio: 92.1 / 72; }' +
+  '.banner .pic svg.art, .banner .pic img { width: 100%; height: 100%; }' +
+  // Offline: grey, but opaque enough to hide the wall behind it.
+  '.hd.banner .pic.off { opacity: 0.85; }' +
+  '.banner .pic img { object-fit: contain; object-position: 50% 100%; }' +
+  '.banner .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: #b98a5c; box-shadow: inset 0 2px 0 #d4a878; }' +
+  '.banner.night .ground { background: #4a3a2c; box-shadow: inset 0 2px 0 #5c4836; }' +
+  '.banner > .zoom { position: absolute; z-index: 2; top: 6px; right: 6px; color: #10283f; background: rgba(255,255,255,.55); }' +
+  '.banner.night > .zoom { color: #fff; background: rgba(10,20,40,.45); }' +
+  '.banner.night > .zoom:hover { background: rgba(10,20,40,.6); color: #fff; }' +
+  // Too narrow for the printer beside the title: the wall alone stays.
+  '@container printer-card (max-width: 230px) { .banner .scene, .banner .pic { display: none; } .banner .header { right: 30px; } }' +
+  '.below { display: flex; flex-direction: column; gap: 4px; }';
+
 // A click inside a dialog (more-info opened from the card, say) is not a click outside the card.
 function hpInDialog(ev) {
   return ev.composedPath().some((n) => ['ha-more-info-dialog', 'ha-dialog', 'dialog'].indexOf(n.localName) >= 0);
@@ -4086,10 +4314,17 @@ function hpShortDuration(locale, days) {
 
 var HP_DEFAULTS = {
   show_title: true, show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, show_scan: true, low_threshold: 15, picture: 'auto',
+  illustration: true, illustration_theme: 'auto',
 };
 
 class PrinterCard extends HTMLElement {
   static defaults = HP_DEFAULTS;
+
+  constructor() {
+    super();
+    // Keeps the drawing's gradient ids of each card apart.
+    this._uid = ++hpUid;
+  }
 
   static getConfigElement() {
     return document.createElement('printer-card-editor');
@@ -4288,7 +4523,7 @@ class PrinterCard extends HTMLElement {
     if (!this._config || !this._hass || !this.shadowRoot) return;
     var r = this._resolve();
     var hass = this._hass;
-    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._timeSig(r), this._scanState || null, this._ids(r).map((id) => {
+    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._config.illustration !== false && hpIsNight(hass, this._config), this._timeSig(r), this._scanState || null, this._ids(r).map((id) => {
       var s = hass.states[id];
       return s ? [id, s.state, s.attributes.state, s.attributes.state_reason, s.attributes.state_message, s.attributes.message, s.attributes.installed] : null;
     })]);
@@ -4439,7 +4674,8 @@ class PrinterCard extends HTMLElement {
   _picture(r, custom) {
     if (custom) return `<img src="${hpEsc(custom)}" alt="">`;
     var pic = this._pictureKey(r);
-    return `<svg class="art art-${pic}" viewBox="0 0 160 120" aria-hidden="true">${HP_ART_DEFS}${HP_ART[pic]}</svg>`;
+    var uid = (s) => s.replace(/(id="|url\(#)pc-(body|dark|paper)/g, `$1pc-$2-${this._uid}`);
+    return `<svg class="art art-${pic}" viewBox="0 0 160 120" aria-hidden="true">${uid(HP_ART_DEFS)}${uid(HP_ART[pic])}</svg>`;
   }
 
   // What both cards show: name, state and its color, alerts, picture and header icon.
@@ -4460,6 +4696,7 @@ class PrinterCard extends HTMLElement {
 
     // Picture, with the control panel lit in the status color.
     // Clicking it opens the printer's web admin page, when its address is known.
+    v.icon = hpIconColor(state, v.alerts, v.color);
     if (c.show_image) {
       var custom = c.image && String(c.image).trim();
       // Only http(s) addresses become a link, like the detected configuration URL.
@@ -4556,6 +4793,23 @@ class PrinterCard extends HTMLElement {
   // Extra control at the top right of the header: none here, the mini card's zoom button.
   _corner() { return ''; }
 
+  // The illustrated header (illustration: false keeps the classic one): the office wall, the printer's drawing on
+  // the desk, the status-coloured icon with its brand badge, the name and "Status · ink N %".
+  _banner(r, v) {
+    var c = this._config;
+    var night = hpIsNight(this._hass, c);
+    var sub = this._t(`st_${v.state}`);
+    var levels = c.show_inks && !v.offline ? r.inks.filter((i) => !i.printhead && i.level) : [];
+    var nums = levels.map((i) => this._num(i.level)).filter((p) => !Number.isNaN(p));
+    if (nums.length) {
+      sub += ' · ' + this._t(levels.every((i) => i.toner) ? 'hd_toner' : 'hd_ink', { p: Math.round(Math.min.apply(null, nums)) });
+    }
+    return '<div class="hd banner' + (night ? ' night' : '') + '">' + hpOfficeScene(night) + v.imageHtml +
+      '<div class="header">' + v.logoHtml +
+        '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div><div class="hsub">' + hpEsc(sub) + '</div></div>' +
+      '</div>' + this._corner() + '<div class="ground"></div></div>';
+  }
+
   _render(r) {
     if (!r.deviceId || !r.status) {
       this.shadowRoot.innerHTML = `${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:printer-off"></ha-icon>${this._t('no_device')}</div></ha-card>`;
@@ -4568,7 +4822,7 @@ class PrinterCard extends HTMLElement {
   _paint(v, inner, cls) {
     var focused = hpFocusKey(this.shadowRoot.activeElement);
     var classes = [v.offline ? 'offline' : '', cls || ''].filter(Boolean).join(' ');
-    this.shadowRoot.innerHTML = `${this._styles(v.color)}<ha-card class="${classes}">${inner}</ha-card>`;
+    this.shadowRoot.innerHTML = `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`;
     // innerHTML replaced the focused control: focus its counterpart so keyboard navigation keeps its place.
     if (focused) this.shadowRoot.querySelector(focused)?.focus({ preventScroll: true });
   }
@@ -4606,7 +4860,9 @@ class PrinterCard extends HTMLElement {
     }
 
     // Like the Home Connect cards: logo, name and status pill on top, then the picture with the chips.
-    var head = '<div class="hd"><div class="header">' + v.logoHtml +
+    var head = c.illustration !== false
+      ? this._banner(r, v) + (chips.length || sub ? '<div class="below">' + (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + sub + '</div>' : '')
+      : '<div class="hd"><div class="header">' + v.logoHtml +
       '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div></div>' +
       '<div class="head">' + v.imageHtml +
       '<div class="meta">' +
@@ -4785,9 +5041,9 @@ class PrinterCard extends HTMLElement {
     '</div>';
   }
 
-  _styles(color) {
+  _styles(color, icon) {
     return '<style>' +
-      ':host { display: block; height: 100%; --hp-color: ' + (color || 'var(--disabled-text-color, #9e9e9e)') + '; }' +
+      ':host { display: block; height: 100%; --hp-color: ' + (color || 'var(--disabled-text-color, #9e9e9e)') + ';' + (icon ? ' --hp-icon: ' + icon + ';' : '') + ' }' +
       'ha-card { height: 100%; box-sizing: border-box; padding: 12px; display: flex; flex-direction: column; gap: 10px; }' +
       // The header's wrapper is its size container (at the narrowest widths the status pill keeps only its icon or dot).
       // Not ha-card: an inline-size container has no intrinsic width, so in a max-content parent (layout-card, an
@@ -4806,7 +5062,8 @@ class PrinterCard extends HTMLElement {
       ':host([hide-title]) .titles > .name { display: none; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; }' +
       // A printer in a round badge, tinted with the accent of the showcase site.
-      '.logo.mark { position: relative; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, ' + HP_ACCENT + ' 16%, transparent); color: ' + HP_ACCENT + '; }' +
+      // Its colour follows the status (hpIconColor).
+      '.logo.mark { position: relative; display: grid; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--hp-icon, ' + HP_ACCENT + ') 16%, transparent); color: var(--hp-icon, ' + HP_ACCENT + '); }' +
       '.logo.mark ha-icon { --mdc-icon-size: 24px; }' +
       '.hp-badge { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 50%; line-height: 0;' +
         ' box-shadow: 0 0 0 2px var(--card-background-color, #fff); }' +
@@ -4898,6 +5155,7 @@ class PrinterCard extends HTMLElement {
       '.scan-dl { flex: none; color: var(--primary-color, #03a9f4); border-color: transparent; background: color-mix(in srgb, var(--primary-color, #03a9f4) 12%, transparent); }' +
       // The screen keeps the status color but stops pulsing; levels and hovers change without motion.
       '@media (prefers-reduced-motion: reduce) { .pic.busy .screen, .spin { animation: none; } .pic, .level { transition: none; } }' +
+      (this._config?.illustration === false ? '' : HP_BANNER_STYLES) +
     '</style>';
   }
 }
@@ -4981,8 +5239,8 @@ class PrinterMiniCard extends PrinterCard {
   // At 4 columns (~100-160px) the header cannot hold the logo, a readable name and the detail button.
   getGridOptions() { return { columns: 6, min_columns: 6, rows: 'auto' }; }
 
-  _styles(color) {
-    return super._styles(color).replace('</style>', `${HP_MINI_STYLES}</style>`);
+  _styles(color, icon) {
+    return super._styles(color, icon).replace('</style>', `${HP_MINI_STYLES}</style>`);
   }
 
   _corner() {
@@ -4997,13 +5255,18 @@ class PrinterMiniCard extends PrinterCard {
       var v = this._view(r);
       var seen = v.offline ? this._lastSeen(r) : '';
       var label = hpEsc(this._t(`st_${v.state}`));
-      this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
+      var rs = this._chips(r, v);
+      if (this._config.illustration !== false) {
+        this._paint(v, this._banner(r, v) + (seen || rs ? '<div class="info">' +
+          (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +
+          (rs ? `<div class="rs">${rs}</div>` : '') + '</div>' : ''), 'mini');
+      } else this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
           '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' +
           `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span>` + this._corner() +
         '</div></div>' +
         '<div class="content">' + v.imageHtml + '<div class="info">' +
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +
-          '<div class="rs">' + this._chips(r, v) + '</div>' +
+          '<div class="rs">' + rs + '</div>' +
         '</div></div>', 'mini');
     }
     this.shadowRoot.querySelector('.zoom')?.addEventListener('click', (ev) => this._toggleZoom(ev));
@@ -5070,6 +5333,7 @@ class PrinterCardEditor extends HTMLElement {
       { name: 'name', selector: { text: {} } },
       {
         type: 'grid', name: '', schema: [
+          { name: 'illustration', selector: { boolean: {} } },
           { name: 'show_title', selector: { boolean: {} } },
           { name: 'show_image', selector: { boolean: {} } },
           { name: 'show_inks', selector: { boolean: {} } },
@@ -5080,6 +5344,10 @@ class PrinterCardEditor extends HTMLElement {
           { name: 'show_forecast', selector: { boolean: {} } },
           { name: 'show_scan', selector: { boolean: {} } },
         ],
+      },
+      {
+        name: 'illustration_theme',
+        selector: { select: { mode: 'dropdown', options: ['auto', 'day', 'night'].map((v) => ({ value: v, label: t(`theme_${v}`) })) } },
       },
       { name: 'low_threshold', selector: { number: { min: 0, max: 50, step: 1, mode: 'slider', unit_of_measurement: '%' } } },
       { name: 'show_expired', selector: { boolean: {} } },

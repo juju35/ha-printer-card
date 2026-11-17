@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.16.0 - 2026-11-17
+
+### Features
+- **Illustrated header** on the full and the mini card (90px): the printer's own picture (HP, Brother, Epson, Canon or generic, still chosen by `picture` or the model) standing on a desk strip in a small office, with its control panel lit and pulsing in the status colour; the name and *Status · ink N %* (or toner) on the wall at the left. Day or night picture: follows `sun.sun`, else the dark theme, forced with `illustration_theme: day | night`. `illustration: false` keeps the classic header. Both options are in the visual editor of both cards, in all 22 languages.
+- The round header icon's colour now follows the status on both cards and both headers: state colour while ready, printing, scanning or copying, grey asleep or offline, amber on a warning, red on an error; the brand logo badge stays on it.
+
 ## 2.15.0 - 2026-11-14
 
 ### Features
