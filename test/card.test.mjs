@@ -1219,10 +1219,11 @@ test("illustration: false keeps the classic header", () => {
   assert.match(html, /<div class="hd"><div class="header">/);
 });
 
-test("night follows illustration_theme, else the sun below the horizon or the dark theme", () => {
+test("night follows illustration_theme, else the dark theme alone", () => {
   const night = (hass, config = {}) => /class="hd banner night"/.test(render(hass, { device_id: "p", ...config }).shadowRoot.innerHTML);
   const withSun = (state, dark) => ({ ...mockHass(), states: { ...mockHass().states, "sun.sun": st(state) }, themes: { darkMode: dark } });
-  assert.equal(night(withSun("below_horizon", false)), true);
+  assert.equal(night(withSun("below_horizon", false)), false, "light theme after sunset: day");
+  assert.equal(night(withSun("below_horizon", true)), true);
   assert.equal(night(withSun("above_horizon", true)), true);
   assert.equal(night(withSun("above_horizon", false)), false);
   assert.equal(night(withSun("above_horizon", true), { illustration_theme: "day" }), false);
