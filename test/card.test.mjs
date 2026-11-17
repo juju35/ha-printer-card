@@ -1194,12 +1194,12 @@ test("ha-hp before 1.2: an image is still downloaded through its media source ID
 });
 
 // ── Illustrated header ──────────────────────────────────────────────────────
-test("the illustrated header: office wall, the printer's own drawing on the desk, name and status with the lowest ink", () => {
+test("the illustrated header: office wall, the printer's own drawing on the desk, name, status pill and the lowest ink", () => {
   for (const card of [render(mockHass()), mini(mockHass())]) {
     const html = card.shadowRoot.innerHTML;
     assert.match(html, /<div class="hd banner"><svg class="scene" viewBox="0 0 200 80"/);
     assert.match(html, /<div class="pic"><svg class="art art-officejet"/);
-    assert.match(html, /<div class="name">OfficeJet<\/div><div class="hsub">Ready · ink 50 %<\/div>/);
+    assert.match(html, /<div class="trow"><div class="name">OfficeJet<\/div><span class="bst" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span><\/div><div class="hsub">Ink 50 %<\/div>/);
     assert.match(html, /<div class="ground"><\/div><\/div>/);
     assert.match(html, /class="hp-badge hp"/);
     const css = styleOf(card);
@@ -1207,8 +1207,10 @@ test("the illustrated header: office wall, the printer's own drawing on the desk
     assert.match(rule(css, ".banner .ground"), /height: 10px;/);
   }
   // Toner printers say toner; offline, no level.
-  assert.match(render(ippHass(), { device_id: "b" }).shadowRoot.innerHTML, /<div class="hsub">Ready · toner 42 %<\/div>/);
-  assert.match(render(mockHass({ status: "unavailable" })).shadowRoot.innerHTML, /<div class="hsub">Offline<\/div>/);
+  assert.match(render(ippHass(), { device_id: "b" }).shadowRoot.innerHTML, /<div class="hsub">Toner 42 %<\/div>/);
+  const off = render(mockHass({ status: "unavailable" })).shadowRoot.innerHTML;
+  assert.match(off, /<span class="tx">Offline<\/span>/);
+  assert.doesNotMatch(off, /class="hsub"/);
 });
 
 test("illustration: false keeps the classic header", () => {

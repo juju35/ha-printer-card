@@ -4233,7 +4233,7 @@ function hpIconColor(state, alerts, color) {
 }
 var HP_BANNER_STYLES =
   // Edge to edge at the top of the card (and at its bottom when nothing follows), 90px on both cards.
-  '.hd.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; --scene-w: min(200px, 54cqw);' +
+  '.hd.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; --scene-w: min(200px, 54cqw, max(100cqw - 240px, 40cqw));' +
     ' border-radius: var(--ha-card-border-radius, 12px) var(--ha-card-border-radius, 12px) 0 0;' +
     ' background: #eef1f6; --sky-text: #0d2a45; --sky-muted: #3b5b78; }' +
   '.hd.banner.night { background: #262c3a; --sky-text: #fff; --sky-muted: rgba(255,255,255,.78); }' +
@@ -4258,9 +4258,30 @@ var HP_BANNER_STYLES =
   '.banner .pic img { object-fit: contain; object-position: 50% 100%; }' +
   '.banner .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: #b98a5c; box-shadow: inset 0 2px 0 #d4a878; }' +
   '.banner.night .ground { background: #4a3a2c; box-shadow: inset 0 2px 0 #5c4836; }' +
-  '.banner > .zoom { position: absolute; z-index: 2; top: 6px; right: 6px; color: #10283f; background: rgba(255,255,255,.55); }' +
-  '.banner.night > .zoom { color: #fff; background: rgba(10,20,40,.45); }' +
-  '.banner.night > .zoom:hover { background: rgba(10,20,40,.6); color: #fff; }' +
+  // Title row: the name, then the status pill right after it (the name gives way first, down to four characters).
+  // When the row is too narrow for both, the pill takes a line of its own under the subtitle; on the narrowest
+  // cards only its dot stays (its label in its title and for screen readers).
+  '.banner .titles { flex: 1 1 0; min-width: 0; overflow: visible; }' +
+  '.banner .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
+  '.banner .trow > .name { flex: 0 1 auto; min-width: 4ch; }' +
+  '.bst { --c: var(--hp-icon, ' + HP_ACCENT + '); display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 51%; box-sizing: border-box;' +
+    ' overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap;' +
+    ' color: color-mix(in srgb, var(--c) 45%, #0d2a45); background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); }' +
+  '.banner.night .bst { color: color-mix(in srgb, var(--c) 35%, #ffffff); background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); }' +
+  '.bst .dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }' +
+  '.bst .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
+  // The pill does not fit beside the name (measured by _fitPill): a line of its own.
+  '.banner .titles.below .trow { display: contents; } .banner .titles.below .hsub { order: 1; }' +
+  ' .banner .titles.below .trow > .bst { order: 2; align-self: flex-start; max-width: none; margin-top: 2px; }' +
+  '@container printer-card (max-width: 260px) { .banner .trow { display: contents; } .banner .hsub { order: 1; }' +
+    ' .banner .trow > .bst { order: 2; align-self: flex-start; max-width: none; margin-top: 2px; } }' +
+  '@container printer-card (max-width: 200px) { .bst { padding: 0; width: 16px; height: 16px; justify-content: center; } .bst .tx { display: none; } }' +
+  // Detail button (mini card): a small frosted round button in the banner's top right corner.
+  '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; color: #33506b;' +
+    ' background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }' +
+  '.banner > .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }' +
+  '.banner.night > .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+  '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
   // Too narrow for the printer beside the title: the wall alone stays.
   '@container printer-card (max-width: 230px) { .banner .scene, .banner .pic { display: none; } .banner .header { right: 30px; } }' +
   '.below { display: flex; flex-direction: column; gap: 4px; }';
@@ -4368,10 +4389,23 @@ class PrinterCard extends HTMLElement {
     // _update() only re-renders when they actually change.
     clearInterval(this._timer);
     this._timer = setInterval(() => this._update(), 60000);
+    if (!this._ro && typeof ResizeObserver !== 'undefined') this._ro = new ResizeObserver(() => this._fitPill());
+    this._ro?.observe(this);
   }
 
   disconnectedCallback() {
     clearInterval(this._timer);
+    this._ro?.disconnect();
+  }
+
+  // The banner's status pill keeps its whole label: when it does not fit beside the name (the name already down to
+  // four characters), it takes a line of its own under the subtitle.
+  _fitPill() {
+    var t = this.shadowRoot.querySelector('.banner .titles');
+    if (!t?.classList) return;
+    t.classList.remove('below');
+    var tx = t.querySelector('.bst .tx');
+    if (tx && tx.scrollWidth > tx.clientWidth + 0.5) t.classList.add('below');
   }
 
   getCardSize() { return 5; }
@@ -4798,15 +4832,20 @@ class PrinterCard extends HTMLElement {
   _banner(r, v) {
     var c = this._config;
     var night = hpIsNight(this._hass, c);
-    var sub = this._t(`st_${v.state}`);
+    // The status in a pill right after the name, in the header icon's colour; the lowest ink level under it.
+    var label = hpEsc(this._t(`st_${v.state}`));
+    var pill = `<span class="bst" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span>`;
+    var sub = '';
     var levels = c.show_inks && !v.offline ? r.inks.filter((i) => !i.printhead && i.level) : [];
     var nums = levels.map((i) => this._num(i.level)).filter((p) => !Number.isNaN(p));
     if (nums.length) {
-      sub += ' · ' + this._t(levels.every((i) => i.toner) ? 'hd_toner' : 'hd_ink', { p: Math.round(Math.min.apply(null, nums)) });
+      sub = this._t(levels.every((i) => i.toner) ? 'hd_toner' : 'hd_ink', { p: Math.round(Math.min.apply(null, nums)) });
+      sub = sub.charAt(0).toUpperCase() + sub.slice(1);
     }
     return '<div class="hd banner' + (night ? ' night' : '') + '">' + hpOfficeScene(night) + v.imageHtml +
       '<div class="header">' + v.logoHtml +
-        '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div><div class="hsub">' + hpEsc(sub) + '</div></div>' +
+        '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' + pill + '</div>' +
+          (sub ? '<div class="hsub">' + hpEsc(sub) + '</div>' : '') + '</div>' +
       '</div>' + this._corner() + '<div class="ground"></div></div>';
   }
 
@@ -4823,6 +4862,7 @@ class PrinterCard extends HTMLElement {
     var focused = hpFocusKey(this.shadowRoot.activeElement);
     var classes = [v.offline ? 'offline' : '', cls || ''].filter(Boolean).join(' ');
     this.shadowRoot.innerHTML = `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`;
+    this._fitPill();
     // innerHTML replaced the focused control: focus its counterpart so keyboard navigation keeps its place.
     if (focused) this.shadowRoot.querySelector(focused)?.focus({ preventScroll: true });
   }
@@ -5170,6 +5210,10 @@ var HP_MINI_STYLES =
   '.zoom:hover { background: color-mix(in srgb, var(--secondary-text-color) 16%, transparent); color: var(--primary-text-color); }' +
   '.zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
   '.header > .zoom { margin: -4px -4px -4px 0; }' +
+  // Classic header: the detail button in the card's top right corner, out of the title row.
+  '.hd:not(.banner) { position: relative; }' +
+  '.hd:not(.banner) .header:has(> .zoom) { padding-right: 32px; }' +
+  '.hd:not(.banner) .header > .zoom { position: absolute; top: 0; right: 0; margin: 0; box-shadow: inset 0 0 0 1px var(--divider-color, rgba(127,127,127,.3)); }' +
   // Compact view, like the Home Connect mini cards: header (logo, name, status, detail button), then picture and details.
   'ha-card.mini { gap: 10px; }' +
   '.st { display: inline-flex; align-items: center; gap: 4px; flex: 0 1 auto; min-width: 0; max-width: 50%; box-sizing: border-box; overflow: hidden;' +

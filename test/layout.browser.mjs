@@ -130,3 +130,51 @@ for (const [label, css, n] of CONTEXTS) {
     });
   }
 }
+
+// The status pill of the illustrated header: its whole label from 245 to 500px, at most ~51 % of the title block,
+// and the name keeps at least four characters beside it (or above it when the pill has a line of its own).
+test("status pill shows its whole label and leaves the name readable", async () => {
+  for (const view of VIEWS) {
+    for (const state of ["ready", "processing", "unavailable"]) {
+      for (const lang of [...LANGS, "fr", "de"]) {
+        for (const w of [245, 300, 400, 500]) {
+          const r = await page.evaluate(
+            async ({ view, state, lang, w }) => {
+              const el = document.createElement(view === "zoomed mini" ? "printer-mini-card" : view);
+              el.setConfig({ type: `custom:${el.localName}`, language: lang });
+              el.hass = {
+                states: { "sensor.s": { entity_id: "sensor.s", state, attributes: { options: ["ready", "inpowersave", "processing"] } } },
+                entities: { "sensor.s": { entity_id: "sensor.s", device_id: "hp" } },
+                devices: { hp: { id: "hp", name: "OfficeJet Pro 9010 series", manufacturer: "HP" } }, language: lang, locale: { language: lang }, themes: {},
+                callService: async () => {}, callWS: async () => ({}),
+              };
+              const wrap = document.body.appendChild(document.createElement("div"));
+              wrap.style.width = `${w}px`;
+              wrap.appendChild(el);
+              const frame = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+              await frame();
+              if (view === "zoomed mini") {
+                el.shadowRoot.querySelector(".zoom").dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }));
+                await frame();
+              }
+              const q = (s) => el.shadowRoot.querySelector(s);
+              const tx = q(".banner .bst .tx");
+              const out = {
+                label: tx.textContent, cut: tx.scrollWidth - tx.clientWidth,
+                pill: q(".banner .bst").getBoundingClientRect().width, block: q(".banner .titles").getBoundingClientRect().width,
+                name: q(".banner .name").getBoundingClientRect().width,
+              };
+              wrap.remove();
+              return out;
+            },
+            { view, state, lang, w },
+          );
+          const where = `${view} ${state} ${lang} ${w}px`;
+          assert.ok(r.cut <= 0.5, `${where}: the pill cuts its label "${r.label}" by ${r.cut}px`);
+          assert.ok(r.pill <= r.block * 0.52 || r.name >= r.block * 0.9, `${where}: the pill (${r.pill}px) takes over the title block (${r.block}px)`);
+          assert.ok(r.name >= 28, `${where}: the name shrank to ${r.name.toFixed(1)}px`);
+        }
+      }
+    }
+  }
+});
