@@ -3,9 +3,12 @@
 ## 2.16.0 - 2026-11-17
 
 ### Features
-- **Illustrated header** on the full and the mini card (90px): the printer's own picture (HP, Brother, Epson, Canon or generic, still chosen by `picture` or the model) standing on a desk strip in a small office, with its control panel lit and pulsing in the status colour; the name, its status pill (dot and label in the header icon's colour, under the subtitle on a narrow card, its dot alone on the narrowest) and *Ink N %* (or toner) on the wall at the left. Day or night picture: follows `sun.sun`, else the dark theme, forced with `illustration_theme: day | night`. `illustration: false` keeps the classic header. Both options are in the visual editor of both cards, in all 22 languages.
+- **Illustrated header** on the full and the mini card (90px): the printer's own picture (HP, Brother, Epson, Canon or generic, still chosen by `picture` or the model) standing on a desk strip in a small office, with its control panel lit and pulsing in the status colour; the name, its status pill (dot and label in the header icon's colour, under the subtitle on a narrow card, its dot alone on the narrowest) and *Ink N %* (or toner) on the wall at the left. Day or night picture: night after sunset (`sun.sun`) or with the dark theme, forced with `illustration_theme: day | night`. `illustration: false` keeps the classic header. Both options are in the visual editor of both cards, in all 22 languages.
 - The round header icon's colour now follows the status on both cards and both headers: state colour while ready, printing, scanning or copying, grey asleep or offline, amber on a warning, red on an error; the brand logo badge stays on it.
 - The mini card's expand / collapse button sits in the banner's top-right corner (24 px frosted round button), and in the card's top-right corner on the classic header.
+
+### Fixes
+- Night picture with the dark theme even while the sun is up (`illustration_theme: auto`): the header is night when `sun.sun` is below the horizon or Home Assistant's theme is dark; `day` / `night` still force it.
 
 ## 2.15.0 - 2026-11-14
 

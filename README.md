@@ -168,7 +168,7 @@ entities:
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device. YAML only (the visual editor keeps it) |
 | `name` | ❌ | Device name | Card title |
 | `illustration` | ❌ | `true` | Illustrated header (both cards, 90px): the printer's own picture on a desk in an office, the status-coloured icon with the brand logo, the name and *Status · ink N %*. `false` keeps the classic header |
-| `illustration_theme` | ❌ | `auto` | Header picture by day or night: `auto` (night when `sun.sun` is below the horizon, else with a dark theme), `day` or `night` |
+| `illustration_theme` | ❌ | `auto` | Header picture by day or night: `auto` (night when `sun.sun` is below the horizon or with a dark theme, even with the sun up), `day` or `night` |
 | `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_image` | ❌ | `true` | Show the printer picture |
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |

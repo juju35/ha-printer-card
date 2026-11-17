@@ -4194,14 +4194,15 @@ var HP_ACCENT = '#0096d6';
 // ── Illustrated header ───────────────────────────────────────────────────────
 // A 90px banner: an office wall (window, shelf with books and a plant, floor lamp) at the right, the printer's own
 // drawing standing on a 10px desk strip edge to edge at the bottom, the title and the status on the wall at the left.
-// Day or night: illustration_theme, else the sun (sun.sun), else Home Assistant's dark mode.
+// Day or night: illustration_theme, else the sun below the horizon (sun.sun) OR Home Assistant's dark mode (the dark
+// theme wins even while the sun is up; with no usable sun.sun the dark mode alone decides).
 var hpUid = 0;
 function hpIsNight(hass, config) {
   var theme = config?.illustration_theme;
   if (theme === 'night') return true;
   if (theme === 'day') return false;
   var sun = hass?.states?.['sun.sun'];
-  if (sun && sun.state !== 'unavailable' && sun.state !== 'unknown') return sun.state === 'below_horizon';
+  if (sun && sun.state !== 'unavailable' && sun.state !== 'unknown') return sun.state === 'below_horizon' || !!hass?.themes?.darkMode;
   return !!hass?.themes?.darkMode;
 }
 // The wall (200 × 80, drawn to the right edge, 1.1× from its bottom right): window with the sun or the moon, shelf, lamp.
