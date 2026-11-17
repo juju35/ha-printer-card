@@ -130,3 +130,73 @@ for (const [label, css, n] of CONTEXTS) {
     });
   }
 }
+
+// The status pill, illustrated and classic header, in en, fr, de, hu, el and ru, from 190 to 500 px: right after the
+// title only when the whole title and the whole label fit there (the title then not cut), else on its own line under
+// the subtitle (only when it could not fit beside the whole title); its label whole or only its dot (always at 190
+// px); nothing of the title block over the ground strip or out of the banner.
+test("status pill: beside the whole title when both fit, else under the subtitle, label whole or dot only", async () => {
+  const fails = [];
+  for (const view of VIEWS) {
+    for (const illustration of [true, false]) {
+      for (const state of ["ready", "processing", "unavailable"]) {
+        for (const lang of ["en", "fr", "de", "hu", "el", "ru"]) {
+          for (const w of [190, 245, 300, 400, 460, 500]) {
+            const r = await page.evaluate(
+              async ({ view, state, lang, w, illustration }) => {
+                const el = document.createElement(view === "zoomed mini" ? "printer-mini-card" : view);
+                el.setConfig({ type: `custom:${el.localName}`, language: lang, ...(illustration ? {} : { illustration: false }) });
+                el.hass = {
+                  states: { "sensor.s": { entity_id: "sensor.s", state, attributes: { options: ["ready", "inpowersave", "processing"] } } },
+                  entities: { "sensor.s": { entity_id: "sensor.s", device_id: "hp" } },
+                  devices: { hp: { id: "hp", name: "OfficeJet Pro 9010 series", manufacturer: "HP" } }, language: lang, locale: { language: lang }, themes: {},
+                  callService: async () => {}, callWS: async () => ({}),
+                };
+                const wrap = document.body.appendChild(document.createElement("div"));
+                wrap.style.width = `${w}px`;
+                wrap.appendChild(el);
+                const frame = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+                await frame();
+                if (view === "zoomed mini") {
+                  el.shadowRoot.querySelector(".zoom").dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }));
+                  await frame();
+                }
+                const q = (s) => el.shadowRoot.querySelector(s);
+                const rect = (n) => n.getBoundingClientRect();
+                const full = (n) => {
+                  const range = document.createRange();
+                  range.selectNodeContents(n);
+                  return Math.max(n.scrollWidth, range.getBoundingClientRect().width);
+                };
+                const out = [];
+                const name = q(".titles .name");
+                const pill = q(".trow > :not(.name)");
+                const tx = pill.querySelector(".tx, span:not(.dot)");
+                const dot = getComputedStyle(tx).display === "none";
+                if (!dot && tx.scrollWidth > tx.clientWidth + 0.5) out.push(`label "${tx.textContent}" cut`);
+                if (w <= 200 && !dot) out.push("label shown");
+                const mid = (n) => rect(n).top + rect(n).height / 2;
+                const onRow = Math.abs(mid(pill) - mid(name)) < 3;
+                if (onRow && full(name) > name.clientWidth + 1) out.push("title cut beside the pill");
+                if (!onRow && full(name) + 8 + rect(pill).width <= rect(q(".titles")).width - 1) out.push("pill under the subtitle although it fits");
+                const banner = q(".banner");
+                if (banner) {
+                  const b = rect(banner);
+                  for (const n of [name, pill, q(".hsub")].filter(Boolean)) {
+                    const r = rect(n);
+                    if (r.bottom > b.bottom - 10 + 0.5 || r.top < b.top - 0.5 || r.right > b.right + 0.5 || r.left < b.left - 0.5) out.push(`${n.className} out of the banner`);
+                  }
+                }
+                wrap.remove();
+                return out;
+              },
+              { view, state, lang, w, illustration },
+            );
+            if (r.length) fails.push(`${view}${illustration ? "" : " classic"} ${state} ${lang} ${w}px: ${r.join(", ")}`);
+          }
+        }
+      }
+    }
+  }
+  assert.deepEqual(fails, []);
+});

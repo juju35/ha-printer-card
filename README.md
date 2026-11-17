@@ -47,6 +47,7 @@ Pick the printer, the card finds all its entities by itself. A compact **Printer
 - **ePrint status**: on, off or not registered (HP cloud printing)
 - **Clickable chips**: a chip opens the more-info dialog of its entity (cartridge level, IPP printer sensor, ePrint sensor…), also from the keyboard (Tab, then Enter or Space)
 - Page counter
+- **Illustrated header** on both cards: the printer's own picture standing on a desk in a small office (window, shelf, lamp), by day or by night (follows the sun or the dark theme, `illustration_theme` to force it), the round icon coloured by the status (state colour while ready or printing, grey asleep or offline, amber on a warning, red on an error) with the brand logo, the name and the status with the lowest ink or toner level. `illustration: false` keeps the classic header
 - **Mini card**, laid out like the Home Connect mini cards: icon, name and status on top, then the picture with one chip per cartridge (a small tank at its level, outlined orange when low, red when nearly empty) and per alert
 - **Detail button** on the mini card (top right): shows the full card in place, with everything it shows; the button, or a click anywhere else, goes back to the compact view. `zoom: false` removes it
 - Automatic entity discovery from the device (works with English or French entity IDs), status, IPP sensor, ePrint sensors and page counter can be overridden
@@ -166,6 +167,8 @@ entities:
 | `device_id` | ❌* | Auto | Printer device (*or `entity`; the first printer found is used if both are missing) |
 | `entity` | ❌ | — | Any entity of the printer's main device, used to find the device. YAML only (the visual editor keeps it) |
 | `name` | ❌ | Device name | Card title |
+| `illustration` | ❌ | `true` | Illustrated header (both cards, 90px): the printer's own picture on a desk in an office, the status-coloured icon with the brand logo, the name and *Status · ink N %*. `false` keeps the classic header |
+| `illustration_theme` | ❌ | `auto` | Header picture by day or night: `auto` (night when `sun.sun` is below the horizon or with a dark theme, even with the sun up), `day` or `night` |
 | `show_title` | ❌ | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_image` | ❌ | `true` | Show the printer picture |
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |
