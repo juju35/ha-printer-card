@@ -4234,7 +4234,7 @@ function hpIconColor(state, alerts, color) {
 }
 var HP_BANNER_STYLES =
   // Edge to edge at the top of the card (and at its bottom when nothing follows), 90px on both cards.
-  '.hd.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; --scene-w: min(200px, 54cqw, max(100cqw - 240px, 40cqw));' +
+  '.hd.banner { position: relative; height: 90px; margin: -12px -12px 0; overflow: hidden; --g: 10px; --scene-w: min(200px, 54cqw, max(100cqw - 240px, 40cqw));' +
     ' border-radius: var(--ha-card-border-radius, 12px) var(--ha-card-border-radius, 12px) 0 0;' +
     ' background: #eef1f6; --sky-text: #0d2a45; --sky-muted: #3b5b78; }' +
   '.hd.banner.night { background: #262c3a; --sky-text: #fff; --sky-muted: rgba(255,255,255,.78); }' +
@@ -4259,23 +4259,17 @@ var HP_BANNER_STYLES =
   '.banner .pic img { object-fit: contain; object-position: 50% 100%; }' +
   '.banner .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: #b98a5c; box-shadow: inset 0 2px 0 #d4a878; }' +
   '.banner.night .ground { background: #4a3a2c; box-shadow: inset 0 2px 0 #5c4836; }' +
-  // Title row: the name, then the status pill right after it (the name gives way first, down to four characters).
-  // When the row is too narrow for both, the pill takes a line of its own under the subtitle; on the narrowest
-  // cards only its dot stays (its label in its title and for screen readers).
+  // Title row (both headers): the name, then the status pill right after it, only when the whole name and the whole
+  // label fit there (measured by _fitPill); else the pill takes a line of its own under the subtitle (.pill-below),
+  // and when even that does not fit, only its dot or icon stays (.pill-dot, its label in its title and for screen readers).
   '.banner .titles { flex: 1 1 0; min-width: 0; overflow: visible; }' +
-  '.banner .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
-  '.banner .trow > .name { flex: 0 1 auto; min-width: 4ch; }' +
-  '.bst { --c: var(--hp-icon, ' + HP_ACCENT + '); display: inline-flex; align-items: center; gap: 4px; flex: none; max-width: 51%; box-sizing: border-box;' +
+  '.bst { --c: var(--hp-icon, ' + HP_ACCENT + '); display: inline-flex; align-items: center; gap: 4px; flex: none; box-sizing: border-box;' +
     ' overflow: hidden; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap;' +
     ' color: color-mix(in srgb, var(--c) 45%, #0d2a45); background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); }' +
   '.banner.night .bst { color: color-mix(in srgb, var(--c) 35%, #ffffff); background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); }' +
   '.bst .dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }' +
   '.bst .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
-  // The pill does not fit beside the name (measured by _fitPill): a line of its own.
-  '.banner .titles.below .trow { display: contents; } .banner .titles.below .hsub { order: 1; }' +
-  ' .banner .titles.below .trow > .bst { order: 2; align-self: flex-start; max-width: none; margin-top: 2px; }' +
-  '@container printer-card (max-width: 260px) { .banner .trow { display: contents; } .banner .hsub { order: 1; }' +
-    ' .banner .trow > .bst { order: 2; align-self: flex-start; max-width: none; margin-top: 2px; } }' +
+  '.titles.pill-dot .bst { padding: 0; width: 16px; height: 16px; justify-content: center; } .titles.pill-dot .bst .tx { display: none; }' +
   '@container printer-card (max-width: 200px) { .bst { padding: 0; width: 16px; height: 16px; justify-content: center; } .bst .tx { display: none; } }' +
   // Detail button (mini card): a small frosted round button in the banner's top right corner.
   '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; color: #33506b;' +
@@ -4390,8 +4384,15 @@ class PrinterCard extends HTMLElement {
     // _update() only re-renders when they actually change.
     clearInterval(this._timer);
     this._timer = setInterval(() => this._update(), 60000);
-    if (!this._ro && typeof ResizeObserver !== 'undefined') this._ro = new ResizeObserver(() => this._fitPill());
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (!this._ro && typeof ResizeObserver !== 'undefined') {
+      this._ro = new ResizeObserver(() => {
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+    }
     this._ro?.observe(this);
+    document.fonts?.ready?.then(() => this._fitPill());
   }
 
   disconnectedCallback() {
@@ -4399,14 +4400,45 @@ class PrinterCard extends HTMLElement {
     this._ro?.disconnect();
   }
 
-  // The banner's status pill keeps its whole label: when it does not fit beside the name (the name already down to
-  // four characters), it takes a line of its own under the subtitle.
+  // The status pill goes right after the title only when the whole title and the whole label fit there; otherwise it
+  // takes a line of its own under the subtitle (.pill-below, the subtitle kept to one line, its whole text in its tooltip).
+  // When the label does not fit that line either, or the banner has no room for the lines above its ground strip, the
+  // pill keeps its dot only (.pill-dot, back beside the title when the dot fits there). Measured after render, so that
+  // it holds in every language.
   _fitPill() {
-    var t = this.shadowRoot.querySelector('.banner .titles');
-    if (!t?.classList) return;
-    t.classList.remove('below');
-    var tx = t.querySelector('.bst .tx');
-    if (tx && tx.scrollWidth > tx.clientWidth + 0.5) t.classList.add('below');
+    const root = this.shadowRoot;
+    if (!root?.querySelectorAll || typeof getComputedStyle !== "function") return;
+    for (const t of root.querySelectorAll(".titles")) {
+      const chip = t.querySelector(".trow > :not(.name)");
+      t.classList.remove("pill-below", "pill-dot");
+      if (!chip?.getClientRects().length) continue;
+      const row = chip.parentElement;
+      const name = row.querySelector(".name");
+      const fits = () => {
+        let title = 0;
+        if (name && getComputedStyle(name).display !== "none") {
+          const range = document.createRange();
+          range.selectNodeContents(name);
+          const cs = getComputedStyle(name);
+          title = Math.max(name.scrollWidth, range.getBoundingClientRect().width) + (parseFloat(cs.marginLeft) || 0) + (parseFloat(cs.marginRight) || 0) +
+            (parseFloat(getComputedStyle(row).columnGap) || 0);
+        }
+        return title + chip.getBoundingClientRect().width <= row.getBoundingClientRect().width + 0.5;
+      };
+      if (fits()) continue;
+      t.classList.add("pill-below");
+      for (const sub of t.querySelectorAll(".hsub")) sub.title = sub.scrollWidth > sub.clientWidth ? sub.textContent.trim() : "";
+      const text = chip.querySelector(".tx, .status > span");
+      const banner = t.closest(".banner");
+      const tb = t.getBoundingClientRect();
+      const bb = banner?.getBoundingClientRect();
+      const ground = banner ? parseFloat(getComputedStyle(banner).getPropertyValue("--g")) || 0 : 0;
+      const tall = !!bb && (tb.top < bb.top - 0.5 || tb.bottom > bb.bottom - ground + 0.5);
+      if (!tall && !(text && text.scrollWidth > text.clientWidth + 0.5)) continue;
+      t.classList.add("pill-dot");
+      t.classList.remove("pill-below");
+      if (!fits()) t.classList.add("pill-below");
+    }
   }
 
   getCardSize() { return 5; }
@@ -4904,7 +4936,7 @@ class PrinterCard extends HTMLElement {
     var head = c.illustration !== false
       ? this._banner(r, v) + (chips.length || sub ? '<div class="below">' + (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + sub + '</div>' : '')
       : '<div class="hd"><div class="header">' + v.logoHtml +
-      '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' + this._statusPill(v) + this._corner() + '</div></div>' +
+      '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' + this._statusPill(v) + '</div></div>' + this._corner() + '</div></div>' +
       '<div class="head">' + v.imageHtml +
       '<div class="meta">' +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') +
@@ -5100,7 +5132,7 @@ class PrinterCard extends HTMLElement {
       // Basis 0: the name only gets what the pill leaves, so the pill is cut only when even 5ch of name do not fit
       // beside it (with a basis of auto both shrank in proportion, and "Ready" became "Re…" at 320px).
       '.titles { flex: 1 1 0; min-width: 5ch; }' +
-      ':host([hide-title]) .titles > .name { display: none; }' +
+      ':host([hide-title]) .titles .name { display: none; }' +
       '.logo { flex: none; display: block; width: 40px; height: 40px; line-height: 0; }' +
       // A printer in a round badge, tinted with the accent of the showcase site.
       // Its colour follows the status (hpIconColor).
@@ -5130,6 +5162,15 @@ class PrinterCard extends HTMLElement {
         ' white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--hp-color);' +
         ' padding: 2px 10px 2px 6px; border-radius: 12px; background: color-mix(in srgb, var(--hp-color) 15%, transparent); }' +
       '.status ha-icon { --mdc-icon-size: 14px; flex: none; }' +
+      // Title row (both headers): the pill right after the name only when both fit whole (measured by _fitPill).
+      '.trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
+      '.trow > .name { flex: 0 1 auto; min-width: 4ch; }' +
+      '.trow > .bst, .trow > .status, .trow > .st { flex: none; max-width: none; }' +
+      '.titles.pill-below { display: flex; flex-direction: column; gap: 1px; }' +
+      '.titles.pill-below .trow { display: contents; } .titles.pill-below .hsub { order: 1; }' +
+      ' .titles.pill-below .trow > :not(.name) { order: 2; align-self: flex-start; max-width: 100%; margin-top: 2px; }' +
+      '.titles.pill-dot .status { min-width: 22px; padding: 2px 4px; } .titles.pill-dot .status span { display: none; }' +
+      '.titles.pill-dot .st { min-width: 14px; padding: 4px; } .titles.pill-dot .st .tx { display: none; }' +
       '.status span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
       // Too narrow for a readable status: its icon only, never cut (the text stays in the pill's title and label),
       // with tighter gaps (the 40px logo is never shrunk), so the name and the detail button of a zoomed mini card still fit at 6 columns.
@@ -5306,8 +5347,8 @@ class PrinterMiniCard extends PrinterCard {
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +
           (rs ? `<div class="rs">${rs}</div>` : '') + '</div>' : ''), 'mini');
       } else this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
-          '<div class="titles"><div class="name">' + hpEsc(v.name) + '</div></div>' +
-          `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span>` + this._corner() +
+          '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' +
+          `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span></div></div>` + this._corner() +
         '</div></div>' +
         '<div class="content">' + v.imageHtml + '<div class="info">' +
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +

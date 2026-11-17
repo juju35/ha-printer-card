@@ -424,7 +424,7 @@ const documentClick = (path) => {
 test("the mini card is laid out like the Home Connect mini cards, with one small tank per cartridge, tinted when low", () => {
   const html = mini(levels(mockHass(), { yellow: 3, cyan: 12 }), { illustration: false }).shadowRoot.innerHTML;
   assert.match(html, /<ha-card class="mini">/);
-  assert.match(html, /<div class="header">.*<div class="titles"><div class="name">OfficeJet<\/div><\/div><span class="st" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span>/);
+  assert.match(html, /<div class="header">.*<div class="titles"><div class="trow"><div class="name">OfficeJet<\/div><span class="st" role="img" title="Ready" aria-label="Ready"><span class="dot"><\/span><span class="tx">Ready<\/span><\/span><\/div><\/div>/);
   assert.match(html, /<div class="content">.*<div class="info">/);
   assert.equal((html.match(/class="mt"/g) || []).length, 4);
   assert.match(html, /<span class="r error"[^>]*><span class="mt"><span style="height:3%;[^"]*"><\/span><\/span>3 %/);
