@@ -117,6 +117,38 @@ test("two blacks of a Canon PIXMA (PGBK and BK) are told apart by their code, al
   assert.match(render(hass), /noire BK/);
 });
 
+// juju35/ha-printer-card#92: the PRO-100 reports its photo magenta and light gray as plain "Magenta" and "Gray",
+// only their entity IDs tell them apart; the device was renamed, so the friendly names no longer carry its original name.
+test("Canon PRO-100: a marker named like its plain color takes the variant its entity ID names", () => {
+  const hass = canonHass([
+    ["black_bk", "Black(BK)", "10"], ["gray", "Gray", "70"], ["light_gray", "Gray", "100"], ["cyan", "Cyan", "40"],
+    ["photo_cyan", "Photo Cyan", "40"], ["magenta", "Magenta", "100"], ["photo_magenta", "Magenta", "99"], ["yellow", "Yellow", "10"],
+  ]);
+  hass.devices.c.name_by_user = "Canon Pro-100";
+  for (const id of Object.keys(hass.states)) {
+    const fn = hass.states[id].attributes.friendly_name;
+    if (fn) hass.states[id].attributes.friendly_name = fn.replace("Canon PRO-100 series", "Canon Pro-100");
+  }
+  const html = render(hass);
+  const labels = [...html.matchAll(/<div class="lbl">([^<]*)<\/div>/g)].map((m) => m[1]);
+  assert.deepEqual(labels, ["Black", "Gray", "Light gray", "Cyan", "Photo cyan", "Magenta", "Photo magenta", "Yellow"]);
+  const fill = (pct) => new RegExp(`height:${pct}%;min-height:3px;background:([^"]+)"`).exec(html)[1];
+  assert.equal(fill(99), HP_INK_COLORS.photo_magenta);
+  assert.ok(html.includes(`background:${HP_INK_COLORS.light_gray}`));
+});
+
+test("a model word in a renamed device's entity IDs does not change the marker's color", () => {
+  const hass = canonHass([["black", "Black", "80"]], "Canon PIXMA Photo TS8350");
+  const id = "sensor.canon_pixma_photo_ts8350_black";
+  hass.states[id] = hass.states["sensor.canon_pro_100_series_black"];
+  hass.entities[id] = { entity_id: id, device_id: "c" };
+  delete hass.states["sensor.canon_pro_100_series_black"];
+  delete hass.entities["sensor.canon_pro_100_series_black"];
+  hass.devices.c.name_by_user = "Office printer";
+  hass.states[id].attributes.friendly_name = "Office printer Black";
+  assert.match(render(hass), /<div class="lbl">Black<\/div>/);
+});
+
 test("grays keep the same fixed color on every theme, light gray paler than gray; only the blacks follow the theme", () => {
   const lum = (hex) => Number.parseInt(hex.slice(1, 3), 16);
   for (const k of ["gray", "light_gray"]) assert.match(HP_INK_COLORS[k], /^#[0-9a-f]{6}$/i, k);

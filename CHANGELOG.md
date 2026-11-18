@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.16.2 - 2026-11-18
+
+### Fixes
+- **IPP inks** (#92): a marker reported under its plain color name (*Magenta*, *Gray*) while its entity ID names a variant (`photo_magenta`, `light_gray`) is now shown as that variant, with its own label and color — the Canon PRO-100's photo magenta and light gray no longer read as a second *Magenta* and *Gray*. The cartridge's own name is also found when the printer device has been renamed.
+
 ## 2.16.1 - 2026-11-18
 
 ### Fixes

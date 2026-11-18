@@ -4014,6 +4014,25 @@ function hpHpInks(hass, subIds) {
   });
 }
 
+// `name` without the first of `prefixes` it starts with.
+function hpStripPrefixes(name, prefixes) {
+  for (var p of prefixes) {
+    var n = hpStripPrefix(name, p);
+    if (n !== String(name || '')) return n;
+  }
+  return String(name || '');
+}
+
+// Color of an IPP marker: from its name, else from its entity ID. The entity ID wins when it names a variant of the
+// same color (a marker reported as plain "Magenta" or "Gray" whose ID reads photo_magenta or light_gray, as on a
+// Canon PRO-100: juju35/ha-printer-card#92).
+function hpIppInkColor(own, objectId) {
+  var byName = hpInkColor(own, true);
+  var byId = hpInkColor(objectId);
+  if (byName && byId && byId !== byName && byId.endsWith(`_${byName}`)) return byId;
+  return byName || byId || 'ink';
+}
+
 // IPP integration: one sensor per marker, on the same device, named after the marker ("Photo Cyan(PC)", "black ink"…).
 // Its color comes from the marker's own name (the friendly name without the device's), else from the entity ID.
 // Two cartridges of the same color (Canon's pigment and dye blacks, PGBK and BK) are told apart by their code.
@@ -4023,12 +4042,14 @@ function hpIppInks(hass, list) {
     return e.entity_id.indexOf('sensor.') === 0 && s.attributes.marker_type !== undefined;
   }).map((e) => {
     var s = hass.states[e.entity_id];
-    var device = hpDeviceName(hass, e.device_id);
-    var own = hpStripPrefix(s.attributes.friendly_name, device);
-    var slug = String(device || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-    var objectId = hpStripPrefix(e.entity_id.slice(e.entity_id.indexOf('.') + 1), slug ? `${slug}_` : '');
+    var d = hass.devices?.[e.device_id] || {};
+    // The device may have been renamed: its entity IDs keep the original name, its friendly names take the new one.
+    var names = [d.name_by_user, d.name].map((n) => String(n || '').trim()).filter(Boolean);
+    var own = hpStripPrefixes(s.attributes.friendly_name, names);
+    var objectId = hpStripPrefixes(e.entity_id.slice(e.entity_id.indexOf('.') + 1),
+      names.map((n) => `${n.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')}_`));
     var code = /\(\s*([A-Za-z]{1,5})\s*\)/.exec(own)?.[1];
-    return { name: s.attributes.friendly_name, color: hpInkColor(own, true) || hpInkColor(objectId) || 'ink', code: code?.toUpperCase(),
+    return { name: s.attributes.friendly_name, color: hpIppInkColor(own, objectId), code: code?.toUpperCase(),
       level: e.entity_id, low: s.attributes.marker_low_level, toner: /toner/i.test(String(s.attributes.marker_type || '')) };
   }).sort((a, b) => HP_INK_ORDER[a.color] - HP_INK_ORDER[b.color]);
   inks.forEach((ink) => {
