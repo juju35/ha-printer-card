@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.16.3 - 2026-11-20
+
+### Fixes
+- Mini card: a tap outside the card brings the compact view back on iOS too (Safari and the companion app send no click for a tap on something that is not clickable): a press and a release both outside the card now count, a scroll or a drag out of the card does not.
+- Mini card: the detailed view folds back to the compact one when the card leaves the page (another dashboard view, a conditional card hidden), like the other mini cards.
+
+### Maintenance
+- An unused discovery helper removed.
+
 ## 2.16.2 - 2026-11-18
 
 ### Fixes
