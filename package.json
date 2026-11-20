@@ -10,7 +10,7 @@
     "screenshots": "node scripts/screenshots.mjs",
     "models": "node scripts/models.mjs",
     "test": "node --test \"test/*.test.mjs\"",
-    "test:browser": "node --test test/layout.browser.mjs"
+    "test:browser": "node --test \"test/*.browser.mjs\""
   },
   "license": "MIT",
   "devDependencies": {

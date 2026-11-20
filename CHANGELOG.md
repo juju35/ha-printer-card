@@ -5,9 +5,11 @@
 ### Fixes
 - Mini card: a tap outside the card brings the compact view back on iOS too (Safari and the companion app send no click for a tap on something that is not clickable): a press and a release both outside the card now count, a scroll or a drag out of the card does not.
 - Mini card: the detailed view folds back to the compact one when the card leaves the page (another dashboard view, a conditional card hidden), like the other mini cards.
+- The page no longer moves by itself on state updates: the card is patched in place instead of being rewritten (icons, illustration and picture stay the same nodes, animations no longer restart), and the icons of the status, chips, section titles, alerts and lines keep their size while they load — a rewrite made the full card lose about 12 px for a frame on every update of its entities.
 
 ### Maintenance
 - An unused discovery helper removed.
+- Browser test of the card's height and nodes across state updates (`npm run test:browser` runs every `test/*.browser.mjs`).
 
 ## 2.16.2 - 2026-11-18
 
