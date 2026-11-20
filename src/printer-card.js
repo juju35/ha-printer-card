@@ -3875,8 +3875,6 @@ function hpCartridgeProblem(state) {
 }
 
 // ── Discovery ────────────────────────────────────────────────────────────────
-function _hpState(hass, id) { return id ? hass.states[id] : undefined; }
-
 function hpIsHpStatus(s) {
   var o = (s?.attributes.options) || [];
   return o.indexOf('inpowersave') >= 0 || (o.indexOf('ready') >= 0 && o.indexOf('scanprocessing') >= 0);
