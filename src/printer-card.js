@@ -5319,22 +5319,43 @@ class PrinterMiniCard extends PrinterCard {
   constructor() {
     super();
     // A click outside the card (and outside a dialog opened from it) brings back the compact view.
+    const outside = (ev) => !ev.composedPath().includes(this) && !hpInDialog(ev);
     this._onOutside = (ev) => {
-      if (!this._zoomed || ev.composedPath().includes(this) || hpInDialog(ev)) return;
+      if (!this._zoomed || !outside(ev)) return;
       this._zoomed = false;
       this._sig = null;
       this._update();
+    };
+    // On iOS (Safari and the companion app) a tap on something that is not clickable sends no click to the page: a
+    // press and a release both outside the card count too (a scroll cancels the pointer, so it does not).
+    this._onOutsideDown = (ev) => {
+      this._downOutside = outside(ev);
+    };
+    this._onOutsideUp = (ev) => {
+      if (this._downOutside) this._onOutside(ev);
+      this._downOutside = false;
     };
   }
 
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('click', this._onOutside, true);
+    document.addEventListener('pointerdown', this._onOutsideDown, true);
+    document.addEventListener('pointerup', this._onOutsideUp, true);
+    // Back on the page: drawn again, in the compact view.
+    if (this._hass && this._config) this._update();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener('click', this._onOutside, true);
+    document.removeEventListener('pointerdown', this._onOutsideDown, true);
+    document.removeEventListener('pointerup', this._onOutsideUp, true);
+    // Left (another dashboard view, a conditional card hidden): back to the compact view.
+    if (this._zoomed) {
+      this._zoomed = false;
+      this._sig = null;
+    }
   }
 
   getCardSize() { return this._zoomed ? super.getCardSize() : 2; }

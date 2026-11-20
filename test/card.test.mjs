@@ -577,6 +577,41 @@ test("a click outside the card brings back the compact view, not one inside it o
   assert.equal(listeners.filter(([type]) => type === "click").length, 0, "listener removed");
 });
 
+test("a tap outside the card (press and release, no click on iOS) brings back the compact view", () => {
+  const card = mini(mockHass());
+  card.connectedCallback();
+  const pointer = (type, path) => {
+    for (const [t, fn, capture] of listeners) if (t === type && capture) fn({ composedPath: () => path });
+  };
+  try {
+    clickZoom(card);
+    // Pressed in the card, released outside (a slider dragged out): still the full card.
+    pointer("pointerdown", [card, { localName: "body" }]);
+    pointer("pointerup", [{ localName: "body" }]);
+    assert.match(card.shadowRoot.innerHTML, /Ink levels/);
+    pointer("pointerdown", [{ localName: "div" }, { localName: "body" }]);
+    pointer("pointerup", [{ localName: "div" }, { localName: "body" }]);
+    assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
+  } finally {
+    card.disconnectedCallback();
+  }
+  assert.equal(listeners.filter(([type]) => type.startsWith("pointer")).length, 0, "listeners removed");
+});
+
+test("the mini card is back in its compact view after leaving the page", () => {
+  const card = mini(mockHass());
+  card.connectedCallback();
+  clickZoom(card);
+  assert.match(card.shadowRoot.innerHTML, /Ink levels/);
+  card.disconnectedCallback();
+  card.connectedCallback();
+  try {
+    assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
+  } finally {
+    card.disconnectedCallback();
+  }
+});
+
 test("zoom: false removes the detail button", () => {
   assert.doesNotMatch(mini(mockHass(), { zoom: false }).shadowRoot.innerHTML, /class="zoom"/);
   assert.doesNotMatch(render(mockHass()).shadowRoot.innerHTML, /class="zoom"/, "never on the full card");
