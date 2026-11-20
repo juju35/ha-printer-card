@@ -514,6 +514,19 @@ test("offline, the full card shows only the cartridges whose level is known, wit
   assert.doesNotMatch(html, /class="alerts"|class="alert ok"/);
 });
 
+test("the masonry size follows the drawn height, 5 before the card is drawn", () => {
+  const card = mini(mockHass());
+  clickZoom(card);
+  assert.equal(card.getCardSize(), 5);
+  const drawn = (offsetHeight) => {
+    card.shadowRoot.querySelector = (sel) => (sel === "ha-card" ? { offsetHeight } : null);
+    return card.getCardSize();
+  };
+  assert.equal(drawn(334), 7);
+  assert.equal(drawn(60), 2);
+  assert.equal(drawn(0), 5);
+});
+
 test("the mini card shows the same printer icon as the full card", () => {
   assert.match(mini(mockHass()).shadowRoot.innerHTML, /class="logo mark"/);
   assert.match(mini(mockHass(), { picture: "generic" }).shadowRoot.innerHTML, /class="logo mark"/);
@@ -575,6 +588,41 @@ test("a click outside the card brings back the compact view, not one inside it o
     card.disconnectedCallback();
   }
   assert.equal(listeners.filter(([type]) => type === "click").length, 0, "listener removed");
+});
+
+test("a tap outside the card (press and release, no click on iOS) brings back the compact view", () => {
+  const card = mini(mockHass());
+  card.connectedCallback();
+  const pointer = (type, path) => {
+    for (const [t, fn, capture] of listeners) if (t === type && capture) fn({ composedPath: () => path });
+  };
+  try {
+    clickZoom(card);
+    // Pressed in the card, released outside (a slider dragged out): still the full card.
+    pointer("pointerdown", [card, { localName: "body" }]);
+    pointer("pointerup", [{ localName: "body" }]);
+    assert.match(card.shadowRoot.innerHTML, /Ink levels/);
+    pointer("pointerdown", [{ localName: "div" }, { localName: "body" }]);
+    pointer("pointerup", [{ localName: "div" }, { localName: "body" }]);
+    assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
+  } finally {
+    card.disconnectedCallback();
+  }
+  assert.equal(listeners.filter(([type]) => type.startsWith("pointer")).length, 0, "listeners removed");
+});
+
+test("the mini card is back in its compact view after leaving the page", () => {
+  const card = mini(mockHass());
+  card.connectedCallback();
+  clickZoom(card);
+  assert.match(card.shadowRoot.innerHTML, /Ink levels/);
+  card.disconnectedCallback();
+  card.connectedCallback();
+  try {
+    assert.match(card.shadowRoot.innerHTML, /<ha-card class="mini">/);
+  } finally {
+    card.disconnectedCallback();
+  }
 });
 
 test("zoom: false removes the detail button", () => {

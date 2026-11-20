@@ -3875,8 +3875,6 @@ function hpCartridgeProblem(state) {
 }
 
 // ── Discovery ────────────────────────────────────────────────────────────────
-function _hpState(hass, id) { return id ? hass.states[id] : undefined; }
-
 function hpIsHpStatus(s) {
   var o = (s?.attributes.options) || [];
   return o.indexOf('inpowersave') >= 0 || (o.indexOf('ready') >= 0 && o.indexOf('scanprocessing') >= 0);
@@ -4352,6 +4350,72 @@ var HP_DEFAULTS = {
   illustration: true, illustration_theme: 'auto',
 };
 
+// ── Shadow DOM patching ───────────────────────────────────────────────────────
+// A render is applied to the nodes already there (text, attributes and classes updated in place) instead of
+// replacing the whole shadow root: replaced nodes made the card lose about 12 px for a frame on every state update
+// (icons empty until loaded, illustration rebuilt, animations restarted), and the dashboard's scroll anchoring then
+// moved the page.
+// A custom element (ha-icon, ha-card…) may set attributes on itself (a style, a state): it only loses those the
+// previous render gave it (hpTplAttrs) and are no longer in this one.
+function hpIsCustom(el) { return el.localName.includes('-'); }
+const hpTplAttrs = new WeakMap();
+function hpMarkTemplate(n) {
+  if (n.nodeType !== 1) return;
+  for (const el of [n, ...n.querySelectorAll('*')]) if (hpIsCustom(el)) hpTplAttrs.set(el, new Set(el.getAttributeNames()));
+}
+function hpPatchAttrs(cur, next) {
+  const custom = hpIsCustom(cur);
+  const owned = custom ? hpTplAttrs.get(cur) || new Set() : null;
+  for (const name of cur.getAttributeNames()) if (!next.hasAttribute(name) && (!custom || owned.has(name))) cur.removeAttribute(name);
+  for (const { name, value } of next.attributes) if (cur.getAttribute(name) !== value) cur.setAttribute(name, value);
+  if (custom) hpTplAttrs.set(cur, new Set(next.getAttributeNames()));
+  if (cur.localName === 'option' && cur.selected !== next.hasAttribute('selected')) cur.selected = next.hasAttribute('selected');
+}
+function hpKeyOf(n) { return n.nodeType === 1 ? n.getAttribute('data-key') : null; }
+function hpSameNode(a, b) {
+  // A picture is only reused for the same picture.
+  return !!a && a.nodeType === b.nodeType && a.nodeName === b.nodeName && (a.localName !== 'img' || a.getAttribute('src') === b.getAttribute('src'));
+}
+function hpPatchChildren(cur, next) {
+  const old = [...cur.childNodes];
+  const fresh = [...next.childNodes];
+  const byKey = new Map();
+  for (const o of old) {
+    const k = hpKeyOf(o);
+    if (k !== null && !byKey.has(k)) byKey.set(k, o);
+  }
+  const used = new Set();
+  fresh.forEach((n, i) => {
+    const k = hpKeyOf(n);
+    let o = k !== null ? byKey.get(k) : old[i];
+    if (!hpSameNode(o, n) || used.has(o) || (k === null && hpKeyOf(o) !== null)) o = null;
+    const ref = cur.childNodes[i] ?? null;
+    if (!o) {
+      hpMarkTemplate(n);
+      cur.insertBefore(n, ref);
+      return;
+    }
+    used.add(o);
+    if (o !== ref) cur.insertBefore(o, ref);
+    if (n.nodeType === 1) {
+      hpPatchAttrs(o, n);
+      // A custom element the template leaves empty (ha-icon) draws its own children: they are kept.
+      if (n.childNodes.length || !hpIsCustom(o)) hpPatchChildren(o, n);
+    } else if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue;
+  });
+  while (cur.childNodes.length > fresh.length) cur.removeChild(cur.lastChild);
+}
+// Without a DOM (the unit tests' stand-in shadow root), the HTML is only written.
+function hpMorph(root, html) {
+  if (!root.childNodes) {
+    root.innerHTML = html;
+    return;
+  }
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  hpPatchChildren(root, tpl.content);
+}
+
 class PrinterCard extends HTMLElement {
   static defaults = HP_DEFAULTS;
 
@@ -4399,6 +4463,7 @@ class PrinterCard extends HTMLElement {
   }
 
   connectedCallback() {
+    Promise.resolve().then(() => this._fitAfterCard());
     // Keeps the time-dependent parts ("Last seen 5 minutes ago", expired cartridges) current:
     // _update() only re-renders when they actually change.
     clearInterval(this._timer);
@@ -4460,7 +4525,12 @@ class PrinterCard extends HTMLElement {
     }
   }
 
-  getCardSize() { return 5; }
+  // Masonry rows of 50 px: the drawn height once the card is on the page (hidden sections, no ink, no
+  // alert…), 5 before it is.
+  getCardSize() {
+    var h = this.shadowRoot?.querySelector('ha-card')?.offsetHeight;
+    return h > 0 ? Math.max(2, Math.ceil(h / 50)) : 5;
+  }
 
   _chipClick(ev) {
     if (this._scanClick(ev)) return;
@@ -4903,7 +4973,7 @@ class PrinterCard extends HTMLElement {
 
   _render(r) {
     if (!r.deviceId || !r.status) {
-      this.shadowRoot.innerHTML = `${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:printer-off"></ha-icon>${this._t('no_device')}</div></ha-card>`;
+      hpMorph(this.shadowRoot, `${this._styles()}<ha-card><div class="empty"><ha-icon icon="mdi:printer-off"></ha-icon>${this._t('no_device')}</div></ha-card>`);
       return;
     }
     var v = this._view(r);
@@ -4913,10 +4983,23 @@ class PrinterCard extends HTMLElement {
   _paint(v, inner, cls) {
     var focused = hpFocusKey(this.shadowRoot.activeElement);
     var classes = [v.offline ? 'offline' : '', cls || ''].filter(Boolean).join(' ');
-    this.shadowRoot.innerHTML = `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`;
+    hpMorph(this.shadowRoot, `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`);
     this._fitPill();
-    // innerHTML replaced the focused control: focus its counterpart so keyboard navigation keeps its place.
+    this._fitAfterCard();
+    // A control the patch could not keep (another layout): its counterpart gets the focus, so keyboard navigation keeps its place.
     if (focused) this.shadowRoot.querySelector(focused)?.focus({ preventScroll: true });
+  }
+
+  // <ha-card> (Lit) draws its slot a microtask after it is created: until then the card's content has no size, and the
+  // status pill measured then would take the wrong line (the card then changed height once measured again). A new
+  // <ha-card> is measured once more as soon as it has rendered, before the frame is painted.
+  // Rendered before the card is on the page, <ha-card> is only upgraded once connected: called again then (see
+  // connectedCallback).
+  _fitAfterCard() {
+    const card = this.shadowRoot?.querySelector?.('ha-card');
+    if (!card?.updateComplete || card === this._fitCard) return;
+    this._fitCard = card;
+    card.updateComplete?.then?.(() => this._fitPill());
   }
 
   // The full card: header (logo, name, status), picture with its chips, ink levels and alerts.
@@ -5180,7 +5263,7 @@ class PrinterCard extends HTMLElement {
       '.status { display: inline-flex; align-items: center; gap: 6px; flex: 0 1 auto; min-width: 0; max-width: 50%; box-sizing: border-box; overflow: hidden;' +
         ' white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--hp-color);' +
         ' padding: 2px 10px 2px 6px; border-radius: 12px; background: color-mix(in srgb, var(--hp-color) 15%, transparent); }' +
-      '.status ha-icon { --mdc-icon-size: 14px; flex: none; }' +
+      '.status ha-icon { --mdc-icon-size: 14px; flex: none; width: 14px; height: 14px; }' +
       // Title row (both headers): the pill right after the name only when both fit whole (measured by _fitPill).
       '.trow { display: flex; align-items: center; gap: 8px; min-width: 0; }' +
       '.trow > .name { flex: 0 1 auto; min-width: 4ch; }' +
@@ -5197,7 +5280,7 @@ class PrinterCard extends HTMLElement {
         ' .status { min-width: 22px; padding: 2px 4px; } .status span { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
-      '.chip ha-icon { --mdc-icon-size: 13px; }' +
+      '.chip ha-icon { --mdc-icon-size: 13px; flex: none; width: 13px; height: 13px; }' +
       '[data-entity] { cursor: pointer; }' +
       '[data-entity]:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
       '.chip.error { background: color-mix(in srgb, var(--error-color, #db4437) 15%, transparent); color: var(--error-color, #db4437); }' +
@@ -5210,7 +5293,7 @@ class PrinterCard extends HTMLElement {
       '.section { display: flex; flex-direction: column; gap: 6px; }' +
       '.section-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase;' +
         ' letter-spacing: .04em; color: var(--secondary-text-color); }' +
-      '.section-title ha-icon { --mdc-icon-size: 16px; }' +
+      '.section-title ha-icon { --mdc-icon-size: 16px; flex: none; width: 16px; height: 16px; }' +
       '.inks { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 8px; }' +
       '.ink { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; }' +
       '.tank { position: relative; width: 100%; max-width: 40px; height: 44px; border-radius: 8px; overflow: hidden;' +
@@ -5229,7 +5312,7 @@ class PrinterCard extends HTMLElement {
       '.alerts { display: flex; flex-direction: column; gap: 6px; }' +
       '.alert { display: flex; align-items: center; gap: 8px; font-size: 12px; padding: 6px 8px; border-radius: 10px;' +
         ' background: var(--secondary-background-color, rgba(128,128,128,0.1)); color: var(--primary-text-color); }' +
-      '.alert ha-icon { --mdc-icon-size: 18px; flex-shrink: 0; }' +
+      '.alert ha-icon { --mdc-icon-size: 18px; flex-shrink: 0; width: 18px; height: 18px; }' +
       '.alert.error { background: color-mix(in srgb, var(--error-color, #db4437) 12%, transparent); } .alert.error ha-icon { color: var(--error-color, #db4437); }' +
       '.alert.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 12%, transparent); } .alert.warn ha-icon { color: var(--warning-color, #ffa600); }' +
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
@@ -5290,14 +5373,14 @@ var HP_MINI_STYLES =
   // contain: inline-size: the line's text ("Last seen 3 days ago") never sets the card's min-content width, so the
   // offline mini card still shrinks in a `1fr 1fr` grid (layout-card) instead of overflowing it; the text ends with an ellipsis.
   '.line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; contain: inline-size; }' +
-  '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; }' +
+  '.line ha-icon { --mdc-icon-size: 14px; flex-shrink: 0; width: 14px; height: 14px; }' +
   '.line span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }' +
   '.rs { display: flex; flex-wrap: wrap; gap: 6px; }' +
   '.rs:empty { display: none; }' +
   '.r { --t: var(--secondary-text-color); display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px 1px 5px; border-radius: 12px;' +
     ' font-size: 11px; font-weight: 500; white-space: nowrap; color: var(--secondary-text-color); max-width: 100%; min-width: 0; box-sizing: border-box;' +
     ' background: var(--secondary-background-color, rgba(128,128,128,0.12)); }' +
-  '.r ha-icon { --mdc-icon-size: 13px; flex: none; color: var(--t); }' +
+  '.r ha-icon { --mdc-icon-size: 13px; flex: none; color: var(--t); width: 13px; height: 13px; }' +
   // A label wider than the card ends with an ellipsis instead of running out of it (the full text is in the title).
   '.r .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
   // A small tank, like the full card's ink levels: filled to the level, outlined when low or nearly empty.
@@ -5319,22 +5402,43 @@ class PrinterMiniCard extends PrinterCard {
   constructor() {
     super();
     // A click outside the card (and outside a dialog opened from it) brings back the compact view.
+    const outside = (ev) => !ev.composedPath().includes(this) && !hpInDialog(ev);
     this._onOutside = (ev) => {
-      if (!this._zoomed || ev.composedPath().includes(this) || hpInDialog(ev)) return;
+      if (!this._zoomed || !outside(ev)) return;
       this._zoomed = false;
       this._sig = null;
       this._update();
+    };
+    // On iOS (Safari and the companion app) a tap on something that is not clickable sends no click to the page: a
+    // press and a release both outside the card count too (a scroll cancels the pointer, so it does not).
+    this._onOutsideDown = (ev) => {
+      this._downOutside = outside(ev);
+    };
+    this._onOutsideUp = (ev) => {
+      if (this._downOutside) this._onOutside(ev);
+      this._downOutside = false;
     };
   }
 
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('click', this._onOutside, true);
+    document.addEventListener('pointerdown', this._onOutsideDown, true);
+    document.addEventListener('pointerup', this._onOutsideUp, true);
+    // Back on the page: drawn again, in the compact view.
+    if (this._hass && this._config) this._update();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener('click', this._onOutside, true);
+    document.removeEventListener('pointerdown', this._onOutsideDown, true);
+    document.removeEventListener('pointerup', this._onOutsideUp, true);
+    // Left (another dashboard view, a conditional card hidden): back to the compact view.
+    if (this._zoomed) {
+      this._zoomed = false;
+      this._sig = null;
+    }
   }
 
   getCardSize() { return this._zoomed ? super.getCardSize() : 2; }
