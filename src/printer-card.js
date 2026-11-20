@@ -4525,7 +4525,12 @@ class PrinterCard extends HTMLElement {
     }
   }
 
-  getCardSize() { return 5; }
+  // Masonry rows of 50 px: the drawn height once the card is on the page (hidden sections, no ink, no
+  // alert…), 5 before it is.
+  getCardSize() {
+    var h = this.shadowRoot?.querySelector('ha-card')?.offsetHeight;
+    return h > 0 ? Math.max(2, Math.ceil(h / 50)) : 5;
+  }
 
   _chipClick(ev) {
     if (this._scanClick(ev)) return;

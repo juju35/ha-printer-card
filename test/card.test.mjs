@@ -514,6 +514,19 @@ test("offline, the full card shows only the cartridges whose level is known, wit
   assert.doesNotMatch(html, /class="alerts"|class="alert ok"/);
 });
 
+test("the masonry size follows the drawn height, 5 before the card is drawn", () => {
+  const card = mini(mockHass());
+  clickZoom(card);
+  assert.equal(card.getCardSize(), 5);
+  const drawn = (offsetHeight) => {
+    card.shadowRoot.querySelector = (sel) => (sel === "ha-card" ? { offsetHeight } : null);
+    return card.getCardSize();
+  };
+  assert.equal(drawn(334), 7);
+  assert.equal(drawn(60), 2);
+  assert.equal(drawn(0), 5);
+});
+
 test("the mini card shows the same printer icon as the full card", () => {
   assert.match(mini(mockHass()).shadowRoot.innerHTML, /class="logo mark"/);
   assert.match(mini(mockHass(), { picture: "generic" }).shadowRoot.innerHTML, /class="logo mark"/);
