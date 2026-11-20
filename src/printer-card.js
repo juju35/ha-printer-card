@@ -4355,9 +4355,20 @@ var HP_DEFAULTS = {
 // replacing the whole shadow root: replaced nodes made the card lose about 12 px for a frame on every state update
 // (icons empty until loaded, illustration rebuilt, animations restarted), and the dashboard's scroll anchoring then
 // moved the page.
+// A custom element (ha-icon, ha-card…) may set attributes on itself (a style, a state): it only loses those the
+// previous render gave it (hpTplAttrs) and are no longer in this one.
+function hpIsCustom(el) { return el.localName.includes('-'); }
+const hpTplAttrs = new WeakMap();
+function hpMarkTemplate(n) {
+  if (n.nodeType !== 1) return;
+  for (const el of [n, ...n.querySelectorAll('*')]) if (hpIsCustom(el)) hpTplAttrs.set(el, new Set(el.getAttributeNames()));
+}
 function hpPatchAttrs(cur, next) {
-  for (const { name } of [...cur.attributes]) if (!next.hasAttribute(name)) cur.removeAttribute(name);
+  const custom = hpIsCustom(cur);
+  const owned = custom ? hpTplAttrs.get(cur) || new Set() : null;
+  for (const name of cur.getAttributeNames()) if (!next.hasAttribute(name) && (!custom || owned.has(name))) cur.removeAttribute(name);
   for (const { name, value } of next.attributes) if (cur.getAttribute(name) !== value) cur.setAttribute(name, value);
+  if (custom) hpTplAttrs.set(cur, new Set(next.getAttributeNames()));
   if (cur.localName === 'option' && cur.selected !== next.hasAttribute('selected')) cur.selected = next.hasAttribute('selected');
 }
 function hpKeyOf(n) { return n.nodeType === 1 ? n.getAttribute('data-key') : null; }
@@ -4380,6 +4391,7 @@ function hpPatchChildren(cur, next) {
     if (!hpSameNode(o, n) || used.has(o) || (k === null && hpKeyOf(o) !== null)) o = null;
     const ref = cur.childNodes[i] ?? null;
     if (!o) {
+      hpMarkTemplate(n);
       cur.insertBefore(n, ref);
       return;
     }
@@ -4387,14 +4399,15 @@ function hpPatchChildren(cur, next) {
     if (o !== ref) cur.insertBefore(o, ref);
     if (n.nodeType === 1) {
       hpPatchAttrs(o, n);
-      hpPatchChildren(o, n);
+      // A custom element the template leaves empty (ha-icon) draws its own children: they are kept.
+      if (n.childNodes.length || !hpIsCustom(o)) hpPatchChildren(o, n);
     } else if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue;
   });
   while (cur.childNodes.length > fresh.length) cur.removeChild(cur.lastChild);
 }
-// The first render (an empty shadow root) is written as is.
+// Without a DOM (the unit tests' stand-in shadow root), the HTML is only written.
 function hpMorph(root, html) {
-  if (!root.firstChild) {
+  if (!root.childNodes) {
     root.innerHTML = html;
     return;
   }
@@ -4450,6 +4463,7 @@ class PrinterCard extends HTMLElement {
   }
 
   connectedCallback() {
+    Promise.resolve().then(() => this._fitAfterCard());
     // Keeps the time-dependent parts ("Last seen 5 minutes ago", expired cartridges) current:
     // _update() only re-renders when they actually change.
     clearInterval(this._timer);
@@ -4966,8 +4980,21 @@ class PrinterCard extends HTMLElement {
     var classes = [v.offline ? 'offline' : '', cls || ''].filter(Boolean).join(' ');
     hpMorph(this.shadowRoot, `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`);
     this._fitPill();
+    this._fitAfterCard();
     // A control the patch could not keep (another layout): its counterpart gets the focus, so keyboard navigation keeps its place.
     if (focused) this.shadowRoot.querySelector(focused)?.focus({ preventScroll: true });
+  }
+
+  // <ha-card> (Lit) draws its slot a microtask after it is created: until then the card's content has no size, and the
+  // status pill measured then would take the wrong line (the card then changed height once measured again). A new
+  // <ha-card> is measured once more as soon as it has rendered, before the frame is painted.
+  // Rendered before the card is on the page, <ha-card> is only upgraded once connected: called again then (see
+  // connectedCallback).
+  _fitAfterCard() {
+    const card = this.shadowRoot?.querySelector?.('ha-card');
+    if (!card?.updateComplete || card === this._fitCard) return;
+    this._fitCard = card;
+    card.updateComplete?.then?.(() => this._fitPill());
   }
 
   // The full card: header (logo, name, status), picture with its chips, ink levels and alerts.
