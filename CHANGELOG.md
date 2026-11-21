@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.17.0 - 2026-11-21
+
+### Features
+- **Informational IPP reasons** (#98): the IPP state reasons ending in `-report` (RFC 8011's information level, such as `wifi-not-configured-report` on a printer kept on Ethernet) no longer show up as warnings, in the warning count nor as a chip of the mini card. `show_reports: true` (both visual editors) brings them back as muted info lines under the full card's alerts, after *No alerts* when nothing else is wrong.
+- `ignore_reasons` (YAML): IPP state reasons expected on a given printer, left out of the alerts, with or without their suffix (`[wifi-not-configured, door-open]`).
+
 ## 2.16.3 - 2026-11-20
 
 ### Fixes

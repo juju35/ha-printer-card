@@ -103,6 +103,7 @@ var HpI18n = {
     ed_show_inks: 'Niveaux d\'encre',
     ed_show_parts: 'Pièces d\'usure',
     ed_show_alerts: 'Alertes',
+    ed_show_reports: 'Informations IPP',
     ed_show_stats: 'Compteur de pages',
     ed_show_expired: 'Alerte garantie expirée',
     ed_low_threshold: 'Seuil d\'encre faible (%)',
@@ -259,6 +260,7 @@ var HpI18n = {
     ed_show_inks: 'Ink levels',
     ed_show_parts: 'Parts',
     ed_show_alerts: 'Alerts',
+    ed_show_reports: 'IPP info messages',
     ed_show_stats: 'Page counter',
     ed_show_expired: 'Expired warranty alert',
     ed_low_threshold: 'Low ink threshold (%)',
@@ -415,6 +417,7 @@ var HpI18n = {
     ed_show_inks: 'Tintenfüllstände',
     ed_show_parts: 'Verschleißteile',
     ed_show_alerts: 'Warnmeldungen',
+    ed_show_reports: 'IPP-Infomeldungen',
     ed_show_stats: 'Seitenzähler',
     ed_show_expired: 'Warnung bei abgelaufener Garantie',
     ed_low_threshold: 'Schwellenwert für niedrigen Tintenstand (%)',
@@ -571,6 +574,7 @@ var HpI18n = {
     ed_show_inks: 'Niveles de tinta',
     ed_show_parts: 'Piezas de desgaste',
     ed_show_alerts: 'Alertas',
+    ed_show_reports: 'Mensajes informativos IPP',
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantía caducada',
     ed_low_threshold: 'Umbral de tinta baja (%)',
@@ -734,6 +738,7 @@ var HpI18n = {
     ed_show_inks: 'Нивои мастила',
     ed_show_parts: 'Потрошни делови',
     ed_show_alerts: 'Упозорења',
+    ed_show_reports: 'IPP информативне поруке',
     ed_show_stats: 'Бројач страница',
     ed_show_expired: 'Упозорење о истеклој гаранцији',
     ed_low_threshold: 'Праг ниског нивоа мастила (%)',
@@ -897,6 +902,7 @@ var HpI18n = {
     ed_show_inks: 'Nivoi mastila',
     ed_show_parts: 'Potrošni delovi',
     ed_show_alerts: 'Upozorenja',
+    ed_show_reports: 'IPP informativne poruke',
     ed_show_stats: 'Brojač stranica',
     ed_show_expired: 'Upozorenje o istekloj garanciji',
     ed_low_threshold: 'Prag niskog nivoa mastila (%)',
@@ -1053,6 +1059,7 @@ var HpI18n = {
     ed_show_inks: 'Livelli di inchiostro',
     ed_show_parts: 'Parti di usura',
     ed_show_alerts: 'Avvisi',
+    ed_show_reports: 'Messaggi informativi IPP',
     ed_show_stats: 'Contatore pagine',
     ed_show_expired: 'Avviso di garanzia scaduta',
     ed_low_threshold: 'Soglia di inchiostro scarso (%)',
@@ -1209,6 +1216,7 @@ var HpI18n = {
     ed_show_inks: 'Inktniveaus',
     ed_show_parts: 'Slijtdelen',
     ed_show_alerts: 'Meldingen',
+    ed_show_reports: 'IPP-infomeldingen',
     ed_show_stats: 'Paginateller',
     ed_show_expired: 'Melding bij verlopen garantie',
     ed_low_threshold: 'Drempel voor laag inktniveau (%)',
@@ -1368,6 +1376,7 @@ var HpI18n = {
     ed_show_inks: 'Níveis de tinta',
     ed_show_parts: 'Peças de desgaste',
     ed_show_alerts: 'Alertas',
+    ed_show_reports: 'Mensagens informativas IPP',
     ed_show_stats: 'Contador de páginas',
     ed_show_expired: 'Alerta de garantia expirada',
     ed_low_threshold: 'Limiar de tinta baixa (%)',
@@ -1527,6 +1536,7 @@ var HpI18n = {
     ed_show_inks: 'Poziomy tuszu',
     ed_show_parts: 'Części eksploatacyjne',
     ed_show_alerts: 'Alerty',
+    ed_show_reports: 'Komunikaty informacyjne IPP',
     ed_show_stats: 'Licznik stron',
     ed_show_expired: 'Alert o wygasłej gwarancji',
     ed_low_threshold: 'Próg niskiego poziomu tuszu (%)',
@@ -1683,6 +1693,7 @@ var HpI18n = {
     ed_show_inks: 'Nivel cerneală',
     ed_show_parts: 'Piese de uzură',
     ed_show_alerts: 'Alerte',
+    ed_show_reports: 'Mesaje informative IPP',
     ed_show_stats: 'Contor de pagini',
     ed_show_expired: 'Alertă de garanție expirată',
     ed_low_threshold: 'Prag de cerneală puțină (%)',
@@ -1843,6 +1854,7 @@ var HpI18n = {
     ed_show_inks: 'Blækniveauer',
     ed_show_parts: 'Sliddele',
     ed_show_alerts: 'Advarsler',
+    ed_show_reports: 'IPP-infomeddelelser',
     ed_show_stats: 'Sidetæller',
     ed_show_expired: 'Advarsel om udløbet garanti',
     ed_low_threshold: 'Grænse for lavt blækniveau (%)',
@@ -2005,6 +2017,7 @@ var HpI18n = {
     ed_show_inks: 'Bläcknivåer',
     ed_show_parts: 'Slitdelar',
     ed_show_alerts: 'Varningar',
+    ed_show_reports: 'IPP-informationsmeddelanden',
     ed_show_stats: 'Sidräknare',
     ed_show_expired: 'Varning om utgången garanti',
     ed_low_threshold: 'Gräns för låg bläcknivå (%)',
@@ -2161,6 +2174,7 @@ var HpI18n = {
     ed_show_inks: 'Нива на мастилото',
     ed_show_parts: 'Консумативни части',
     ed_show_alerts: 'Известия',
+    ed_show_reports: 'Информационни съобщения IPP',
     ed_show_stats: 'Брояч на страници',
     ed_show_expired: 'Предупреждение за изтекла гаранция',
     ed_low_threshold: 'Праг за ниско ниво на мастилото (%)',
@@ -2324,6 +2338,7 @@ var HpI18n = {
     ed_show_inks: 'Уровни чернил',
     ed_show_parts: 'Расходные детали',
     ed_show_alerts: 'Оповещения',
+    ed_show_reports: 'Информационные сообщения IPP',
     ed_show_stats: 'Счётчик страниц',
     ed_show_expired: 'Предупреждение об истёкшей гарантии',
     ed_low_threshold: 'Порог низкого уровня чернил (%)',
@@ -2488,6 +2503,7 @@ var HpI18n = {
     ed_show_inks: 'Рівні чорнила',
     ed_show_parts: 'Витратні деталі',
     ed_show_alerts: 'Сповіщення',
+    ed_show_reports: 'Інформаційні повідомлення IPP',
     ed_show_stats: 'Лічильник сторінок',
     ed_show_expired: 'Попередження про закінчення гарантії',
     ed_low_threshold: 'Поріг низького рівня чорнила (%)',
@@ -2644,6 +2660,7 @@ var HpI18n = {
     ed_show_inks: 'Tintaszintek',
     ed_show_parts: 'Kopóalkatrészek',
     ed_show_alerts: 'Értesítések',
+    ed_show_reports: 'IPP tájékoztató üzenetek',
     ed_show_stats: 'Oldalszámláló',
     ed_show_expired: 'Lejárt garancia figyelmeztetés',
     ed_low_threshold: 'Alacsony tintaszint küszöbe (%)',
@@ -2800,6 +2817,7 @@ var HpI18n = {
     ed_show_inks: 'Hladiny atramentu',
     ed_show_parts: 'Spotrebné diely',
     ed_show_alerts: 'Upozornenia',
+    ed_show_reports: 'Informačné správy IPP',
     ed_show_stats: 'Počítadlo strán',
     ed_show_expired: 'Upozornenie na vypršanú záruku',
     ed_low_threshold: 'Prah nízkej hladiny atramentu (%)',
@@ -2956,6 +2974,7 @@ var HpI18n = {
     ed_show_inks: 'Hladiny inkoustu',
     ed_show_parts: 'Spotřební díly',
     ed_show_alerts: 'Upozornění',
+    ed_show_reports: 'Informační zprávy IPP',
     ed_show_stats: 'Počítadlo stránek',
     ed_show_expired: 'Upozornění na vypršelou záruku',
     ed_low_threshold: 'Práh nízké hladiny inkoustu (%)',
@@ -3112,6 +3131,7 @@ var HpI18n = {
     ed_show_inks: 'Ravni črnila',
     ed_show_parts: 'Obrabni deli',
     ed_show_alerts: 'Opozorila',
+    ed_show_reports: 'Informativna sporočila IPP',
     ed_show_stats: 'Števec strani',
     ed_show_expired: 'Opozorilo o potekli garanciji',
     ed_low_threshold: 'Prag nizke ravni črnila (%)',
@@ -3268,6 +3288,7 @@ var HpI18n = {
     ed_show_inks: 'Tintes līmeņi',
     ed_show_parts: 'Nolietojamās daļas',
     ed_show_alerts: 'Brīdinājumi',
+    ed_show_reports: 'IPP informatīvie ziņojumi',
     ed_show_stats: 'Lapu skaitītājs',
     ed_show_expired: 'Brīdinājums par beigušos garantiju',
     ed_low_threshold: 'Zema tintes līmeņa slieksnis (%)',
@@ -3424,6 +3445,7 @@ var HpI18n = {
     ed_show_inks: 'Στάθμες μελανιού',
     ed_show_parts: 'Αναλώσιμα εξαρτήματα',
     ed_show_alerts: 'Ειδοποιήσεις',
+    ed_show_reports: 'Ενημερωτικά μηνύματα IPP',
     ed_show_stats: 'Μετρητής σελίδων',
     ed_show_expired: 'Ειδοποίηση λήξης εγγύησης',
     ed_low_threshold: 'Όριο χαμηλής στάθμης μελανιού (%)',
@@ -4345,9 +4367,21 @@ function hpShortDuration(locale, days) {
   }
 }
 
+// `ignore_reasons`: IPP state reasons to leave out, by name with or without their -error / -warning / -report suffix
+// (`wifi-not-configured` and `wifi-not-configured-report` alike); a list, or one string with commas.
+function hpIgnoredReasons(list) {
+  var items = Array.isArray(list) ? list : String(list || '').split(',');
+  var out = {};
+  items.forEach((x) => {
+    var k = String(x).trim().toLowerCase().replace(/-(error|warning|report)$/, '');
+    if (k) out[k] = true;
+  });
+  return out;
+}
+
 var HP_DEFAULTS = {
   show_title: true, show_image: true, show_inks: true, show_alerts: true, show_stats: true, show_eprint: true, show_expired: false, show_forecast: true, show_scan: true, low_threshold: 15, picture: 'auto',
-  illustration: true, illustration_theme: 'auto',
+  show_reports: false, illustration: true, illustration_theme: 'auto',
 };
 
 // ── Shadow DOM patching ───────────────────────────────────────────────────────
@@ -4790,10 +4824,15 @@ class PrinterCard extends HTMLElement {
     var reasons = Array.isArray(raw) ? raw : String(raw || '').split(',');
     var seen = {};
     var out = [];
+    var ignored = hpIgnoredReasons(this._config.ignore_reasons);
     reasons.map((x) => String(x).trim()).forEach((reason) => {
       if (!reason || reason === 'none' || reason === 'None') return;
       var level = /-error$/.test(reason) ? 'error' : (/-report$/.test(reason) ? 'info' : 'warn');
       var base = reason.replace(/-(error|warning|report)$/, '');
+      // Reasons expected on this printer (`ignore_reasons`), and the informational `-report` ones (RFC 8011: the
+      // least severe level, nothing to act on) unless `show_reports` asks for them.
+      if (ignored[base.toLowerCase()]) return;
+      if (level === 'info' && !this._config.show_reports) return;
       // Ink levels are already covered by the cartridges.
       if (/^(marker-supply-low|marker-supply-empty|toner-low|toner-empty|marker-waste)/.test(base) && r.inks.length) return;
       var key = `ipp_${base.replace(/-/g, '_')}`;
@@ -4801,7 +4840,7 @@ class PrinterCard extends HTMLElement {
       if (text === key) text = base.replace(/-/g, ' ').replace(/^./, (ch) => ch.toUpperCase());
       if (seen[text]) return;
       seen[text] = true;
-      out.push({ level: level, icon: /media|paper|tray/.test(base) ? 'mdi:paper-roll-outline' : 'mdi:alert', entity: r.ipp, text: text });
+      out.push({ level: level, report: level === 'info', icon: level === 'info' ? 'mdi:information-outline' : (/media|paper|tray/.test(base) ? 'mdi:paper-roll-outline' : 'mdi:alert'), entity: r.ipp, text: text });
     });
     return out;
   }
@@ -5064,9 +5103,13 @@ class PrinterCard extends HTMLElement {
     var alertsHtml = '';
     if (!offline && c.show_alerts) {
       alertsHtml = '<div class="section"><div class="section-title"><ha-icon icon="mdi:alert-outline"></ha-icon>' + this._t('alerts') + '</div>' +
-        (alerts.length
-          ? `<div class="alerts">${alerts.map((a) => `<div class="alert ${a.level}"><ha-icon icon="${a.icon}"></ha-icon><span>${hpEsc(hpCap(a.text))}</span></div>`).join('')}</div>`
+        // Informational IPP reports (`show_reports`) as muted lines after the real alerts, never instead of them.
+        (alerts.some((a) => !a.report)
+          ? `<div class="alerts">${alerts.filter((a) => !a.report).map((a) => `<div class="alert ${a.level}"><ha-icon icon="${a.icon}"></ha-icon><span>${hpEsc(hpCap(a.text))}</span></div>`).join('')}</div>`
           : `<div class="alert ok"><ha-icon icon="mdi:check-circle"></ha-icon><span>${this._t('no_alerts')}</span></div>`) +
+        (alerts.some((a) => a.report)
+          ? `<div class="alerts reports">${alerts.filter((a) => a.report).map((a) => `<div class="alert info report"><ha-icon icon="${a.icon}"></ha-icon><span>${hpEsc(hpCap(a.text))}</span></div>`).join('')}</div>`
+          : '') +
       '</div>';
     }
 
@@ -5316,6 +5359,7 @@ class PrinterCard extends HTMLElement {
       '.alert.error { background: color-mix(in srgb, var(--error-color, #db4437) 12%, transparent); } .alert.error ha-icon { color: var(--error-color, #db4437); }' +
       '.alert.warn { background: color-mix(in srgb, var(--warning-color, #ffa600) 12%, transparent); } .alert.warn ha-icon { color: var(--warning-color, #ffa600); }' +
       '.alert.info ha-icon { color: var(--secondary-text-color); }' +
+      '.alerts.reports { margin-top: 6px; } .alert.report { color: var(--secondary-text-color); padding-top: 2px; padding-bottom: 2px; }' +
       '.alert.ok { color: var(--secondary-text-color); } .alert.ok ha-icon { color: var(--success-color, #43a047); }' +
       // Scan section: segmented choices and buttons tinted, never filled (like the other ha-* cards).
       '.scan-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; flex-wrap: wrap; }' +
@@ -5503,7 +5547,8 @@ class PrinterMiniCard extends PrinterCard {
       });
     }
     if (c.show_alerts) {
-      v.alerts.filter((a) => !a.ink).forEach((a) => {
+      // Informational IPP reports stay off the mini card: its chips are for things to act on.
+      v.alerts.filter((a) => !a.ink && !a.report).forEach((a) => {
         var txt = hpEsc(hpCap(a.text));
         out.push(`<span class="r ${a.level}" title="${txt}"${this._ent(a.entity)}><ha-icon icon="${a.icon}"></ha-icon><span class="tx">${txt}</span></span>`);
       });
@@ -5548,6 +5593,7 @@ class PrinterCardEditor extends HTMLElement {
           { name: 'show_inks', selector: { boolean: {} } },
           { name: 'show_parts', selector: { boolean: {} } },
           { name: 'show_alerts', selector: { boolean: {} } },
+          { name: 'show_reports', selector: { boolean: {} } },
           { name: 'show_stats', selector: { boolean: {} } },
           { name: 'show_eprint', selector: { boolean: {} } },
           { name: 'show_forecast', selector: { boolean: {} } },
