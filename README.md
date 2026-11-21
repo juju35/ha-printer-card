@@ -174,6 +174,8 @@ entities:
 | `show_inks` | ❌ | `true` | Show the ink or toner levels |
 | `show_parts` | ❌ | Value of `show_inks` | Show the Brother parts (drum, belt unit, fuser, paper feed kits) by remaining life |
 | `show_alerts` | ❌ | `true` | Show the alerts |
+| `show_reports` | ❌ | `false` | Also show the printer's informational IPP state reasons (those ending in `-report`, e.g. `wifi-not-configured-report`), as muted lines under the alerts of the full card; never as warnings, nor on the mini card's chips |
+| `ignore_reasons` | ❌ | — | YAML only. IPP state reasons expected on this printer, left out of the alerts, with or without their `-error` / `-warning` / `-report` suffix, e.g. `[wifi-not-configured, door-open]` |
 | `show_stats` | ❌ | `true` | Show the total page counter |
 | `show_eprint` | ❌ | `true` | Show the ePrint status (HP Printer integration only) |
 | `show_forecast` | ❌ | `true` | Show under each tank when it is forecast to be empty: the drop per day since the last refill (a rise of 20 points or more), over at least a week of the last 90 days of the recorder's daily statistics; nothing for a level that doesn't go down |

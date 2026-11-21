@@ -113,6 +113,37 @@ for (const [label, first] of [["absent", undefined], ["unavailable", st("unavail
   });
 }
 
+// IPP "-report" reasons are information (RFC 8011), not warnings (#98).
+const IPP_REPORT = st("idle", { uri_supported: "ipp://printer.local/ipp/print", state_reason: "wifi-not-configured-report" });
+
+test("an IPP -report reason is not a warning by default, on either card", () => {
+  const hass = withIpp(mockHass(), IPP_REPORT);
+  const card = render(hass);
+  assert.equal(card._alerts(card._resolve(), "ready").length, 0);
+  assert.doesNotMatch(card.shadowRoot.innerHTML, /Wifi not configured/i);
+  assert.match(card.shadowRoot.innerHTML, /No alerts/);
+  const mini = render(hass, { device_id: "p", show_reports: true }, PrinterMiniCard);
+  assert.doesNotMatch(mini._chips(mini._resolve(), mini._view(mini._resolve())), /Wifi not configured/i);
+});
+
+test("show_reports shows an IPP -report reason as a muted info line, after No alerts", () => {
+  const card = render(withIpp(mockHass(), IPP_REPORT), { device_id: "p", show_reports: true });
+  const html = card.shadowRoot.innerHTML;
+  assert.match(html, /No alerts/);
+  assert.match(html, /class="alert info report"[\s\S]*Wifi not configured/i);
+  assert.doesNotMatch(html, /class="chip warn"/);
+});
+
+test("ignore_reasons hides a reason with or without its suffix", () => {
+  const hass = withIpp(mockHass(), st("idle", { uri_supported: "ipp://printer.local/ipp/print", state_reason: ["door-open-warning", "media-empty-error"] }));
+  for (const ignore of [["door-open"], ["door-open-warning"], "Door-Open, foo"]) {
+    const card = render(hass, { device_id: "p", ignore_reasons: ignore });
+    const texts = card._alerts(card._resolve(), "ready").map((a) => a.text);
+    assert.equal(texts.length, 1, String(ignore));
+    assert.match(texts[0], /Paper tray empty/);
+  }
+});
+
 // Two printers of the same model: the IPP sensor must belong to the right unit.
 test("the IPP sensor of another printer of the same model is not attached", () => {
   const hass = withIpp(mockHass(), IPP_READY);
