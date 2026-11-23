@@ -71,10 +71,10 @@ With [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) and a printer that sc
 
 | Integration | Printers | What the card shows |
 |---|---|---|
-| [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status (kept while the printer is off), ink or toner levels, pages remaining, cartridge alerts (taken out, problem), the printer's own message when it stops (out of paper, jam, open door), HP cloud status, page counter |
-| [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
-| [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
-| [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="16"> [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status (kept while the printer is off), ink or toner levels, pages remaining, cartridge alerts (taken out, problem), the printer's own message when it stops (out of paper, jam, open door), HP cloud status, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="16"> [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="" width="16"> [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/ipp.png" alt="" width="16"> [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
 
 With an HP Printer integration or Brother and IPP both set up for the same printer, the card uses HP Printer or Brother for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts. Epson and Canon printers have no dedicated Home Assistant integration: they go through IPP.
 
