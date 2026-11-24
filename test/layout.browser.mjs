@@ -3,12 +3,11 @@
 // whose columns keep min-width: auto), directly or wrapped in a <div>, in every view and state, offline included.
 // Run with `npm run test:browser` (needs `npx playwright install chromium`); CI runs it in the screenshots job.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { after, before, test } from "node:test";
-import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { source } from "./source.mjs";
 
-const SRC = readFileSync(fileURLToPath(new URL("../src/printer-card.js", import.meta.url)), "utf8");
+const SRC = source;
 const STUBS = `
 customElements.define("ha-card", class extends HTMLElement {
   constructor() { super(); this.attachShadow({ mode: "open" }).innerHTML = "<style>:host{display:block;overflow:hidden}</style><slot></slot>"; }
