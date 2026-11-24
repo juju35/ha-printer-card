@@ -3,11 +3,10 @@
 // icons, the illustration and the printer's picture stay the same nodes, so nothing reloads or restarts) and the card keeps its height on
 // every frame, so that the dashboard does not move.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { after, before, test } from "node:test";
 import { chromium } from "playwright";
+import { source } from "./source.mjs";
 
-const source = readFileSync(new URL("../src/printer-card.js", import.meta.url), "utf8");
 
 let browser;
 before(async () => {
