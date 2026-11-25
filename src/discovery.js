@@ -151,7 +151,7 @@ export function hpStripPrefixes(name, prefixes) {
 
 // Color of an IPP marker: from its name, else from its entity ID. The entity ID wins when it names a variant of the
 // same color (a marker reported as plain "Magenta" or "Gray" whose ID reads photo_magenta or light_gray, as on a
-// Canon PRO-100: juju35/ha-printer-card#92).
+// Canon PRO-100: juju35/ha-printer-scanner-card#92).
 export function hpIppInkColor(own, objectId) {
   var byName = hpInkColor(own, true);
   var byId = hpInkColor(objectId);

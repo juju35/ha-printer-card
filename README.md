@@ -1,20 +1,20 @@
-# ha-printer-card
+# ha-printer-scanner-card
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-Custom-41BDF5.svg)](https://www.home-assistant.io/integrations/marketplace/)
-[![HACS Validation](https://github.com/juju35/ha-printer-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/hacs.yml)
-[![Validate](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/validate.yml)
-[![Lint](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-printer-card/actions/workflows/lint.yml)
-[![Release](https://img.shields.io/github/v/release/juju35/ha-printer-card)](https://github.com/juju35/ha-printer-card/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/juju35/ha-printer-card/blob/main/LICENSE)
+[![HACS Validation](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/hacs.yml/badge.svg)](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/hacs.yml)
+[![Validate](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/validate.yml/badge.svg)](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/validate.yml)
+[![Lint](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/lint.yml/badge.svg)](https://github.com/juju35/ha-printer-scanner-card/actions/workflows/lint.yml)
+[![Release](https://img.shields.io/github/v/release/juju35/ha-printer-scanner-card)](https://github.com/juju35/ha-printer-scanner-card/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/juju35/ha-printer-scanner-card/blob/main/LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/julienstep9)
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/icon.svg" alt="Printer Card" width="120"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/icon.svg" alt="Printer Card" width="120"></p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="HP" height="56">&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="Brother" height="28">&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="Epson" height="28">&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="Canon" height="28">
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/hp.svg" alt="HP" height="56">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/brother.svg" alt="Brother" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/epson.svg" alt="Epson" height="28">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/canon.svg" alt="Canon" height="28">
 </p>
 
 Custom Lovelace card for printers in Home Assistant: **HP** printers with the [HP Printer](https://github.com/elad-bar/ha-hpprinter) integration (`hpprinter`), **Brother** printers with the core [Brother](https://www.home-assistant.io/integrations/brother/) integration, and **any IPP printer** (Epson, Canon, Brother, Xerox…) through the core [IPP](https://www.home-assistant.io/integrations/ipp/) integration. HP, Brother, Epson and Canon printers get their brand logo and a drawing of their range.
@@ -25,12 +25,12 @@ When the printer is off, the card says it's **offline** and keeps showing the in
 
 Pick the printer, the card finds all its entities by itself. A compact **Printer Mini Card** shows the same printer on two lines, and its detail button opens the full card in place.
 
-[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
+[![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-scanner-card&category=plugin)
 
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="HP" height="20"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="Brother" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="Epson" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="Canon" height="14"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/hp.svg" alt="HP" height="20"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/brother.svg" alt="Brother" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/epson.svg" alt="Epson" height="14"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/canon.svg" alt="Canon" height="14"> |
 |---|---|---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png" alt="HP printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png" alt="Brother printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson.png" alt="Epson printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png" alt="Canon printer card" width="400"> |
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png" alt="HP printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp.png" alt="Brother printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson.png" alt="Epson printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png" alt="Canon printer mini card" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/card.png" alt="HP printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/ipp.png" alt="Brother printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson.png" alt="Epson printer card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon.png" alt="Canon printer card" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-card.png" alt="HP printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-ipp.png" alt="Brother printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-epson.png" alt="Epson printer mini card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-canon.png" alt="Canon printer mini card" width="400"> |
 
 ## Features
 
@@ -71,10 +71,10 @@ With [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) and a printer that sc
 
 | Integration | Printers | What the card shows |
 |---|---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="16"> [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status (kept while the printer is off), ink or toner levels, pages remaining, cartridge alerts (taken out, problem), the printer's own message when it stops (out of paper, jam, open door), HP cloud status, page counter |
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="16"> [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="" width="16"> [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/ipp.png" alt="" width="16"> [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/hp.svg" alt="" width="16"> [HP Printer (ha-hp)](https://github.com/juju35/ha-hp) (Marketplace, recommended for HP) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status (kept while the printer is off), ink or toner levels, pages remaining, cartridge alerts (taken out, problem), the printer's own message when it stops (out of paper, jam, open door), HP cloud status, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/hp.svg" alt="" width="16"> [HP Printer](https://github.com/elad-bar/ha-hpprinter) (Marketplace) | HP OfficeJet, LaserJet, DeskJet / ENVY, Smart Tank | Status, ink or toner levels per cartridge, cartridge and printhead alerts, ePrint status, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/brother.svg" alt="" width="16"> [Brother](https://www.home-assistant.io/integrations/brother/) (built in) | Brother laser and inkjet printers (SNMP) | Status (printer status, else the raw status text), ink or toner levels, page counter |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/ipp.png" alt="" width="16"> [IPP](https://www.home-assistant.io/integrations/ipp/) (built in) | Any brand: Epson, Canon, Brother… | Status, ink or toner levels, paper and cover alerts (empty tray, jam, open cover…) |
 
 With an HP Printer integration or Brother and IPP both set up for the same printer, the card uses HP Printer or Brother for the status and the inks and picks up the IPP printer sensor by itself for the paper and cover alerts. Epson and Canon printers have no dedicated Home Assistant integration: they go through IPP.
 
@@ -89,12 +89,12 @@ With an HP Printer integration or Brother and IPP both set up for the same print
 
 Click the button below to add the repository directly:
 
-[![Add to the Marketplace](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-card&category=plugin)
+[![Add to the Marketplace](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-printer-scanner-card&category=plugin)
 
 Or manually:
 
 1. Open **Settings → Marketplace → Add from link** (top right; this needs a GitHub account connected)
-2. Add `https://github.com/juju35/ha-printer-card` — Type: **Dashboard**
+2. Add `https://github.com/juju35/ha-printer-scanner-card` — Type: **Dashboard**
 3. Open **Printer Card** and click **Install**
 4. Clear your browser cache and refresh
 
@@ -102,7 +102,7 @@ The Marketplace registers the dashboard resource for you.
 
 ### Manual
 
-1. Download `printer-card.js` and the `printer-card.i18n.*.js` translation files from the [latest release](https://github.com/juju35/ha-printer-card/releases/latest)
+1. Download `printer-card.js` and the `printer-card.i18n.*.js` translation files from the [latest release](https://github.com/juju35/ha-printer-scanner-card/releases/latest)
 2. Copy them all to `/config/www/` (without the translation files, the cards show in English)
 3. Go to **Settings → Dashboards → Resources** → Add resource:
    - URL: `/local/printer-card.js`
@@ -222,9 +222,9 @@ Cartridges are always found from the printer's devices.
 
 The drawings by brand:
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-generic.svg" alt="Generic printer picture" width="170"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510">&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-generic.svg" alt="Generic printer picture" width="170"></p>
 
 The control panel of each picture lights up in the status color.
 
@@ -249,113 +249,113 @@ HP OfficeJet Pro 9010 printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing.gif" alt="HP printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-mini.gif" alt="HP mini card printing animation" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-dark.gif" alt="HP printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/printing-mini-dark.gif" alt="HP mini card printing animation dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/printing.gif" alt="HP printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/printing-mini.gif" alt="HP mini card printing animation" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/printing-dark.gif" alt="HP printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/printing-mini-dark.gif" alt="HP mini card printing animation dark" width="400"> |
 
-### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/hp.svg" alt="" width="24"> HP
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/hp.svg" alt="" width="24"> HP
 
 OfficeJet Pro 9010, set up with the HP Printer integration (and IPP for the paper alerts):
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card.png" alt="card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card.png" alt="mini card" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/card-dark.png" alt="card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-card-dark.png" alt="mini card dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/card.png" alt="card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-card.png" alt="mini card" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/card-dark.png" alt="card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-card-dark.png" alt="mini card dark" width="400"> |
 
 Printer turned off: the picture turns grey and the card says *Offline* with the last time it was seen, with the ink levels still known:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/offline.png" alt="offline" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-offline.png" alt="mini card offline" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/offline-dark.png" alt="offline dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-offline-dark.png" alt="mini card offline dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/offline.png" alt="offline" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-offline.png" alt="mini card offline" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/offline-dark.png" alt="offline dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-offline-dark.png" alt="mini card offline dark" width="400"> |
 
 Mini card zoomed in with its detail button (top right, click it again or anywhere outside the card to go back):
 
 | Light | Dark |
 |---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom.png" alt="mini card full view" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-zoom-dark.png" alt="mini card full view dark" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-zoom.png" alt="mini card full view" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-zoom-dark.png" alt="mini card full view dark" width="400"> |
 
 Scanning with [HP Printer (ha-hp)](https://github.com/juju35/ha-hp): source, format, resolution and color mode, **Scan** / **Add a page**, then the last scan with its **Download** link:
 
 | Light | Dark |
 |---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan.png" alt="scan section" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-dark.png" alt="scan section dark" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan.png" alt="scan section" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan-dark.png" alt="scan section dark" width="400"> |
 
 While it scans, the buttons wait and the Scan button turns to a spinner; an error from the integration (feeder empty, scanner busy…) shows in the section:
 
 | | Scanning | Error |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy.gif" alt="scan in progress" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error.png" alt="scan error" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-busy-dark.gif" alt="scan in progress dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/scan-error-dark.png" alt="scan error dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan-busy.gif" alt="scan in progress" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan-error.png" alt="scan error" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan-busy-dark.gif" alt="scan in progress dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/scan-error-dark.png" alt="scan error dark" width="400"> |
 
 Drawn HP ranges:
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-hp.svg" alt="HP printer pictures" width="680"></p>
 
-### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/brother.svg" alt="" height="16"> Brother
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/brother.svg" alt="" height="16"> Brother
 
 HL-L2350DW laser printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp.png" alt="brother card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp.png" alt="brother mini card" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/ipp-dark.png" alt="brother card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-ipp-dark.png" alt="brother mini card dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/ipp.png" alt="brother card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-ipp.png" alt="brother mini card" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/ipp-dark.png" alt="brother card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-ipp-dark.png" alt="brother mini card dark" width="400"> |
 
 Drawn Brother ranges:
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-brother.svg" alt="Brother printer pictures" width="340"></p>
 
 The laser printer printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing.gif" alt="brother printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-mini.gif" alt="brother mini card printing animation" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-dark.gif" alt="brother printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/brother-printing-mini-dark.gif" alt="brother mini card printing animation dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/brother-printing.gif" alt="brother printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/brother-printing-mini.gif" alt="brother mini card printing animation" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/brother-printing-dark.gif" alt="brother printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/brother-printing-mini-dark.gif" alt="brother mini card printing animation dark" width="400"> |
 
-### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/epson.svg" alt="" height="16"> Epson
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/epson.svg" alt="" height="16"> Epson
 
 EcoTank ET-2850 ink tank printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson.png" alt="epson card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson.png" alt="epson mini card" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-dark.png" alt="epson card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-epson-dark.png" alt="epson mini card dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson.png" alt="epson card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-epson.png" alt="epson mini card" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson-dark.png" alt="epson card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-epson-dark.png" alt="epson mini card dark" width="400"> |
 
 Drawn Epson ranges:
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-epson.svg" alt="Epson printer pictures" width="340"></p>
 
 The EcoTank printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing.gif" alt="epson printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-mini.gif" alt="epson mini card printing animation" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-dark.gif" alt="epson printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/epson-printing-mini-dark.gif" alt="epson mini card printing animation dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson-printing.gif" alt="epson printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson-printing-mini.gif" alt="epson mini card printing animation" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson-printing-dark.gif" alt="epson printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/epson-printing-mini-dark.gif" alt="epson mini card printing animation dark" width="400"> |
 
-### <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/canon.svg" alt="" height="16"> Canon
+### <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/canon.svg" alt="" height="16"> Canon
 
 PIXMA G650 MegaTank printer, set up with the IPP integration:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon.png" alt="canon card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon.png" alt="canon mini card" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-dark.png" alt="canon card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/mini-canon-dark.png" alt="canon mini card dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon.png" alt="canon card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-canon.png" alt="canon mini card" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon-dark.png" alt="canon card dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/mini-canon-dark.png" alt="canon mini card dark" width="400"> |
 
 PRO-100 photo printer and its eight inks (two photo inks, two grays), on two rows:
 
 | Light | Dark |
 |---|---|
-| <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/photo.png" alt="canon photo printer card with eight inks" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/photo-dark.png" alt="canon photo printer card with eight inks dark" width="400"> |
+| <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/photo.png" alt="canon photo printer card with eight inks" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/photo-dark.png" alt="canon photo printer card with eight inks dark" width="400"> |
 
 Drawn Canon ranges:
 
-<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/images/models-canon.svg" alt="Canon printer pictures" width="510"></p>
 
 The MegaTank printing:
 
 | | Card | Mini card |
 |---|---|---|
-| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing.gif" alt="canon printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-mini.gif" alt="canon mini card printing animation" width="400"> |
-| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-dark.gif" alt="canon printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-card/main/screenshots/canon-printing-mini-dark.gif" alt="canon mini card printing animation dark" width="400"> |
+| Light | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon-printing.gif" alt="canon printing animation" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon-printing-mini.gif" alt="canon mini card printing animation" width="400"> |
+| Dark | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon-printing-dark.gif" alt="canon printing animation dark" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-printer-scanner-card/main/screenshots/canon-printing-mini-dark.gif" alt="canon mini card printing animation dark" width="400"> |
 
 ## How it works
 
@@ -384,7 +384,7 @@ The source is split into ES modules under `src/` (entry `src/index.js`); `npm ru
 ### Releasing
 
 1. Bump `version` in `package.json`
-2. Add a `## <version>` section at the top of [CHANGELOG.md](https://github.com/juju35/ha-printer-card/blob/main/CHANGELOG.md)
+2. Add a `## <version>` section at the top of [CHANGELOG.md](https://github.com/juju35/ha-printer-scanner-card/blob/main/CHANGELOG.md)
 3. Push to `main`: the **Release** workflow builds the card, creates the tag and the GitHub release with the changelog section as notes, and attaches `printer-card.js`
 
 ## Translations
@@ -420,7 +420,7 @@ Contributions for additional languages are welcome!
 
 ## License
 
-[MIT](https://github.com/juju35/ha-printer-card/blob/main/LICENSE)
+[MIT](https://github.com/juju35/ha-printer-scanner-card/blob/main/LICENSE)
 
 ## Support
 

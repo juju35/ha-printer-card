@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.17.4 - 2026-11-26
+
+### Fixes
+- The repository is renamed `juju35/ha-printer-scanner-card`: the card editor's documentation link points to the new address. Card types (`custom:printer-card`, `custom:printer-mini-card`) and the `printer-card.js` file are unchanged, so existing dashboards keep working.
+
 ## 2.17.3 - 2026-11-24
 
 ### Maintenance

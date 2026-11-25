@@ -51,7 +51,7 @@ test("every cartridge color has a label in every language and a fill", () => {
   }
 });
 
-// Canon PIXMA PRO-100 through IPP (juju35/ha-printer-card#86): eight inks, two photo ones and two grays.
+// Canon PIXMA PRO-100 through IPP (juju35/ha-printer-scanner-card#86): eight inks, two photo ones and two grays.
 const PRO100 = [
   ["cyan", "Cyan(C)", "40"],
   ["black_bk", "Black(BK)", "80"],
@@ -117,7 +117,7 @@ test("two blacks of a Canon PIXMA (PGBK and BK) are told apart by their code, al
   assert.match(render(hass), /noire BK/);
 });
 
-// juju35/ha-printer-card#92: the PRO-100 reports its photo magenta and light gray as plain "Magenta" and "Gray",
+// juju35/ha-printer-scanner-card#92: the PRO-100 reports its photo magenta and light gray as plain "Magenta" and "Gray",
 // only their entity IDs tell them apart; the device was renamed, so the friendly names no longer carry its original name.
 test("Canon PRO-100: a marker named like its plain color takes the variant its entity ID names", () => {
   const hass = canonHass([
