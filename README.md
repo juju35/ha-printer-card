@@ -100,6 +100,15 @@ Or manually:
 
 The Marketplace registers the dashboard resource for you.
 
+### Upgrading from `ha-printer-card`
+
+The repository was renamed from `ha-printer-card` to `ha-printer-scanner-card` in 2.17.4, so the Marketplace now installs the card in `/local/community/ha-printer-scanner-card/`. If your cards show a configuration error (`Custom element doesn't exist: printer-card`) after the update, open **Settings → Dashboards → ⋮ → Resources** and change the resource URL:
+
+- from `/local/community/ha-printer-card/printer-card.js`
+- to `/local/community/ha-printer-scanner-card/printer-card.js`
+
+Then clear your browser cache and refresh. The card types (`custom:printer-card`, `custom:printer-mini-card`) are unchanged: your dashboards need no other edit.
+
 ### Manual
 
 1. Download `printer-card.js` and the `printer-card.i18n.*.js` translation files from the [latest release](https://github.com/juju35/ha-printer-scanner-card/releases/latest)
