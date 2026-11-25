@@ -3,7 +3,10 @@
 ## 2.17.4 - 2026-11-26
 
 ### Fixes
-- The repository is renamed `juju35/ha-printer-scanner-card`: the card editor's documentation link points to the new address. Card types (`custom:printer-card`, `custom:printer-mini-card`) and the `printer-card.js` file are unchanged, so existing dashboards keep working.
+- The repository is renamed `juju35/ha-printer-scanner-card`: the card editor's documentation link points to the new address. Card types (`custom:printer-card`, `custom:printer-mini-card`) and the `printer-card.js` file are unchanged: only the resource path moves (see below).
+
+### Upgrade note
+- The Marketplace now installs the card in `/local/community/ha-printer-scanner-card/`. If a card shows a configuration error (`Custom element doesn't exist: printer-card`), change the dashboard resource (**Settings → Dashboards → ⋮ → Resources**) from `/local/community/ha-printer-card/printer-card.js` to `/local/community/ha-printer-scanner-card/printer-card.js`, then clear the browser cache.
 
 ## 2.17.3 - 2026-11-24
 
