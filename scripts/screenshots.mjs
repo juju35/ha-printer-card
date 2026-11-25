@@ -251,7 +251,7 @@ for (const [id, state, attributes] of [
   canon.states[id] = { entity_id: id, state, last_changed: new Date(NOW).toISOString(), attributes };
 }
 
-// Mock IPP-only Canon photo printer (eight inks, two photo ones and two grays: juju35/ha-printer-card#86), on two
+// Mock IPP-only Canon photo printer (eight inks, two photo ones and two grays: juju35/ha-printer-scanner-card#86), on two
 // rows of four tanks.
 const photo = { states: { ...states }, entities: { ...entities },
   devices: { ...devices, pro: { id: "pro", name: "Canon PRO-100 series", manufacturer: "Canon", model: "PRO-100 series" } } };

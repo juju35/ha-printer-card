@@ -154,7 +154,7 @@ if (!customElements.get('printer-card')) {
     name: 'Printer Card',
     description: 'Status, ink or toner levels and alerts for printers (HP Printer and IPP integrations)',
     preview: true,
-    documentationURL: 'https://github.com/juju35/ha-printer-card',
+    documentationURL: 'https://github.com/juju35/ha-printer-scanner-card',
   });
 }
 if (!customElements.get('printer-mini-card')) {
@@ -164,7 +164,7 @@ if (!customElements.get('printer-mini-card')) {
     name: 'Printer Mini Card',
     description: 'Compact printer card: status, ink or toner levels and alerts on two lines, with a button showing the full card',
     preview: true,
-    documentationURL: 'https://github.com/juju35/ha-printer-card',
+    documentationURL: 'https://github.com/juju35/ha-printer-scanner-card',
   });
 }
 
