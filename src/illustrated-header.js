@@ -77,6 +77,12 @@ export var HP_BANNER_STYLES =
   '.bst .tx { min-width: 0; overflow: hidden; text-overflow: ellipsis; }' +
   '.titles.pill-dot .bst { padding: 0; width: 16px; height: 16px; justify-content: center; } .titles.pill-dot .bst .tx { display: none; }' +
   '@container printer-card (max-width: 200px) { .bst { padding: 0; width: 16px; height: 16px; justify-content: center; } .bst .tx { display: none; } }' +
+  // Power button (power_entity): frosted like the detail button, in the top right corner, left of it when both show.
+  '.banner > .pw { position: absolute; z-index: 2; top: 5px; right: 5px; color: #33506b; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.6); }' +
+  '.banner > .pw:has(+ .zoom) { right: 33px; }' +
+  '.banner > .pw.on { color: #2e7d32; background: rgba(255,255,255,.75); }' +
+  '.banner.night > .pw { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }' +
+  '.banner.night > .pw.on { color: #81c784; }' +
   // Detail button (mini card): a small frosted round button in the banner's top right corner.
   '.banner > .zoom { position: absolute; z-index: 2; top: 5px; right: 5px; width: 24px; height: 24px; margin: 0; color: #33506b;' +
     ' background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }' +
@@ -85,6 +91,7 @@ export var HP_BANNER_STYLES =
   '.banner.night > .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }' +
   // Too narrow for the printer beside the title: the wall alone stays.
   '@container printer-card (max-width: 230px) { .banner .scene, .banner .pic { display: none; } .banner .header { right: 30px; } }' +
+  '@container printer-card (max-width: 230px) { .banner:has(> .pw + .zoom) .header { right: 58px; } }' +
   '.below { display: flex; flex-direction: column; gap: 4px; }';
 
 // A click inside a dialog (more-info opened from the card, say) is not a click outside the card.

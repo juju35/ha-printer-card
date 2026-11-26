@@ -131,7 +131,7 @@ export class PrinterMiniCard extends PrinterCard {
           (rs ? `<div class="rs">${rs}</div>` : '') + '</div>' : ''), 'mini');
       } else this._paint(v, '<div class="hd"><div class="header">' + v.logoHtml +
           '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' +
-          `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span></div></div>` + this._corner() +
+          `<span class="st" role="img" title="${label}" aria-label="${label}"><span class="dot"></span><span class="tx">${label}</span></span></div></div>` + this._powerHtml() + this._corner() +
         '</div></div>' +
         '<div class="content">' + v.imageHtml + '<div class="info">' +
           (seen ? `<div class="line"><ha-icon icon="mdi:clock-outline"></ha-icon><span>${seen}</span></div>` : '') +

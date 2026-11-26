@@ -192,6 +192,7 @@ entities:
 | `show_expired` | ❌ | `false` | Also alert when a cartridge's warranty date has passed |
 | `low_threshold` | ❌ | `15` | Ink level (%) at or below which a cartridge is flagged as low; at 5 % or less it is nearly empty. Also the remaining life (%) at which a Brother part (drum, belt, fuser, paper feed kit) raises an alert |
 | `admin_url` | ❌ | Detected | Page opened when clicking the printer picture, e.g. `http://printer.local`. By default, the device's configuration URL or the address of its IPP sensor |
+| `power_entity` | ❌ | — | Switch (smart plug, Zigbee or other), light or input boolean that powers the printer: adds a round power button in the header, on both cards, shown even while the printer is off or offline so it can be turned back on from the card. Turning it on is immediate; turning it off asks for a confirmation at the top of the card (which warns when a job is under way) |
 | `picture` | ❌ | `auto` | Picture: `auto`, `officejet`, `laserjet`, `deskjet`, `smart_tank` or `generic` (see below) |
 | `image` | ❌ | — | URL of your own printer picture, e.g. `/local/printer.png`; replaces `picture` |
 | `language` | ❌ | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings; *Automatic* in the visual editor) |

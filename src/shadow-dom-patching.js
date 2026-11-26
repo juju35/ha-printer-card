@@ -141,6 +141,12 @@ export class PrinterCard extends HTMLElement {
   disconnectedCallback() {
     clearInterval(this._timer);
     this._ro?.disconnect();
+    // Left (another view, a conditional card hidden): the popup closes without acting.
+    if (this._confirm) {
+      this._confirm = null;
+      window.removeEventListener?.('keydown', this._onConfirmKey);
+      this._sig = null;
+    }
   }
 
   // The status pill goes right after the title only when the whole title and the whole label fit there; otherwise it
@@ -192,6 +198,7 @@ export class PrinterCard extends HTMLElement {
   }
 
   _chipClick(ev) {
+    if (this._powerClick(ev)) return;
     if (this._scanClick(ev)) return;
     var chip = ev.composedPath().find((n) => n.dataset?.entity);
     if (!chip) return;
@@ -310,7 +317,7 @@ export class PrinterCard extends HTMLElement {
   }
 
   _ids(r) {
-    var ids = [r.status, r.raw, r.ipp, r.total_pages, r.eprint, r.eprint_registration];
+    var ids = [r.status, r.raw, r.ipp, r.total_pages, r.eprint, r.eprint_registration, this._powerId()];
     if (r.scan) ids.push(r.scan.source, r.scan.format, r.scan.resolution, r.scan.color, r.scan.last);
     r.inks.forEach((i) => { ids.push(i.level, i.status, i.expiry, i.pages_left); });
     (r.parts || []).forEach((p) => { ids.push(p.level); });
@@ -338,7 +345,7 @@ export class PrinterCard extends HTMLElement {
     if (!this._config || !this._hass || !this.shadowRoot) return;
     var r = this._resolve();
     var hass = this._hass;
-    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._config.illustration !== false && hpIsNight(hass, this._config), this._timeSig(r), this._scanState || null, this._ids(r).map((id) => {
+    var sig = JSON.stringify([this._lang(), this._config, r.deviceId, this._config.illustration !== false && hpIsNight(hass, this._config), this._timeSig(r), this._scanState || null, this._confirm || null, this._ids(r).map((id) => {
       var s = hass.states[id];
       return s ? [id, s.state, s.attributes.state, s.attributes.state_reason, s.attributes.state_message, s.attributes.message, s.attributes.installed] : null;
     })]);
@@ -613,6 +620,75 @@ export class PrinterCard extends HTMLElement {
   // Extra control at the top right of the header: none here, the mini card's zoom button.
   _corner() { return ''; }
 
+  // power_entity: the printer's smart plug (switch, light or input boolean). A round power button in the header, shown
+  // even while the printer is off or offline so it can be turned back on: on at once, off only once confirmed (a job
+  // under way is lost).
+  _powerId() {
+    var c = this._config || {};
+    return c.power_entity || c.entities?.power || '';
+  }
+
+  _powerHtml() {
+    var id = this._powerId();
+    var s = id && this._hass?.states?.[id];
+    if (!s) return '';
+    var on = s.state === 'on';
+    var label = hpEsc(this._t(on ? 'pw_turn_off' : 'pw_turn_on'));
+    var dis = s.state === 'unavailable' ? ' disabled' : '';
+    return `<button type="button" class="pw${on ? ' on' : ''}" data-power="${hpEsc(id)}" title="${label}" aria-label="${label}" aria-pressed="${on}"${dis}><ha-icon icon="mdi:power"></ha-icon></button>`;
+  }
+
+  _confirmHtml() {
+    var c = this._confirm;
+    if (!c) return '';
+    return `<div class="backdrop" data-confirm="backdrop"><div class="modal" role="dialog" aria-modal="true" aria-label="${hpEsc(c.text)}">` +
+      `<div class="msg">${hpEsc(c.text)}</div><div class="modal-actions">` +
+      `<button type="button" class="mbtn" data-confirm="cancel">${hpEsc(this._t('pw_cancel'))}</button>` +
+      `<button type="button" class="mbtn primary" data-confirm="ok">${hpEsc(this._t('pw_turn_off'))}</button></div></div></div>`;
+  }
+
+  _closeConfirm() {
+    this._confirm = null;
+    window.removeEventListener?.('keydown', this._onConfirmKey);
+    this._update();
+  }
+
+  // A click on the power button, or on the popup (its buttons, its backdrop). True when handled.
+  _powerClick(ev) {
+    var path = ev.composedPath();
+    if (this._confirm) {
+      var el = path.find((n) => n?.dataset?.confirm);
+      ev.stopPropagation();
+      if (!el) return true;
+      var what = el.dataset.confirm;
+      if (what === 'ok') {
+        var id = this._confirm.entity;
+        this._closeConfirm();
+        this._hass.callService(id.split('.')[0], 'turn_off', { entity_id: id });
+      } else if (what === 'cancel' || (what === 'backdrop' && path[0] === el)) this._closeConfirm();
+      return true;
+    }
+    var btn = path.find((n) => n?.dataset?.power);
+    if (!btn) return false;
+    ev.stopPropagation();
+    var entity = btn.dataset.power;
+    if (this._hass.states[entity]?.state !== 'on') {
+      this._hass.callService(entity.split('.')[0], 'turn_on', { entity_id: entity });
+      return true;
+    }
+    var r = this._resolve();
+    var name = this._config.name || this._view(r).name || '';
+    var busy = HP_BUSY.indexOf(this._state(r)) >= 0;
+    this._confirm = { entity: entity, text: this._t(busy ? 'pw_confirm_job' : 'pw_confirm', { name: name }) };
+    this._onConfirmKey ??= (e) => {
+      if (e.key === 'Escape' && this._confirm) this._closeConfirm();
+    };
+    window.addEventListener?.('keydown', this._onConfirmKey);
+    this._update();
+    this.shadowRoot.querySelector('.modal .primary')?.focus({ preventScroll: true });
+    return true;
+  }
+
   // The illustrated header (illustration: false keeps the classic one): the office wall, the printer's drawing on
   // the desk, the status-coloured icon with its brand badge, the name and "Status · ink N %".
   _banner(r, v) {
@@ -632,7 +708,7 @@ export class PrinterCard extends HTMLElement {
       '<div class="header">' + v.logoHtml +
         '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' + pill + '</div>' +
           (sub ? '<div class="hsub">' + hpEsc(sub) + '</div>' : '') + '</div>' +
-      '</div>' + this._corner() + '<div class="ground"></div></div>';
+      '</div>' + this._powerHtml() + this._corner() + '<div class="ground"></div></div>';
   }
 
   _render(r) {
@@ -646,8 +722,8 @@ export class PrinterCard extends HTMLElement {
 
   _paint(v, inner, cls) {
     var focused = hpFocusKey(this.shadowRoot.activeElement);
-    var classes = [v.offline ? 'offline' : '', cls || ''].filter(Boolean).join(' ');
-    hpMorph(this.shadowRoot, `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}</ha-card>`);
+    var classes = [v.offline ? 'offline' : '', cls || '', this._confirm ? 'dialog-open' : ''].filter(Boolean).join(' ');
+    hpMorph(this.shadowRoot, `${this._styles(v.color, v.icon)}<ha-card class="${classes}">${inner}${this._confirmHtml()}</ha-card>`);
     this._fitPill();
     this._fitAfterCard();
     // A control the patch could not keep (another layout): its counterpart gets the focus, so keyboard navigation keeps its place.
@@ -702,7 +778,7 @@ export class PrinterCard extends HTMLElement {
     var head = c.illustration !== false
       ? this._banner(r, v) + (chips.length || sub ? '<div class="below">' + (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') + sub + '</div>' : '')
       : '<div class="hd"><div class="header">' + v.logoHtml +
-      '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' + this._statusPill(v) + '</div></div>' + this._corner() + '</div></div>' +
+      '<div class="titles"><div class="trow"><div class="name">' + hpEsc(v.name) + '</div>' + this._statusPill(v) + '</div></div>' + this._powerHtml() + this._corner() + '</div></div>' +
       '<div class="head">' + v.imageHtml +
       '<div class="meta">' +
         (chips.length ? `<div class="chips">${chips.join('')}</div>` : '') +
@@ -947,6 +1023,28 @@ export class PrinterCard extends HTMLElement {
       '@container printer-card (max-width: 200px) { .header { gap: 4px; }' +
         ' .status { min-width: 22px; padding: 2px 4px; } .status span { display: none; } }' +
       '.chips { display: flex; flex-wrap: wrap; gap: 6px; }' +
+      // The power button (power_entity): round, never filled — tinted in green while the printer is powered.
+      '.pw { all: unset; flex: none; box-sizing: border-box; cursor: pointer; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;' +
+        ' color: var(--secondary-text-color); box-shadow: inset 0 0 0 1px var(--divider-color, rgba(127,127,127,.3)); }' +
+      '.pw ha-icon { --mdc-icon-size: 16px; }' +
+      '.pw.on { color: var(--success-color, #43a047); background: color-mix(in srgb, var(--success-color, #43a047) 14%, transparent); box-shadow: none; }' +
+      '.pw:not([disabled]):hover { background: color-mix(in srgb, var(--secondary-text-color) 16%, transparent); }' +
+      '.pw.on:not([disabled]):hover { background: color-mix(in srgb, var(--success-color, #43a047) 24%, transparent); }' +
+      '.pw[disabled] { opacity: .45; cursor: default; }' +
+      '.pw:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 1px; }' +
+      // The confirmation popup, at the top of the card (it stays in view when the card is long).
+      'ha-card.dialog-open { position: relative; min-block-size: 150px; }' +
+      '.backdrop { position: absolute; inset: 0; z-index: 9; display: flex; align-items: flex-start; justify-content: center; padding-top: 12px; box-sizing: border-box;' +
+        ' background: rgba(0,0,0,.45); border-radius: inherit; }' +
+      '.modal { width: min(92%, 340px); box-sizing: border-box; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px;' +
+        ' background: var(--card-background-color, #1c1c1c); color: var(--primary-text-color); box-shadow: 0 8px 30px rgba(0,0,0,.4); }' +
+      '.modal .msg { font-size: 14px; line-height: 1.4; }' +
+      '.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }' +
+      '.mbtn { all: unset; cursor: pointer; padding: 6px 14px; border-radius: 10px; font-size: 13px; font-weight: 500;' +
+        ' background: var(--secondary-background-color, rgba(127,127,127,.12)); color: var(--primary-text-color); }' +
+      '.mbtn.primary { background: color-mix(in srgb, var(--error-color, #db4437) 16%, transparent); color: var(--error-color, #db4437); }' +
+      '.mbtn:hover { filter: brightness(1.08); }' +
+      '.mbtn:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }' +
       '.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 1px 8px 1px 5px; border-radius: 12px; }' +
       '.chip ha-icon { --mdc-icon-size: 13px; flex: none; width: 13px; height: 13px; }' +
       '[data-entity] { cursor: pointer; }' +
