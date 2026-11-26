@@ -1339,3 +1339,35 @@ test("the editors offer the illustration and its theme, the mini card's too", ()
     assert.match(names, /"name":"illustration_theme"/);
   }
 });
+
+// power_entity (#110): a power button that turns the plug on at once, off only once confirmed.
+test("power_entity: power button on both cards, on at once, off after a confirmation at the top of the card", () => {
+  const withPlug = (state, status = "ready") => {
+    const hass = mockHass({ status });
+    hass.states["switch.printer_plug"] = st(state);
+    const calls = [];
+    hass.callService = (domain, service, data) => calls.push({ domain, service, data });
+    return { hass, calls };
+  };
+  const press = (card, dataset, path0) => card._chipClick({ composedPath: () => [path0 || { dataset }, card], stopPropagation() {} });
+  // Off: the button stays, and turns the plug on without asking.
+  const off = withPlug("off", "unavailable");
+  const card = render(off.hass, { device_id: "p", power_entity: "switch.printer_plug" });
+  assert.match(card.shadowRoot.innerHTML, /<button type="button" class="pw" data-power="switch.printer_plug" title="Turn on" aria-label="Turn on" aria-pressed="false">/);
+  press(card, { power: "switch.printer_plug" });
+  assert.deepEqual(JSON.parse(JSON.stringify(off.calls)), [{ domain: "switch", service: "turn_on", data: { entity_id: "switch.printer_plug" } }]);
+  // On, printing: a confirmation that warns about the job; Cancel does nothing, OK turns it off.
+  const on = withPlug("on", "processing");
+  const c2 = render(on.hass, { device_id: "p", power_entity: "switch.printer_plug" });
+  press(c2, { power: "switch.printer_plug" });
+  assert.equal(on.calls.length, 0);
+  assert.match(c2.shadowRoot.innerHTML, /<ha-card class="dialog-open">[\s\S]*class="backdrop"[\s\S]*Turn OfficeJet off\? The print under way will be lost\./);
+  press(c2, { confirm: "cancel" });
+  assert.doesNotMatch(c2.shadowRoot.innerHTML, /class="backdrop"/);
+  press(c2, { power: "switch.printer_plug" });
+  press(c2, { confirm: "ok" });
+  assert.deepEqual(JSON.parse(JSON.stringify(on.calls)), [{ domain: "switch", service: "turn_off", data: { entity_id: "switch.printer_plug" } }]);
+  // The mini card has it too; without power_entity, no button.
+  assert.match(mini(on.hass, { power_entity: "switch.printer_plug" }).shadowRoot.innerHTML, /class="pw on" data-power="switch.printer_plug"/);
+  assert.doesNotMatch(render(on.hass).shadowRoot.innerHTML, /data-power=/);
+});

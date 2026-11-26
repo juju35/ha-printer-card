@@ -1,6 +1,6 @@
 // ── Card ─────────────────────────────────────────────────────────────────────
 // The card's focusable controls, by the selector that identifies each across renders.
-export var HP_FOCUSABLE = ['a.pic', 'button.zoom'];
+export var HP_FOCUSABLE = ['a.pic', 'button.zoom', 'button.pw', '.modal .primary', '.modal [data-confirm="cancel"]'];
 export function hpFocusKey(el) {
   if (!el?.matches) return '';
   // A chip: by its tag, classes and entity.

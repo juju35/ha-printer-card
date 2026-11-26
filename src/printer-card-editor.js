@@ -55,6 +55,7 @@ export class PrinterCardEditor extends HTMLElement {
       { name: 'low_threshold', selector: { number: { min: 0, max: 50, step: 1, mode: 'slider', unit_of_measurement: '%' } } },
       { name: 'show_expired', selector: { boolean: {} } },
       { name: 'admin_url', selector: { text: { type: 'url' } } },
+      { name: 'power_entity', selector: { entity: { domain: ['switch', 'light', 'input_boolean'] } } },
       {
         name: 'picture',
         selector: { select: { mode: 'dropdown', options: HP_PICTURES.map((v) => ({ value: v, label: t(`pic_${v}`) })) } },

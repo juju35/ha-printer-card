@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.18.0 - 2026-11-26
+
+### Features
+- `power_entity` option (also in the visual editor): the switch, light or input boolean of the printer's smart plug adds a round power button in the header of both cards. It stays shown while the printer is off or offline, so the printer can be turned back on from the card; turning it on is immediate, turning it off asks for a confirmation at the top of the card, which warns when a job is under way. Closes #110.
+
 ## 2.17.4 - 2026-11-26
 
 ### Fixes
