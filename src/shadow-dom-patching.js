@@ -651,6 +651,8 @@ export class PrinterCard extends HTMLElement {
     this._confirm = null;
     window.removeEventListener?.('keydown', this._onConfirmKey);
     this._update();
+    // The focus goes back to the power button the popup came from.
+    this.shadowRoot.querySelector('button.pw')?.focus?.({ preventScroll: true });
   }
 
   // A click on the power button, or on the popup (its buttons, its backdrop). True when handled.
